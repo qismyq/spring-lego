@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.1.BUILD-SNAPSHOT</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+
+	<groupId>net.yunqihui</groupId>
+	<artifactId>social-spring-boot-starter-autoconfigure</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>social-spring-boot-starter-autoconfigure</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+
+		<!--封装Starter核心依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.yunqihui</groupId>
+			<artifactId>frame-spring-boot-starter</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+		<!-- 添加资源 -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<!-- src/main/resources下的指定资源放行 -->
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.yml</include>
+					<include>**/*.xml</include>
+					<include>**/*.sql</include>
+					<include>**/spring.factories</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>  <!-- 该配置必须,java -jar时接受外部配置参数 -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
