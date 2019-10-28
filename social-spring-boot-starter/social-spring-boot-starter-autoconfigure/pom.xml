@@ -53,13 +53,13 @@
 			</resource>
 		</resources>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<fork>true</fork>  <!-- 该配置必须,java -jar时接受外部配置参数 -->
-				</configuration>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.springframework.boot</groupId>-->
+				<!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+				<!--<configuration>-->
+					<!--<fork>true</fork>  &lt;!&ndash; 该配置必须,java -jar时接受外部配置参数 &ndash;&gt;-->
+				<!--</configuration>-->
+			<!--</plugin>-->
 		</plugins>
 	</build>
 
