@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>net.yunqihui</groupId>
+	<artifactId>lego-user-spring-boot-autoconfigure</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>lego-user-spring-boot-autoconfigure</name>
+	<description>user and permission module</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+
+		<framestarter.version>1.0-SNAPSHOT</framestarter.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.yunqihui</groupId>
+			<artifactId>lego-frame-spring-boot-starter</artifactId>
+			<version>${framestarter.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<!-- 添加资源 -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<!-- src/main/resources下的指定资源放行 -->
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.yml</include>
+					<include>**/*.xml</include>
+					<include>**/*.sql</include>
+					<include>**/spring.factories</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+	</build>
+
+</project>

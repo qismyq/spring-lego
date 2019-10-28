@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>net.yunqihui</groupId>
+	<artifactId>lego-shiro-spring-boot-autoconfigure</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>lego-shiro-spring-boot-autoconfigure</name>
+	<description>shiro module</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+
+		<shiro.version>1.4.1</shiro.version>
+		<framestarter.version>1.0-SNAPSHOT</framestarter.version>
+	</properties>
+
+	<dependencies>
+		<!--封装Starter核心依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.yunqihui</groupId>
+			<artifactId>lego-frame-spring-boot-starter</artifactId>
+			<version>${framestarter.version}</version>
+		</dependency>
+
+		<!--shiro-start-->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring-boot-web-starter</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<!--shiro-end -->
+	</dependencies>
+
+	<build>
+		<!-- 添加资源 -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<!-- src/main/resources下的指定资源放行 -->
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.yml</include>
+					<include>**/*.xml</include>
+					<include>**/*.sql</include>
+					<include>**/spring.factories</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+	</build>
+</project>
