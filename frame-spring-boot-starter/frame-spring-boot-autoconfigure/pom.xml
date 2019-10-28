@@ -11,7 +11,7 @@
 	<groupId>net.yunqihui</groupId>
 	<artifactId>frame-spring-boot-autoconfigure</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>frame-spring-boo-autoconfigure</name>
+	<name>frame-spring-boot-autoconfigure</name>
 	<description>Base frame for company`s service</description>
 
 	<properties>
