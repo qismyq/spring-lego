@@ -1,9 +1,9 @@
 package net.yunqihui.starter.shiro.frame.shiro;
 
-import com.example.demo.frame.util.GlobalStatic;
-import com.example.demo.model.User;
-import com.example.demo.service.IUserRoleService;
-import com.example.demo.service.IUserService;
+import net.yunqihui.starter.frame.util.GlobalStatic;
+import net.yunqihui.starter.user.entity.User;
+import net.yunqihui.starter.user.service.IUserRoleService;
+import net.yunqihui.starter.user.service.IUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;

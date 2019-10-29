@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.yunqihui.starter.user.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="net.yunqihui.starter.user.entity.Menu">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="pid" property="pid" />
+        <result column="description" property="description" />
+        <result column="pageurl" property="pageurl" />
+        <result column="type" property="type" />
+        <result column="state" property="state" />
+        <result column="sortno" property="sortno" />
+        <result column="menu_icon" property="menuIcon" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, pid, description, pageurl, type, state, sortno, menu_icon
+    </sql>
+
+</mapper>

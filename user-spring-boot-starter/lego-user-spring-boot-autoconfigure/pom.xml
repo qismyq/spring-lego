@@ -26,6 +26,14 @@
 			<artifactId>lego-frame-spring-boot-starter</artifactId>
 			<version>${framestarter.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+			<version>1.16.20</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

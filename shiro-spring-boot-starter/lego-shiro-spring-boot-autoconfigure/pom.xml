@@ -20,7 +20,10 @@
 		<java.version>1.8</java.version>
 
 		<shiro.version>1.4.1</shiro.version>
+
+
 		<framestarter.version>1.0-SNAPSHOT</framestarter.version>
+		<userstarter.version>1.0-SNAPSHOT</userstarter.version>
 	</properties>
 
 	<dependencies>
@@ -33,6 +36,12 @@
 			<groupId>net.yunqihui</groupId>
 			<artifactId>lego-frame-spring-boot-starter</artifactId>
 			<version>${framestarter.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.yunqihui</groupId>
+			<artifactId>lego-user-spring-boot-starter</artifactId>
+			<version>${userstarter.version}</version>
 		</dependency>
 
 		<!--shiro-start-->
