@@ -1,9 +1,11 @@
 package net.yunqihui.starter.shiro.frame.shiro;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.security.auth.Subject;
 
 
 /**
@@ -51,7 +53,7 @@ public class SessionUser {
         }
     }
 
-    public static String getUserId() {
+    public static Long getUserId() {
         try {
             ShiroUser shiroUser = getShiroUser();
             if (shiroUser == null) {

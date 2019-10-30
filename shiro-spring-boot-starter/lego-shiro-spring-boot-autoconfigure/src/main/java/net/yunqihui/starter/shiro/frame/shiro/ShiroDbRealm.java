@@ -76,8 +76,8 @@ public class ShiroDbRealm extends AuthorizingRealm {
                 .getPrimaryPrincipal();
         // String userId = (String)
         // principalCollection.fromRealm(getName()).iterator().next();
-        String userId = shiroUser.getId();
-        if (StringUtils.isBlank(userId)) {
+        Long userId = shiroUser.getId();
+        if (userId == null) {
             return null;
         }
         // 添加角色及权限信息

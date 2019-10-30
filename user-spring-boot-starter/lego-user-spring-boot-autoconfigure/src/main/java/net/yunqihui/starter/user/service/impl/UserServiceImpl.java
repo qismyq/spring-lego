@@ -5,6 +5,7 @@ import net.yunqihui.starter.user.entity.User;
 import net.yunqihui.starter.user.mapper.UserMapper;
 import net.yunqihui.starter.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,7 +22,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Autowired
     UserMapper userMapper;
 
-//    @Cacheable(cacheNames = {"loginUser"},key = "'account'")
+    @Cacheable(cacheNames = {"loginUser"},key = "'account'")
     @Override
     public User getLoginUser(String account, String state) throws Exception {
         return userMapper.getLoginUser(account,state);

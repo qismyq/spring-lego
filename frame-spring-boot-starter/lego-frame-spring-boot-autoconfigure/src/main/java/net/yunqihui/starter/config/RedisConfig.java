@@ -36,6 +36,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      *      如: @Cacheable(value = "key", keyGenerator = "cacheKeyGenerator")
      */
     @Bean
+    @Override
     public KeyGenerator keyGenerator(){
         return new KeyGenerator() {
             @Override

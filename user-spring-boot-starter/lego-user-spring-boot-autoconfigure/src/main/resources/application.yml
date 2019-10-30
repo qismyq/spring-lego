@@ -87,7 +87,7 @@ logging:
 swagger:
   enable: true
   base:
-    package: net.yunqihui.starter.user.controller
+    package: net.yunqihui
   path:
     selector:
       regex: /system/user/.*/json|/system/dicdata/.*/json

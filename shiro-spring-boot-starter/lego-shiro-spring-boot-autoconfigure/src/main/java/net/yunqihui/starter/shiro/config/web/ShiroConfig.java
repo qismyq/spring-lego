@@ -1,7 +1,7 @@
 package net.yunqihui.starter.shiro.config.web;
 
-import com.example.demo.frame.shiro.ShiroDbRealm;
-import com.example.demo.frame.util.SpringUtils;
+import net.yunqihui.starter.frame.util.SpringUtils;
+import net.yunqihui.starter.shiro.frame.shiro.ShiroDbRealm;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;

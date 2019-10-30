@@ -5,6 +5,8 @@ import net.yunqihui.starter.user.entity.UserRole;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户角色中间表 Mapper 接口
@@ -16,5 +18,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper
 public interface UserRoleMapper extends BaseMapper<UserRole> {
+
+
+    List<UserRole> getRoleCodeAsString(Long userId);
 
 }

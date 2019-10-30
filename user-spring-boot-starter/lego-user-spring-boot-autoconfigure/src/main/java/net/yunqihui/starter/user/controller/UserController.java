@@ -1,6 +1,7 @@
 package net.yunqihui.starter.user.controller;
 
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author michael wong
  * @since 2019-10-29
  */
+@Api(description = "用户模块")
 @RestController
 @RequestMapping("/user")
 public class UserController {

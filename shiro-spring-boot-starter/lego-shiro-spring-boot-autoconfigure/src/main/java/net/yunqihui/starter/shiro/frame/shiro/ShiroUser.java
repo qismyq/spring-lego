@@ -1,6 +1,6 @@
 package net.yunqihui.starter.shiro.frame.shiro;
 
-import com.example.demo.model.User;
+import net.yunqihui.starter.user.entity.User;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.io.Serializable;
@@ -19,7 +19,7 @@ public class ShiroUser implements Serializable {
     /**
      * 编号
      */
-    private String id;
+    private Long id;
     /**
      * 姓名
      */
@@ -73,32 +73,38 @@ public class ShiroUser implements Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         ShiroUser other = (ShiroUser) obj;
         if (account == null) {
-            if (other.account != null)
+            if (other.account != null) {
                 return false;
-        } else if (!account.equals(other.account))
+            }
+        } else if (!account.equals(other.account)) {
             return false;
+        }
         return true;
     }
 
+    @Override
     public int hashCode() {
         return new HashCodeBuilder()
                 .append(getAccount())
                 .toHashCode();
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

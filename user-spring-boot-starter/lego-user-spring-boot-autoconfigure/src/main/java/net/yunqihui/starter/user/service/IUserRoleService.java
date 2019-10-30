@@ -3,6 +3,8 @@ package net.yunqihui.starter.user.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import net.yunqihui.starter.user.entity.UserRole;
 
+import java.util.Set;
+
 /**
  * <p>
  * 用户角色中间表 服务类
@@ -12,5 +14,9 @@ import net.yunqihui.starter.user.entity.UserRole;
  * @since 2019-10-29
  */
 public interface IUserRoleService extends IService<UserRole> {
+
+
+
+    Set<String> getRoleCodeAsString(Long userId) throws Exception;
 
 }

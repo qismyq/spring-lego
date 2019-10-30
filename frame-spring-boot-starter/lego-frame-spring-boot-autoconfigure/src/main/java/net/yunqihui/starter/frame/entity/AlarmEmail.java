@@ -1,4 +1,4 @@
-package net.yunqihui.starter.user.entity;
+package net.yunqihui.starter.frame.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -15,40 +15,38 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 用户角色中间表
+ * 警报邮箱
  * </p>
  *
  * @author michael wong
- * @since 2019-10-29
+ * @since 2019-10-30
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("t_user_role")
-@ApiModel(value="UserRole对象", description="用户角色中间表")
-public class UserRole extends Model<UserRole> {
+@TableName("dic_alarmEmail")
+@ApiModel(value="AlarmEmail对象", description="警报邮箱")
+public class AlarmEmail extends Model<AlarmEmail> {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "编号")
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
-    @ApiModelProperty(value = "用户编号")
-    private Long userId;
+    @ApiModelProperty(value = "邮箱地址")
+    @TableField("emaiAddress")
+    private String emaiAddress;
 
-    @ApiModelProperty(value = "角色编号")
-    private Integer roleId;
+    @ApiModelProperty(value = "收件人名称")
+    private String receiver;
+
+    @ApiModelProperty(value = "1收件人 2抄送人")
+    private Integer type;
 
 
     @Override
     protected Serializable pkVal() {
         return this.id;
     }
-
-
-
-    @TableField(exist = false)
-    private String roleCode ;
 
 }
