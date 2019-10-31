@@ -1,13 +1,12 @@
 package net.yunqihui.starter.user.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -24,6 +23,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@ToString
 @TableName("t_user")
 @ApiModel(value="User对象", description="后台用户")
 public class User extends Model<User> {
@@ -35,6 +35,7 @@ public class User extends Model<User> {
     private Long id;
 
     @ApiModelProperty(value = "姓名")
+    @TableField(condition = SqlCondition.LIKE_RIGHT)
     private String name;
 
     @ApiModelProperty(value = "账号")
@@ -58,6 +59,7 @@ public class User extends Model<User> {
     @ApiModelProperty(value = "是否有效,是/否")
     private String state;
 
+    @ApiModelProperty(value = "前端用户表id")
     private Integer frontUserId;
 
     @ApiModelProperty(value = "创建时间")
