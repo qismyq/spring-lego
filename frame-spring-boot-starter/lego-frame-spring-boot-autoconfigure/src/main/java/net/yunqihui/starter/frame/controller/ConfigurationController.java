@@ -42,8 +42,10 @@ public class ConfigurationController {
             @ApiResponse(code = 1002, response = ReturnDatas.class,message = "缺少参数") })
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public ReturnDatas listjson(HttpServletRequest request, Model model, Configuration configuration) throws Exception {
-        ConfigBean datas = configurationService.findParamBean();
         ReturnDatas returnObject = ReturnDatas.getSuccessReturnDatas();
+
+        ConfigBean datas = configurationService.findParamBean();
+
         returnObject.setData(datas);
         return returnObject;
     }
@@ -56,6 +58,7 @@ public class ConfigurationController {
     @RequestMapping(value = "/update",method = RequestMethod.PUT)
     public ReturnDatas saveorupdate(Model model,Configuration configuration,HttpServletRequest request,HttpServletResponse response) throws Exception{
         ReturnDatas returnObject = ReturnDatas.getSuccessReturnDatas();
+
         String code =configuration.getCode();
         if(StringUtils.isBlank(code)){
             configuration.setCode(null);

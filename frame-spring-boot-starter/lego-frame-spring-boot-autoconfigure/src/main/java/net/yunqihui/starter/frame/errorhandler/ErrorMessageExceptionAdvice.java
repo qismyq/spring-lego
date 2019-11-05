@@ -1,4 +1,4 @@
-package net.yunqihui.starter.frame.exception;
+package net.yunqihui.starter.frame.errorhandler;
 
 import net.yunqihui.starter.frame.entity.ReturnDatas;
 import org.slf4j.Logger;
@@ -33,7 +33,7 @@ public class ErrorMessageExceptionAdvice {
     @ExceptionHandler(value = Exception.class)
     public ReturnDatas defaultException(HttpServletRequest request, Exception e) {
         logger.error(e.getMessage(), e);
-        ReturnDatas returnDatas = ReturnDatas.getErrorReturnDatas().setMessage("系统异常，请稍后再试");
+        ReturnDatas returnDatas = ReturnDatas.getErrorReturnDatas(FrameErrorCodeEnum.E_50000);
         return returnDatas;
     }
 
@@ -50,8 +50,8 @@ public class ErrorMessageExceptionAdvice {
      * @update:
      */
     @ExceptionHandler(value = ErrorMessageException.class)
-    public ReturnDatas errorMessageException(HttpServletRequest request, Exception e) {
-        ReturnDatas returnDatas = ReturnDatas.getErrorReturnDatas().setMessage(e.getMessage());
+    public ReturnDatas errorMessageException(HttpServletRequest request, ErrorMessageException e) {
+        ReturnDatas returnDatas = new ReturnDatas(e.getErrorCode(),e.getMessage());
         return returnDatas;
     }
 

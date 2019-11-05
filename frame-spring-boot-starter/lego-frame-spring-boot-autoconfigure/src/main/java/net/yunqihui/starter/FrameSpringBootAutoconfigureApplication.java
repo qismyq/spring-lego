@@ -1,15 +1,19 @@
-package net.yunqihui.starter;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
-
-@SpringBootApplication
-@EnableCaching
-public class FrameSpringBootAutoconfigureApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(FrameSpringBootAutoconfigureApplication.class, args);
-	}
-
-}
+//package net.yunqihui.starter;
+//
+//import org.mybatis.spring.annotation.MapperScan;
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import org.springframework.cache.annotation.EnableCaching;
+//import springfox.documentation.swagger2.annotations.EnableSwagger2;
+//
+//@SpringBootApplication
+//@MapperScan("net.yunqihui.**.mapper")
+//@EnableSwagger2
+//@EnableCaching
+//public class FrameSpringBootAutoconfigureApplication {
+//
+//	public static void main(String[] args) {
+//		SpringApplication.run(FrameSpringBootAutoconfigureApplication.class, args);
+//	}
+//
+//}

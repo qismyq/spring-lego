@@ -10,7 +10,6 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import net.yunqihui.starter.frame.entity.ReturnDatas;
-import net.yunqihui.starter.frame.exception.ErrorMessageException;
 import net.yunqihui.starter.user.entity.User;
 import net.yunqihui.starter.user.service.IUserService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +46,8 @@ public class UserController {
         User user = userService.getLoginUser("siyuan", "是");
         returnDatas.setData(user).setMessage("成功");
         if (user == null) {
-            throw new ErrorMessageException("这是自定义异常信息");
+//            throw new ErrorMessageException("这是自定义异常信息");
+            throw new NullPointerException();
         }
         return returnDatas;
     }

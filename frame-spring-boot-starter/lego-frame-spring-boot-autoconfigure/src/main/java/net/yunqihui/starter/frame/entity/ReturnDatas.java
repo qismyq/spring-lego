@@ -3,6 +3,8 @@ package net.yunqihui.starter.frame.entity;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import net.yunqihui.starter.frame.errorhandler.FrameErrorCodeEnum;
+import net.yunqihui.starter.frame.errorhandler.IErrorCode;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -16,14 +18,37 @@ import java.util.Map;
 @Accessors(chain = true)
 @SuppressWarnings("serial")
 public class ReturnDatas implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	public static final String SUCCESS = "success";
 	public static final String ERROR = "error";
 	public static final String WARNING = "warning";
 	public static final String LOGIN = "login";
 	public static final String REGISTER = "register";
+
+	/**
+	 * http请求状态码
+	 */
 	private String statusCode="200";
-	private String status;
-	private String message;
+	/**
+	 * http请求状态
+	 */
+	private String status = ReturnDatas.SUCCESS;
+	/**
+	 * http请求结果信息
+	 */
+	private String message = "成功";
+	/**
+	 * 处理结果code
+	 */
+	private String errorCode ;
+	/**
+	 * 处理结果错误提示信息
+	 */
+	private String errorMessage ;
+	/**
+	 * 处理返回结果
+	 */
 	private Object data;
 	private Integer palceCount;
     @SuppressWarnings("rawtypes")
@@ -31,43 +56,33 @@ public class ReturnDatas implements Serializable{
 	private Page page;
 	private String sum;
 	private Object queryBean;
-	
+
+
+	//  constructor -- start
 	public ReturnDatas() {
-		
 	}
-	
-	public static ReturnDatas getSuccessReturnDatas() {
-	return new ReturnDatas(ReturnDatas.SUCCESS);
+	@Deprecated
+	public ReturnDatas(String errorCode) {
+		this.errorCode = errorCode;
 	}
-	public static ReturnDatas getErrorReturnDatas() {
-		return new ReturnDatas(ReturnDatas.ERROR);
-		}
-	public static ReturnDatas getWarningReturnDatas() {
-		return new ReturnDatas(ReturnDatas.WARNING);
-		}
-	
-	
-	public ReturnDatas(String status) {
-		this.status = status;
+	@Deprecated
+	public ReturnDatas(String errorCode, String errorMessage) {
+		this.errorCode = errorCode;
+		this.errorMessage = errorMessage;
 	}
-	
-	public ReturnDatas(String status, String message) {
-		this.status = status;
-		this.message = message;
-	}
-	
-	public Integer getPalceCount() {
-		return palceCount;
-	}
-
-	public void setPalceCount(Integer palceCount) {
-		this.palceCount = palceCount;
-	}
-
-	public ReturnDatas(String status, String message, Object data) {
-		this.status = status;
-		this.message = message;
+	@Deprecated
+	public ReturnDatas(String errorCode, String errorMessage, Object data) {
+		this.errorCode = errorCode;
+		this.message = errorMessage;
 		this.data = data;
 	}
-	
+
+	//  constructor -- end
+
+	public static ReturnDatas getSuccessReturnDatas() {
+		return new ReturnDatas(FrameErrorCodeEnum.E_0.getErrorCode(),FrameErrorCodeEnum.E_0.getErrorMessage());
+	}
+	public static ReturnDatas getErrorReturnDatas(IErrorCode errorCode) {
+		return  new ReturnDatas(errorCode.getErrorCode(), errorCode.getErrorMessage());
+	}
 }

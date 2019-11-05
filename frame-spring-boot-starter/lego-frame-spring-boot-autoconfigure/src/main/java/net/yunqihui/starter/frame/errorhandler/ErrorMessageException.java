@@ -1,4 +1,7 @@
-package net.yunqihui.starter.frame.exception;
+package net.yunqihui.starter.frame.errorhandler;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @Description 自定义误信息异常
@@ -6,7 +9,11 @@ package net.yunqihui.starter.frame.exception;
  * @Email michael_wong@yunqihui.net
  * @Date 2019/10/29 17:04
  **/
+@Data
+@Accessors(chain = true)
 public class ErrorMessageException extends RuntimeException {
+
+    private String errorCode = "1" ;
 
     /**
      * Constructs a new runtime exception with {@code null} as its
@@ -80,5 +87,14 @@ public class ErrorMessageException extends RuntimeException {
      */
     protected ErrorMessageException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+    public ErrorMessageException(String errorCode, String message) {
+        super(message);
+        this.errorCode = errorCode;
+    }
+
+    public ErrorMessageException(IErrorCode errorCode) {
+        this(errorCode.getErrorCode(),errorCode.getErrorMessage());
     }
 }
