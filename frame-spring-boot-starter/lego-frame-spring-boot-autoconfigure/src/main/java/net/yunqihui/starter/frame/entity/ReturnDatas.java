@@ -57,12 +57,12 @@ public class ReturnDatas implements Serializable{
 	private String sum;
 	private Object queryBean;
 
-	public ReturnDatas setPage(Page page){
-		page.setRecords(null);
-		this.page = page ;
-		return this ;
+	public ReturnDatas setData(Object data){
+		if (data instanceof Page) {
+			this.data = ((Page) data).getRecords() ;
+		}
+		return this;
 	}
-
 	//  constructor -- start
 	public ReturnDatas() {
 	}
