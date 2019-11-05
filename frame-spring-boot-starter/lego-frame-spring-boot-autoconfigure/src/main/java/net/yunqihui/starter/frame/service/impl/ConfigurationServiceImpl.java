@@ -1,7 +1,7 @@
 package net.yunqihui.starter.frame.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.starter.frame.entity.ConfigBean;
 import net.yunqihui.starter.frame.entity.Configuration;
 import net.yunqihui.starter.frame.mapper.ConfigurationMapper;
 import net.yunqihui.starter.frame.service.IConfigurationService;
@@ -11,7 +11,6 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,42 +31,29 @@ public class ConfigurationServiceImpl extends ServiceImpl<ConfigurationMapper, C
 
     @Override
     @Cacheable(value = GlobalStatic.cacheKey, key = "'configData'")
-    public ConfigBean findParamBean() throws Exception {
+    public JSONObject findParamBean() throws Exception {
         List<Configuration> list = configurationMapper.selectList(null);
-        //利用反射将list对象转化为Bean
-        ConfigBean config = new ConfigBean() ;
-        //获取类
-        Class clazz = config.getClass() ;
         Iterator<Configuration> iter = list.iterator() ;
+        JSONObject jsonObject = new JSONObject();
         while(iter.hasNext()){
             Configuration configuration = iter.next() ;
             String code = configuration.getCode() ;
             String val = configuration.getValue() ;
-            try {
-                //获取属性
-                Field field = clazz.getDeclaredField(code) ;
-                //打破封装性，但是会导致java对象的属性不安全
-                field.setAccessible(true);
-                //给configBean对象的属性赋值
-                field.set(config, val);
-            }catch (Exception e){
-                // 防止db加了字段但是bean忘记加属性而出错
-            }
-
+            jsonObject.put(code, val);
         }
-        return config ;
+        return jsonObject ;
     }
 
 
     @CachePut(value = GlobalStatic.cacheKey, key = "'configData'")
     @Override
-    public ConfigBean update(Configuration config) throws Exception {
-        ConfigBean configBean = null ;
+    public JSONObject update(Configuration config) throws Exception {
+        JSONObject jsonObject = null ;
         if(config != null){
             //更新数据库
             configurationMapper.updateById(config);
-            configBean = findParamBean() ;
+            jsonObject = findParamBean() ;
         }
-        return configBean;
+        return jsonObject;
     }
 }

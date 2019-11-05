@@ -1,11 +1,11 @@
 package net.yunqihui.starter.frame.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import net.yunqihui.starter.frame.entity.ConfigBean;
 import net.yunqihui.starter.frame.entity.Configuration;
 import net.yunqihui.starter.frame.entity.ReturnDatas;
 import net.yunqihui.starter.frame.service.IConfigurationService;
@@ -44,7 +44,7 @@ public class ConfigurationController {
     public ReturnDatas listjson(HttpServletRequest request, Model model, Configuration configuration) throws Exception {
         ReturnDatas returnObject = ReturnDatas.getSuccessReturnDatas();
 
-        ConfigBean datas = configurationService.findParamBean();
+        JSONObject datas = configurationService.findParamBean();
 
         returnObject.setData(datas);
         return returnObject;
