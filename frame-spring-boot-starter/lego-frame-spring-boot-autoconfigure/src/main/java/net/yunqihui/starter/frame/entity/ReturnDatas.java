@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * 返回对象的封装
  * @author caomei
- *
+ * @update michael_wong
  */
 @Data
 @Accessors(chain = true)
@@ -57,6 +57,11 @@ public class ReturnDatas implements Serializable{
 	private String sum;
 	private Object queryBean;
 
+	public ReturnDatas setPage(Page page){
+		page.setRecords(null);
+		this.page = page ;
+		return this ;
+	}
 
 	//  constructor -- start
 	public ReturnDatas() {
