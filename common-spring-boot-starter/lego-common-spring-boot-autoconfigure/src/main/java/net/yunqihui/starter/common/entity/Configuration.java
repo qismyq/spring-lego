@@ -1,4 +1,4 @@
-package net.yunqihui.starter.frame.entity;
+package net.yunqihui.starter.common.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

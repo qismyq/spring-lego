@@ -1,4 +1,4 @@
-package net.yunqihui.starter.frame.controller;
+package net.yunqihui.starter.common.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

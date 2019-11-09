@@ -1,7 +1,8 @@
-package net.yunqihui.starter.frame.service;
+package net.yunqihui.starter.common.service;
+
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import net.yunqihui.starter.frame.entity.AlarmEmail;
+import net.yunqihui.starter.common.entity.AlarmEmail;
 
 /**
  * <p>

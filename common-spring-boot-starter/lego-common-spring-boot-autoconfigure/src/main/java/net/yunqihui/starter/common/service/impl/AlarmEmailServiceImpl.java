@@ -1,9 +1,9 @@
-package net.yunqihui.starter.frame.service.impl;
+package net.yunqihui.starter.common.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.starter.frame.entity.AlarmEmail;
-import net.yunqihui.starter.frame.mapper.AlarmEmailMapper;
-import net.yunqihui.starter.frame.service.IAlarmEmailService;
+import net.yunqihui.starter.common.entity.AlarmEmail;
+import net.yunqihui.starter.common.mapper.AlarmEmailMapper;
+import net.yunqihui.starter.common.service.IAlarmEmailService;
 import org.springframework.stereotype.Service;
 
 /**

@@ -60,6 +60,8 @@ public class ReturnDatas implements Serializable{
 	public ReturnDatas setData(Object data){
 		if (data instanceof Page) {
 			this.data = ((Page) data).getRecords() ;
+		}else {
+			this.data = data ;
 		}
 		return this;
 	}

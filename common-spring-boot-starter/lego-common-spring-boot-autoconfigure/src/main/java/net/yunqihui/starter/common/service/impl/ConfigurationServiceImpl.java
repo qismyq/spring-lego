@@ -1,10 +1,10 @@
-package net.yunqihui.starter.frame.service.impl;
+package net.yunqihui.starter.common.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.starter.frame.entity.Configuration;
-import net.yunqihui.starter.frame.mapper.ConfigurationMapper;
-import net.yunqihui.starter.frame.service.IConfigurationService;
+import net.yunqihui.starter.common.entity.Configuration;
+import net.yunqihui.starter.common.mapper.ConfigurationMapper;
+import net.yunqihui.starter.common.service.IConfigurationService;
 import net.yunqihui.starter.frame.util.GlobalStatic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;

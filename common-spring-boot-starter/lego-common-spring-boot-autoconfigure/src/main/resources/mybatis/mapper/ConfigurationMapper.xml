@@ -3,7 +3,7 @@
 <mapper namespace="net.yunqihui.starter.user.mapper.ConfigurationMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="net.yunqihui.starter.frame.entity.Configuration">
+    <resultMap id="BaseResultMap" type="net.yunqihui.starter.common.entity.Configuration">
         <id column="code" property="code" />
         <result column="value" property="value" />
         <result column="descr" property="descr" />

@@ -1,8 +1,8 @@
-package net.yunqihui.starter.frame.service;
+package net.yunqihui.starter.common.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
-import net.yunqihui.starter.frame.entity.Configuration;
+import net.yunqihui.starter.common.entity.Configuration;
 
 /**
  * <p>

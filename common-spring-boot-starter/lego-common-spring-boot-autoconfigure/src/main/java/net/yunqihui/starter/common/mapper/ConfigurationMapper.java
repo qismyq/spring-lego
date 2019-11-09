@@ -1,7 +1,8 @@
-package net.yunqihui.starter.frame.mapper;
+package net.yunqihui.starter.common.mapper;
+
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import net.yunqihui.starter.frame.entity.Configuration;
+import net.yunqihui.starter.common.entity.Configuration;
 
 /**
  * <p>

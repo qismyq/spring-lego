@@ -3,7 +3,7 @@
 <mapper namespace="net.yunqihui.starter.user.mapper.AlarmEmailMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="net.yunqihui.starter.frame.entity.AlarmEmail">
+    <resultMap id="BaseResultMap" type="net.yunqihui.starter.common.entity.AlarmEmail">
         <id column="id" property="id" />
         <result column="emaiAddress" property="emaiAddress" />
         <result column="receiver" property="receiver" />
