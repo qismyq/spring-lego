@@ -1,0 +1,8 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+net.yunqihui.autoconfigure.config.DruidConfig,\
+net.yunqihui.autoconfigure.config.web.SwaggerConfig,\
+net.yunqihui.autoconfigure.config.MessageConvertConfig,\
+net.yunqihui.autoconfigure.config.MybatisPlusConfig,\
+net.yunqihui.autoconfigure.config.RedisConfig,\
+net.yunqihui.autoconfigure.config.SchedulerConfig
