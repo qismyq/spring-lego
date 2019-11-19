@@ -286,19 +286,6 @@
                     </executions>
                 </plugin>
 
-                <!--sonatype的staging插件-->
-                <!--<plugin>-->
-                    <!--<groupId>org.sonatype.plugins</groupId>-->
-                    <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
-                    <!--<version>1.6.7</version>-->
-                    <!--<extensions>true</extensions>-->
-                    <!--<configuration>-->
-                        <!--&lt;!&ndash;<serverId>sonatype-nexus-snapshots</serverId>&ndash;&gt;-->
-                        <!--<serverId>sonatype-nexus-staging</serverId>-->
-                        <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
-                        <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-                    <!--</configuration>-->
-                <!--</plugin>-->
 
                 <!--SCM插件-->
                 <plugin>
@@ -307,94 +294,6 @@
                     <version>1.8.1</version>
                 </plugin>
 
-                <!--release插件，下面checkModificationExcludes是排除一些目录文件不要发布。-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-release-plugin</artifactId>-->
-                    <!--<version>2.5.3</version>-->
-                    <!--<configuration>-->
-                        <!--<mavenExecutorId>forked-path</mavenExecutorId>-->
-                        <!--<useReleaseProfile>false</useReleaseProfile>-->
-                        <!--<arguments>-Psonatype-oss-release</arguments>-->
-                        <!--<pushChanges>false</pushChanges>-->
-                        <!--<localCheckout>false</localCheckout>-->
-                        <!--<autoVersionSubmodules>false</autoVersionSubmodules>-->
-                        <!--<checkModificationExcludes>-->
-                            <!--<checkModificationExclude>.idea/</checkModificationExclude>-->
-                            <!--<checkModificationExclude>.idea/*</checkModificationExclude>-->
-                            <!--<checkModificationExclude>.idea/libraries/*</checkModificationExclude>-->
-                            <!--&lt;!&ndash;<checkModificationExclude>pom.xml</checkModificationExclude>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<checkModificationExclude>release-pom.xml</checkModificationExclude>&ndash;&gt;-->
-
-                        <!--</checkModificationExcludes>-->
-                    <!--</configuration>-->
-                    <!--<dependencies>-->
-                        <!--<dependency>-->
-                            <!--<groupId>org.apache.maven.plugins</groupId>-->
-                            <!--<artifactId>maven-scm-plugin</artifactId>-->
-                            <!--<version>1.8.1</version>-->
-                        <!--</dependency>-->
-                    <!--</dependencies>-->
-                <!--</plugin>-->
-
-                <!--&lt;!&ndash; 生成sources源码包的插件 &ndash;&gt;-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-source-plugin</artifactId>-->
-                    <!--<version>2.1.2</version>-->
-                    <!--&lt;!&ndash;<executions>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<execution>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<id>attach-sources</id>&ndash;&gt;-->
-                            <!--&lt;!&ndash;&lt;!&ndash;<phase>verify</phase>&ndash;&gt;&ndash;&gt;-->
-                            <!--&lt;!&ndash;<goals>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<goal>jar-no-fork</goal>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</goals>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</execution>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</executions>&ndash;&gt;-->
-                <!--</plugin>-->
-                <!-- 生成javadoc文档包的插件 -->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-javadoc-plugin</artifactId>-->
-                    <!--<version>2.9.1</version>-->
-                    <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<aggregate>true</aggregate>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<charset>UTF-8</charset>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<encoding>UTF-8</encoding>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<docencoding>UTF-8</docencoding>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<additionalparam>-Xdoclint:none</additionalparam>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<executions>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<execution>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<id>attach-javadocs</id>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<goals>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<goal>jar</goal>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</goals>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</execution>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</executions>&ndash;&gt;-->
-                    <!--<executions>-->
-                        <!--<execution>-->
-                            <!--<phase>package</phase>-->
-                            <!--<goals>-->
-                                <!--<goal>jar</goal>-->
-                            <!--</goals>-->
-                        <!--</execution>-->
-                    <!--</executions>-->
-                <!--</plugin>-->
-
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-gpg-plugin</artifactId>-->
-                    <!--<executions>-->
-                        <!--<execution>-->
-                            <!--<id>sign-artifacts</id>-->
-                            <!--<phase>verify</phase>-->
-                            <!--<goals>-->
-                                <!--<goal>sign</goal>-->
-                            <!--</goals>-->
-                        <!--</execution>-->
-                    <!--</executions>-->
-                <!--</plugin>-->
             </plugins>
         </pluginManagement>
 
