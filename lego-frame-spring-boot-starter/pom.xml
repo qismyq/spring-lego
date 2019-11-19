@@ -14,15 +14,55 @@
 
     <groupId>net.yunqihui</groupId>
     <artifactId>lego-frame-spring-boot-starter</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <!--<version>1.0-SNAPSHOT</version>-->
+    <version>1.0.RELEASE</version>
     <name>lego-frame-spring-boot-starter</name>
     <description>Base frame for company`s service</description>
+
+
+    <!-- 版权许可 -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <!-- 代码库 -->
+    <scm>
+        <tag>master</tag>
+        <url>https://github.com/qismyq/spring-lego.git</url>
+        <connection>scm:git:git@github.com:qismyq/spring-lego.git</connection>
+        <developerConnection>scm:git:git@github.com:qismyq/spring-lego.git</developerConnection>
+    </scm>
+    <!-- 开发者信息 -->
+    <developers>
+        <developer>
+            <name>coder_michael</name>
+            <email>michael_wang90@163.com</email>
+            <roles>
+                <role>owner</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+    <!-- 定义snapshots库和releases库的nexus地址 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-
 
         <druid.version>1.1.5</druid.version>
 
@@ -60,17 +100,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!--导入配置文件处理器，配置文件进行绑定就会有提示-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -235,42 +264,199 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
-        <plugins>
-            <!--<plugin>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--</plugin>-->
 
-            <!--&lt;!&ndash;开启热部署&ndash;&gt;-->
-            <!--<plugin>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--<configuration>-->
-            <!--<fork>true</fork>  &lt;!&ndash; 该配置必须 &ndash;&gt;-->
-            <!--</configuration>-->
-            <!--</plugin>-->
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                </plugin>
+                <!--deploy插件-->
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                    <executions>
+                        <execution>
+                            <id>default-deploy</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>deploy</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!--sonatype的staging插件-->
+                <!--<plugin>-->
+                    <!--<groupId>org.sonatype.plugins</groupId>-->
+                    <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
+                    <!--<version>1.6.7</version>-->
+                    <!--<extensions>true</extensions>-->
+                    <!--<configuration>-->
+                        <!--&lt;!&ndash;<serverId>sonatype-nexus-snapshots</serverId>&ndash;&gt;-->
+                        <!--<serverId>sonatype-nexus-staging</serverId>-->
+                        <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+                        <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+                    <!--</configuration>-->
+                <!--</plugin>-->
+
+                <!--SCM插件-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>1.8.1</version>
+                </plugin>
+
+                <!--release插件，下面checkModificationExcludes是排除一些目录文件不要发布。-->
+                <!--<plugin>-->
+                    <!--<groupId>org.apache.maven.plugins</groupId>-->
+                    <!--<artifactId>maven-release-plugin</artifactId>-->
+                    <!--<version>2.5.3</version>-->
+                    <!--<configuration>-->
+                        <!--<mavenExecutorId>forked-path</mavenExecutorId>-->
+                        <!--<useReleaseProfile>false</useReleaseProfile>-->
+                        <!--<arguments>-Psonatype-oss-release</arguments>-->
+                        <!--<pushChanges>false</pushChanges>-->
+                        <!--<localCheckout>false</localCheckout>-->
+                        <!--<autoVersionSubmodules>false</autoVersionSubmodules>-->
+                        <!--<checkModificationExcludes>-->
+                            <!--<checkModificationExclude>.idea/</checkModificationExclude>-->
+                            <!--<checkModificationExclude>.idea/*</checkModificationExclude>-->
+                            <!--<checkModificationExclude>.idea/libraries/*</checkModificationExclude>-->
+                            <!--&lt;!&ndash;<checkModificationExclude>pom.xml</checkModificationExclude>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<checkModificationExclude>release-pom.xml</checkModificationExclude>&ndash;&gt;-->
+
+                        <!--</checkModificationExcludes>-->
+                    <!--</configuration>-->
+                    <!--<dependencies>-->
+                        <!--<dependency>-->
+                            <!--<groupId>org.apache.maven.plugins</groupId>-->
+                            <!--<artifactId>maven-scm-plugin</artifactId>-->
+                            <!--<version>1.8.1</version>-->
+                        <!--</dependency>-->
+                    <!--</dependencies>-->
+                <!--</plugin>-->
+
+                <!--&lt;!&ndash; 生成sources源码包的插件 &ndash;&gt;-->
+                <!--<plugin>-->
+                    <!--<groupId>org.apache.maven.plugins</groupId>-->
+                    <!--<artifactId>maven-source-plugin</artifactId>-->
+                    <!--<version>2.1.2</version>-->
+                    <!--&lt;!&ndash;<executions>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<execution>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<id>attach-sources</id>&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<phase>verify</phase>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;<goals>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<goal>jar-no-fork</goal>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</goals>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</execution>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</executions>&ndash;&gt;-->
+                <!--</plugin>-->
+                <!-- 生成javadoc文档包的插件 -->
+                <!--<plugin>-->
+                    <!--<groupId>org.apache.maven.plugins</groupId>-->
+                    <!--<artifactId>maven-javadoc-plugin</artifactId>-->
+                    <!--<version>2.9.1</version>-->
+                    <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<aggregate>true</aggregate>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<charset>UTF-8</charset>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<encoding>UTF-8</encoding>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<docencoding>UTF-8</docencoding>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<additionalparam>-Xdoclint:none</additionalparam>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<executions>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<execution>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<id>attach-javadocs</id>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<goals>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<goal>jar</goal>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</goals>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</execution>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</executions>&ndash;&gt;-->
+                    <!--<executions>-->
+                        <!--<execution>-->
+                            <!--<phase>package</phase>-->
+                            <!--<goals>-->
+                                <!--<goal>jar</goal>-->
+                            <!--</goals>-->
+                        <!--</execution>-->
+                    <!--</executions>-->
+                <!--</plugin>-->
+
+                <!--<plugin>-->
+                    <!--<groupId>org.apache.maven.plugins</groupId>-->
+                    <!--<artifactId>maven-gpg-plugin</artifactId>-->
+                    <!--<executions>-->
+                        <!--<execution>-->
+                            <!--<id>sign-artifacts</id>-->
+                            <!--<phase>verify</phase>-->
+                            <!--<goals>-->
+                                <!--<goal>sign</goal>-->
+                            <!--</goals>-->
+                        <!--</execution>-->
+                    <!--</executions>-->
+                <!--</plugin>-->
+            </plugins>
+        </pluginManagement>
+
     </build>
 
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.1.2</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
 
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <scm>
-        <tag>master</tag>
-        <url>git@gitee.com:centy/xxl-job-spring-boot-starter.git</url>
-        <connection>scm:git:git@gitee.com:centy/xxl-job-spring-boot-starter.git</connection>
-        <developerConnection>scm:git:git@gitee.com:centy/xxl-job-spring-boot-starter.git</developerConnection>
-    </scm>
-    <developers>
-        <developer>
-            <name>coder_michael</name>
-            <email>michael_wang90@163.com</email>
-        </developer>
-    </developers>
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <configuration>
+                            <aggregate>true</aggregate>
+                            <charset>UTF-8</charset>
+                            <encoding>UTF-8</encoding>
+                            <docencoding>UTF-8</docencoding>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- GPG -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
