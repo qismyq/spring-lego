@@ -14,8 +14,8 @@
 
     <groupId>net.yunqihui</groupId>
     <artifactId>lego-frame-spring-boot-starter</artifactId>
-    <!--<version>1.0-SNAPSHOT</version>-->
-    <version>1.0.RELEASE</version>
+    <version>1.0-SNAPSHOT</version>
+    <!--<version>1.0.RELEASE</version>-->
     <name>lego-frame-spring-boot-starter</name>
     <description>Base frame for company`s service</description>
 
@@ -107,7 +107,10 @@
             <optional>true</optional>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
 
         <!--********* db类-start ********-->
         <dependency>
@@ -286,6 +289,19 @@
                     </executions>
                 </plugin>
 
+                <!--sonatype的staging插件-->
+                <!--<plugin>-->
+                    <!--<groupId>org.sonatype.plugins</groupId>-->
+                    <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
+                    <!--<version>1.6.7</version>-->
+                    <!--<extensions>true</extensions>-->
+                    <!--<configuration>-->
+                        <!--&lt;!&ndash;<serverId>sonatype-nexus-snapshots</serverId>&ndash;&gt;-->
+                        <!--<serverId>sonatype-nexus-staging</serverId>-->
+                        <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+                        <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+                    <!--</configuration>-->
+                <!--</plugin>-->
 
                 <!--SCM插件-->
                 <plugin>

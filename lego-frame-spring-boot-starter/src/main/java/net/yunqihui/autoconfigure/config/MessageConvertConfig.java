@@ -1,33 +1,55 @@
 package net.yunqihui.autoconfigure.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import net.yunqihui.autoconfigure.frame.util.FrameObjectMapper;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.apache.commons.io.Charsets;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Configuration
-public class MessageConvertConfig {
-	@Bean
-    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
-    	MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
-    	//设置日期格式
-    	ObjectMapper objectMapper = new FrameObjectMapper();
-    	mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
-    	//设置中文编码格式
-    	List<MediaType> list = new ArrayList<MediaType>();
-    	list.add(MediaType.APPLICATION_JSON_UTF8);
-    	mappingJackson2HttpMessageConverter.setSupportedMediaTypes(list);
-    	return mappingJackson2HttpMessageConverter;
-    }
+@Order(0)
+public class MessageConvertConfig implements WebMvcConfigurer{
+
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+
+		Iterator<HttpMessageConverter<?>> iterator = converters.iterator();
+		while(iterator.hasNext()){
+			HttpMessageConverter<?> converter = iterator.next();
+			if(converter instanceof MappingJackson2HttpMessageConverter){
+				iterator.remove();
+			}
+		}
+		FastJsonHttpMessageConverter fastJsonConverter = new FastJsonHttpMessageConverter();
+		FastJsonConfig config = new FastJsonConfig();
+		config.setCharset(Charset.forName("UTF-8"));
+		config.setDateFormat("yyyyMMdd HH:mm:ssS");
+		//设置允许返回为null的属性
+		config.setSerializerFeatures(SerializerFeature.PrettyFormat
+//				SerializerFeature.WriteMapNullValue
+//				SerializerFeature.WriteNullNumberAsZero,
+//				SerializerFeature.WriteNullStringAsEmpty
+		);
+		fastJsonConverter.setFastJsonConfig(config);
+		List<MediaType> list = new ArrayList<>();
+		list.add(MediaType.APPLICATION_JSON_UTF8);
+		fastJsonConverter.setSupportedMediaTypes(list);
+		converters.add(fastJsonConverter);
+	}
 	@Bean
 	public StringHttpMessageConverter stringHttpMessageConverter(){
 		StringHttpMessageConverter converter=new StringHttpMessageConverter();

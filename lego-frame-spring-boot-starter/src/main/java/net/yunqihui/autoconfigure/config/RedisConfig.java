@@ -1,5 +1,6 @@
 package net.yunqihui.autoconfigure.config;
 
+import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -87,7 +88,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<Object, Object>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());//key序列化
-        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer(Object.class));  //value序列化,使用Jackson2JsonRedisSerialize 替换默认序列化
+        redisTemplate.setValueSerializer(new FastJsonRedisSerializer<>(Object.class));  //value序列化,使用Jackson2JsonRedisSerialize 替换默认序列化
 
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashValueSerializer(new JdkSerializationRedisSerializer());
