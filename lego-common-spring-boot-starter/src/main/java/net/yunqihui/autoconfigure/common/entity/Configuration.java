@@ -1,7 +1,6 @@
 package net.yunqihui.autoconfigure.common.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -41,7 +40,6 @@ public class Configuration extends Model<Configuration> {
     private String descr;
 
     @ApiModelProperty(value = "是否使用(Y是N否)")
-    @TableField("chooseFlag")
     private String chooseFlag;
 
     private Integer id;

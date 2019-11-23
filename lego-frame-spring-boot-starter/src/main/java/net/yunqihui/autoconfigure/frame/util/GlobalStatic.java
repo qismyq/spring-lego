@@ -22,7 +22,6 @@ public class GlobalStatic {
 
     //主业务缓存
     public static final String cacheKey="servicecache";
-    public static final String configCache="configcache";
 
 
     static{

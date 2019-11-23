@@ -3,6 +3,7 @@ package net.yunqihui.autoconfigure.common.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import net.yunqihui.autoconfigure.common.service.IMailService;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -36,6 +37,9 @@ public class MailServiceImpl implements IMailService {
     public void sendSimpleMailAndCC(String[] toUsers, String[] ccUsers, String subject, String content) throws Exception {
         log.info("Sending a simple mail...");
 
+        if (StringUtils.isBlank(from)) {
+            return;
+        }
         if (ArrayUtils.isEmpty(toUsers)) {
             return;
         }
@@ -73,6 +77,14 @@ public class MailServiceImpl implements IMailService {
     @Async
     @Override
     public void sendHtmlMailAndCC(String[] toUsers, String[] ccUsers, String subject, String content) throws Exception {
+        log.info("Sending a html mail...");
+
+        if (StringUtils.isBlank(from)) {
+            return;
+        }
+        if (ArrayUtils.isEmpty(toUsers)) {
+            return;
+        }
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);

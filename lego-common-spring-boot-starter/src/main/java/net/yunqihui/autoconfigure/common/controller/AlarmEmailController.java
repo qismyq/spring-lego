@@ -41,14 +41,6 @@ public class AlarmEmailController {
         return returnObject;
     }
 
-    @RequestMapping(value = "/mail",method = RequestMethod.GET)
-    public ReturnDatas send()throws Exception {
-        ReturnDatas returnDatas = ReturnDatas.getSuccessReturnDatas();
-        String[] a = new String[1];
-        a[0] = "michael_wong@yunqihui.net";
-        mailService.sendSimpleMail(a,"spring-lego test","from spring-lego");
 
-        return returnDatas;
-    }
 }
 
