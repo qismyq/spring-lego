@@ -1,12 +1,15 @@
-package net.yunqihui.starter.shiro.frame.shiro;
+package net.yunqihui.autoconfigure.shiro.frame.shiro;
 
-import net.yunqihui.starter.frame.util.GlobalStatic;
+import net.yunqihui.autoconfigure.shiro.JWTToken;
 import net.yunqihui.starter.user.entity.User;
 import net.yunqihui.starter.user.service.IUserRoleService;
 import net.yunqihui.starter.user.service.IUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -45,11 +48,19 @@ public class ShiroDbRealm extends AuthorizingRealm {
         super.setAuthorizationCachingEnabled(false);
         // 授权不在缓存,统一有spring cache提供授权结果
         //super.setAuthorizationCacheName(GlobalStatic.authorizationCacheName);
-
-        super.setName(GlobalStatic.authorizingRealmName);
+        //todo
+//        super.setName(GlobalStatic.authorizingRealmName);
 
         //设置密码匹配方式
         //super.setCredentialsMatcher(frameHashedCredentialsMatcher);
+    }
+
+    /**
+     * 必须重写此方法，不然Shiro会报错
+     */
+    @Override
+    public boolean supports(AuthenticationToken token) {
+        return token instanceof JWTToken;
     }
 
     /**
@@ -105,11 +116,14 @@ public class ShiroDbRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        UsernamePasswordToken upToken = (UsernamePasswordToken) token;
+        JWTToken upToken = (JWTToken) token;
 
         // 调用业务方法
         User user = null;
         String userName = upToken.getUsername();
+
+        String credentials = (String) upToken.getCredentials();
+
 
         if(StringUtils.isBlank(userName)){//账号为空
             return null;

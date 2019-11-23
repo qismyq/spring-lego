@@ -1,4 +1,4 @@
-package net.yunqihui.starter.shiro.frame.shiro;
+package net.yunqihui.autoconfigure.shiro.frame.shiro;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;

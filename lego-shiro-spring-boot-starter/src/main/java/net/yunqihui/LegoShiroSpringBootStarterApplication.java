@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LegoShiroSpringBootAutoconfigureApplication {
+public class LegoShiroSpringBootStarterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LegoShiroSpringBootAutoconfigureApplication.class, args);
+		SpringApplication.run(LegoShiroSpringBootStarterApplication.class, args);
 	}
 
 }

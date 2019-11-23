@@ -1,4 +1,4 @@
-package net.yunqihui.starter.shiro.frame.shiro;
+package net.yunqihui.autoconfigure.shiro.frame.shiro;
 
 import net.yunqihui.starter.user.entity.User;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

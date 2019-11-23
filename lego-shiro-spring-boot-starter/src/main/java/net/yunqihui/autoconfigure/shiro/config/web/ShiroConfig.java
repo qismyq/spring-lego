@@ -1,7 +1,7 @@
-package net.yunqihui.starter.shiro.config.web;
+package net.yunqihui.autoconfigure.shiro.config.web;
 
-import net.yunqihui.starter.frame.util.SpringUtils;
-import net.yunqihui.starter.shiro.frame.shiro.ShiroDbRealm;
+import net.yunqihui.autoconfigure.frame.util.SpringUtils;
+import net.yunqihui.autoconfigure.shiro.frame.shiro.ShiroDbRealm;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -26,6 +26,7 @@ import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 /**
  * @Description shiro配置
