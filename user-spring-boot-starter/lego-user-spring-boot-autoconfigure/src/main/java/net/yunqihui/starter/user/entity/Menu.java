@@ -39,9 +39,10 @@ public class Menu extends Model<Menu> {
 
     @ApiModelProperty(value = "描述")
     private String description;
-
+    @ApiModelProperty(value = "访问地址URL")
     private String pageurl;
-
+    @ApiModelProperty(value = "访问方式 GET POST PUT DELETE PATCH")
+    private String method ;
     @ApiModelProperty(value = "0.功能按钮,1.导航菜单")
     private Integer type;
 

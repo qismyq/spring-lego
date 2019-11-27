@@ -14,4 +14,13 @@
         id, role_id, menu_id
     </sql>
 
+    <select id="selectRoleMenus" resultType="java.util.HashMap">
+        select  CONCAT(re.pageurl, "==",UCASE(re.method)) as url,GROUP_CONCAT(rol.code ORDER BY re.pageurl) as needRoles
+        from t_menu re
+        LEFT JOIN t_role_menu ro on re.id = ro.menu_id
+        LEFT JOIN t_role rol on ro.role_id = rol.id
+        where re.type = 2
+        GROUP BY
+        re.pageurl,re.id
+    </select>
 </mapper>

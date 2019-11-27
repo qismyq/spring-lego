@@ -23,11 +23,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
-        <framestarter.version>1.0-SNAPSHOT</framestarter.version>
+        <framestarter.version>1.0</framestarter.version>
         <userstarter.version>1.0-SNAPSHOT</userstarter.version>
 
         <shiro.version>1.4.1</shiro.version>
-        <JWT.version>3.3.0</JWT.version>
+        <JWT.version>0.9.0</JWT.version>
     </properties>
 
 
@@ -59,9 +59,16 @@
 
         <!--JWT-->
         <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
             <version>${JWT.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <version>1.16.20</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

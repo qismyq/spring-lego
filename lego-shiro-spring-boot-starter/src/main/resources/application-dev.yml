@@ -93,19 +93,19 @@ logging:
 
 ###############################shiro权限控制-start###############################
 
-shiro:
-  model: 0   #单机还是集群 0单机 1集群
-  loginUrl: /login      #登录页请求url
-  successUrl: /index    #登录成功后跳转url
-  unauthorizedUrl: /errorpage/unauth   #无权限访问时跳转的url
-  cookie:
-    path: /
-    name: SHAREJSESSIONID
-  filter:
-    nosessoin:  # 不需session管理的url，基本上放置的是js，图片等静态文件
-      urls: /js/**,/swagger-ui.html,/swagger-resources/**,/v2/api-docs/**,/configuration/ui,/configuration/security/**,/configuration/ui/**,/webjars/springfox-swagger-ui/**
-    customFilters: keepone:keepone    #自定义过滤器,格式为 过滤器key：过滤器beanName,每个过滤器中间使用“,”分割
-    filterChainUrls: /swagger-ui.html:anon,/swagger-resources/**:anon,/v2/api-docs/**:anon,/configuration/**:anon,/swagger-resources/**:anon,/webjars/springfox-swagger-ui/**:anon,/**/json:anon,/**:anon      #FilterChain中的url,格式为 url:权限filter,若一个url有多个过滤器，则使用“|”分割
+#shiro:
+#  model: 0   #单机还是集群 0单机 1集群
+#  loginUrl: /login      #登录页请求url
+#  successUrl: /index    #登录成功后跳转url
+#  unauthorizedUrl: /errorpage/unauth   #无权限访问时跳转的url
+#  cookie:
+#    path: /
+#    name: SHAREJSESSIONID
+#  filter:
+#    nosessoin:  # 不需session管理的url，基本上放置的是js，图片等静态文件
+#      urls: /js/**,/swagger-ui.html,/swagger-resources/**,/v2/api-docs/**,/configuration/ui,/configuration/security/**,/configuration/ui/**,/webjars/springfox-swagger-ui/**
+#    customFilters: keepone:keepone    #自定义过滤器,格式为 过滤器key：过滤器beanName,每个过滤器中间使用“,”分割
+#    filterChainUrls: /swagger-ui.html:anon,/swagger-resources/**:anon,/v2/api-docs/**:anon,/configuration/**:anon,/swagger-resources/**:anon,/webjars/springfox-swagger-ui/**:anon,/**/json:anon,/**:anon      #FilterChain中的url,格式为 url:权限filter,若一个url有多个过滤器，则使用“|”分割
 
 ###############################shiro权限控制-end###############################
 

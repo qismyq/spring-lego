@@ -4,7 +4,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import net.yunqihui.starter.user.entity.RoleMenu;
 import net.yunqihui.starter.user.mapper.RoleMenuMapper;
 import net.yunqihui.starter.user.service.IRoleMenuService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +21,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu> implements IRoleMenuService {
 
+    @Autowired
+    RoleMenuMapper roleMenuMapper;
+
+    @Override
+    public List<HashMap<String,String>> selectRoleMenus() {
+        return roleMenuMapper.selectRoleMenus();
+    }
 }

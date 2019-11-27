@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import net.yunqihui.starter.user.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
  * @author michael wong
  * @since 2019-10-29
  */
-@Component
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 

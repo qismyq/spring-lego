@@ -14,14 +14,23 @@ package net.yunqihui.autoconfigure.frame.errorhandler;
  **/
 public enum FrameErrorCodeEnum implements IErrorCode{
     /**
-     *  成功
+     * <br> 成功
      */
     E_0("0","成功")
 
+    /**
+     * <br> 失败
+     */
     ,E_1("1","失败")
 
-    ,E_40000("40000","参数缺失")
 
+    /**
+    * <br> 参数缺失
+    */
+    ,E_40000("40000","参数缺失")
+    /**
+     * <br> 系统繁忙，请稍后再试
+     */
     ,E_50000("50000","系统繁忙，请稍后再试")
 
     ;

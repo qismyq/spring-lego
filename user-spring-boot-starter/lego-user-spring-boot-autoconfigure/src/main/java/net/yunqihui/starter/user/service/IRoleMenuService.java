@@ -3,6 +3,9 @@ package net.yunqihui.starter.user.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import net.yunqihui.starter.user.entity.RoleMenu;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * <p>
  * 角色菜单中间表 服务类
@@ -13,4 +16,5 @@ import net.yunqihui.starter.user.entity.RoleMenu;
  */
 public interface IRoleMenuService extends IService<RoleMenu> {
 
+    public List<HashMap<String,String>> selectRoleMenus();
 }

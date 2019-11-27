@@ -1,7 +1,6 @@
 package net.yunqihui.starter.user.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.starter.frame.util.GlobalStatic;
 import net.yunqihui.starter.user.entity.UserRole;
 import net.yunqihui.starter.user.mapper.UserRoleMapper;
 import net.yunqihui.starter.user.service.IUserRoleService;
@@ -9,7 +8,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -33,7 +31,7 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
     @Autowired
     private UserRoleMapper userRoleMapper;
 
-    @Cacheable(value = GlobalStatic.qxCacheKey,key = "'getRolesAsString_'+#userId")
+//    @Cacheable(value = GlobalStatic.qxCacheKey,key = "'getRolesAsString_'+#userId")
     @Override
     public Set<String> getRoleCodeAsString(Long userId) throws Exception {
         if (userId == null) {
