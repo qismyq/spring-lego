@@ -1,5 +1,6 @@
-package net.yunqihui.autoconfigure.shiro.config.web;
+package net.yunqihui.autoconfigure.shiro.config;
 
+import net.yunqihui.autoconfigure.shiro.entity.vo.ShiroStatic;
 import net.yunqihui.autoconfigure.shiro.filter.NoSessionSubjectFactory;
 import net.yunqihui.autoconfigure.shiro.filter.ShiroFilterChainManager;
 import net.yunqihui.autoconfigure.shiro.realm.AuthenticationTokenModularRealmAuthenticator;
@@ -9,6 +10,9 @@ import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,22 +22,10 @@ import org.springframework.context.annotation.Configuration;
  * @Author tomsun28
  * @Description shiro配置
  * @Date 12:41 2018/3/6
+ * @Update Michael Wong
  */
 @Configuration
 public class ShiroConfiguration {
-
-//    @Resource
-//    AccountProvider accountProvider;
-//    @Autowired
-//    PasswordMatcher passwordMatcher;
-//    @Autowired
-//    JwtMatcher jwtMatcher;
-//
-//    @Bean
-//    public RealmManager initRealmManager() {
-//        return new RealmManager(accountProvider, passwordMatcher,jwtMatcher);
-//    }
-
 
 
     @Bean
@@ -55,8 +47,8 @@ public class ShiroConfiguration {
         NoSessionSubjectFactory subjectFactory = new NoSessionSubjectFactory(evaluator);
         securityManager.setSubjectFactory(subjectFactory);
         securityManager.setRealms(realmManager.initGetRealm());
-//        SecurityUtils.setSecurityManager(securityManager);
         return securityManager;
     }
+
 
 }

@@ -26,11 +26,20 @@ public class RolePermRule implements Serializable {
         return needRoles;
     }
 
+    public RolePermRule() {
+        super();
+    }
+
+    public RolePermRule(String url, String needRoles) {
+        this.url = url;
+        this.needRoles = needRoles;
+    }
+
     /* *
-     * @Description  将url needRoles 转化成shiro可识别的过滤器链：url=jwt[角色1、角色2、角色n]
-     * @Param []
-     * @Return java.lang.StringBuilder
-     */
+         * @Description  将url needRoles 转化成shiro可识别的过滤器链：url=jwt[角色1、角色2、角色n]
+         * @Param []
+         * @Return java.lang.StringBuilder
+         */
     public StringBuilder toFilterChain() {
 
         if (null == this.url || this.url.isEmpty())
@@ -44,13 +53,13 @@ public class RolePermRule implements Serializable {
         }
         //  其他自定义资源uri需通过jwt认证和角色认证
         if (!StringUtils.isEmpty(this.getNeedRoles()) && !setRole.contains("role_anon")) {
-            stringBuilder.append("jwt"+"["+this.getNeedRoles()+"]");
+            stringBuilder.append("jwt" + "[" + this.getNeedRoles() + "]");
         }
 
         return stringBuilder.length() > 0 ? stringBuilder : null;
     }
 
     public String toString() {
-        return "RolePermRule [url="+url+", needRoles="+needRoles+"]";
+        return "RolePermRule [url=" + url + ", needRoles=" + needRoles + "]";
     }
 }

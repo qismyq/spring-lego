@@ -1,7 +1,7 @@
 package net.yunqihui.autoconfigure.shiro.filter;
 
 
-import net.yunqihui.autoconfigure.shiro.config.web.RestPathMatchingFilterChainResolver;
+import net.yunqihui.autoconfigure.shiro.config.RestPathMatchingFilterChainResolver;
 import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
 import net.yunqihui.autoconfigure.shiro.provider.ShiroFilterRulesProvider;
 import net.yunqihui.autoconfigure.shiro.rule.RolePermRule;
@@ -49,7 +49,7 @@ public class ShiroFilterChainManager {
         PasswordFilter passwordFilter = new PasswordFilter();
         passwordFilter.setRedisTemplate(redisTemplate);
         filters.put("auth",passwordFilter);
-        RestJwtFilter jwtFilter = new RestJwtFilter();
+        JWTFilter jwtFilter = new JWTFilter();
         jwtFilter.setRedisTemplate(redisTemplate);
         jwtFilter.setAccountService(accountProvider);
         filters.put("jwt",jwtFilter);
@@ -62,7 +62,7 @@ public class ShiroFilterChainManager {
         List<String> defalutAnon = Arrays.asList("/css/**","/js/**");
         defalutAnon.forEach(ignored -> filterChain.put(ignored,"anon"));
         // -------------auth 默认需要认证过滤器的URL 走auth--PasswordFilter
-        List<String> defalutAuth = Arrays.asList("/account/**");
+        List<String> defalutAuth = Arrays.asList("/*login*","/*Login*","/**/*login*");
         defalutAuth.forEach(auth -> filterChain.put(auth,"auth"));
         // -------------dynamic 动态URL
         if (shiroFilterRulesProvider != null) {

@@ -1,6 +1,5 @@
 package net.yunqihui.autoconfigure.shiro.token;
 
-import net.yunqihui.autoconfigure.shiro.util.AESUtil;
 import org.apache.shiro.authc.AuthenticationToken;
 
 /* *
@@ -21,7 +20,8 @@ public class PasswordToken implements AuthenticationToken{
         this.appId = appId;
         this.timestamp = timestamp;
         this.host = host;
-        this.password = AESUtil.aesDecode(password,tokenKey);
+//        this.password = AESUtil.aesDecode(password,tokenKey);
+        this.password = password;
         this.tokenKey = tokenKey;
 
     }

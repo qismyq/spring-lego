@@ -1,102 +1,160 @@
-//package net.yunqihui.autoconfigure.shiro.filter;
-//
-//import net.yunqihui.autoconfigure.shiro.JWTToken;
-//import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//
-//import javax.servlet.ServletRequest;
-//import javax.servlet.ServletResponse;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//import java.io.IOException;
-//
-///**
-// * @Description JWT Filter
-// * @Author Michael Wong
-// * @Email michael_wong@yunqihui.net
-// * @Date 2019/11/25 17:08
-// **/
-//public class JWTFilter extends BasicHttpAuthenticationFilter {
-//
-//    private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-//
-//    /**
-//     * 判断用户是否想要登入。
-//     * 检测header里面是否包含Authorization字段即可
-//     */
-//    @Override
-//    protected boolean isLoginAttempt(ServletRequest request, ServletResponse response) {
-//        HttpServletRequest req = (HttpServletRequest) request;
-//        String authorization = req.getHeader("Authorization");
-//        return authorization != null;
-//    }
-//
-//    /**
-//     *
-//     */
-//    @Override
-//    protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
-//        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-//        String authorization = httpServletRequest.getHeader("Authorization");
-//
-//        JWTToken token = new JWTToken(authorization);
-//        // 提交给realm进行登入，如果错误他会抛出异常并被捕获
-//        getSubject(request, response).login(token);
-//        // 如果没有抛出异常则代表登入成功，返回true
-//        return true;
-//    }
-//
-//    /**
-//     * 这里我们详细说明下为什么最终返回的都是true，即允许访问
-//     * 例如我们提供一个地址 GET /article
-//     * 登入用户和游客看到的内容是不同的
-//     * 如果在这里返回了false，请求会被直接拦截，用户看不到任何东西
-//     * 所以我们在这里返回true，Controller中可以通过 subject.isAuthenticated() 来判断用户是否登入
-//     * 如果有些资源只有登入用户才能访问，我们只需要在方法上面加上 @RequiresAuthentication 注解即可
-//     * 但是这样做有一个缺点，就是不能够对GET,POST等请求进行分别过滤鉴权(因为我们重写了官方的方法)，但实际上对应用影响不大
-//     */
-//    @Override
-//    protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
-//        if (isLoginAttempt(request, response)) {
-//            try {
-//                executeLogin(request, response);
-//            } catch (Exception e) {
-//                response401(request, response);
-//            }
-//        }
-//        return true;
-//    }
-//
-//    /**
-//     * 对跨域提供支持
-//     */
-//    @Override
-//    protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
-//        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-//        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-//        httpServletResponse.setHeader("Access-control-Allow-Origin", httpServletRequest.getHeader("Origin"));
-//        httpServletResponse.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,PUT,DELETE");
-//        httpServletResponse.setHeader("Access-Control-Allow-Headers", httpServletRequest.getHeader("Access-Control-Request-Headers"));
-//        // 跨域时会首先发送一个option请求，这里我们给option请求直接返回正常状态
-//        if (httpServletRequest.getMethod().equals(RequestMethod.OPTIONS.name())) {
-//            httpServletResponse.setStatus(HttpStatus.OK.value());
-//            return false;
-//        }
-//        return super.preHandle(request, response);
-//    }
-//
-//    /**
-//     * 将非法请求跳转到 /401
-//     */
-//    private void response401(ServletRequest req, ServletResponse resp) {
-//        try {
-//            HttpServletResponse httpServletResponse = (HttpServletResponse) resp;
-//            httpServletResponse.sendRedirect("/401");
-//        } catch (IOException e) {
-//            LOGGER.error(e.getMessage());
-//        }
-//    }
-//}
+package net.yunqihui.autoconfigure.shiro.filter;
+
+import com.alibaba.fastjson.JSON;
+import io.jsonwebtoken.SignatureAlgorithm;
+import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
+import net.yunqihui.autoconfigure.shiro.entity.vo.ShiroStatic;
+import net.yunqihui.autoconfigure.shiro.errorhandler.ShiroErrorCodeEnum;
+import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
+import net.yunqihui.autoconfigure.shiro.token.JwtToken;
+import net.yunqihui.autoconfigure.shiro.util.IpUtil;
+import net.yunqihui.autoconfigure.shiro.util.JsonWebTokenUtil;
+import net.yunqihui.autoconfigure.shiro.util.RequestResponseUtil;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.util.StringUtils;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
+
+/* *
+ * @Author tomsun28
+ * @Description 支持restful url 的过滤链  JWT json web token 过滤器，无状态验证
+ * @Date 0:04 2018/4/20
+ */
+public class JWTFilter extends RestPathMatchingFilter {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(JWTFilter.class);
+
+
+    private StringRedisTemplate redisTemplate;
+    private AccountProvider accountProvider;
+
+    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object mappedValue) throws Exception {
+        Subject subject = getSubject(servletRequest,servletResponse);
+
+
+        // 判断是否为JWT认证请求
+        if ((null != subject && !subject.isAuthenticated()) && isJwtSubmission(servletRequest)) {
+            AuthenticationToken token = createJwtToken(servletRequest);
+            try {
+                subject.login(token);
+                return this.checkRoles(subject,mappedValue);
+            }catch (AuthenticationException e) {
+
+                // 如果是JWT过期
+                if ("expiredJwt".equals(e.getMessage())) {
+                    // 这里初始方案先抛出令牌过期，之后设计为在Redis中查询当前appId对应令牌，其设置的过期时间是JWT的两倍，此作为JWT的refresh时间
+                    // 当JWT的有效时间过期后，查询其refresh时间，refresh时间有效即重新派发新的JWT给客户端，
+                    // refresh也过期则告知客户端JWT时间过期重新认证
+
+                    // 当存储在redis的JWT没有过期，即refresh time 没有过期
+                    String appId = WebUtils.toHttp(servletRequest).getHeader("appId");
+                    String jwt = WebUtils.toHttp(servletRequest).getHeader("authorization");
+                    String refreshJwt = redisTemplate.opsForValue().get(ShiroStatic.JWT_SESSION+appId);
+                    if (null != refreshJwt && refreshJwt.equals(jwt)) {
+                        // 重新申请新的JWT
+                        // 根据appId获取其对应所拥有的角色(这里设计为角色对应资源，没有权限对应资源)
+                        String roles = accountProvider.loadAccountRole(appId);
+                        long refreshPeriodTime = 36000L;  //seconds为单位,10 hours
+                        String newJwt = JsonWebTokenUtil.issueJWT(UUID.randomUUID().toString(),appId,
+                                ShiroStatic.JWT_ISSUER,refreshPeriodTime >> 2,roles,null, SignatureAlgorithm.HS512);
+                        // 将签发的JWT存储到Redis： {JWT-SESSION-{appID} , jwt}
+                        redisTemplate.opsForValue().set(ShiroStatic.JWT_SESSION+appId,newJwt,refreshPeriodTime, TimeUnit.SECONDS);
+                        // todo 刷新token的返回消息提示
+//                        Message message = new Message().ok(1005,"new jwt").addData("jwt",newJwt);
+//                        RequestResponseUtil.responseWrite(JSON.toJSONString(message),servletResponse);
+                        return false;
+                    }else {
+                        // jwt时间失效过期,jwt refresh time失效 返回jwt过期客户端重新登录
+                        ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_40204);
+                        RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),servletResponse);
+                        return false;
+                    }
+
+                }
+                // 其他的判断为JWT错误无效
+                ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_40205);
+                RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),servletResponse);
+                return false;
+
+            }catch (Exception e) {
+                // 其他错误
+                LOGGER.error(IpUtil.getIpFromRequest(WebUtils.toHttp(servletRequest))+"--JWT认证失败"+e.getMessage(),e);
+                // 告知客户端JWT错误1005,需重新登录申请jwt
+                ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_50200);
+                RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),servletResponse);
+                return false;
+            }
+        }else {
+            // 请求未携带jwt 判断为无效请求
+            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_40206);
+            RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),servletResponse);
+            return false;
+        }
+    }
+
+    protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+        Subject subject = getSubject(servletRequest,servletResponse);
+
+        // 未认证的情况
+        if (null == subject || !subject.isAuthenticated()) {
+            // 告知客户端JWT认证失败需跳转到登录页面
+            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_40205);
+            RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),servletResponse);
+        }else {
+            //  已经认证但未授权的情况
+            // 告知客户端JWT没有权限访问此资源
+            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_40203);
+            RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),servletResponse);
+        }
+        // 过滤链终止
+        return false;
+    }
+
+    private boolean isJwtSubmission(ServletRequest request) {
+
+        String jwt = RequestResponseUtil.getHeader(request,"authorization");
+        String appId = RequestResponseUtil.getHeader(request,"appId");
+        return (request instanceof HttpServletRequest)
+                && !StringUtils.isEmpty(jwt)
+                && !StringUtils.isEmpty(appId);
+    }
+
+    private AuthenticationToken createJwtToken(ServletRequest request) {
+
+        Map<String,String> maps = RequestResponseUtil.getRequestHeaders(request);
+        String appId = maps.get("appId");
+        String ipHost = request.getRemoteAddr();
+        String jwt = maps.get("authorization");
+        String deviceInfo = maps.get("deviceInfo");
+
+        return new JwtToken(ipHost,deviceInfo,jwt,appId);
+    }
+
+    // 验证当前用户是否属于mappedValue任意一个角色
+    private boolean checkRoles(Subject subject, Object mappedValue){
+        String[] rolesArray = (String[]) mappedValue;
+        return rolesArray == null || rolesArray.length == 0 || Stream.of(rolesArray).anyMatch(role -> subject.hasRole(role.trim()));
+    }
+
+
+    public void setRedisTemplate(StringRedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
+
+
+    public void setAccountService(AccountProvider accountProvider) {
+        this.accountProvider = accountProvider;
+    }
+}

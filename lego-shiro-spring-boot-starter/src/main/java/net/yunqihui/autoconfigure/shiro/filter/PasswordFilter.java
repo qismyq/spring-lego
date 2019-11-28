@@ -93,11 +93,10 @@ public class PasswordFilter extends AccessControlFilter {
 
     private boolean isPasswordLoginPost(ServletRequest request) {
 
-        Map<String ,String> map = RequestResponseUtil.getRequestBodyMap(request);
-        String password = map.get("password");
-        String timestamp = map.get("timestamp");
-        String methodName = map.get("methodName");
-        String appId = map.get("appId");
+        String password = request.getParameter("password");
+        String timestamp = request.getParameter("timestamp");
+        String methodName = request.getParameter("methodName");
+        String appId = request.getParameter("appId");
         return (request instanceof HttpServletRequest)
                 && ((HttpServletRequest) request).getMethod().toUpperCase().equals("POST")
                 && null != password
@@ -125,7 +124,7 @@ public class PasswordFilter extends AccessControlFilter {
 
     private AuthenticationToken createPasswordToken(ServletRequest request) {
 
-        Map<String ,String> map = RequestResponseUtil.getRequestBodyMap(request);
+        Map<String ,String> map = RequestResponseUtil.getRequestParameters(request);
         String appId = map.get("appId");
         String timestamp = map.get("timestamp");
         String password = map.get("password");

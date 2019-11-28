@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /* *
  * @Author tomsun28
@@ -27,9 +28,11 @@ public class ShiroFilterRulesProviderImpl implements ShiroFilterRulesProvider {
         if (CollectionUtils.isEmpty(roleMenuMap)) {
             return null;
         }
+        List<RolePermRule> rules = roleMenuMap.stream()
+                .map(map -> new RolePermRule(map.get("url"), map.get("needRoles")))
+                .collect(Collectors.toList());
 
-
-        return null;
+        return rules;
     }
 
 }

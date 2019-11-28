@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.shiro.config.web;
+package net.yunqihui.autoconfigure.shiro.config;
 
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;

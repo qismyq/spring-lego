@@ -65,6 +65,9 @@ public class User extends Model<User> {
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
+    @TableField(exist=false)
+    private String token;
+
 
     @Override
     protected Serializable pkVal() {

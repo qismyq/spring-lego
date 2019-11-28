@@ -23,11 +23,13 @@
         <result column="roleCode" property="roleCode" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="getRoleCodeAsString" resultMap="roleCode" >
+    <select id="getRoleCodeAsStringByAccount" resultMap="roleCode" >
         SELECT
         userrole.id,userrole.user_id,userrole.role_id,role.code as roleCode
-        FROM t_user_role as userrole LEFT JOIN t_role as role ON userrole.role_id = role.id
-        WHERE userrole.user_id = #{userId}
+        FROM t_user_role as userrole
+        LEFT JOIN t_role as role ON userrole.role_id = role.id
+        LEFT JOIN t_user as account ON userrole.user_id = account.id
+        WHERE account.account = #{account}
     </select>
 
 </mapper>

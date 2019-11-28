@@ -17,6 +17,6 @@ public interface IUserRoleService extends IService<UserRole> {
 
 
 
-    Set<String> getRoleCodeAsString(Long userId) throws Exception;
+    Set<String> getRoleCodeAsStringByAccount(String account) throws Exception;
 
 }

@@ -45,20 +45,22 @@ public class PasswordRealm extends AuthorizingRealm {
         if(null==authenticationToken.getPrincipal()||null==authenticationToken.getCredentials()){
             throw new UnknownAccountException();
         }
-        String userName = (String)authenticationToken.getPrincipal();
+        String principal = (String)authenticationToken.getPrincipal();
         Account account = null;
         try {
-            account = accountProvider.loadAccount(userName);
+            account = accountProvider.loadAccount(principal);
         } catch (Exception e) {
             LOGGER.error("An error occurred while accessing the account :{}",e.getMessage());
             return null;
         }
         if (account != null) {
             // 用盐对密码进行MD5加密
-            ((PasswordToken) authenticationToken).setPassword(MD5Util.md5(((PasswordToken) authenticationToken).getPassword()+account.getSalt()));
-            return new SimpleAuthenticationInfo(userName,account.getPassword(),getName());
+//            ((PasswordToken) authenticationToken).setPassword(MD5Util.md5(((PasswordToken) authenticationToken).getPassword()+account.getSalt()));
+            // todo 加密盐需要设置为全局的
+            ((PasswordToken) authenticationToken).setPassword(MD5Util.md5(((PasswordToken) authenticationToken).getPassword()+"79sz6j"));
+            return new SimpleAuthenticationInfo(principal,account.getPassword(),getName());
         } else {
-            return new SimpleAuthenticationInfo(userName,"",getName());
+            return new SimpleAuthenticationInfo(principal,"",getName());
         }
 
     }

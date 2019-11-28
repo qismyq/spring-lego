@@ -43,6 +43,11 @@ public enum ShiroErrorCodeEnum implements IErrorCode {
     ,E_40205("40205","认证错误")
 
     /**
+     * <br> 非法访问，未携带token
+     */
+    ,E_40206("40206","非法访问")
+
+    /**
      * <br> 多个用户账户
      */
     ,E_50200("50200","系统认证失败")

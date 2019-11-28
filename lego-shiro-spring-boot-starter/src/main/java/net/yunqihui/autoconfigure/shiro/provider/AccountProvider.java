@@ -10,7 +10,7 @@ import net.yunqihui.autoconfigure.shiro.entity.vo.Account;
  */
 public interface AccountProvider {
 
-    Account loadAccount(String userName)throws Exception ;
+    Account loadAccount(String account)throws Exception ;
 
     String loadAccountRole(String appId) throws Exception;
 }

@@ -27,19 +27,19 @@ public class AccountProviderImpl implements AccountProvider {
     private IUserRoleService userRoleService;
 
 
-    public Account loadAccount(String userName) throws Exception {
-        User user = userService.getLoginUser(userName, "是");
+    public Account loadAccount(String account) throws Exception {
+        User user = userService.getLoginUser(account, "是");
         if (user == null) {
             return null;
         }
         // todo 补充MD5的salt
-        return new Account(user.getAccount(), user.getPassword(), "");
+        return new Account(user.getAccount(), user.getPassword(), "79sz6j");
     }
 
     @Override
-    public String loadAccountRole(String appId) throws Exception {
+    public String loadAccountRole(String account) throws Exception {
 
-        Set<String> roleCodeSet = userRoleService.getRoleCodeAsString(Long.valueOf(appId));
+        Set<String> roleCodeSet = userRoleService.getRoleCodeAsStringByAccount(account);
         if (CollectionUtils.isNotEmpty(roleCodeSet)) {
             Iterator<String> iterator = roleCodeSet.iterator();
             StringBuffer roles = new StringBuffer();

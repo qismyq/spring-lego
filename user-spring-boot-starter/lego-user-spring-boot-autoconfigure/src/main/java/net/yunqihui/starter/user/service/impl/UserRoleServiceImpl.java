@@ -5,6 +5,7 @@ import net.yunqihui.starter.user.entity.UserRole;
 import net.yunqihui.starter.user.mapper.UserRoleMapper;
 import net.yunqihui.starter.user.service.IUserRoleService;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,13 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
     @Autowired
     private UserRoleMapper userRoleMapper;
 
-//    @Cacheable(value = GlobalStatic.qxCacheKey,key = "'getRolesAsString_'+#userId")
+//    @Cacheable(value = GlobalStatic.qxCacheKey,key = "'getRolesAsString_'+#account")
     @Override
-    public Set<String> getRoleCodeAsString(Long userId) throws Exception {
-        if (userId == null) {
+    public Set<String> getRoleCodeAsStringByAccount(String account)throws Exception {
+        if (StringUtils.isBlank(account)) {
             return null;
         }
-        List<UserRole> userRoles = userRoleMapper.getRoleCodeAsString(userId);
+        List<UserRole> userRoles = userRoleMapper.getRoleCodeAsStringByAccount(account);
         if (CollectionUtils.isNotEmpty(userRoles)) {
             Set<String> rolesCode = new HashSet<>(userRoles.size());
             for (UserRole userRole : userRoles) {
