@@ -5,7 +5,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
-import net.yunqihui.autoconfigure.shiro.entity.vo.JwtAccount;
+import net.yunqihui.autoconfigure.shiro.entity.JwtAccount;
 import net.yunqihui.autoconfigure.shiro.util.JsonWebTokenUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

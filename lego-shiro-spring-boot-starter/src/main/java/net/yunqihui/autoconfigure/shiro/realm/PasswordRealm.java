@@ -1,10 +1,12 @@
 package net.yunqihui.autoconfigure.shiro.realm;
 
 
-import net.yunqihui.autoconfigure.shiro.entity.vo.Account;
+import net.yunqihui.autoconfigure.shiro.entity.Account;
+import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
 import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
 import net.yunqihui.autoconfigure.shiro.token.PasswordToken;
 import net.yunqihui.autoconfigure.shiro.util.MD5Util;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -42,22 +44,28 @@ public class PasswordRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         if (!(authenticationToken instanceof PasswordToken)) return null;
 
-        if(null==authenticationToken.getPrincipal()||null==authenticationToken.getCredentials()){
+        PasswordToken passwordToken = (PasswordToken) authenticationToken;
+
+        if(null==passwordToken.getPrincipal()||null==passwordToken.getCredentials()){
             throw new UnknownAccountException();
         }
         String principal = (String)authenticationToken.getPrincipal();
         Account account = null;
         try {
-            account = accountProvider.loadAccount(principal);
+            // login请求来源，system代表管理系统请求，app或无value代表为客户端请求
+            String source = passwordToken.getSource();
+            if (StringUtils.isNotBlank(source)) {
+                account = accountProvider.loadAccount(principal);
+            }else {
+
+            }
         } catch (Exception e) {
             LOGGER.error("An error occurred while accessing the account :{}",e.getMessage());
             return null;
         }
         if (account != null) {
             // 用盐对密码进行MD5加密
-//            ((PasswordToken) authenticationToken).setPassword(MD5Util.md5(((PasswordToken) authenticationToken).getPassword()+account.getSalt()));
-            // todo 加密盐需要设置为全局的
-            ((PasswordToken) authenticationToken).setPassword(MD5Util.md5(((PasswordToken) authenticationToken).getPassword()+"79sz6j"));
+            passwordToken.setPassword(MD5Util.md5(passwordToken.getPassword()+ ShiroStatic.PASSWORD_MD5_SALT));
             return new SimpleAuthenticationInfo(principal,account.getPassword(),getName());
         } else {
             return new SimpleAuthenticationInfo(principal,"",getName());

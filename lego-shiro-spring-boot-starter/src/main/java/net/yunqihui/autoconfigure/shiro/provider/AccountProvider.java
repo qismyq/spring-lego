@@ -1,7 +1,7 @@
 package net.yunqihui.autoconfigure.shiro.provider;
 
 
-import net.yunqihui.autoconfigure.shiro.entity.vo.Account;
+import net.yunqihui.autoconfigure.shiro.entity.Account;
 
 /* *
  * @Author tomsun28

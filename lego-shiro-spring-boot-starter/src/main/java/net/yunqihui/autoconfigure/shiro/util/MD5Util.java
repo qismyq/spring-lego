@@ -1,5 +1,6 @@
 package net.yunqihui.autoconfigure.shiro.util;
 
+import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,6 +47,12 @@ public class MD5Util {
             LOGGER.warn(e.getMessage(),e);
             return null;
         }
+
+    }
+
+    public static void main(String[] args) {
+        String s = md5("1234" + ShiroStatic.PASSWORD_MD5_SALT);
+        System.out.println(s);
 
     }
 

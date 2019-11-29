@@ -7,7 +7,7 @@ import io.jsonwebtoken.impl.DefaultJwsHeader;
 import io.jsonwebtoken.impl.TextCodec;
 import io.jsonwebtoken.impl.compression.DefaultCompressionCodecResolver;
 import io.jsonwebtoken.lang.Assert;
-import net.yunqihui.autoconfigure.shiro.entity.vo.JwtAccount;
+import net.yunqihui.autoconfigure.shiro.entity.JwtAccount;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 

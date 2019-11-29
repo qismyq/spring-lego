@@ -1,11 +1,13 @@
 package net.yunqihui.autoconfigure.shiro.provider.impl;
 
 
-import net.yunqihui.autoconfigure.shiro.entity.vo.Account;
+import net.yunqihui.autoconfigure.shiro.entity.Account;
+import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
 import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
-import net.yunqihui.starter.user.entity.User;
-import net.yunqihui.starter.user.service.IUserRoleService;
-import net.yunqihui.starter.user.service.IUserService;
+import net.yunqihui.autoconfigure.user.entity.User;
+import net.yunqihui.autoconfigure.user.service.IFrontUserService;
+import net.yunqihui.autoconfigure.user.service.IUserRoleService;
+import net.yunqihui.autoconfigure.user.service.IUserService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,15 +27,26 @@ public class AccountProviderImpl implements AccountProvider {
     private IUserService userService;
     @Autowired
     private IUserRoleService userRoleService;
+    @Autowired
+    private IFrontUserService frontUserService;
 
-
+    @Override
     public Account loadAccount(String account) throws Exception {
         User user = userService.getLoginUser(account, "是");
         if (user == null) {
             return null;
         }
-        // todo 补充MD5的salt
-        return new Account(user.getAccount(), user.getPassword(), "79sz6j");
+        return new Account(user.getAccount(), user.getPassword(), ShiroStatic.PASSWORD_MD5_SALT);
+    }
+
+    public Account loadFrontAccount(String account)throws Exception {
+//        frontUserService.getOne(new QueryWrapper<FrontUser>()
+//                .eq("account",account)
+//                .or()
+//                .eq("wechatId",account)
+//                .or()
+//                .eq("wechatId",account));
+        return null;
     }
 
     @Override

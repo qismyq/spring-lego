@@ -3,7 +3,7 @@ package net.yunqihui.autoconfigure.shiro.filter;
 import com.alibaba.fastjson.JSON;
 import io.jsonwebtoken.SignatureAlgorithm;
 import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
-import net.yunqihui.autoconfigure.shiro.entity.vo.ShiroStatic;
+import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
 import net.yunqihui.autoconfigure.shiro.errorhandler.ShiroErrorCodeEnum;
 import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
 import net.yunqihui.autoconfigure.shiro.token.JwtToken;

@@ -1,6 +1,7 @@
 package net.yunqihui.autoconfigure.common.config;
 
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import net.yunqihui.autoconfigure.common.entity.AlarmEmail;
 import net.yunqihui.autoconfigure.common.entity.CommonStatic;
 import net.yunqihui.autoconfigure.common.service.IAlarmEmailService;
@@ -17,6 +18,7 @@ import java.util.List;
  * Created by Michael on 2017/6/27.
  * 初始化就加载config内容到缓存中
  */
+@Slf4j
 @Service
 public class BaseInitializingConfig implements InitializingBean {
 
@@ -31,6 +33,7 @@ public class BaseInitializingConfig implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        log.info("**************init config data***************");
         // 配置表信息以及系统表信息
         JSONObject config = configurationService.findParamBean();
 //        SysParamBean sysParamBean = sysSysparamService.findParamBean() ;

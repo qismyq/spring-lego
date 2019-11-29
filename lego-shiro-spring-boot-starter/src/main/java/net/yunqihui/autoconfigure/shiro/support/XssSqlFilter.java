@@ -2,9 +2,8 @@ package net.yunqihui.autoconfigure.shiro.support;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.Order;
+
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
@@ -12,9 +11,8 @@ import java.io.IOException;
  * @Author tomsun28
  * @Description 
  * @Date 21:24 2018/4/16
+ * @Update Michael Wong
  */
-@Order(1)
-@WebFilter(filterName = "xssFilter", urlPatterns = "/*", asyncSupported = true)
 public class XssSqlFilter implements Filter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XssSqlFilter.class);

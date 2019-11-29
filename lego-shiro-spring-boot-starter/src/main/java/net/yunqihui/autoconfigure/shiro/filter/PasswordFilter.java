@@ -48,38 +48,25 @@ public class PasswordFilter extends AccessControlFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
 
-        // 判断是否是登录请求
-        if(isPasswordLoginPost(request)){
-            AuthenticationToken authenticationToken = createPasswordToken(request);
-            Subject subject = getSubject(request,response);
-            try {
-                subject.login(authenticationToken);
-                //登录认证成功,进入请求派发json web token url资源内
-                return true;
-            }catch (AuthenticationException e) {
-                LOGGER.warn(authenticationToken.getPrincipal()+"::"+e.getMessage());
-                // 返回response告诉客户端认证失败
-                ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_40201);
-                RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),response);
-                return false;
-            }catch (Exception e) {
-                LOGGER.error(authenticationToken.getPrincipal()+"::认证异常::"+e.getMessage(),e);
-                // 返回response告诉客户端认证失败
-                ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(FrameErrorCodeEnum.E_50000);
-                RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),response);
-                return false;
-            }
-        }
-        // 判断是否为注册请求,若是通过过滤链进入controller注册
-        if (isAccountRegisterPost(request)) {
+        AuthenticationToken authenticationToken = createPasswordToken(request);
+        Subject subject = getSubject(request,response);
+        try {
+            subject.login(authenticationToken);
+            //登录认证成功,进入请求派发json web token url资源内
             return true;
+        }catch (AuthenticationException e) {
+            LOGGER.warn(authenticationToken.getPrincipal()+"::"+e.getMessage());
+            // 返回response告诉客户端认证失败
+            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_40201);
+            RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),response);
+            return false;
+        }catch (Exception e) {
+            LOGGER.error(authenticationToken.getPrincipal()+"::认证异常::"+e.getMessage(),e);
+            // 返回response告诉客户端认证失败
+            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(FrameErrorCodeEnum.E_50000);
+            RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),response);
+            return false;
         }
-        // 之后添加对账户的找回等
-
-        // response 告知无效请求
-        ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_40200);
-        RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),response);
-        return false;
     }
 
     private boolean isPasswordTokenGet(ServletRequest request) {
@@ -128,10 +115,9 @@ public class PasswordFilter extends AccessControlFilter {
         String appId = map.get("appId");
         String timestamp = map.get("timestamp");
         String password = map.get("password");
+        String source = map.get("source");
         String host = IpUtil.getIpFromRequest(WebUtils.toHttp(request));
-        String userKey = map.get("userKey");
-        String tokenKey = redisTemplate.opsForValue().get("TOKEN_KEY_"+host.toUpperCase()+userKey);
-        return new PasswordToken(appId,password,timestamp,host,tokenKey);
+        return new PasswordToken(appId,password,timestamp,host,source);
     }
 
     public void setRedisTemplate(StringRedisTemplate redisTemplate) {

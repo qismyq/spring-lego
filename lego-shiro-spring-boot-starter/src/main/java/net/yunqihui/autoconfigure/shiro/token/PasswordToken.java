@@ -14,16 +14,14 @@ public class PasswordToken implements AuthenticationToken{
     private String password;
     private String timestamp;
     private String host;
-    private String tokenKey;
+    private String source;
 
-    public PasswordToken(String appId, String password, String timestamp, String host,String tokenKey) {
+    public PasswordToken(String appId, String password, String timestamp, String host,String source) {
         this.appId = appId;
         this.timestamp = timestamp;
         this.host = host;
-//        this.password = AESUtil.aesDecode(password,tokenKey);
         this.password = password;
-        this.tokenKey = tokenKey;
-
+        this.source = source;
     }
     public void setPassword(String password) {
         this.password = password;
@@ -64,11 +62,11 @@ public class PasswordToken implements AuthenticationToken{
         this.host = host;
     }
 
-    public String getTokenKey() {
-        return tokenKey;
+    public String getSource() {
+        return source;
     }
 
-    public void setTokenKey(String tokenKey) {
-        this.tokenKey = tokenKey;
+    public void setSource(String source) {
+        this.source = source;
     }
 }

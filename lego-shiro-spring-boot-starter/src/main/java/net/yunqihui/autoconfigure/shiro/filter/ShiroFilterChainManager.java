@@ -1,11 +1,11 @@
 package net.yunqihui.autoconfigure.shiro.filter;
 
 
+import net.yunqihui.autoconfigure.frame.util.SpringContextHolder;
 import net.yunqihui.autoconfigure.shiro.config.RestPathMatchingFilterChainResolver;
 import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
 import net.yunqihui.autoconfigure.shiro.provider.ShiroFilterRulesProvider;
 import net.yunqihui.autoconfigure.shiro.rule.RolePermRule;
-import net.yunqihui.autoconfigure.shiro.support.SpringContextHolder;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
@@ -80,7 +80,7 @@ public class ShiroFilterChainManager {
     }
     // 动态重新加载过滤链规则
     public void reloadFilterChain() {
-            ShiroFilterFactoryBean shiroFilterFactoryBean = SpringContextHolder.getBean(ShiroFilterFactoryBean.class);
+            ShiroFilterFactoryBean shiroFilterFactoryBean = SpringContextHolder.getBeanByType(ShiroFilterFactoryBean.class);
             AbstractShiroFilter abstractShiroFilter = null;
             try {
                 abstractShiroFilter = (AbstractShiroFilter)shiroFilterFactoryBean.getObject();
