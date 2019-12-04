@@ -55,6 +55,9 @@ public class FrontUser extends Model<FrontUser> {
     @ApiModelProperty(value = "前端角色")
     private Integer role;
 
+    @ApiModelProperty(value = "jwttoken")
+    @TableField(exist = false)
+    private String token;
 
     @Override
     protected Serializable pkVal() {

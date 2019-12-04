@@ -80,11 +80,6 @@ spring:
 
 
 ############################mybatis相关配置-start###################################
-mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml   # 指定全局配置文件的路径
-  mapper-locations: classpath:mybatis/mapper/*.xml   # 指定mapper的扫描路径
-  type-aliases-package: com.example.demo.entity
-
 mybatis-plus:
   config-location: classpath:mybatis/mybatis-config.xml   # 指定全局配置文件的路径
   mapper-locations: classpath:mybatis/mapper/*.xml   # 指定mapper的扫描路径
@@ -125,7 +120,7 @@ logging:
 swagger:
   enable: false
   base:
-    package: com.example.demo.controller
+    package: net.yunqihui
   path:
     selector:
       regex: /system/user/.*/json|/system/dicdata/.*/json

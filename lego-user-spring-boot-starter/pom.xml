@@ -17,6 +17,44 @@
     <name>lego-user-spring-boot-starter</name>
     <description>user and permission module</description>
 
+    <!-- 版权许可 -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <!-- 代码库 -->
+    <scm>
+        <tag>master</tag>
+        <url>https://github.com/qismyq/spring-lego.git</url>
+        <connection>scm:git:git@github.com:qismyq/spring-lego.git</connection>
+        <developerConnection>scm:git:git@github.com:qismyq/spring-lego.git</developerConnection>
+    </scm>
+    <!-- 开发者信息 -->
+    <developers>
+        <developer>
+            <name>coder_michael</name>
+            <email>michael_wang90@163.com</email>
+            <roles>
+                <role>owner</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+    <!-- 定义snapshots库和releases库的nexus地址 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <java.version>1.8</java.version>
 
@@ -77,16 +115,86 @@
             </resource>
         </resources>
 
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <fork>true</fork>
+                    </configuration>
+                </plugin>
+
+
+                <!--deploy插件-->
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                    <executions>
+                        <execution>
+                            <id>default-deploy</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>deploy</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!--sonatype的staging插件-->
+                <!--<plugin>-->
+                <!--<groupId>org.sonatype.plugins</groupId>-->
+                <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
+                <!--<version>1.6.7</version>-->
+                <!--<extensions>true</extensions>-->
                 <!--<configuration>-->
-                    <!--<fork>true</fork>-->
+                <!--&lt;!&ndash;<serverId>sonatype-nexus-snapshots</serverId>&ndash;&gt;-->
+                <!--<serverId>sonatype-nexus-staging</serverId>-->
+                <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+                <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
                 <!--</configuration>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
+                <!--</plugin>-->
+
+                <!--SCM插件-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>1.8.1</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
     </build>
 
+
+    <repositories>
+
+        <repository>
+
+            <id>maven-central</id>
+
+            <name>maven-central</name>
+
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+
+            <snapshots>
+
+                <enabled>true</enabled>
+
+            </snapshots>
+
+            <releases>
+
+                <enabled>true</enabled>
+
+            </releases>
+
+        </repository>
+
+    </repositories>
 
 </project>

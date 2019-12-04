@@ -54,10 +54,10 @@ public class PasswordRealm extends AuthorizingRealm {
         try {
             // login请求来源，system代表管理系统请求，app或无value代表为客户端请求
             String source = passwordToken.getSource();
-            if (StringUtils.isNotBlank(source)) {
+            if (StringUtils.isNotBlank(source) && "SYSTEM".equals(source.toUpperCase())) {
                 account = accountProvider.loadAccount(principal);
             }else {
-
+                account = accountProvider.loadFrontAccount(principal);
             }
         } catch (Exception e) {
             LOGGER.error("An error occurred while accessing the account :{}",e.getMessage());
@@ -65,7 +65,7 @@ public class PasswordRealm extends AuthorizingRealm {
         }
         if (account != null) {
             // 用盐对密码进行MD5加密
-            passwordToken.setPassword(MD5Util.md5(passwordToken.getPassword()+ ShiroStatic.PASSWORD_MD5_SALT));
+            passwordToken.setPassword(MD5Util.md5(passwordToken.getPassword() + ShiroStatic.PASSWORD_MD5_SALT));
             return new SimpleAuthenticationInfo(principal,account.getPassword(),getName());
         } else {
             return new SimpleAuthenticationInfo(principal,"",getName());

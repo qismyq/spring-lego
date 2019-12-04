@@ -112,10 +112,10 @@ public class PasswordFilter extends AccessControlFilter {
     private AuthenticationToken createPasswordToken(ServletRequest request) {
 
         Map<String ,String> map = RequestResponseUtil.getRequestParameters(request);
-        String appId = map.get("appId");
+        String appId = map.get("account");
         String timestamp = map.get("timestamp");
         String password = map.get("password");
-        String source = map.get("source");
+        String source = RequestResponseUtil.getRequestHeaders(request).get("source");
         String host = IpUtil.getIpFromRequest(WebUtils.toHttp(request));
         return new PasswordToken(appId,password,timestamp,host,source);
     }

@@ -1,23 +1,15 @@
 package net.yunqihui.autoconfigure.user.controller;
 
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
-import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
-import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
-import net.yunqihui.autoconfigure.shiro.util.JsonWebTokenUtil;
 import net.yunqihui.autoconfigure.user.entity.User;
+import net.yunqihui.autoconfigure.user.service.ILoginService;
 import net.yunqihui.autoconfigure.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @Description 登录
@@ -25,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @Email michael_wong@yunqihui.net
  * @Date 2019/11/25 15:24
  **/
+@Api(description = "登录")
 @Slf4j
 @RestController
 public class LoginController {
@@ -32,38 +25,61 @@ public class LoginController {
 
     @Autowired
     private IUserService userService;
-
-
-
     @Autowired
-    AccountProvider accountProvider;
-    @Autowired
-    private StringRedisTemplate redisTemplate;
+    private ILoginService loginService;
 
 
-    /* *
-    * @Description 这里已经在 passwordFilter 进行了登录认证
-    * @Param [] 登录签发 JWT
-    * @Return java.lang.String
-    */
-    @ApiOperation(value = "用户登录", notes = "POST用户登录签发JWT")
-    @PostMapping("/login")
-    public ReturnDatas accountLogin(HttpServletRequest request, HttpServletResponse response)throws Exception{
-        String appId = request.getParameter("appId");
-        // 根据appId获取其对应所拥有的角色(这里设计为角色对应资源，没有权限对应资源)
-        String roles = accountProvider.loadAccountRole(appId);
-        // 时间以秒计算,token有效刷新时间是token有效过期时间的2倍
-        long refreshPeriodTime = 36000L;
-        String jwt = JsonWebTokenUtil.issueJWT(UUID.randomUUID().toString(), appId,
-                ShiroStatic.JWT_ISSUER, refreshPeriodTime >> 2, roles, null, SignatureAlgorithm.HS512);
-        // 将签发的JWT存储到Redis： {JWT-SESSION-{appID} , jwt}
-        redisTemplate.opsForValue().set(ShiroStatic.JWT_SESSION + appId, jwt, refreshPeriodTime, TimeUnit.SECONDS);
-        User authUser = userService.getLoginUser(appId,"是");
-        authUser.setPassword(null);
-        authUser.setToken(jwt);
+    @ApiOperation(value = "管理用户登录", notes = "POST用户登录签发JWT")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType="query",name = "account", value = "账户", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="query",name = "password", value = "密码", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="query",name = "timestamp", value = "时间戳", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="header", name = "source", value = "请求来源，固定为SYSTEM", required = true, dataType = "String",defaultValue = "SYSTEM")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 40200,message="无效请求"),
+            @ApiResponse(code = 40201,message="用户密码认证失败"),
+            @ApiResponse(code = 40203,message="无访问权限"),
+            @ApiResponse(code = 40204,message="认证失效，请重新登录"),
+            @ApiResponse(code = 40205,message="认证错误")
+    })
+    @PostMapping("/system/login")
+    public ReturnDatas accountLogin(@RequestParam String account)throws Exception{
 
+        User authUser = userService.getLoginUser(account,"是");
+        if (authUser != null) {
+            String jwt = loginService.issueSystemJWT(account);
+            authUser.setPassword(null);
+            authUser.setToken(jwt);
+        }
 
         return ReturnDatas.getSuccessReturnDatas().setData(authUser);
     }
 
+
+
+    @ApiOperation(value = "前端用户登录", notes = "POST用户登录签发JWT")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType="form", name = "account", value = "账户", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="form", name = "password", value = "密码", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="form", name = "timestamp", value = "时间戳", required = true, dataType = "String")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 40200,message="无效请求"),
+            @ApiResponse(code = 40201,message="用户密码认证失败"),
+            @ApiResponse(code = 40203,message="无访问权限"),
+            @ApiResponse(code = 40204,message="认证失效，请重新登录"),
+            @ApiResponse(code = 40205,message="认证错误")
+    })
+    @PostMapping("/login")
+    public ReturnDatas frontAccountLogin(String account) throws Exception {
+
+        ReturnDatas successReturnDatas = ReturnDatas.getSuccessReturnDatas();
+
+        String jwt = loginService.issueFrontJWT(account);
+
+        // todo 前端业务
+
+        return successReturnDatas;
+    }
 }

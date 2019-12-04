@@ -12,5 +12,7 @@ public interface AccountProvider {
 
     Account loadAccount(String account)throws Exception ;
 
+    Account loadFrontAccount(String account) throws Exception;
+
     String loadAccountRole(String appId) throws Exception;
 }

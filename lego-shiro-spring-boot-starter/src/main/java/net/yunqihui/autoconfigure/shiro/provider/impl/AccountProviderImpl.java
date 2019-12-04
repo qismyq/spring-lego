@@ -1,9 +1,11 @@
 package net.yunqihui.autoconfigure.shiro.provider.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import net.yunqihui.autoconfigure.shiro.entity.Account;
 import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
 import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
+import net.yunqihui.autoconfigure.user.entity.FrontUser;
 import net.yunqihui.autoconfigure.user.entity.User;
 import net.yunqihui.autoconfigure.user.service.IFrontUserService;
 import net.yunqihui.autoconfigure.user.service.IUserRoleService;
@@ -17,7 +19,7 @@ import java.util.Set;
 
 /* *
  * @Author tomsun28
- * @Description 
+ * @Description
  * @Date 9:22 2018/2/13
  */
 @Service("AccountProvider")
@@ -39,14 +41,17 @@ public class AccountProviderImpl implements AccountProvider {
         return new Account(user.getAccount(), user.getPassword(), ShiroStatic.PASSWORD_MD5_SALT);
     }
 
-    public Account loadFrontAccount(String account)throws Exception {
-//        frontUserService.getOne(new QueryWrapper<FrontUser>()
-//                .eq("account",account)
-//                .or()
-//                .eq("wechatId",account)
-//                .or()
-//                .eq("wechatId",account));
-        return null;
+    @Override
+    public Account loadFrontAccount(String account) throws Exception {
+        // todo 先只考虑前端账户的account登录方式，不考虑第三方账号的登录
+        FrontUser frountUser = frontUserService.getOne(new QueryWrapper<FrontUser>()
+                .eq("account", account)
+                .eq("del", 0));
+        if (frountUser == null) {
+            return null;
+        }
+
+        return new Account(account, frountUser.getPassword() == null ? "" : frountUser.getPassword(), ShiroStatic.PASSWORD_MD5_SALT);
     }
 
     @Override
