@@ -43,6 +43,8 @@ public class Menu extends Model<Menu> {
     private String pageurl;
     @ApiModelProperty(value = "访问方式 GET POST PUT DELETE PATCH")
     private String method ;
+    @ApiModelProperty(value = "路由")
+    private String router;
     @ApiModelProperty(value = "0.功能按钮,1.导航菜单")
     private Integer type;
 
