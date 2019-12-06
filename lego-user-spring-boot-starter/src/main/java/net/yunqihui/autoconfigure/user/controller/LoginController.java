@@ -1,9 +1,12 @@
 package net.yunqihui.autoconfigure.user.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
+import net.yunqihui.autoconfigure.user.entity.FrontUser;
 import net.yunqihui.autoconfigure.user.entity.User;
+import net.yunqihui.autoconfigure.user.errorhandler.UserErrorCodeEnum;
 import net.yunqihui.autoconfigure.user.service.ILoginService;
 import net.yunqihui.autoconfigure.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +61,16 @@ public class LoginController {
 
 
 
+    /**
+     * @desc: 前端用户登录
+     * @param account 账号
+     * @return: net.yunqihui.autoconfigure.frame.entity.ReturnDatas
+     *          只返回token以及账户信息，不再返回账户详情，详情信息获取由个人信息接口维护
+     * @auther: Michael Wong
+     * @email:  michael_wong@yunqihui.net
+     * @date:   2019/12/4 0004 16:53       
+     * @update:        
+     */
     @ApiOperation(value = "前端用户登录", notes = "POST用户登录签发JWT")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType="form", name = "account", value = "账户", required = true, dataType = "String"),
@@ -78,7 +91,13 @@ public class LoginController {
 
         String jwt = loginService.issueFrontJWT(account);
 
-        // todo 前端业务
+        FrontUser frontUser = new FrontUser();
+        frontUser = frontUser.selectOne(new QueryWrapper<FrontUser>().eq("account", account));
+        if (frontUser == null) {
+            return ReturnDatas.getErrorReturnDatas(UserErrorCodeEnum.E_40100);
+        }
+        frontUser.setToken(jwt);
+        successReturnDatas.setData(frontUser);
 
         return successReturnDatas;
     }
