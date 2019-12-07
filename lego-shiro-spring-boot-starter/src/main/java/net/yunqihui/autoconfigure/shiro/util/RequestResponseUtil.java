@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /* *
@@ -32,12 +33,23 @@ public class RequestResponseUtil {
      */
     public static Map<String,String> getRequestParameters(ServletRequest request) {
         Map<String,String> dataMap = new HashMap<>();
-        Enumeration enums = request.getParameterNames();
-        while (enums.hasMoreElements()) {
-            String paraName = (String)enums.nextElement();
-            String paraValue = RequestResponseUtil.getRequest(request).getParameter(paraName);
-            if(null!=paraValue && !"".equals(paraValue)) {
-                dataMap.put(paraName,paraValue);
+//        Enumeration enums = request.getParameterNames();
+//        while (enums.hasMoreElements()) {
+//            String paraName = (String)enums.nextElement();
+//            String paraValue = RequestResponseUtil.getRequest(request).getParameter(paraName);
+//            if(null!=paraValue && !"".equals(paraValue)) {
+//                dataMap.put(paraName,paraValue);
+//            }
+//        }
+        Map<String, String[]> paramMap = new HashMap(request.getParameterMap());
+        Iterator iter = paramMap.entrySet().iterator();
+        Map.Entry entry;
+        while (iter.hasNext()) {
+            entry = (Map.Entry) iter.next();
+            Object key = entry.getKey();
+            Object val = entry.getValue();
+            if (val != null) {
+                dataMap.put(key.toString(), ((String[]) val)[0]);
             }
         }
         return dataMap;

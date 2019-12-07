@@ -3,6 +3,8 @@ package net.yunqihui.autoconfigure.wechat.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sun.javaws.jnl.XMLUtils;
+import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
+import net.yunqihui.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
 import net.yunqihui.autoconfigure.wechat.entity.WeChatStatic;
 import net.yunqihui.autoconfigure.wechat.service.IWeChatAuthService;
 import net.yunqihui.autoconfigure.wechat.util.WXBizMsgCrypt;
