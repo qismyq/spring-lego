@@ -35,16 +35,27 @@ public class Menu extends Model<Menu> {
     @ApiModelProperty(value = "菜单名称")
     private String name;
 
+    @ApiModelProperty(value = "父级id")
     private String pid;
 
-    @ApiModelProperty(value = "描述")
-    private String description;
-    @ApiModelProperty(value = "访问地址URL")
+    @ApiModelProperty(value = "名称")
+    private String title;
+
+    @ApiModelProperty(value = "api地址URL")
     private String pageurl;
+
     @ApiModelProperty(value = "访问方式 GET POST PUT DELETE PATCH")
     private String method ;
-    @ApiModelProperty(value = "路由")
+
+    @ApiModelProperty(value = "顶级路由")
+    private String topRouter;
+
+    @ApiModelProperty(value = "页面路由")
     private String router;
+
+    @ApiModelProperty(value = "页面目录")
+    private String component ;
+
     @ApiModelProperty(value = "0.功能按钮,1.导航菜单")
     private Integer type;
 
