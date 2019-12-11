@@ -7,12 +7,16 @@
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="pid" property="pid" />
-        <result column="description" property="description" />
+        <result column="title" property="title" />
         <result column="pageurl" property="pageurl" />
+        <result column="method" property="method" />
         <result column="type" property="type" />
         <result column="state" property="state" />
         <result column="sortno" property="sortno" />
-        <result column="menu_icon" property="menuIcon" />
+        <result column="icon" property="icon" />
+        <result column="top_router" property="topRouter" />
+        <result column="router" property="router" />
+        <result column="component" property="component" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -20,4 +24,27 @@
         id, name, pid, description, pageurl, type, state, sortno, menu_icon
     </sql>
 
+
+    <select id="getMenusByUserId" resultMap="BaseResultMap">
+        SELECT
+            m.*
+        FROM
+            t_menu m,
+            t_role_menu rm,
+            t_user_role ur
+        WHERE
+            ur.user_id = #{userId}
+        AND ur.role_id = rm.role_id
+        AND m.id = rm.menu_id
+        AND m.state = #{state}
+        <if test="menuType != null">
+            AND m.type = #{menuType}
+        </if>
+        <if test="pid != null">
+            AND m.pid = #{pid}
+        </if>
+        ORDER BY
+            m.sortno ASC,
+            m.id ASC
+    </select>
 </mapper>

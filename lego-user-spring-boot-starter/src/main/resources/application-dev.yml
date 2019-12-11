@@ -92,7 +92,7 @@ mybatis-plus:
 #mybatis执行sql打印
 logging:
   level:
-    com.example.demo.mapper: debug
+    net.yunqihui.autoconfigure.user.mapper: debug
 
 ############################mybatis相关配置-end###################################
 

@@ -1,6 +1,7 @@
 package net.yunqihui.autoconfigure.user.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -11,6 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -36,7 +38,7 @@ public class Menu extends Model<Menu> {
     private String name;
 
     @ApiModelProperty(value = "父级id")
-    private String pid;
+    private Long pid;
 
     @ApiModelProperty(value = "名称")
     private String title;
@@ -65,8 +67,13 @@ public class Menu extends Model<Menu> {
     @ApiModelProperty(value = "排序")
     private Integer sortno;
 
-    private String menuIcon;
+    @ApiModelProperty(value = "菜单icon")
+    private String icon;
 
+
+
+    @TableField(exist = false)
+    private List<Menu> children;
 
     @Override
     protected Serializable pkVal() {

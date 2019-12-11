@@ -60,6 +60,12 @@
         <frame-starter.version>1.0-SNAPSHOT</frame-starter.version>
         <common-starter.version>1.0-SNAPSHOT</common-starter.version>
         <user-starter.version>1.0-SNAPSHOT</user-starter.version>
+
+
+
+
+        <dom4j.version>1.6.1</dom4j.version>
+        <commons-codec.version>1.9</commons-codec.version>
     </properties>
 
     <dependencies>
@@ -87,6 +93,19 @@
         </dependency>
 
 
+
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

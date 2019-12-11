@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class BaseInitializingConfig implements InitializingBean {
+public class CommonBaseInitializingConfig implements InitializingBean {
 
     @Autowired
     IConfigurationService configurationService;
@@ -33,7 +33,7 @@ public class BaseInitializingConfig implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        log.info("**************init config data***************");
+        log.info("**************init common config data***************");
         // 配置表信息以及系统表信息
         JSONObject config = configurationService.findParamBean();
 //        SysParamBean sysParamBean = sysSysparamService.findParamBean() ;
