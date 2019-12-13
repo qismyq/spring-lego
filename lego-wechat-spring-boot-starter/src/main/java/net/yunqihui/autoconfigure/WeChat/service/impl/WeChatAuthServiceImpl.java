@@ -1,14 +1,19 @@
 package net.yunqihui.autoconfigure.wechat.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import net.yunqihui.autoconfigure.common.util.HttpClientUtils;
 import net.yunqihui.autoconfigure.frame.errorhandler.ErrorMessageException;
+import net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo;
 import net.yunqihui.autoconfigure.wechat.entity.WeChatStatic;
 import net.yunqihui.autoconfigure.wechat.errorhandler.WeChatErrorCodeEnum;
+import net.yunqihui.autoconfigure.wechat.service.IPlatformsAuthInfoService;
 import net.yunqihui.autoconfigure.wechat.service.IWeChatAuthService;
 import net.yunqihui.autoconfigure.wechat.util.WXBizMsgCrypt;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -18,6 +23,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -35,6 +41,8 @@ public class WeChatAuthServiceImpl implements IWeChatAuthService {
     CacheManager cacheManager;
     @Autowired
     StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    IPlatformsAuthInfoService platformsAuthInfoService;
 
     @Override
     public Boolean componentVerifyTicket(String nonce, String signature, String timestamp, String msgSignature, String msgXml) throws Exception {
@@ -172,7 +180,103 @@ public class WeChatAuthServiceImpl implements IWeChatAuthService {
 
 
     @Override
-    public String getAuthInfoByAuthCode(String authCode) throws Exception {
-        return null;
+    public JSONObject launchAuthorization() throws Exception {
+        Cache cache = cacheManager.getCache(WeChatStatic.WECHAT_CACHE_SPACE);
+        JSONObject wechatConfig = cache.get(WeChatStatic.WECHAT_CONFIG_CACHE, JSONObject.class);
+
+        String componentAppId = wechatConfig.getString("componentAppId");
+        String preAuthCode = stringRedisTemplate.opsForValue().get(WeChatStatic.PRE_AUTH_CODE);
+
+        if (StringUtils.isBlank(componentAppId) || StringUtils.isBlank(preAuthCode)) {
+            throw new ErrorMessageException(WeChatErrorCodeEnum.E_50300);
+        }
+
+        JSONObject params = new JSONObject();
+        params.put("component_appid", componentAppId);
+        params.put("pre_auth_code", preAuthCode);
+
+        return params;
+    }
+
+    @Override
+    public PlatformsAuthInfo getAuthInfoByAuthCode(String authCode) throws Exception {
+
+
+        if (StringUtils.isBlank(authCode)) {
+            throw new ErrorMessageException(WeChatErrorCodeEnum.E_40300);
+        }
+
+        Cache cache = cacheManager.getCache(WeChatStatic.WECHAT_CACHE_SPACE);
+        JSONObject wechatConfig = cache.get(WeChatStatic.WECHAT_CONFIG_CACHE, JSONObject.class);
+        String componentAppId = wechatConfig.getString("componentAppId");
+
+        String accessToken = this.getComponentAccessToken();
+
+        if (StringUtils.isBlank(componentAppId) || StringUtils.isBlank(accessToken)) {
+            throw new ErrorMessageException(WeChatErrorCodeEnum.E_50300);
+        }
+
+        String url = "https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token="+accessToken ;
+        JSONObject params = new JSONObject();
+        params.put("component_appid", componentAppId);
+        params.put("authorization_code", authCode);
+
+
+        String result = HttpClientUtils.sendHttpPost(url, params.toString());
+
+        if (StringUtils.isBlank(result)) {
+            throw new ErrorMessageException(WeChatErrorCodeEnum.E_50303);
+        }
+
+        JSONObject resultJson = JSONObject.parseObject(result);
+        if (resultJson.containsKey("errcode") && !"0".equals(resultJson.getString("errcode"))) {
+            log.error("get wechat authorization_info has an error,errcode:{},errmsg:{}",
+                    resultJson.getString("errcode"),
+                    resultJson.getString("errmsg"));
+            throw new ErrorMessageException(WeChatErrorCodeEnum.E_50303);
+        }else {
+
+            String authorizerAppId = resultJson.getString("authorizer_appid");
+            String authorizerAccessToken = resultJson.getString("authorizer_access_token");
+            Integer expiresIn = resultJson.getInteger("expires_in");
+            String authorizerRefreshToken = resultJson.getString("authorizer_refresh_token");
+            JSONArray funcinfoArray = resultJson.getJSONArray("func_info");
+
+            PlatformsAuthInfo platformsAuthInfo = new PlatformsAuthInfo();
+
+            QueryWrapper<PlatformsAuthInfo> queryWrapper = new QueryWrapper<PlatformsAuthInfo>().eq("authorizer_appid", authorizerAppId);
+            PlatformsAuthInfo queryResult = platformsAuthInfo.selectOne(queryWrapper);
+            if (queryResult != null){
+                throw new ErrorMessageException(WeChatErrorCodeEnum.E_40301);
+            }
+
+            platformsAuthInfo.setAuthorizerAppid(authorizerAppId)
+                    .setAuthorizerRefreshToken(authorizerRefreshToken)
+                    .setAuthorizerAccessToken(authorizerAccessToken);
+
+            // 计算调用令牌失效时间
+            Date expiresTime = DateUtils.addSeconds(new Date(), expiresIn);
+            platformsAuthInfo.setExpiresTime(expiresTime);
+
+            // 获取并转换权限集
+            if (funcinfoArray != null) {
+                JSONObject funcinfo = null;
+                StringBuffer funcinfoStr = new StringBuffer();
+                for (int i = 0; i < funcinfoArray.size(); i++) {
+                    funcinfo = funcinfoArray.getJSONObject(i);
+                    funcinfoStr.append(funcinfo.getJSONObject("funcscope_category").getInteger("id"));
+                    if (i != funcinfoArray.size() - 1) {
+                        funcinfoStr.append(",");
+                    }
+                }
+                platformsAuthInfo.setFuncInfo(funcinfoStr.toString());
+            }
+
+
+            platformsAuthInfoService.save(platformsAuthInfo);
+
+            return platformsAuthInfo;
+        }
+
     }
 }

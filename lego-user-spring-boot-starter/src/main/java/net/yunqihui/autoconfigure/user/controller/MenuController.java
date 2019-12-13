@@ -60,6 +60,8 @@ public class MenuController {
     @Autowired
     IRoleMenuService roleMenuService;
 
+
+    @ApiOperation(value = "添加菜单")
     @RequestMapping(method = RequestMethod.POST)
     public ReturnDatas save(@RequestBody Menu menu)throws Exception {
 

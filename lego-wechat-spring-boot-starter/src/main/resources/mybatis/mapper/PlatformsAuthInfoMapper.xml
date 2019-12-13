@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.yunqihui.autoconfigure.WeChat.mapper.PlatformsAuthInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo">
+        <id column="id" property="id" />
+        <result column="authorizer_appid" property="authorizerAppid" />
+        <result column="authorizer_access_token" property="authorizerAccessToken" />
+        <result column="authorizer_refresh_token" property="authorizerRefreshToken" />
+        <result column="func_info" property="funcInfo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, authorizer_appid, authorizer_access_token, authorizer_refresh_token, func_info
+    </sql>
+
+</mapper>

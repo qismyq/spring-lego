@@ -1,5 +1,7 @@
 package net.yunqihui.autoconfigure.wechat.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
 import net.yunqihui.autoconfigure.shiro.util.RequestResponseUtil;
@@ -19,6 +21,7 @@ import java.io.BufferedReader;
  * @Email michael_wong@yunqihui.net
  * @Date 2019/12/6 15:06
  **/
+@Api("微信开放平台授权相关信息")
 @Slf4j
 @RestController
 //@RequestMapping(value = "/wechatAuth")
@@ -84,7 +87,6 @@ public class WeChatAuthController {
     }
 
 
-
     /**
      * @desc: 获取预授权码
      * @return: net.yunqihui.autoconfigure.frame.entity.ReturnDatas
@@ -93,11 +95,38 @@ public class WeChatAuthController {
      * @date:   2019/12/11 15:18
      * @update:
      */
+    @ApiOperation(value = "获取预授权码", notes = "获取预授权码")
+    @ApiResponses({
+            @ApiResponse(code = 50300,message="微信配置缺失"),
+            @ApiResponse(code = 50302,message="获取预授权码失败")
+    })
     @RequestMapping(value = "/preAuthCode",method = RequestMethod.GET)
     public ReturnDatas getPreAuthCode()throws Exception {
 
         String preAuthCode = weChatAuthService.getPreAuthCode();
 
         return ReturnDatas.getSuccessReturnDatas().setData(preAuthCode);
+    }
+
+
+    /**
+     * @desc: 发起授权
+     * @param
+     * @return: net.yunqihui.autoconfigure.frame.entity.ReturnDatas
+     * @auther: Michael Wong
+     * @email:  michael_wong@yunqihui.net
+     * @date:   2019/12/12 14:43
+     * @update:
+     */
+    @ApiOperation(value = "发起授权", notes = "获取通过链接方式发起授权所需参数")
+    @ApiResponses({
+            @ApiResponse(code = 50300,message="微信配置缺失")
+    })
+    @RequestMapping(value = "/launch",method = RequestMethod.GET)
+    public ReturnDatas launchAuthorization()throws Exception {
+
+        JSONObject launchParams = weChatAuthService.launchAuthorization();
+
+        return ReturnDatas.getSuccessReturnDatas().setData(launchParams);
     }
 }

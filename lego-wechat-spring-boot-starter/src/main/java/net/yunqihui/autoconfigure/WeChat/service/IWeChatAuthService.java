@@ -1,5 +1,8 @@
 package net.yunqihui.autoconfigure.wechat.service;
 
+import com.alibaba.fastjson.JSONObject;
+import net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo;
+
 /**
  * @Description 微信相关授权信息
  * @Author Michael Wong
@@ -44,13 +47,24 @@ public interface IWeChatAuthService {
     String getPreAuthCode() throws Exception;
 
     /**
-     * @desc: 根据授权码获取授权信息
-     * @param authCode 授权码（通过预授权码拿到的授权码）
-     * @return: java.lang.String
+     * @desc: 发起授权
+     * @param
+     * @return: com.alibaba.fastjson.JSONObject component_appid和pre_auth_code
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
-     * @date:   2019/12/11 16:49
+     * @date:   2019/12/12 14:46
      * @update:
      */
-    String getAuthInfoByAuthCode(String authCode) throws Exception;
+    JSONObject launchAuthorization() throws Exception;
+
+    /**
+     * @desc:  根据授权码获取授权信息
+     * @param authCode 授权码（通过预授权码拿到的授权码）
+     * @return: net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo 授权信息
+     * @auther: Michael Wong
+     * @email:  michael_wong@yunqihui.net
+     * @date:   2019/12/13 15:24
+     * @update:
+     */
+    PlatformsAuthInfo getAuthInfoByAuthCode(String authCode) throws Exception;
 }

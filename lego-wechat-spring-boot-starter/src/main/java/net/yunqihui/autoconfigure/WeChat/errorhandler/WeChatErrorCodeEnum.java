@@ -17,22 +17,35 @@ import net.yunqihui.autoconfigure.frame.errorhandler.IErrorCode;
 public enum WeChatErrorCodeEnum implements IErrorCode {
 
 
-
     /**
-     * <br> 微信配置缺失
+     * @Description 缺少授权码
      */
-    E_50300("50300","微信配置缺失")
+    E_40300("40300","缺少授权码")
 
     /**
-     * <br> 获取微信token失败
+     * @Description 缺少授权码
+     */
+    ,E_40301("40301","已存在授权信息")
+
+    /**
+     * @Description 微信配置缺失
+     */
+    ,E_50300("50300","微信配置缺失")
+
+    /**
+     * @Description 获取微信token失败
      */
     ,E_50301("50301","获取微信token失败")
 
     /**
-     * <br> 获取微信token失败
+     *  获取微信token失败
      */
     ,E_50302("50302","获取预授权码失败")
 
+    /**
+     *  获取授权信息失败
+     */
+    ,E_50303("50303","获取授权信息失败")
     ;
 
     String errorCode ;
