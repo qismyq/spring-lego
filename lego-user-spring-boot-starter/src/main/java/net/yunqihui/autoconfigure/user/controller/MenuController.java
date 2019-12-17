@@ -32,7 +32,26 @@ public class MenuController {
     private IMenuService menuService;
 
 
-    @ApiOperation(value = "用户菜单", notes = "获取登录用户菜单")
+    @ApiOperation(value = "全部菜单", notes = "获取所有菜单列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType="header", name = "appId", value = "账户", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="header", name = "authorization", value = "token", required = true, dataType = "String")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 40203,message="无访问权限"),
+            @ApiResponse(code = 40204,message="认证失效，请重新登录")
+    })
+    @RequestMapping(method = RequestMethod.GET)
+    public ReturnDatas list()throws Exception {
+
+        List<Menu> list = menuService.list();
+
+        return ReturnDatas.getSuccessReturnDatas().setData(list);
+    }
+
+
+
+    @ApiOperation(value = "用户菜单", notes = "获取登录用户菜单sideBar")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType="query",name = "userId", value = "用户id", required = true, dataType = "Integer"),
             @ApiImplicitParam(paramType="header", name = "appId", value = "账户", required = true, dataType = "String"),

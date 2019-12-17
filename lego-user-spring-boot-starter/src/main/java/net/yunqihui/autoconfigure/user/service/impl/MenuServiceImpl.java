@@ -27,6 +27,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     @Autowired
     MenuMapper menuMapper;
 
+
     @Override
     public List<MenuBar> getMenuBarsByUserId(Integer userId) throws Exception {
 
