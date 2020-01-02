@@ -82,4 +82,15 @@ public interface IWeChatAuthService {
      * @update:
      */
     PlatformsAuthInfo getAuthInfoByAuthCode(String authCode) throws Exception;
+
+    /**
+     * @desc: 根据授权信息记录id获取授权信息，如果存在小程序接口调用令牌失效的情况下，则进行刷新操作
+     * @param id 授权信息记录id
+     * @return: net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo 
+     * @auther: Michael Wong
+     * @email:  michael_wong@yunqihui.net
+     * @date:   2020/1/2 10:44
+     * @update:        
+     */
+    PlatformsAuthInfo getAuthInfoById(Integer id) throws Exception;
 }

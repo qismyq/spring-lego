@@ -46,6 +46,11 @@ public enum WeChatErrorCodeEnum implements IErrorCode {
      *  获取授权信息失败
      */
     ,E_50303("50303","获取授权信息失败")
+
+    /**
+     *  获取授权信息失败
+     */
+    ,E_50304("50304","刷新接口调用令牌失败")
     ;
 
     String errorCode ;

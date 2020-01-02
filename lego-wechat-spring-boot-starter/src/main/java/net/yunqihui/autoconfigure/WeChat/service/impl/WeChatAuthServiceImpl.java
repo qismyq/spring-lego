@@ -307,4 +307,52 @@ public class WeChatAuthServiceImpl implements IWeChatAuthService {
         }
 
     }
+
+
+    @Override
+    public PlatformsAuthInfo getAuthInfoById(Integer id) throws Exception {
+
+        PlatformsAuthInfo authInfo = platformsAuthInfoService.getById(id);
+
+        if (authInfo != null) {
+            // 如果接口令牌超时则刷新接口令牌
+            if (new Date().after(authInfo.getExpiresTime())) {
+                String componentAccessToken = getComponentAccessToken();
+                String url = "https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=" + componentAccessToken ;
+
+                JSONObject params = new JSONObject();
+                Cache cache = cacheManager.getCache(WeChatStatic.WECHAT_CACHE_SPACE);
+                JSONObject wechatConfigJson = cache.get(WeChatStatic.WECHAT_CONFIG_CACHE, JSONObject.class);
+                params.put("component_appid", wechatConfigJson.get("componentAppId"));
+
+                params.put("authorizer_appid", authInfo.getAuthorizerAppid());
+                params.put("authorizer_refresh_token", authInfo.getAuthorizerRefreshToken());
+
+                String result = HttpClientUtils.sendHttpPost(url, params.toString());
+
+                if (StringUtils.isBlank(result)) {
+                    throw new ErrorMessageException(WeChatErrorCodeEnum.E_50304);
+                }
+
+                JSONObject resultJson = JSONObject.parseObject(result);
+                if (resultJson.containsKey("authorizer_access_token")) {
+                    authInfo.setAuthorizerAccessToken(resultJson.getString("authorizer_access_token"));
+                    // 计算调用令牌失效时间
+                    Integer expiresIn = resultJson.getInteger("expires_in");
+                    Date expiresTime = DateUtils.addSeconds(new Date(), expiresIn);
+                    authInfo.setExpiresTime(expiresTime);
+                    platformsAuthInfoService.update(authInfo, null);
+                    return authInfo;
+                }else {
+                    log.error("refresh wechat authorizer_access_token has an error,errcode:{},errmsg:{}",
+                            resultJson.getString("errcode"),
+                            resultJson.getString("errmsg"));
+                    throw new ErrorMessageException(WeChatErrorCodeEnum.E_50304);
+                }
+
+            }
+
+        }
+        return null;
+    }
 }

@@ -136,7 +136,7 @@ public class MiniprogramServiceImpl implements IMiniprogramService {
                     return false;
                 }
             } else {
-                // 创建失败，记录失败信息 todo
+                // 创建失败，记录失败信息
                 PlatformsFastRegisterFailedHis failedHis = new PlatformsFastRegisterFailedHis();
                 failedHis.setCreateTime(new Date())
                         .setState(0)
@@ -144,12 +144,16 @@ public class MiniprogramServiceImpl implements IMiniprogramService {
                         .setErrmsg(element.elementText("errmsg"))
                         .setErrorCode(element.elementText("error_code"));
 
-
-
+                failedHis.insert();
             }
         }
         return true;
     }
 
 
+    @Override
+    public Boolean modifyDomain(@NotNull String action,@NotNull String[] requestdomain,@NotNull String[] wsrequestdomain,@NotNull String[] uploaddomain,@NotNull String[] downloaddomain) throws Exception {
+        weChatAuthService.getAuthInfoById(1);
+        return null;
+    }
 }

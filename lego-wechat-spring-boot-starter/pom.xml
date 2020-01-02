@@ -115,8 +115,8 @@
                 <directory>src/main/resources</directory>
                 <!-- src/main/resources下的指定资源放行 -->
                 <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.yml</include>
+                    <!--<include>**/*.properties</include>-->
+                    <!--<include>**/*.yml</include>-->
                     <include>**/*.xml</include>
                     <include>**/*.sql</include>
                     <include>**/spring.factories</include>
@@ -125,12 +125,58 @@
             </resource>
         </resources>
 
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                </plugin>
+
+                <!--<plugin>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                    <!--<configuration>-->
+                        <!--<fork>true</fork>-->
+                    <!--</configuration>-->
+                <!--</plugin>-->
+                <!--deploy插件-->
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                    <executions>
+                        <execution>
+                            <id>default-deploy</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>deploy</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!--sonatype的staging插件-->
+                <!--<plugin>-->
+                <!--<groupId>org.sonatype.plugins</groupId>-->
+                <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
+                <!--<version>1.6.7</version>-->
+                <!--<extensions>true</extensions>-->
+                <!--<configuration>-->
+                <!--&lt;!&ndash;<serverId>sonatype-nexus-snapshots</serverId>&ndash;&gt;-->
+                <!--<serverId>sonatype-nexus-staging</serverId>-->
+                <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+                <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+                <!--</configuration>-->
+                <!--</plugin>-->
+
+                <!--SCM插件-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>1.8.1</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
     </build>
 
 

@@ -39,4 +39,6 @@ public interface IMiniprogramService {
      * @update:
      */
     Boolean registerCheckCallback(Element element) throws Exception;
+
+    Boolean modifyDomain(String action,String[] requestdomain,String[] wsrequestdomain,String[] uploaddomain,String[] downloaddomain) throws Exception;
 }

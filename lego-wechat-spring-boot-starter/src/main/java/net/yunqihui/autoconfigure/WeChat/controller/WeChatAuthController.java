@@ -9,9 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
 import net.yunqihui.autoconfigure.shiro.util.RequestResponseUtil;
 import net.yunqihui.autoconfigure.wechat.service.IWeChatAuthService;
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,21 +63,9 @@ public class WeChatAuthController {
         }
         String msgPrimaryXml = msgSB.toString();
 
-        // appId
-        Document primaryDocument = DocumentHelper.parseText(msgPrimaryXml);
-        Element primaryRootElement = primaryDocument.getRootElement();
-        String infoType = primaryRootElement.elementText("InfoType");
-
-        // 验证票据回调
-        if ("component_verify_ticket".equals(infoType)) {
-
-            Boolean ticket = weChatAuthService.authEventCallback(nonce, signature, timestamp, msgSignature,msgPrimaryXml);
-            if (ticket) {
-                RequestResponseUtil.responseWrite("success",response);
-            }
-        // 快速创建小程序回调
-        } else if ("notify_third_fasteregister".equals(infoType)) {
-
+        Boolean callbackResult = weChatAuthService.authEventCallback(nonce, signature, timestamp, msgSignature,msgPrimaryXml);
+        if (callbackResult) {
+            RequestResponseUtil.responseWrite("success",response);
         }
 
         return null;

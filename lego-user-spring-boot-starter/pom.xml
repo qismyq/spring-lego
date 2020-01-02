@@ -105,8 +105,8 @@
                 <directory>src/main/resources</directory>
                 <!-- src/main/resources下的指定资源放行 -->
                 <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.yml</include>
+                    <!--<include>**/*.properties</include>-->
+                    <!--<include>**/*.yml</include>-->
                     <include>**/*.xml</include>
                     <include>**/*.sql</include>
                     <include>**/spring.factories</include>
@@ -122,13 +122,13 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                 </plugin>
 
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <configuration>
-                        <fork>true</fork>
-                    </configuration>
-                </plugin>
+                <!--<plugin>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                    <!--<configuration>-->
+                        <!--<fork>true</fork>-->
+                    <!--</configuration>-->
+                <!--</plugin>-->
                 <!--deploy插件-->
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
