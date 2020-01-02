@@ -1,5 +1,7 @@
 package net.yunqihui.autoconfigure.wechat.service;
 
+import org.dom4j.Element;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -25,4 +27,16 @@ public interface IMiniprogramService {
      * @update:
      */
     boolean fastRegister(@NotBlank String name, @NotBlank String code, @NotNull Integer codeType,@NotBlank String legalPersonaWechat,@NotNull String legalPersonaName) throws Exception;
+
+
+    /**
+     * @desc: 根据微信回调url获取快速创建小程序结果，并进行相应处理
+     * @param element 原始信息消息体
+     * @return: java.lang.Boolean
+     * @auther: Michael Wong
+     * @email:  michael_wong@yunqihui.net
+     * @date:   2019/12/25 15:08
+     * @update:
+     */
+    Boolean registerCheckCallback(Element element) throws Exception;
 }

@@ -11,7 +11,7 @@
         <result column="pageurl" property="pageurl" />
         <result column="method" property="method" />
         <result column="type" property="type" />
-        <result column="state" property="state" />
+        <result column="del" property="del" />
         <result column="sortno" property="sortno" />
         <result column="icon" property="icon" />
         <result column="top_router" property="topRouter" />
@@ -21,7 +21,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, pid, description, pageurl, type, state, sortno, menu_icon
+        id, name, pid, description, pageurl, type, del, sortno, menu_icon
     </sql>
 
 
@@ -36,7 +36,7 @@
             ur.user_id = #{userId}
         AND ur.role_id = rm.role_id
         AND m.id = rm.menu_id
-        AND m.state = #{state}
+        AND m.del = #{del}
         <if test="menuType != null">
             AND m.type = #{menuType}
         </if>

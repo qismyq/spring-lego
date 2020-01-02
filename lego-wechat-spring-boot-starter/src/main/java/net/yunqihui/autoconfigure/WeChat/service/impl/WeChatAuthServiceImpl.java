@@ -9,6 +9,7 @@ import net.yunqihui.autoconfigure.frame.errorhandler.ErrorMessageException;
 import net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo;
 import net.yunqihui.autoconfigure.wechat.entity.WeChatStatic;
 import net.yunqihui.autoconfigure.wechat.errorhandler.WeChatErrorCodeEnum;
+import net.yunqihui.autoconfigure.wechat.service.IMiniprogramService;
 import net.yunqihui.autoconfigure.wechat.service.IPlatformsAuthInfoService;
 import net.yunqihui.autoconfigure.wechat.service.IWeChatAuthService;
 import net.yunqihui.autoconfigure.wechat.util.WXBizMsgCrypt;
@@ -43,12 +44,13 @@ public class WeChatAuthServiceImpl implements IWeChatAuthService {
     StringRedisTemplate stringRedisTemplate;
     @Autowired
     IPlatformsAuthInfoService platformsAuthInfoService;
+    @Autowired
+    IMiniprogramService miniprogramService;
+
 
     @Override
-    public Boolean componentVerifyTicket(String nonce, String signature, String timestamp, String msgSignature, String msgXml) throws Exception {
-
+    public Boolean authEventCallback(String nonce, String signature, String timestamp, String msgSignature, String msgXml)throws Exception {
         if (StringUtils.isBlank(nonce)
-                || StringUtils.isBlank(timestamp)
                 || StringUtils.isBlank(timestamp)
                 || StringUtils.isBlank(msgSignature)
                 || StringUtils.isBlank(msgXml)) {
@@ -71,7 +73,29 @@ public class WeChatAuthServiceImpl implements IWeChatAuthService {
 
         Document document = DocumentHelper.parseText(msgXml);
         Element rootElement = document.getRootElement();
-        String tick = rootElement.elementText("ComponentVerifyTicket");
+
+        String infoType = rootElement.elementText("InfoType");
+
+        if ("component_verify_ticket".equals(infoType)) {
+            // 验证票据回调
+            return this.componentVerifyTicket(rootElement);
+
+        } else if ("notify_third_fasteregister".equals(infoType)) {
+            // 快速创建小程序回调
+            return miniprogramService.registerCheckCallback(rootElement);
+        }
+
+        return false;
+    }
+
+    @Override
+    public Boolean componentVerifyTicket(Element element) throws Exception {
+
+        if (element == null) {
+            return false;
+        }
+
+        String tick = element.elementText("ComponentVerifyTicket");
 
         // 不再存入数据库，而是放入redis中
         if (StringUtils.isNotBlank(tick)) {
@@ -84,10 +108,13 @@ public class WeChatAuthServiceImpl implements IWeChatAuthService {
 
     @Override
     public String getComponentAccessToken() throws Exception {
+        // 获取redis中的token，如果存在直接返回
         String redisToken = stringRedisTemplate.opsForValue().get(WeChatStatic.COMPONENT_TOKEN);
         if (StringUtils.isNotBlank(redisToken)) {
             return redisToken;
         }
+
+        // 与微信交互获取accessToken
         Cache cache = cacheManager.getCache(WeChatStatic.WECHAT_CACHE_SPACE);
         JSONObject wechatConfig = cache.get(WeChatStatic.WECHAT_CONFIG_CACHE, JSONObject.class);
 
@@ -133,12 +160,13 @@ public class WeChatAuthServiceImpl implements IWeChatAuthService {
 
     @Override
     public String getPreAuthCode() throws Exception {
-
+        // 获取redis中的authCode，如果存在直接返回
         String redisAuthCode = stringRedisTemplate.opsForValue().get(WeChatStatic.PRE_AUTH_CODE);
         if (StringUtils.isNotBlank(redisAuthCode)) {
             return redisAuthCode;
         }
 
+        // 与微信交互获取authCode
         Cache cache = cacheManager.getCache(WeChatStatic.WECHAT_CACHE_SPACE);
         JSONObject wechatConfig = cache.get(WeChatStatic.WECHAT_CONFIG_CACHE, JSONObject.class);
 

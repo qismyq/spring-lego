@@ -29,4 +29,8 @@ public interface IMenuService extends IService<Menu> {
      */
     List<MenuBar> getMenuBarsByUserId(Integer userId)throws Exception;
 
+
+    List<Long> getMenusIdByParentId(Long id) throws Exception;
+
+    List<Long> deleteMenuAndChildrenById(Long id) throws Exception;
 }

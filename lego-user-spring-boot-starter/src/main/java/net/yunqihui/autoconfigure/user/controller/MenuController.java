@@ -6,11 +6,7 @@ import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
 import net.yunqihui.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
 import net.yunqihui.autoconfigure.user.entity.Menu;
 import net.yunqihui.autoconfigure.user.entity.MenuBar;
-import net.yunqihui.autoconfigure.user.entity.RoleMenu;
-import net.yunqihui.autoconfigure.user.entity.UserRole;
 import net.yunqihui.autoconfigure.user.service.IMenuService;
-import net.yunqihui.autoconfigure.user.service.IRoleMenuService;
-import net.yunqihui.autoconfigure.user.service.IUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,10 +70,10 @@ public class MenuController {
     }
 
 
-    @Autowired
-    IUserRoleService userRoleService;
-    @Autowired
-    IRoleMenuService roleMenuService;
+//    @Autowired
+//    IUserRoleService userRoleService;
+//    @Autowired
+//    IRoleMenuService roleMenuService;
 
 
     @ApiOperation(value = "添加菜单")
@@ -85,18 +81,34 @@ public class MenuController {
     public ReturnDatas save(@RequestBody Menu menu)throws Exception {
 
 
-        menuService.save(menu);
+        menuService.saveOrUpdate(menu);
 
-        UserRole userRole = new UserRole().setUserId(1L).setRoleId(3);
+//        UserRole userRole = new UserRole().setUserId(1L).setRoleId(3);
+//
+//        userRoleService.save(userRole);
+//
+//        RoleMenu roleMenu = new RoleMenu().setMenuId(menu.getId()).setRoleId(3L);
 
-        userRoleService.save(userRole);
+//        roleMenuService.save(roleMenu);
 
-        RoleMenu roleMenu = new RoleMenu().setMenuId(menu.getId()).setRoleId(3L);
+        return ReturnDatas.getSuccessReturnDatas().setData(menu);
+    }
 
-        roleMenuService.save(roleMenu);
+    @ApiOperation(value = "删除菜单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType="query",name = "id", value = "菜单id", required = true, dataType = "Long"),
+            @ApiImplicitParam(paramType="header", name = "appId", value = "账户", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType="header", name = "authorization", value = "token", required = true, dataType = "String")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 40203,message="无访问权限"),
+            @ApiResponse(code = 40204,message="认证失效，请重新登录")
+    })
+    @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
+    public ReturnDatas delete(@PathVariable("id") Long id)throws Exception {
 
-        List<MenuBar> menuBars = menuService.getMenuBarsByUserId(1);
+        List<Long> ids = menuService.deleteMenuAndChildrenById(id);
 
-        return ReturnDatas.getSuccessReturnDatas().setData(menuBars);
+        return ReturnDatas.getSuccessReturnDatas().setData(ids);
     }
 }

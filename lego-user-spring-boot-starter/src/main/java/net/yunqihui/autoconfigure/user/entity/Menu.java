@@ -62,7 +62,7 @@ public class Menu extends Model<Menu> {
     private Integer type;
 
     @ApiModelProperty(value = "是否有效")
-    private String state;
+    private String del;
 
     @ApiModelProperty(value = "排序")
     private Integer sortno;

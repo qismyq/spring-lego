@@ -1,14 +1,19 @@
 package net.yunqihui.autoconfigure.wechat.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import net.yunqihui.autoconfigure.common.util.HttpClientUtils;
 import net.yunqihui.autoconfigure.frame.errorhandler.ErrorMessageException;
+import net.yunqihui.autoconfigure.wechat.entity.PlatformsFastRegisterFailedHis;
+import net.yunqihui.autoconfigure.wechat.entity.PlatformsFastRegisterInfo;
 import net.yunqihui.autoconfigure.wechat.entity.WeChatStatic;
 import net.yunqihui.autoconfigure.wechat.errorhandler.WeChatErrorCodeEnum;
 import net.yunqihui.autoconfigure.wechat.service.IMiniprogramService;
+import net.yunqihui.autoconfigure.wechat.service.IPlatformsFastRegisterInfoService;
 import net.yunqihui.autoconfigure.wechat.service.IWeChatAuthService;
 import org.apache.commons.lang3.StringUtils;
+import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
@@ -17,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * @Description 小程序业务 服务实现类
@@ -34,6 +40,8 @@ public class MiniprogramServiceImpl implements IMiniprogramService {
     CacheManager cacheManager;
     @Autowired
     IWeChatAuthService weChatAuthService;
+    @Autowired
+    IPlatformsFastRegisterInfoService platformsFastRegisterInfoService;
 
     @Override
     public boolean fastRegister(@NotBlank String name, @NotBlank String code, @NotNull Integer codeType, @NotBlank String legalPersonaWechat, @NotNull String legalPersonaName) throws Exception {
@@ -46,7 +54,7 @@ public class MiniprogramServiceImpl implements IMiniprogramService {
 
         String accessToken = weChatAuthService.getComponentAccessToken();
 
-        if (StringUtils.isBlank(accessToken)){
+        if (StringUtils.isBlank(accessToken)) {
             throw new ErrorMessageException(WeChatErrorCodeEnum.E_50300);
         }
 
@@ -65,13 +73,83 @@ public class MiniprogramServiceImpl implements IMiniprogramService {
 
         JSONObject resultJson = JSONObject.parseObject(result);
         if (resultJson.containsKey("errcode") && !"0".equals(resultJson.getString("errcode"))) {
+            // todo 细化errcode,返回给客户端相应的合理提示语
             log.error("get wechat authorization_info has an error,errcode:{},errmsg:{}",
                     resultJson.getString("errcode"),
                     resultJson.getString("errmsg"));
             return false;
         }
 
+        // 微信平台交互成功后将企业信息持久化到db中，方便回调时进行校验
+        PlatformsFastRegisterInfo platformsFastRegisterInfo = new PlatformsFastRegisterInfo();
+        platformsFastRegisterInfo.setName(name)
+                .setCode(code)
+                .setLegalPersonaWechat(legalPersonaWechat)
+                .setLegalPersonaName(legalPersonaName)
+                .setCodeType(codeType)
+                .setCreateTime(new Date());
+
         return true;
 
     }
+
+
+    @Override
+    public Boolean registerCheckCallback(Element element) throws Exception {
+        if (element == null) {
+            return false;
+        }
+
+
+        // 获取消息体内的企业信息，查验账号并处理结果
+        Element info = element.element("info");
+        String name = info.elementText("name");
+        String code = info.elementText("code");
+        String legalPersonaWechat = info.elementText("legal_persona_wechat");
+        String legalPersonaName = info.elementText("legal_persona_name");
+
+        PlatformsFastRegisterInfo platformsFastRegisterInfo = new PlatformsFastRegisterInfo();
+        platformsFastRegisterInfo.setName(name)
+                .setCode(code)
+                .setLegalPersonaWechat(legalPersonaWechat)
+                .setLegalPersonaName(legalPersonaName);
+        PlatformsFastRegisterInfo resultBean = platformsFastRegisterInfoService.getOne(new QueryWrapper<>(platformsFastRegisterInfo));
+        if (resultBean == null){
+            // db中没有相关企业信息
+            return false;
+        }else {
+
+            String status = element.elementText("status");
+            if ("0".equals(status)) {
+                // 创建成功
+                // 获取第三方授权码
+                String authCode = info.elementText("auth_code");
+                // 开始获取授权信息
+                if (StringUtils.isNotBlank(authCode)) {
+                    try {
+                        weChatAuthService.getAuthInfoByAuthCode(authCode);
+                        return true;
+                    } catch (ErrorMessageException exception) {
+                        return false;
+                    }
+                }else {
+                    return false;
+                }
+            } else {
+                // 创建失败，记录失败信息 todo
+                PlatformsFastRegisterFailedHis failedHis = new PlatformsFastRegisterFailedHis();
+                failedHis.setCreateTime(new Date())
+                        .setState(0)
+                        .setFastRegisterId(resultBean.getId())
+                        .setErrmsg(element.elementText("errmsg"))
+                        .setErrorCode(element.elementText("error_code"));
+
+
+
+            }
+        }
+        return true;
+    }
+
+
 }

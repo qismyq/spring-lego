@@ -2,6 +2,7 @@ package net.yunqihui.autoconfigure.wechat.service;
 
 import com.alibaba.fastjson.JSONObject;
 import net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo;
+import org.dom4j.Element;
 
 /**
  * @Description 微信相关授权信息
@@ -11,23 +12,37 @@ import net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo;
  **/
 public interface IWeChatAuthService {
 
+
+
     /**
-     * @desc: 获取第三方平台的验证票据
+     * @desc: 微信第三方平台授权时间接受URL
      * @param nonce 随机串
      * @param signature 签名
      * @param timestamp 时间戳
      * @param msgSignature 消息签名
+     * @param msgXml 原始消息
+     * @return: java.lang.Boolean
+     * @auther: Michael Wong
+     * @email:  michael_wong@yunqihui.net
+     * @date:   2019/12/25 15:02
+     * @update:
+     */
+    Boolean authEventCallback(String nonce, String signature, String timestamp, String msgSignature, String msgXml)throws Exception;
+
+    /**
+     * @desc: 根据微信回调url获取第三方平台的验证票据，并存入redis中
+     * @param element 原始消息体元素
      * @return: java.lang.String
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
      * @date:   2019/12/6 16:31
      * @update:
      */
-    Boolean componentVerifyTicket(String nonce,String signature,String timestamp,String msgSignature,String msgXml) throws Exception;
+    Boolean componentVerifyTicket(Element element) throws Exception;
 
 
     /**
-     * @desc: 获取第三方平台的access token
+     * @desc: 获取第三方平台的access token，并存入redis中
      * @return: java.lang.String
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
@@ -37,7 +52,7 @@ public interface IWeChatAuthService {
     String getComponentAccessToken() throws Exception;
 
     /**
-     * @desc: 获取预授权码
+     * @desc: 获取预授权码，并存入redis中
      * @return: java.lang.String
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
@@ -58,7 +73,7 @@ public interface IWeChatAuthService {
     JSONObject launchAuthorization() throws Exception;
 
     /**
-     * @desc:  根据授权码获取授权信息
+     * @desc:  根据授权码获取授权信息,并持久化到platforms_auth_info表中
      * @param authCode 授权码（通过预授权码拿到的授权码）
      * @return: net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo 授权信息
      * @auther: Michael Wong

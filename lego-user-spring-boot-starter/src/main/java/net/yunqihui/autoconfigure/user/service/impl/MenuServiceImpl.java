@@ -1,6 +1,7 @@
 package net.yunqihui.autoconfigure.user.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import net.yunqihui.autoconfigure.user.entity.Menu;
 import net.yunqihui.autoconfigure.user.entity.MenuBar;
@@ -33,7 +34,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 
         List<MenuBar> menuList = new ArrayList<>();
 
-        List<Menu> topMenuBars = menuMapper.getMenusByUserId(userId, "是", 1,0L);
+        List<Menu> topMenuBars = menuMapper.getMenusByUserId(userId, 0, 1,0L);
         if (CollectionUtils.isNotEmpty(topMenuBars)) {
 
             // 顶级菜单循环
@@ -42,7 +43,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
                 MenuBar topMenu = menuToMenuBar(menu,true);
 
                 // 子菜单获取
-                List<Menu> childrenMenus = menuMapper.getMenusByUserId(userId, "是", 1, menu.getId());
+                List<Menu> childrenMenus = menuMapper.getMenusByUserId(userId, 0, 1, menu.getId());
                 List<MenuBar> childrenMenuBars = new ArrayList<>();
                 if (CollectionUtils.isNotEmpty(childrenMenus)) {
                     childrenMenus.stream().forEach(childMenu -> {
@@ -83,5 +84,55 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
                 .setName(menu.getName());
 
         return menuBar;
+    }
+
+
+    @Override
+    public List<Long> deleteMenuAndChildrenById(Long id) throws Exception {
+        if (id == null) {
+            return null;
+        }
+
+        // 所有待删除的菜单id集合
+        List<Long> deleteIds = new ArrayList<>();
+        deleteIds.add(id);
+        //
+        List<Long> childrenIds = getMenusIdByParentId(id);
+        List<Long> loops = null;
+        if (CollectionUtils.isNotEmpty(childrenIds)) {
+
+            boolean flag = true;
+            while (flag) {
+                deleteIds.addAll(childrenIds);
+                loops = new ArrayList<>();
+                for (Long pid : childrenIds) {
+                    loops.addAll(getMenusIdByParentId(pid));
+                }
+                if (CollectionUtils.isNotEmpty(loops)) {
+                    childrenIds = loops;
+                }else {
+                    flag = false;
+                }
+            }
+        }
+        this.removeByIds(deleteIds);
+
+        return deleteIds;
+    }
+
+    @Override
+    public List<Long> getMenusIdByParentId(Long id) throws Exception {
+
+        if (id == null) {
+            return null;
+        }
+
+        QueryWrapper<Menu> menuQueryWrapper = new QueryWrapper<>();
+        menuQueryWrapper.eq("pid", id)
+                .select("id");
+
+        List<Long> ids = this.listObjs(menuQueryWrapper,menuId -> (Long) menuId);
+
+        return ids;
     }
 }
