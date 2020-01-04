@@ -75,13 +75,14 @@ public interface IWeChatAuthService {
     /**
      * @desc:  根据授权码获取授权信息,并持久化到platforms_auth_info表中
      * @param authCode 授权码（通过预授权码拿到的授权码）
+     * @param authCode 快速注册记录id
      * @return: net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo 授权信息
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
      * @date:   2019/12/13 15:24
      * @update:
      */
-    PlatformsAuthInfo getAuthInfoByAuthCode(String authCode) throws Exception;
+    PlatformsAuthInfo getAuthInfoByAuthCode(String authCode,Integer fastRegisterId) throws Exception;
 
     /**
      * @desc: 根据授权信息记录id获取授权信息，如果存在小程序接口调用令牌失效的情况下，则进行刷新操作

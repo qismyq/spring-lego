@@ -46,6 +46,9 @@ public class PlatformsAuthInfo extends Model<PlatformsAuthInfo> {
     @ApiModelProperty(value = "权限集")
     private String funcInfo;
 
+    @ApiModelProperty(value = "快速注册信息id")
+    private Integer fastRegisterId;
+
 
     @Override
     protected Serializable pkVal() {

@@ -44,7 +44,7 @@ public class MiniprogramServiceImpl implements IMiniprogramService {
     IPlatformsFastRegisterInfoService platformsFastRegisterInfoService;
 
     @Override
-    public boolean fastRegister(@NotBlank String name, @NotBlank String code, @NotNull Integer codeType, @NotBlank String legalPersonaWechat, @NotNull String legalPersonaName) throws Exception {
+    public boolean fastRegister(@NotBlank String openId,@NotNull Integer goodId,@NotBlank String name, @NotBlank String code, @NotNull Integer codeType, @NotBlank String legalPersonaWechat, @NotNull String legalPersonaName) throws Exception {
 
 
         Cache cache = cacheManager.getCache(WeChatStatic.WECHAT_CACHE_SPACE);
@@ -87,6 +87,8 @@ public class MiniprogramServiceImpl implements IMiniprogramService {
                 .setLegalPersonaWechat(legalPersonaWechat)
                 .setLegalPersonaName(legalPersonaName)
                 .setCodeType(codeType)
+                .setOpenId(openId)
+                .setGoodId(goodId)
                 .setCreateTime(new Date());
 
         return true;
@@ -107,12 +109,14 @@ public class MiniprogramServiceImpl implements IMiniprogramService {
         String code = info.elementText("code");
         String legalPersonaWechat = info.elementText("legal_persona_wechat");
         String legalPersonaName = info.elementText("legal_persona_name");
+        String appid = element.elementText("appid");
 
         PlatformsFastRegisterInfo platformsFastRegisterInfo = new PlatformsFastRegisterInfo();
         platformsFastRegisterInfo.setName(name)
                 .setCode(code)
                 .setLegalPersonaWechat(legalPersonaWechat)
-                .setLegalPersonaName(legalPersonaName);
+                .setLegalPersonaName(legalPersonaName) ;
+
         PlatformsFastRegisterInfo resultBean = platformsFastRegisterInfoService.getOne(new QueryWrapper<>(platformsFastRegisterInfo));
         if (resultBean == null){
             // db中没有相关企业信息
@@ -122,12 +126,16 @@ public class MiniprogramServiceImpl implements IMiniprogramService {
             String status = element.elementText("status");
             if ("0".equals(status)) {
                 // 创建成功
+                // 更新PlatformsFastRegisterInfo中的appid
+                resultBean.setAppid(appid);
+                platformsFastRegisterInfoService.update(resultBean,null);
+
                 // 获取第三方授权码
                 String authCode = info.elementText("auth_code");
                 // 开始获取授权信息
                 if (StringUtils.isNotBlank(authCode)) {
                     try {
-                        weChatAuthService.getAuthInfoByAuthCode(authCode);
+                        weChatAuthService.getAuthInfoByAuthCode(authCode,resultBean.getId());
                         return true;
                     } catch (ErrorMessageException exception) {
                         return false;

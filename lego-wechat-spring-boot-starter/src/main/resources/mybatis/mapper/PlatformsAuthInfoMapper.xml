@@ -9,6 +9,7 @@
         <result column="authorizer_access_token" property="authorizerAccessToken" />
         <result column="authorizer_refresh_token" property="authorizerRefreshToken" />
         <result column="func_info" property="funcInfo" />
+        <result column="fast_register_id" property="fastRegisterId"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

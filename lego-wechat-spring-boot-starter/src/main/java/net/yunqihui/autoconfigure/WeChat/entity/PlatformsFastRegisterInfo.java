@@ -33,6 +33,12 @@ public class PlatformsFastRegisterInfo extends Model<PlatformsFastRegisterInfo> 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @ApiModelProperty(value = "商品id")
+    private Integer goodId ;
+
+    @ApiModelProperty(value = "用户openId")
+    private String openId ;
+
     @ApiModelProperty(value = "企业名")
     private String name;
 
@@ -47,6 +53,9 @@ public class PlatformsFastRegisterInfo extends Model<PlatformsFastRegisterInfo> 
 
     @ApiModelProperty(value = "法人姓名（绑定银行卡）")
     private String legalPersonaName;
+
+    @ApiModelProperty(value = "创建小程序appid")
+    private String appid ;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;

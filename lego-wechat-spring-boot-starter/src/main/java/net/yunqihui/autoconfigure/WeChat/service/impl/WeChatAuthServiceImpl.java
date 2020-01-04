@@ -227,7 +227,7 @@ public class WeChatAuthServiceImpl implements IWeChatAuthService {
     }
 
     @Override
-    public PlatformsAuthInfo getAuthInfoByAuthCode(String authCode) throws Exception {
+    public PlatformsAuthInfo getAuthInfoByAuthCode(String authCode,Integer fastRegisterId) throws Exception {
 
 
         if (StringUtils.isBlank(authCode)) {
@@ -280,7 +280,8 @@ public class WeChatAuthServiceImpl implements IWeChatAuthService {
 
             platformsAuthInfo.setAuthorizerAppid(authorizerAppId)
                     .setAuthorizerRefreshToken(authorizerRefreshToken)
-                    .setAuthorizerAccessToken(authorizerAccessToken);
+                    .setAuthorizerAccessToken(authorizerAccessToken)
+                    .setFastRegisterId(fastRegisterId);
 
             // 计算调用令牌失效时间
             Date expiresTime = DateUtils.addSeconds(new Date(), expiresIn);

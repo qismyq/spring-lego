@@ -26,7 +26,7 @@ public interface IMiniprogramService {
      * @date:   2019/12/13 16:09
      * @update:
      */
-    boolean fastRegister(@NotBlank String name, @NotBlank String code, @NotNull Integer codeType,@NotBlank String legalPersonaWechat,@NotNull String legalPersonaName) throws Exception;
+    boolean fastRegister(@NotBlank String openId,@NotNull Integer goodId,@NotBlank String name, @NotBlank String code, @NotNull Integer codeType,@NotBlank String legalPersonaWechat,@NotNull String legalPersonaName) throws Exception;
 
 
     /**
