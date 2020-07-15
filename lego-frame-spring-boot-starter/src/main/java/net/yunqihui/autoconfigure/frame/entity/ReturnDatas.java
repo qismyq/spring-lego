@@ -29,7 +29,7 @@ public class ReturnDatas implements Serializable{
 	/**
 	 * http请求状态码
 	 */
-	private String statusCode="200";
+	private Integer statusCode=200;
 	/**
 	 * http请求状态
 	 */
@@ -41,7 +41,7 @@ public class ReturnDatas implements Serializable{
 	/**
 	 * 处理结果code
 	 */
-	private String errorCode ;
+	private Integer errorCode ;
 	/**
 	 * 处理结果错误提示信息
 	 */
@@ -69,16 +69,16 @@ public class ReturnDatas implements Serializable{
 	public ReturnDatas() {
 	}
 	@Deprecated
-	public ReturnDatas(String errorCode) {
+	public ReturnDatas(Integer errorCode) {
 		this.errorCode = errorCode;
 	}
 	@Deprecated
-	public ReturnDatas(String errorCode, String errorMessage) {
+	public ReturnDatas(Integer errorCode, String errorMessage) {
 		this.errorCode = errorCode;
 		this.errorMessage = errorMessage;
 	}
 	@Deprecated
-	public ReturnDatas(String errorCode, String errorMessage, Object data) {
+	public ReturnDatas(Integer errorCode, String errorMessage, Object data) {
 		this.errorCode = errorCode;
 		this.message = errorMessage;
 		this.data = data;

@@ -91,7 +91,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         redisTemplate.setValueSerializer(new FastJsonRedisSerializer<>(Object.class));  //value序列化,使用Jackson2JsonRedisSerialize 替换默认序列化
 
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new JdkSerializationRedisSerializer());
+        redisTemplate.setHashValueSerializer(new FastJsonRedisSerializer<>(Object.class));
 
         redisTemplate.afterPropertiesSet();
         return redisTemplate;

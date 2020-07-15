@@ -16,36 +16,36 @@ public enum FrameErrorCodeEnum implements IErrorCode{
     /**
      * @Description 成功
      */
-    E_0("0","成功")
+    E_0(0,"成功")
 
     /**
      * @Description 失败
      */
-    ,E_1("1","失败")
+    ,E_1(1,"失败")
 
 
     /**
     * @Description 参数缺失
     */
-    ,E_40000("40000","参数缺失")
+    ,E_40000(40000,"参数缺失")
 
     /**
      * @Description 系统繁忙，请稍后再试
      */
-    ,E_50000("50000","系统繁忙，请稍后再试")
+    ,E_50000(50000,"系统繁忙，请稍后再试")
 
     ;
 
-    private String errorCode ;
+    private Integer errorCode ;
     private String errorMessage ;
 
 
     @Override
-    public String getErrorCode() {
+    public Integer getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(String errorCode) {
+    public void setErrorCode(Integer errorCode) {
         this.errorCode = errorCode;
     }
 
@@ -58,7 +58,7 @@ public enum FrameErrorCodeEnum implements IErrorCode{
         this.errorMessage = errorMessage;
     }
 
-    FrameErrorCodeEnum(String errorCode, String errorMessage) {
+    FrameErrorCodeEnum(Integer errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }

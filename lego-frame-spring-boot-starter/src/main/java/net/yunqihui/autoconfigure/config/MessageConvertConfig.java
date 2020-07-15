@@ -37,7 +37,7 @@ public class MessageConvertConfig implements WebMvcConfigurer{
 		FastJsonHttpMessageConverter fastJsonConverter = new FastJsonHttpMessageConverter();
 		FastJsonConfig config = new FastJsonConfig();
 		config.setCharset(Charset.forName("UTF-8"));
-		config.setDateFormat("yyyyMMdd HH:mm:ssS");
+		config.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		//设置允许返回为null的属性
 		config.setSerializerFeatures(SerializerFeature.PrettyFormat
 //				SerializerFeature.WriteMapNullValue

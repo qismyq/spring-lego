@@ -8,7 +8,7 @@ package net.yunqihui.autoconfigure.frame.errorhandler;
  **/
 public interface IErrorCode {
 
-    public String getErrorCode();
+    public Integer getErrorCode();
 
     public String getErrorMessage();
 }
