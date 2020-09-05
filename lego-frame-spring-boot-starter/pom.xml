@@ -230,6 +230,12 @@
         </dependency>
         <!--缓存end-->
 
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>3.13.3</version>
+        </dependency>
+
         <!--接口文档-start-->
         <dependency>
             <groupId>io.springfox</groupId>

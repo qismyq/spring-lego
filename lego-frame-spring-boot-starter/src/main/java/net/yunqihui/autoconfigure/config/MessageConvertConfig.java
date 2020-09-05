@@ -1,5 +1,6 @@
 package net.yunqihui.autoconfigure.config;
 
+import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
@@ -44,6 +45,8 @@ public class MessageConvertConfig implements WebMvcConfigurer{
 //				SerializerFeature.WriteNullNumberAsZero,
 //				SerializerFeature.WriteNullStringAsEmpty
 		);
+		// 允许使用非双引号属性名字
+		config.setFeatures(Feature.AllowUnQuotedFieldNames);
 		fastJsonConverter.setFastJsonConfig(config);
 		List<MediaType> list = new ArrayList<>();
 		list.add(MediaType.APPLICATION_JSON_UTF8);

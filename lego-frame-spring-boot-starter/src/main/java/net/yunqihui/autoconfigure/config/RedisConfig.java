@@ -1,6 +1,7 @@
 package net.yunqihui.autoconfigure.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -11,7 +12,10 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.*;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.lang.reflect.Method;
 import java.time.Duration;
@@ -25,6 +29,9 @@ import java.time.Duration;
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 
+
+    @Autowired
+    RedisConnectionFactory redisConnectionFactory;
 
     /**
      * redis key生成策略
@@ -54,16 +61,12 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
 
-//    @Bean
-//    public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
-//        RedisCacheManager redisCacheManager = RedisCacheManager.builder(connectionFactory).build();
-//        return redisCacheManager;
-//    }
     /**
      * 缓存管理器
      */
     @Bean
-    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+    @Override
+    public CacheManager cacheManager() {
         //初始化一个RedisCacheWriter
         RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
         //设置CacheManager的值序列化方式为json序列化
@@ -73,7 +76,8 @@ public class RedisConfig extends CachingConfigurerSupport {
         RedisCacheConfiguration defaultCacheConfig= RedisCacheConfiguration.defaultCacheConfig()
                 .serializeValuesWith(pair);
         //设置默认超过期时间是30秒
-        defaultCacheConfig.entryTtl(Duration.ofSeconds(30));
+        defaultCacheConfig = defaultCacheConfig.entryTtl(Duration.ofDays(3));
+
         //初始化RedisCacheManager
         return new RedisCacheManager(redisCacheWriter, defaultCacheConfig);
     }

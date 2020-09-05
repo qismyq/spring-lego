@@ -84,7 +84,7 @@ public class PageBuilder {
 
         Page page = new Page(pageIndex, pageSize);
         // 构建排序规则
-        if (ArrayUtils.isEmpty(columns)) {
+        if (ArrayUtils.isNotEmpty(columns)) {
 
             for (int i = 0; i < columns.length; i++) {
 
