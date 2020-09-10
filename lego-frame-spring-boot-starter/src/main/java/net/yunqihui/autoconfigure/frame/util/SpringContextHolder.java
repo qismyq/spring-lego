@@ -1,7 +1,6 @@
-package net.yunqihui.autoconfigure.frame.util;
+package net.yunqihui.yunqihuicloud.util;
 
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -38,11 +37,11 @@ public class SpringContextHolder implements ApplicationContextAware {
      * @param beanName
      * @return Object
      */
-    public static <T> T getBean(String beanName) {
-        if (StringUtils.isEmpty(beanName)) {
-            return null;
+    public static Object getBean(String beanName) throws BeansException {
+        if (applicationContext.containsBean(beanName)) {
+            return applicationContext.getBean(beanName);
         }
-        return (T) applicationContext.getBean(beanName);
+        return null;
     }
 
     /**
@@ -63,6 +62,15 @@ public class SpringContextHolder implements ApplicationContextAware {
      */
     public static ApplicationContext getContext() {
         return applicationContext;
+    }
+
+    /**
+     * 如果BeanFactory包含一个与所给名称匹配的bean定义，则返回true
+     * @param name beanname
+     * @return 是否存在
+     */
+    public static Boolean containsBean(String name) {
+        return applicationContext.containsBean(name);
     }
 
 }
