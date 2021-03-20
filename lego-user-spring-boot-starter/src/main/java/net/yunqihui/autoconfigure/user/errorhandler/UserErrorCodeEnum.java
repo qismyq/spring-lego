@@ -19,30 +19,30 @@ public enum UserErrorCodeEnum implements IErrorCode {
     /**
      * <br> 用户不存在
      */
-    E_40100("40100","用户不存在")
+    E_40100(40100,"用户不存在")
 
     /**
      * <br> 密码错误
      */
-    ,E_40101("40101","密码错误")
+    ,E_40101(40101,"密码错误")
 
     /**
      * <br> 多个用户账户
      */
-    ,E_50100("50100","多个用户账户")
+    ,E_50100(50100,"多个用户账户")
 
     ;
 
-    String errorCode ;
+    Integer errorCode ;
     String errorMessage ;
 
 
     @Override
-    public String getErrorCode() {
+    public Integer getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(String errorCode) {
+    public void setErrorCode(Integer errorCode) {
         this.errorCode = errorCode;
     }
 
@@ -55,7 +55,7 @@ public enum UserErrorCodeEnum implements IErrorCode {
         this.errorMessage = errorMessage;
     }
 
-    UserErrorCodeEnum(String errorCode, String errorMessage) {
+    UserErrorCodeEnum(Integer errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
