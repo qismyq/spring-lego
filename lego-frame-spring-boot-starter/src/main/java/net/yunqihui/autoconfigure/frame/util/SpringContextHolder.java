@@ -1,4 +1,4 @@
-package net.yunqihui.yunqihuicloud.util;
+package net.yunqihui.autoconfigure.frame.util;
 
 
 import org.slf4j.Logger;
