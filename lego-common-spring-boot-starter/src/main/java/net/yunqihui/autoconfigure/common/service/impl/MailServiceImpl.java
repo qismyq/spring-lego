@@ -5,7 +5,7 @@ import net.yunqihui.autoconfigure.common.service.IMailService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -21,14 +21,14 @@ import javax.mail.internet.MimeMessage;
  * @Date 2019/11/20 14:51
  **/
 @Slf4j
+@ConfigurationProperties(prefix = "spring.mail")
 @Service
 public class MailServiceImpl implements IMailService {
 
 
-    @Autowired
+    @Autowired(required = false)
     private JavaMailSender javaMailSender;
 
-    @Value("${spring.mail.from}")
     private String from;
 
 

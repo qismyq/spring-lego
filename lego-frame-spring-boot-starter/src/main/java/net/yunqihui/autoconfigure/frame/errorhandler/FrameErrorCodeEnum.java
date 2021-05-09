@@ -30,6 +30,16 @@ public enum FrameErrorCodeEnum implements IErrorCode{
     ,E_40000(40000,"参数缺失")
 
     /**
+     * @Description 操作频繁，请稍后再试
+     */
+    ,E_40001(40001,"操作频繁，请稍后再试")
+
+    /**
+     * @Description 操作类型不存在
+     */
+    ,E_40002(40002,"操作类型不存在")
+
+    /**
      * @Description 系统繁忙，请稍后再试
      */
     ,E_50000(50000,"系统繁忙，请稍后再试")

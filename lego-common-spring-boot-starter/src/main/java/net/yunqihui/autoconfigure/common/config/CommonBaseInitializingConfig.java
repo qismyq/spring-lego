@@ -36,10 +36,8 @@ public class CommonBaseInitializingConfig implements InitializingBean {
         log.info("**************init common config data***************");
         // 配置表信息以及系统表信息
         JSONObject config = configurationService.findParamBean();
-//        SysParamBean sysParamBean = sysSysparamService.findParamBean() ;
         Cache cache = cacheManager.getCache(CommonStatic.COMMON_CACHE_SPACE);
         cache.put(CommonStatic.CONFIG_CACHE, config);
-//        cache.put(CommonStatic.sysparamCache,sysParamBean);
 
         // 警报邮件收件人信息
         Cache alarmCache = cacheManager.getCache(CommonStatic.ALARM_EMAIL);

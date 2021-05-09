@@ -2,6 +2,7 @@ package net.yunqihui.autoconfigure.common.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import net.yunqihui.autoconfigure.common.entity.AlarmEmail;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import net.yunqihui.autoconfigure.common.entity.AlarmEmail;
  * @author michael wong
  * @since 2019-10-30
  */
+@Mapper
 public interface AlarmEmailMapper extends BaseMapper<AlarmEmail> {
 
 }

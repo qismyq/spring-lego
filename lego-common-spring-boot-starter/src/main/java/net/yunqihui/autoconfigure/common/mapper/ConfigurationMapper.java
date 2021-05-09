@@ -3,6 +3,7 @@ package net.yunqihui.autoconfigure.common.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import net.yunqihui.autoconfigure.common.entity.Configuration;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -12,6 +13,7 @@ import net.yunqihui.autoconfigure.common.entity.Configuration;
  * @author michael wong
  * @since 2019-10-30
  */
+@Mapper
 public interface ConfigurationMapper extends BaseMapper<Configuration> {
 
 }

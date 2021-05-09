@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import net.yunqihui.autoconfigure.common.entity.CommonStatic;
 import net.yunqihui.autoconfigure.common.service.IMailService;
+import net.yunqihui.autoconfigure.frame.util.SpringContextHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -43,6 +44,11 @@ public class AlarmEmailAspect {
 
     @After(value = "alarmEmailCut(request,e)")
     public void defaultExceptionAfter(HttpServletRequest request,Exception e) {
+
+        // 适配yml中未配置mail data数据的情况，即未初始化mailSender时不使用此aspect功能
+        if (!SpringContextHolder.containsBean("mailSender")) {
+            return;
+        }
 
         // 构造邮件内容
         StackTraceElement[] elems = e.getStackTrace();
@@ -86,11 +92,11 @@ public class AlarmEmailAspect {
         }
         String[] toArray = tos.split(";");
 
-
-        if (StringUtils.isBlank(ccs)) {
-            return;
+        String[] ccArray = null;
+        if (StringUtils.isNotBlank(ccs)) {
+            ccArray = ccs.split(";");
         }
-        String[] ccArray = ccs.split(";");
+
 
         String subject = "项目警告邮件";
 
