@@ -4,6 +4,7 @@ import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
 import net.yunqihui.autoconfigure.sms.service.ISmsContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author: Michael Wong
  * @create: 2021-04-27 21:24
  **/
-@RestController("/sms")
+@RestController
+@RequestMapping("/sms")
 public class SMSController {
 
     @Autowired
