@@ -31,7 +31,7 @@ public enum SMSErrorCodeEnum implements IErrorCode {
      */
     ,E_50200(50200,"阿里云服务商错误")
     /**
-     * <br> 阿里云服务商错误
+     * <br> 请配置阿里云短信服务相关参数
      */
     ,E_50201(50201,"请配置阿里云短信服务相关参数")
 
