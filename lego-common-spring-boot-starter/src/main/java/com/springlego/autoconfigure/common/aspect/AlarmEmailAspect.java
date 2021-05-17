@@ -1,10 +1,10 @@
-package net.yunqihui.autoconfigure.common.aspect;
+package com.springlego.autoconfigure.common.aspect;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.common.entity.CommonStatic;
-import net.yunqihui.autoconfigure.common.service.IMailService;
-import net.yunqihui.autoconfigure.frame.util.SpringContextHolder;
+import com.springlego.autoconfigure.common.entity.CommonStatic;
+import com.springlego.autoconfigure.common.service.IMailService;
+import com.springlego.autoconfigure.frame.util.SpringContextHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -36,7 +36,7 @@ public class AlarmEmailAspect {
     @Autowired
     CacheManager cacheManager;
 
-    @Pointcut(value = "execution(public * net.yunqihui.autoconfigure.frame.errorhandler.ErrorMessageExceptionAdvice.defaultException(..))" +
+    @Pointcut(value = "execution(public * com.springlego.autoconfigure.frame.errorhandler.ErrorMessageExceptionAdvice.defaultException(..))" +
             "&& args(request,e)",argNames = "request,e")
     public void alarmEmailCut(HttpServletRequest request,Exception e) {
     }

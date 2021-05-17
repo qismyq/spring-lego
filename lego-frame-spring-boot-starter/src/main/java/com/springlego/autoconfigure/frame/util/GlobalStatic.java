@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.frame.util;
+package com.springlego.autoconfigure.frame.util;
 
 import java.io.File;
 

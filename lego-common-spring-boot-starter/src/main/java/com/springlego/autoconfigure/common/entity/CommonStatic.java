@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.common.entity;
+package com.springlego.autoconfigure.common.entity;
 
 /**
  * @Description common starter 范围静态变量

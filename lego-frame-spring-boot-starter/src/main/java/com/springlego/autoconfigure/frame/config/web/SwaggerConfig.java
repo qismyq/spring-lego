@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.config.web;
+package com.springlego.autoconfigure.frame.config.web;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

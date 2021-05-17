@@ -1,8 +1,8 @@
-package net.yunqihui.autoconfigure.common.service;
+package com.springlego.autoconfigure.common.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
-import net.yunqihui.autoconfigure.common.entity.Configuration;
+import com.springlego.autoconfigure.common.entity.Configuration;
 
 /**
  * <p>

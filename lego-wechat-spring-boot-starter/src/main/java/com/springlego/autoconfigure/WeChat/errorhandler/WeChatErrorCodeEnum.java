@@ -1,6 +1,6 @@
-package net.yunqihui.autoconfigure.wechat.errorhandler;
+package com.springlego.autoconfigure.WeChat.errorhandler;
 
-import net.yunqihui.autoconfigure.frame.errorhandler.IErrorCode;
+import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
 
 /**
  * @Description 用户模块错误码

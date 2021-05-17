@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.frame.errorhandler;
+package com.springlego.autoconfigure.frame.errorhandler;
 
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.stereotype.Component;

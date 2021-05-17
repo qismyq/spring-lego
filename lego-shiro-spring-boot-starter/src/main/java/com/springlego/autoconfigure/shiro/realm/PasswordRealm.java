@@ -1,11 +1,11 @@
-package net.yunqihui.autoconfigure.shiro.realm;
+package com.springlego.autoconfigure.shiro.realm;
 
 
-import net.yunqihui.autoconfigure.shiro.entity.Account;
-import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
-import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
-import net.yunqihui.autoconfigure.shiro.token.PasswordToken;
-import net.yunqihui.autoconfigure.shiro.util.MD5Util;
+import com.springlego.autoconfigure.shiro.entity.Account;
+import com.springlego.autoconfigure.shiro.token.PasswordToken;
+import com.springlego.autoconfigure.shiro.util.MD5Util;
+import com.springlego.autoconfigure.shiro.entity.ShiroStatic;
+import com.springlego.autoconfigure.shiro.provider.AccountProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

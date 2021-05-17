@@ -1,14 +1,14 @@
-package net.yunqihui.autoconfigure.wechat.controller;
+package com.springlego.autoconfigure.WeChat.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.springlego.autoconfigure.WeChat.service.IWeChatAuthService;
+import com.springlego.autoconfigure.shiro.util.RequestResponseUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
-import net.yunqihui.autoconfigure.shiro.util.RequestResponseUtil;
-import net.yunqihui.autoconfigure.wechat.service.IWeChatAuthService;
+import com.springlego.autoconfigure.frame.entity.ReturnDatas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +39,7 @@ public class WeChatAuthController {
      * @desc: 获取第三方平台验证票据
      * @param request
      * @param response
-     * @return: net.yunqihui.autoconfigure.frame.entity.ReturnDatas
+     * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
      * @date:   2019/12/10 18:44
@@ -75,7 +75,7 @@ public class WeChatAuthController {
 
     /**
      * @desc: 获取component_access_token
-     * @return: net.yunqihui.autoconfigure.frame.entity.ReturnDatas
+     * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
      * @date:   2019/12/11 11:35
@@ -92,7 +92,7 @@ public class WeChatAuthController {
 
     /**
      * @desc: 获取预授权码
-     * @return: net.yunqihui.autoconfigure.frame.entity.ReturnDatas
+     * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
      * @date:   2019/12/11 15:18
@@ -115,7 +115,7 @@ public class WeChatAuthController {
     /**
      * @desc: 发起授权
      * @param
-     * @return: net.yunqihui.autoconfigure.frame.entity.ReturnDatas
+     * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
      * @date:   2019/12/12 14:43

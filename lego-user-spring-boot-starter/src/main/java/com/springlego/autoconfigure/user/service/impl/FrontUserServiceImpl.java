@@ -1,9 +1,9 @@
-package net.yunqihui.autoconfigure.user.service.impl;
+package com.springlego.autoconfigure.user.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.autoconfigure.user.entity.FrontUser;
-import net.yunqihui.autoconfigure.user.mapper.FrontUserMapper;
-import net.yunqihui.autoconfigure.user.service.IFrontUserService;
+import com.springlego.autoconfigure.user.service.IFrontUserService;
+import com.springlego.autoconfigure.user.entity.FrontUser;
+import com.springlego.autoconfigure.user.mapper.FrontUserMapper;
 import org.springframework.stereotype.Service;
 
 /**

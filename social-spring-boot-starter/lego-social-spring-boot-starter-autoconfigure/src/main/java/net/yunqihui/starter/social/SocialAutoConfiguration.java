@@ -1,4 +1,4 @@
-package net.yunqihui.starter.social;
+package com.springlego.starter.social;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Configuration;

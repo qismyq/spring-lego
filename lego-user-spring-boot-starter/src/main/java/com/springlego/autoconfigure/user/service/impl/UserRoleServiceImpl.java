@@ -1,9 +1,9 @@
-package net.yunqihui.autoconfigure.user.service.impl;
+package com.springlego.autoconfigure.user.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.autoconfigure.user.entity.UserRole;
-import net.yunqihui.autoconfigure.user.service.IUserRoleService;
-import net.yunqihui.autoconfigure.user.mapper.UserRoleMapper;
+import com.springlego.autoconfigure.user.mapper.UserRoleMapper;
+import com.springlego.autoconfigure.user.service.IUserRoleService;
+import com.springlego.autoconfigure.user.entity.UserRole;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

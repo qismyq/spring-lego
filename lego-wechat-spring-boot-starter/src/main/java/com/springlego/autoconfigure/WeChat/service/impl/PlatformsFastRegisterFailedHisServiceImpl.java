@@ -1,8 +1,8 @@
-package net.yunqihui.autoconfigure.wechat.service.impl;
+package com.springlego.autoconfigure.WeChat.service.impl;
 
-import net.yunqihui.autoconfigure.wechat.entity.PlatformsFastRegisterFailedHis;
-import net.yunqihui.autoconfigure.wechat.mapper.PlatformsFastRegisterFailedHisMapper;
-import net.yunqihui.autoconfigure.wechat.service.IPlatformsFastRegisterFailedHisService;
+import com.springlego.autoconfigure.WeChat.entity.PlatformsFastRegisterFailedHis;
+import com.springlego.autoconfigure.WeChat.mapper.PlatformsFastRegisterFailedHisMapper;
+import com.springlego.autoconfigure.WeChat.service.IPlatformsFastRegisterFailedHisService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

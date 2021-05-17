@@ -1,12 +1,12 @@
-package net.yunqihui.autoconfigure.user.service.impl;
+package com.springlego.autoconfigure.user.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.autoconfigure.user.entity.Menu;
-import net.yunqihui.autoconfigure.user.entity.MenuBar;
-import net.yunqihui.autoconfigure.user.mapper.MenuMapper;
-import net.yunqihui.autoconfigure.user.service.IMenuService;
+import com.springlego.autoconfigure.user.entity.Menu;
+import com.springlego.autoconfigure.user.entity.MenuBar;
+import com.springlego.autoconfigure.user.mapper.MenuMapper;
+import com.springlego.autoconfigure.user.service.IMenuService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

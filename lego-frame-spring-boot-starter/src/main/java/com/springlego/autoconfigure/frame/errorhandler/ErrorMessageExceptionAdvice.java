@@ -1,6 +1,6 @@
-package net.yunqihui.autoconfigure.frame.errorhandler;
+package com.springlego.autoconfigure.frame.errorhandler;
 
-import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
+import com.springlego.autoconfigure.frame.entity.ReturnDatas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,7 +24,7 @@ public class ErrorMessageExceptionAdvice {
      * @desc: 全局默认异常
      * @param request
      * @param e
-     * @return: net.yunqihui.starter.frame.entity.ReturnDatas
+     * @return: com.springlego.starter.frame.entity.ReturnDatas
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
      * @date:   2019/10/29 17:15
@@ -43,7 +43,7 @@ public class ErrorMessageExceptionAdvice {
      * @desc: 自定义异常捕获
      * @param request
      * @param e
-     * @return: net.yunqihui.starter.frame.entity.ReturnDatas
+     * @return: com.springlego.starter.frame.entity.ReturnDatas
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
      * @date:   2019/10/29 17:15

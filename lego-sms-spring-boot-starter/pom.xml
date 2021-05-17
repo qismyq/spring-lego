@@ -8,7 +8,7 @@
 		<version>2.2.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>net.yunqihui</groupId>
+	<groupId>com.springlego</groupId>
 	<artifactId>lego-sms-spring-boot-starter</artifactId>
 	<version>1.1-SNAPSHOT</version>
 	<name>lego-sms-spring-boot-starter</name>
@@ -67,18 +67,18 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>net.yunqihui</groupId>
+			<groupId>com.springlego</groupId>
 			<artifactId>lego-frame-spring-boot-starter</artifactId>
 			<version>${frame-starter.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>net.yunqihui</groupId>
+			<groupId>com.springlego</groupId>
 			<artifactId>lego-common-spring-boot-starter</artifactId>
 			<version>${common-starter.version}</version>
 		</dependency>
 		<!--<dependency>-->
-			<!--<groupId>net.yunqihui</groupId>-->
+			<!--<groupId>com.springlego</groupId>-->
 			<!--<artifactId>lego-user-spring-boot-starter</artifactId>-->
 			<!--<version>${user-starter.version}</version>-->
 		<!--</dependency>-->

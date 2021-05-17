@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.wechat.service;
+package com.springlego.autoconfigure.WeChat.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo;
+import com.springlego.autoconfigure.WeChat.entity.PlatformsAuthInfo;
 
 /**
  * <p>

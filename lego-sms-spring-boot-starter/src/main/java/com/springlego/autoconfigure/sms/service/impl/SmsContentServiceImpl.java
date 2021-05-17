@@ -1,14 +1,14 @@
-package net.yunqihui.autoconfigure.sms.service.impl;
+package com.springlego.autoconfigure.sms.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.autoconfigure.frame.errorhandler.ErrorMessageException;
-import net.yunqihui.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
-import net.yunqihui.autoconfigure.sms.entity.SMSChanel;
-import net.yunqihui.autoconfigure.sms.entity.SmsContent;
-import net.yunqihui.autoconfigure.sms.factory.SmsChannelFactory;
-import net.yunqihui.autoconfigure.sms.mapper.SmsContentMapper;
-import net.yunqihui.autoconfigure.sms.service.ISmsContentService;
+import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
+import com.springlego.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
+import com.springlego.autoconfigure.sms.entity.SMSChanel;
+import com.springlego.autoconfigure.sms.entity.SmsContent;
+import com.springlego.autoconfigure.sms.factory.SmsChannelFactory;
+import com.springlego.autoconfigure.sms.mapper.SmsContentMapper;
+import com.springlego.autoconfigure.sms.service.ISmsContentService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;

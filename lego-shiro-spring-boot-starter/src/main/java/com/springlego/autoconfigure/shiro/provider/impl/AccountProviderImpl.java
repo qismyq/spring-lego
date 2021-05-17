@@ -1,15 +1,15 @@
-package net.yunqihui.autoconfigure.shiro.provider.impl;
+package com.springlego.autoconfigure.shiro.provider.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import net.yunqihui.autoconfigure.shiro.entity.Account;
-import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
-import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
-import net.yunqihui.autoconfigure.user.entity.FrontUser;
-import net.yunqihui.autoconfigure.user.entity.User;
-import net.yunqihui.autoconfigure.user.service.IFrontUserService;
-import net.yunqihui.autoconfigure.user.service.IUserRoleService;
-import net.yunqihui.autoconfigure.user.service.IUserService;
+import com.springlego.autoconfigure.shiro.entity.Account;
+import com.springlego.autoconfigure.shiro.entity.ShiroStatic;
+import com.springlego.autoconfigure.shiro.provider.AccountProvider;
+import com.springlego.autoconfigure.user.entity.FrontUser;
+import com.springlego.autoconfigure.user.entity.User;
+import com.springlego.autoconfigure.user.service.IFrontUserService;
+import com.springlego.autoconfigure.user.service.IUserRoleService;
+import com.springlego.autoconfigure.user.service.IUserService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

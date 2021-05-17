@@ -1,8 +1,8 @@
-package net.yunqihui.autoconfigure.common.service;
+package com.springlego.autoconfigure.common.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import net.yunqihui.autoconfigure.common.entity.AlarmEmail;
+import com.springlego.autoconfigure.common.entity.AlarmEmail;
 
 /**
  * <p>

@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.common.service.impl;
+package com.springlego.autoconfigure.common.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.common.service.IMailService;
+import com.springlego.autoconfigure.common.service.IMailService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

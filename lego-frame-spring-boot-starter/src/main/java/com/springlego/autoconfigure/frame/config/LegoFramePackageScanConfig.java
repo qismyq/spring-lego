@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.config;
+package com.springlego.autoconfigure.frame.config;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.mapper.ClassPathMapperScanner;
@@ -24,8 +24,8 @@ import java.util.Set;
 public class LegoFramePackageScanConfig implements ImportBeanDefinitionRegistrar {
 
 
-    private static final String BASE_PACKAGE = "net.yunqihui";
-    private static final String BASE_MAPPER_PACKAGE = "net.yunqihui.**.mapper";
+    private static final String BASE_PACKAGE = "com.springlego";
+    private static final String BASE_MAPPER_PACKAGE = "com.springlego.**.mapper";
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {

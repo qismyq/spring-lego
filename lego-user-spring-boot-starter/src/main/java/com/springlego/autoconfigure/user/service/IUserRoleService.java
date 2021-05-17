@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.user.service;
+package com.springlego.autoconfigure.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import net.yunqihui.autoconfigure.user.entity.UserRole;
+import com.springlego.autoconfigure.user.entity.UserRole;
 
 import java.util.Set;
 

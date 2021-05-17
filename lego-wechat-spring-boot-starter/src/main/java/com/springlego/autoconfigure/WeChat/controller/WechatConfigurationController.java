@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.wechat.controller;
+package com.springlego.autoconfigure.WeChat.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

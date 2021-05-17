@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.shiro.config;
+package com.springlego.autoconfigure.shiro.config;
 
 
 

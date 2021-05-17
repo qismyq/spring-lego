@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.config;
+package com.springlego.autoconfigure.frame.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-//package net.yunqihui;
+//package com.springlego;
 //
 //import org.mybatis.spring.annotation.MapperScan;
 //import org.springframework.boot.SpringApplication;
@@ -7,7 +7,7 @@
 //
 //@SpringBootApplication
 //@EnableCaching
-//@MapperScan("net.yunqihui.**.mapper")
+//@MapperScan("com.springlego.**.mapper")
 //public class LegoShiroSpringBootStarterApplication {
 //
 //	public static void main(String[] args) {

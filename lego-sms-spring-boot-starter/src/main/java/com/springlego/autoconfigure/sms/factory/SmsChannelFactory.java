@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.sms.factory;
+package com.springlego.autoconfigure.sms.factory;
 
-import net.yunqihui.autoconfigure.frame.util.SpringContextHolder;
-import net.yunqihui.autoconfigure.sms.entity.SMSChanel;
+import com.springlego.autoconfigure.frame.util.SpringContextHolder;
+import com.springlego.autoconfigure.sms.entity.SMSChanel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

@@ -1,11 +1,11 @@
-package net.yunqihui.autoconfigure.wechat.service.impl;
+package com.springlego.autoconfigure.WeChat.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.autoconfigure.wechat.entity.WeChatStatic;
-import net.yunqihui.autoconfigure.wechat.entity.WechatConfiguration;
-import net.yunqihui.autoconfigure.wechat.mapper.WechatConfigurationMapper;
-import net.yunqihui.autoconfigure.wechat.service.IWechatConfigurationService;
+import com.springlego.autoconfigure.WeChat.service.IWechatConfigurationService;
+import com.springlego.autoconfigure.WeChat.entity.WeChatStatic;
+import com.springlego.autoconfigure.WeChat.entity.WechatConfiguration;
+import com.springlego.autoconfigure.WeChat.mapper.WechatConfigurationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

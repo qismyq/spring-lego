@@ -1,17 +1,17 @@
-package net.yunqihui.autoconfigure.user.controller;
+package com.springlego.autoconfigure.user.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.springlego.autoconfigure.user.service.ILoginService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
-import net.yunqihui.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
-import net.yunqihui.autoconfigure.shiro.errorhandler.ShiroErrorCodeEnum;
-import net.yunqihui.autoconfigure.shiro.token.PasswordToken;
-import net.yunqihui.autoconfigure.shiro.util.IpUtil;
-import net.yunqihui.autoconfigure.shiro.util.RequestResponseUtil;
-import net.yunqihui.autoconfigure.user.entity.User;
-import net.yunqihui.autoconfigure.user.service.ILoginService;
-import net.yunqihui.autoconfigure.user.service.IUserService;
+import com.springlego.autoconfigure.frame.entity.ReturnDatas;
+import com.springlego.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
+import com.springlego.autoconfigure.shiro.errorhandler.ShiroErrorCodeEnum;
+import com.springlego.autoconfigure.shiro.token.PasswordToken;
+import com.springlego.autoconfigure.shiro.util.IpUtil;
+import com.springlego.autoconfigure.shiro.util.RequestResponseUtil;
+import com.springlego.autoconfigure.user.entity.User;
+import com.springlego.autoconfigure.user.service.IUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.subject.Subject;
@@ -89,7 +89,7 @@ public class LoginController {
     /**
      * @desc: 前端用户登录
      * @param account 账号
-     * @return: net.yunqihui.autoconfigure.frame.entity.ReturnDatas
+     * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
      *          只返回token以及账户信息，不再返回账户详情，详情信息获取由个人信息接口维护
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net

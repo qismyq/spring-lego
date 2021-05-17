@@ -1,9 +1,9 @@
-package net.yunqihui.autoconfigure.wechat.config;
+package com.springlego.autoconfigure.WeChat.config;
 
 import com.alibaba.fastjson.JSONObject;
+import com.springlego.autoconfigure.WeChat.service.IWechatConfigurationService;
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.wechat.entity.WeChatStatic;
-import net.yunqihui.autoconfigure.wechat.service.IWechatConfigurationService;
+import com.springlego.autoconfigure.WeChat.entity.WeChatStatic;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;

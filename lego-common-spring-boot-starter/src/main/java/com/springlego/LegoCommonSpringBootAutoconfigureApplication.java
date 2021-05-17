@@ -1,4 +1,4 @@
-package net.yunqihui;
+package com.springlego;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -9,7 +9,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
-@MapperScan("net.yunqihui.**.mapper")
+@MapperScan("com.springlego.**.mapper")
 @EnableSwagger2
 @EnableCaching
 @EnableAsync

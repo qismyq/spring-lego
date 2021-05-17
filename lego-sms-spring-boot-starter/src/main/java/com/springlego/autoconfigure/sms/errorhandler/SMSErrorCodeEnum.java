@@ -1,6 +1,6 @@
-package net.yunqihui.autoconfigure.sms.errorhandler;
+package com.springlego.autoconfigure.sms.errorhandler;
 
-import net.yunqihui.autoconfigure.frame.errorhandler.IErrorCode;
+import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
 
 /**
  * @Description 短信模块错误码

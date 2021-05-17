@@ -1,18 +1,18 @@
-package net.yunqihui.autoconfigure.user.controller;
+package com.springlego.autoconfigure.user.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.springlego.autoconfigure.user.entity.User;
+import com.springlego.autoconfigure.user.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
-import net.yunqihui.autoconfigure.frame.util.PageBuilder;
-import net.yunqihui.autoconfigure.user.service.IUserService;
-import net.yunqihui.autoconfigure.user.entity.User;
+import com.springlego.autoconfigure.frame.entity.ReturnDatas;
+import com.springlego.autoconfigure.frame.util.PageBuilder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

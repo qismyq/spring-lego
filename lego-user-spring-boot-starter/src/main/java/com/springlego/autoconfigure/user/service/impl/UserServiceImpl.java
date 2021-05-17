@@ -1,9 +1,9 @@
-package net.yunqihui.autoconfigure.user.service.impl;
+package com.springlego.autoconfigure.user.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.autoconfigure.user.entity.User;
-import net.yunqihui.autoconfigure.user.mapper.UserMapper;
-import net.yunqihui.autoconfigure.user.service.IUserService;
+import com.springlego.autoconfigure.user.entity.User;
+import com.springlego.autoconfigure.user.mapper.UserMapper;
+import com.springlego.autoconfigure.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.config;
+package com.springlego.autoconfigure.frame.config;
 
 import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;

@@ -1,11 +1,11 @@
-package net.yunqihui.autoconfigure.shiro.realm;
+package com.springlego.autoconfigure.shiro.realm;
 
 
-import net.yunqihui.autoconfigure.shiro.matcher.JwtMatcher;
-import net.yunqihui.autoconfigure.shiro.matcher.PasswordMatcher;
-import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
-import net.yunqihui.autoconfigure.shiro.token.JwtToken;
-import net.yunqihui.autoconfigure.shiro.token.PasswordToken;
+import com.springlego.autoconfigure.shiro.matcher.PasswordMatcher;
+import com.springlego.autoconfigure.shiro.token.JwtToken;
+import com.springlego.autoconfigure.shiro.token.PasswordToken;
+import com.springlego.autoconfigure.shiro.matcher.JwtMatcher;
+import com.springlego.autoconfigure.shiro.provider.AccountProvider;
 import org.apache.shiro.realm.Realm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

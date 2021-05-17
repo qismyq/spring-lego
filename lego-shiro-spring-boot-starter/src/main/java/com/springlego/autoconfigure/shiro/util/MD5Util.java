@@ -1,6 +1,6 @@
-package net.yunqihui.autoconfigure.shiro.util;
+package com.springlego.autoconfigure.shiro.util;
 
-import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
+import com.springlego.autoconfigure.shiro.entity.ShiroStatic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,9 +1,9 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-net.yunqihui.autoconfigure.config.DruidConfig,\
-net.yunqihui.autoconfigure.config.web.SwaggerConfig,\
-net.yunqihui.autoconfigure.config.MessageConvertConfig,\
-net.yunqihui.autoconfigure.config.MybatisPlusConfig,\
-net.yunqihui.autoconfigure.config.RedisConfig,\
-net.yunqihui.autoconfigure.config.SchedulerConfig,\
-net.yunqihui.autoconfigure.config.LegoFramePackageScanConfig
+com.springlego.autoconfigure.frame.config.DruidConfig,\
+com.springlego.autoconfigure.frame.config.web.SwaggerConfig,\
+com.springlego.autoconfigure.frame.config.MessageConvertConfig,\
+com.springlego.autoconfigure.frame.config.MybatisPlusConfig,\
+com.springlego.autoconfigure.frame.config.RedisConfig,\
+com.springlego.autoconfigure.frame.config.SchedulerConfig,\
+com.springlego.autoconfigure.frame.config.LegoFramePackageScanConfig

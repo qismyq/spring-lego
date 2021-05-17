@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.sms.controller;
+package com.springlego.autoconfigure.sms.controller;
 
-import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
-import net.yunqihui.autoconfigure.sms.service.ISmsContentService;
+import com.springlego.autoconfigure.frame.entity.ReturnDatas;
+import com.springlego.autoconfigure.sms.service.ISmsContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

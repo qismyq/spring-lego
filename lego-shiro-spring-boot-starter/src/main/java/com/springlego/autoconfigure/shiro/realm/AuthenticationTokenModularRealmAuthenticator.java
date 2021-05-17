@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.shiro.realm;
+package com.springlego.autoconfigure.shiro.realm;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.user.entity;
+package com.springlego.autoconfigure.user.entity;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.Data;

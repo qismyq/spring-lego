@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.user.service;
+package com.springlego.autoconfigure.user.service;
 
 /**
  * @Description login 业务

@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.user.mapper;
+package com.springlego.autoconfigure.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import net.yunqihui.autoconfigure.user.entity.RoleMenu;
+import com.springlego.autoconfigure.user.entity.RoleMenu;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;

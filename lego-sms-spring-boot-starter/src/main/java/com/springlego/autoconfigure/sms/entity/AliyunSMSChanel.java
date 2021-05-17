@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.sms.entity;
+package com.springlego.autoconfigure.sms.entity;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.DefaultAcsClient;
@@ -7,9 +7,9 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
+import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.frame.errorhandler.ErrorMessageException;
-import net.yunqihui.autoconfigure.sms.errorhandler.SMSErrorCodeEnum;
+import com.springlego.autoconfigure.sms.errorhandler.SMSErrorCodeEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

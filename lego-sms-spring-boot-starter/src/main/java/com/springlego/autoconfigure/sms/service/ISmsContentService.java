@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.sms.service;
+package com.springlego.autoconfigure.sms.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import net.yunqihui.autoconfigure.sms.entity.SmsContent;
+import com.springlego.autoconfigure.sms.entity.SmsContent;
 
 /**
  * <p>

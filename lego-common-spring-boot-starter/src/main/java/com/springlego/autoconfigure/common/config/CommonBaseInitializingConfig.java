@@ -1,11 +1,11 @@
-package net.yunqihui.autoconfigure.common.config;
+package com.springlego.autoconfigure.common.config;
 
 import com.alibaba.fastjson.JSONObject;
+import com.springlego.autoconfigure.common.entity.AlarmEmail;
+import com.springlego.autoconfigure.common.entity.CommonStatic;
+import com.springlego.autoconfigure.common.service.IAlarmEmailService;
+import com.springlego.autoconfigure.common.service.IConfigurationService;
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.common.entity.AlarmEmail;
-import net.yunqihui.autoconfigure.common.entity.CommonStatic;
-import net.yunqihui.autoconfigure.common.service.IAlarmEmailService;
-import net.yunqihui.autoconfigure.common.service.IConfigurationService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;

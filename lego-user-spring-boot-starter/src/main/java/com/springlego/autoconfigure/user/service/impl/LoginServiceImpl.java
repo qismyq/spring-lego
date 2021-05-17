@@ -1,10 +1,10 @@
-package net.yunqihui.autoconfigure.user.service.impl;
+package com.springlego.autoconfigure.user.service.impl;
 
+import com.springlego.autoconfigure.user.service.ILoginService;
 import io.jsonwebtoken.SignatureAlgorithm;
-import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
-import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
-import net.yunqihui.autoconfigure.shiro.util.JsonWebTokenUtil;
-import net.yunqihui.autoconfigure.user.service.ILoginService;
+import com.springlego.autoconfigure.shiro.entity.ShiroStatic;
+import com.springlego.autoconfigure.shiro.provider.AccountProvider;
+import com.springlego.autoconfigure.shiro.util.JsonWebTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;

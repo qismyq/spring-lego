@@ -1,6 +1,6 @@
-package net.yunqihui.autoconfigure.shiro.rule;
+package com.springlego.autoconfigure.shiro.rule;
 
-import net.yunqihui.autoconfigure.shiro.util.JsonWebTokenUtil;
+import com.springlego.autoconfigure.shiro.util.JsonWebTokenUtil;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;

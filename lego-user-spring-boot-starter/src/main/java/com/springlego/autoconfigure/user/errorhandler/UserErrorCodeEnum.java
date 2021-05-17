@@ -1,6 +1,6 @@
-package net.yunqihui.autoconfigure.user.errorhandler;
+package com.springlego.autoconfigure.user.errorhandler;
 
-import net.yunqihui.autoconfigure.frame.errorhandler.IErrorCode;
+import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
 
 /**
  * @Description 用户模块错误码

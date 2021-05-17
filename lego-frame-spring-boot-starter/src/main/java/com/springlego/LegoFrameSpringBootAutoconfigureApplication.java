@@ -1,4 +1,4 @@
-package net.yunqihui;
+package com.springlego;
 
 
 import org.springframework.boot.SpringApplication;

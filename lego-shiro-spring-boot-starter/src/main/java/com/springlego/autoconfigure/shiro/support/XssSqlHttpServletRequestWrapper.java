@@ -1,6 +1,6 @@
-package net.yunqihui.autoconfigure.shiro.support;
+package com.springlego.autoconfigure.shiro.support;
 
-import net.yunqihui.autoconfigure.shiro.util.XssUtil;
+import com.springlego.autoconfigure.shiro.util.XssUtil;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

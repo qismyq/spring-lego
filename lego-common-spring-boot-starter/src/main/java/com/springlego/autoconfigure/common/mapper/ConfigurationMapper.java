@@ -1,8 +1,8 @@
-package net.yunqihui.autoconfigure.common.mapper;
+package com.springlego.autoconfigure.common.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import net.yunqihui.autoconfigure.common.entity.Configuration;
+import com.springlego.autoconfigure.common.entity.Configuration;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

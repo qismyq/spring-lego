@@ -6,7 +6,7 @@
 
 // ------------------------------------------------------------------------
 
-package net.yunqihui.autoconfigure.wechat.util;
+package com.springlego.autoconfigure.WeChat.util;
 
 import java.security.MessageDigest;
 import java.util.Arrays;

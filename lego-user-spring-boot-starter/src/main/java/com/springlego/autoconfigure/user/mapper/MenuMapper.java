@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.user.mapper;
+package com.springlego.autoconfigure.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import net.yunqihui.autoconfigure.user.entity.Menu;
+import com.springlego.autoconfigure.user.entity.Menu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -24,7 +24,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @param state 菜单状态
      * @param menuType 菜单类型 0按钮/数据 1菜单
      * @param pid 上级菜单id
-     * @return: java.util.List<net.yunqihui.autoconfigure.user.entity.Menu>
+     * @return: java.util.List<Menu>
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
      * @date:   2019/12/9 15:00

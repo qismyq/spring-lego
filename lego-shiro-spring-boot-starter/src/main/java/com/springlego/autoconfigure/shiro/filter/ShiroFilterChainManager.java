@@ -1,11 +1,11 @@
-package net.yunqihui.autoconfigure.shiro.filter;
+package com.springlego.autoconfigure.shiro.filter;
 
 
-import net.yunqihui.autoconfigure.frame.util.SpringContextHolder;
-import net.yunqihui.autoconfigure.shiro.config.RestPathMatchingFilterChainResolver;
-import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
-import net.yunqihui.autoconfigure.shiro.provider.ShiroFilterRulesProvider;
-import net.yunqihui.autoconfigure.shiro.rule.RolePermRule;
+import com.springlego.autoconfigure.shiro.provider.AccountProvider;
+import com.springlego.autoconfigure.shiro.rule.RolePermRule;
+import com.springlego.autoconfigure.frame.util.SpringContextHolder;
+import com.springlego.autoconfigure.shiro.config.RestPathMatchingFilterChainResolver;
+import com.springlego.autoconfigure.shiro.provider.ShiroFilterRulesProvider;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;

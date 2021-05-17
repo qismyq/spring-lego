@@ -1,10 +1,10 @@
-package net.yunqihui.autoconfigure.frame.entity;
+package com.springlego.autoconfigure.frame.entity;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.springlego.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
+import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import net.yunqihui.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
-import net.yunqihui.autoconfigure.frame.errorhandler.IErrorCode;
 
 import java.io.Serializable;
 import java.util.Map;

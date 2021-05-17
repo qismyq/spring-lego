@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.wechat.util;
+package com.springlego.autoconfigure.WeChat.util;
 
 @SuppressWarnings("serial")
 public class AesException extends Exception {

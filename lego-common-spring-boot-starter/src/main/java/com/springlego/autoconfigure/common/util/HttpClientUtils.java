@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.common.util;
+package com.springlego.autoconfigure.common.util;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;

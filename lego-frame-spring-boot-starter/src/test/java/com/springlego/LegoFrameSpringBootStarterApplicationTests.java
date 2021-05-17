@@ -1,4 +1,4 @@
-package net.yunqihui;
+package com.springlego;
 
 import org.junit.jupiter.api.Test;
 import org.redisson.api.RLock;

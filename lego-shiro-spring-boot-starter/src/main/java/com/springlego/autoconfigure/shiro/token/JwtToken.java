@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.shiro.token;
+package com.springlego.autoconfigure.shiro.token;
 
 import org.apache.shiro.authc.AuthenticationToken;
 

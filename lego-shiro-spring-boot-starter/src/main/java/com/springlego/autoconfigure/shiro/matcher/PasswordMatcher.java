@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.shiro.matcher;
+package com.springlego.autoconfigure.shiro.matcher;
 
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

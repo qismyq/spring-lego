@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.shiro.filter;
+package com.springlego.autoconfigure.shiro.filter;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;

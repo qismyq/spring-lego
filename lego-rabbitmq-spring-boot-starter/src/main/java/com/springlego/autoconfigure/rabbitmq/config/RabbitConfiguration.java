@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.rabbitmq.config;
+package com.springlego.autoconfigure.rabbitmq.config;
 
 import org.springframework.context.annotation.Configuration;
 

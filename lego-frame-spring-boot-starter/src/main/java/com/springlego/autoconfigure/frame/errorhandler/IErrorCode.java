@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.frame.errorhandler;
+package com.springlego.autoconfigure.frame.errorhandler;
 
 /**
  * @Description 错误码接口，所有模块下的自定义错误码枚举类型必须实现此接口

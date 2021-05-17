@@ -1,12 +1,12 @@
-package net.yunqihui.autoconfigure.shiro.matcher;
+package com.springlego.autoconfigure.shiro.matcher;
 
 
+import com.springlego.autoconfigure.shiro.entity.JwtAccount;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
-import net.yunqihui.autoconfigure.shiro.entity.JwtAccount;
-import net.yunqihui.autoconfigure.shiro.util.JsonWebTokenUtil;
+import com.springlego.autoconfigure.shiro.util.JsonWebTokenUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

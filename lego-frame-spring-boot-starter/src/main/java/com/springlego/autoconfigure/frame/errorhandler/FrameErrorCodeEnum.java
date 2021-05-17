@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.frame.errorhandler;
+package com.springlego.autoconfigure.frame.errorhandler;
 
 /**
  * @Description 基础错误码

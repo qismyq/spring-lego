@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.shiro.filter;
+package com.springlego.autoconfigure.shiro.filter;
 
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;

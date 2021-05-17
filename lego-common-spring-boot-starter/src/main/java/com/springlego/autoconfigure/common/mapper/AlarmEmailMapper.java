@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.common.mapper;
+package com.springlego.autoconfigure.common.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import net.yunqihui.autoconfigure.common.entity.AlarmEmail;
+import com.springlego.autoconfigure.common.entity.AlarmEmail;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

@@ -1,4 +1,4 @@
-//package net.yunqihui.autoconfigure.config;
+//package com.springlego.autoconfigure.config;
 //
 //import io.netty.channel.nio.NioEventLoopGroup;
 //import org.redisson.Redisson;

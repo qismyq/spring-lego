@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.sms.entity;
+package com.springlego.autoconfigure.sms.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;

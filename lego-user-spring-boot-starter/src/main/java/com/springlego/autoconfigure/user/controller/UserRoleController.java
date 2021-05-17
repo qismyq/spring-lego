@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.user.controller;
+package com.springlego.autoconfigure.user.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

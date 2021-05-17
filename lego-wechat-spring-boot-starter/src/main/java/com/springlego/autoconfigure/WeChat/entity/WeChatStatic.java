@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.wechat.entity;
+package com.springlego.autoconfigure.WeChat.entity;
 
 /**
  * @Description shiro starter 范围静态变量

@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.shiro.support;
+package com.springlego.autoconfigure.shiro.support;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

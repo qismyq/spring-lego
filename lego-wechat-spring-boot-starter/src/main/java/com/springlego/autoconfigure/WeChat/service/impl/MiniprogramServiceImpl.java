@@ -1,17 +1,17 @@
-package net.yunqihui.autoconfigure.wechat.service.impl;
+package com.springlego.autoconfigure.WeChat.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.springlego.autoconfigure.WeChat.entity.PlatformsFastRegisterFailedHis;
+import com.springlego.autoconfigure.WeChat.entity.PlatformsFastRegisterInfo;
+import com.springlego.autoconfigure.WeChat.entity.WeChatStatic;
+import com.springlego.autoconfigure.WeChat.service.IMiniprogramService;
+import com.springlego.autoconfigure.WeChat.service.IPlatformsFastRegisterInfoService;
+import com.springlego.autoconfigure.WeChat.service.IWeChatAuthService;
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.common.util.HttpClientUtils;
-import net.yunqihui.autoconfigure.frame.errorhandler.ErrorMessageException;
-import net.yunqihui.autoconfigure.wechat.entity.PlatformsFastRegisterFailedHis;
-import net.yunqihui.autoconfigure.wechat.entity.PlatformsFastRegisterInfo;
-import net.yunqihui.autoconfigure.wechat.entity.WeChatStatic;
-import net.yunqihui.autoconfigure.wechat.errorhandler.WeChatErrorCodeEnum;
-import net.yunqihui.autoconfigure.wechat.service.IMiniprogramService;
-import net.yunqihui.autoconfigure.wechat.service.IPlatformsFastRegisterInfoService;
-import net.yunqihui.autoconfigure.wechat.service.IWeChatAuthService;
+import com.springlego.autoconfigure.common.util.HttpClientUtils;
+import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
+import com.springlego.autoconfigure.WeChat.errorhandler.WeChatErrorCodeEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;

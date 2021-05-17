@@ -1,12 +1,12 @@
-package net.yunqihui.autoconfigure.user.controller;
+package com.springlego.autoconfigure.user.controller;
 
+import com.springlego.autoconfigure.user.service.IMenuService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
-import net.yunqihui.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
-import net.yunqihui.autoconfigure.user.entity.Menu;
-import net.yunqihui.autoconfigure.user.entity.MenuBar;
-import net.yunqihui.autoconfigure.user.service.IMenuService;
+import com.springlego.autoconfigure.frame.entity.ReturnDatas;
+import com.springlego.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
+import com.springlego.autoconfigure.user.entity.Menu;
+import com.springlego.autoconfigure.user.entity.MenuBar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

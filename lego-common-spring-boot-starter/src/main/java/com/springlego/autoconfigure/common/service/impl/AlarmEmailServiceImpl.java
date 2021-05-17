@@ -1,9 +1,9 @@
-package net.yunqihui.autoconfigure.common.service.impl;
+package com.springlego.autoconfigure.common.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.autoconfigure.common.mapper.AlarmEmailMapper;
-import net.yunqihui.autoconfigure.common.entity.AlarmEmail;
-import net.yunqihui.autoconfigure.common.service.IAlarmEmailService;
+import com.springlego.autoconfigure.common.mapper.AlarmEmailMapper;
+import com.springlego.autoconfigure.common.service.IAlarmEmailService;
+import com.springlego.autoconfigure.common.entity.AlarmEmail;
 import org.springframework.stereotype.Service;
 
 /**

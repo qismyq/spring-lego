@@ -1,15 +1,15 @@
-package net.yunqihui.autoconfigure.shiro.filter;
+package com.springlego.autoconfigure.shiro.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.springlego.autoconfigure.shiro.token.JwtToken;
 import io.jsonwebtoken.SignatureAlgorithm;
-import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
-import net.yunqihui.autoconfigure.shiro.entity.ShiroStatic;
-import net.yunqihui.autoconfigure.shiro.errorhandler.ShiroErrorCodeEnum;
-import net.yunqihui.autoconfigure.shiro.provider.AccountProvider;
-import net.yunqihui.autoconfigure.shiro.token.JwtToken;
-import net.yunqihui.autoconfigure.shiro.util.IpUtil;
-import net.yunqihui.autoconfigure.shiro.util.JsonWebTokenUtil;
-import net.yunqihui.autoconfigure.shiro.util.RequestResponseUtil;
+import com.springlego.autoconfigure.frame.entity.ReturnDatas;
+import com.springlego.autoconfigure.shiro.entity.ShiroStatic;
+import com.springlego.autoconfigure.shiro.errorhandler.ShiroErrorCodeEnum;
+import com.springlego.autoconfigure.shiro.provider.AccountProvider;
+import com.springlego.autoconfigure.shiro.util.IpUtil;
+import com.springlego.autoconfigure.shiro.util.JsonWebTokenUtil;
+import com.springlego.autoconfigure.shiro.util.RequestResponseUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;

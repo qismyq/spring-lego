@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.frame.errorhandler;
+package com.springlego.autoconfigure.frame.errorhandler;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

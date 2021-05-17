@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.yunqihui.starter.user.mybatis.mapper.ConfigurationMapper">
+<mapper namespace="com.springlego.starter.user.mybatis.mapper.ConfigurationMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="net.yunqihui.autoconfigure.common.entity.Configuration">
+    <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.common.entity.Configuration">
         <id column="code" property="code" />
         <result column="value" property="value" />
         <result column="descr" property="descr" />

@@ -1,11 +1,11 @@
-package net.yunqihui.autoconfigure.common.controller;
+package com.springlego.autoconfigure.common.controller;
 
 
+import com.springlego.autoconfigure.common.service.IAlarmEmailService;
 import io.swagger.annotations.Api;
-import net.yunqihui.autoconfigure.common.entity.AlarmEmail;
-import net.yunqihui.autoconfigure.common.service.IAlarmEmailService;
-import net.yunqihui.autoconfigure.common.service.IMailService;
-import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
+import com.springlego.autoconfigure.common.entity.AlarmEmail;
+import com.springlego.autoconfigure.common.service.IMailService;
+import com.springlego.autoconfigure.frame.entity.ReturnDatas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

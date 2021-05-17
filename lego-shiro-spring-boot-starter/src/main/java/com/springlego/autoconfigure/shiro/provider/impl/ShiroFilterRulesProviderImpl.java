@@ -1,8 +1,8 @@
-package net.yunqihui.autoconfigure.shiro.provider.impl;
+package com.springlego.autoconfigure.shiro.provider.impl;
 
-import net.yunqihui.autoconfigure.shiro.provider.ShiroFilterRulesProvider;
-import net.yunqihui.autoconfigure.shiro.rule.RolePermRule;
-import net.yunqihui.autoconfigure.user.service.IRoleMenuService;
+import com.springlego.autoconfigure.shiro.provider.ShiroFilterRulesProvider;
+import com.springlego.autoconfigure.shiro.rule.RolePermRule;
+import com.springlego.autoconfigure.user.service.IRoleMenuService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

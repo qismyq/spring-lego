@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.frame.entity;
+package com.springlego.autoconfigure.frame.entity;
 
 import java.io.Serializable;
 

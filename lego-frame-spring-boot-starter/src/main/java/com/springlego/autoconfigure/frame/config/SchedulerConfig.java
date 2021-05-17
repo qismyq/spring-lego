@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.config;
+package com.springlego.autoconfigure.frame.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

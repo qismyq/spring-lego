@@ -1,8 +1,8 @@
-package net.yunqihui.autoconfigure.shiro.util;
+package com.springlego.autoconfigure.shiro.util;
 
 
 import com.alibaba.fastjson.JSON;
-import net.yunqihui.autoconfigure.shiro.support.XssSqlHttpServletRequestWrapper;
+import com.springlego.autoconfigure.shiro.support.XssSqlHttpServletRequestWrapper;
 import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

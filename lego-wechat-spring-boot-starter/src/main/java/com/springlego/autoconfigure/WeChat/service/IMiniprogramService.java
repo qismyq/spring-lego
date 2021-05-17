@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.wechat.service;
+package com.springlego.autoconfigure.WeChat.service;
 
 import org.dom4j.Element;
 

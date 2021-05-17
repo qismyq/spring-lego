@@ -10,7 +10,7 @@
 	</parent>
 
 
-	<groupId>net.yunqihui</groupId>
+	<groupId>com.springlego</groupId>
 	<artifactId>lego-social-spring-boot-starter-autoconfigure</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>lego-social-spring-boot-starter-autoconfigure</name>
@@ -28,7 +28,7 @@
 			<artifactId>spring-boot-autoconfigure</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>net.yunqihui</groupId>
+			<groupId>com.springlego</groupId>
 			<artifactId>frame-spring-boot-starter</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>

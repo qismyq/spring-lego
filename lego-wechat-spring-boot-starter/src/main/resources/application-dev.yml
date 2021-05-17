@@ -83,7 +83,7 @@ spring:
 mybatis-plus:
   config-location: classpath:mybatis/mybatis-config.xml   # 指定全局配置文件的路径
   mapper-locations: classpath*:mybatis/mapper/*.xml   # 指定mapper的扫描路径
-  type-aliases-package: net.yunqihui.**.entity
+  type-aliases-package: com.springlego.**.entity
   global-config:
     db-config:
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
@@ -120,7 +120,7 @@ logging:
 swagger:
   enable: false
   base:
-    package: net.yunqihui
+    package: com.springlego
   path:
     selector:
       regex: /system/user/.*/json|/system/dicdata/.*/json

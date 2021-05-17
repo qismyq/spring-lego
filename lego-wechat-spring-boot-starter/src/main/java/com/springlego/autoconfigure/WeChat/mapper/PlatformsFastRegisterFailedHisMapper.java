@@ -1,6 +1,6 @@
-package net.yunqihui.autoconfigure.wechat.mapper;
+package com.springlego.autoconfigure.WeChat.mapper;
 
-import net.yunqihui.autoconfigure.wechat.entity.PlatformsFastRegisterFailedHis;
+import com.springlego.autoconfigure.WeChat.entity.PlatformsFastRegisterFailedHis;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

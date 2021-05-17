@@ -1,8 +1,8 @@
-package net.yunqihui.autoconfigure.shiro.realm;
+package com.springlego.autoconfigure.shiro.realm;
 
+import com.springlego.autoconfigure.shiro.token.JwtToken;
 import io.jsonwebtoken.MalformedJwtException;
-import net.yunqihui.autoconfigure.shiro.token.JwtToken;
-import net.yunqihui.autoconfigure.shiro.util.JsonWebTokenUtil;
+import com.springlego.autoconfigure.shiro.util.JsonWebTokenUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

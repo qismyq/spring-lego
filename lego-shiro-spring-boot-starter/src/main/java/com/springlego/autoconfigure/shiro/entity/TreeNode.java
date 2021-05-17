@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.shiro.entity;
+package com.springlego.autoconfigure.shiro.entity;
 
 
 import java.util.ArrayList;

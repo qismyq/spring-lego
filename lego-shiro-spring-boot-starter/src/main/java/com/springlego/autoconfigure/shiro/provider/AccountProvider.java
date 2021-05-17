@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.shiro.provider;
+package com.springlego.autoconfigure.shiro.provider;
 
 
-import net.yunqihui.autoconfigure.shiro.entity.Account;
+import com.springlego.autoconfigure.shiro.entity.Account;
 
 /* *
  * @Author tomsun28

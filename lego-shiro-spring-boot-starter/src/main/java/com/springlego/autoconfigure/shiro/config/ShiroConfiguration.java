@@ -1,13 +1,13 @@
-package net.yunqihui.autoconfigure.shiro.config;
+package com.springlego.autoconfigure.shiro.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import net.yunqihui.autoconfigure.shiro.filter.NoSessionSubjectFactory;
-import net.yunqihui.autoconfigure.shiro.filter.ShiroFilterChainManager;
-import net.yunqihui.autoconfigure.shiro.realm.AuthenticationTokenModularRealmAuthenticator;
-import net.yunqihui.autoconfigure.shiro.realm.RealmManager;
-import net.yunqihui.autoconfigure.shiro.support.XssSqlFilter;
-import net.yunqihui.autoconfigure.shiro.support.XssSqlStringJsonSerializer;
+import com.springlego.autoconfigure.shiro.filter.NoSessionSubjectFactory;
+import com.springlego.autoconfigure.shiro.realm.AuthenticationTokenModularRealmAuthenticator;
+import com.springlego.autoconfigure.shiro.realm.RealmManager;
+import com.springlego.autoconfigure.shiro.support.XssSqlStringJsonSerializer;
+import com.springlego.autoconfigure.shiro.filter.ShiroFilterChainManager;
+import com.springlego.autoconfigure.shiro.support.XssSqlFilter;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;

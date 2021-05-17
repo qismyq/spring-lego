@@ -6,7 +6,7 @@
 
 // ------------------------------------------------------------------------
 
-package net.yunqihui.autoconfigure.wechat.util;
+package com.springlego.autoconfigure.WeChat.util;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

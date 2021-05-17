@@ -1,14 +1,14 @@
-package net.yunqihui.autoconfigure.common.controller;
+package com.springlego.autoconfigure.common.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.springlego.autoconfigure.common.entity.Configuration;
+import com.springlego.autoconfigure.common.service.IConfigurationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import net.yunqihui.autoconfigure.common.entity.Configuration;
-import net.yunqihui.autoconfigure.common.service.IConfigurationService;
-import net.yunqihui.autoconfigure.frame.entity.ReturnDatas;
+import com.springlego.autoconfigure.frame.entity.ReturnDatas;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

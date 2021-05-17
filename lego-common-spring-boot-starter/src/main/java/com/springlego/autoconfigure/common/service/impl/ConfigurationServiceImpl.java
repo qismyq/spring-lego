@@ -1,11 +1,11 @@
-package net.yunqihui.autoconfigure.common.service.impl;
+package com.springlego.autoconfigure.common.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.autoconfigure.common.mapper.ConfigurationMapper;
-import net.yunqihui.autoconfigure.common.service.IConfigurationService;
-import net.yunqihui.autoconfigure.frame.util.GlobalStatic;
-import net.yunqihui.autoconfigure.common.entity.Configuration;
+import com.springlego.autoconfigure.common.entity.Configuration;
+import com.springlego.autoconfigure.common.service.IConfigurationService;
+import com.springlego.autoconfigure.frame.util.GlobalStatic;
+import com.springlego.autoconfigure.common.mapper.ConfigurationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;

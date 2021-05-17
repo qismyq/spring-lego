@@ -6,7 +6,7 @@
 
 // ------------------------------------------------------------------------
 
-package net.yunqihui.autoconfigure.wechat.util;
+package com.springlego.autoconfigure.WeChat.util;
 
 import java.nio.charset.Charset;
 import java.util.Arrays;

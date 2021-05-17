@@ -1,18 +1,18 @@
-package net.yunqihui.autoconfigure.wechat.service.impl;
+package com.springlego.autoconfigure.WeChat.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.springlego.autoconfigure.WeChat.entity.PlatformsAuthInfo;
+import com.springlego.autoconfigure.WeChat.entity.WeChatStatic;
+import com.springlego.autoconfigure.WeChat.errorhandler.WeChatErrorCodeEnum;
+import com.springlego.autoconfigure.WeChat.service.IMiniprogramService;
+import com.springlego.autoconfigure.WeChat.service.IWeChatAuthService;
+import com.springlego.autoconfigure.WeChat.util.WXBizMsgCrypt;
 import lombok.extern.slf4j.Slf4j;
-import net.yunqihui.autoconfigure.common.util.HttpClientUtils;
-import net.yunqihui.autoconfigure.frame.errorhandler.ErrorMessageException;
-import net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo;
-import net.yunqihui.autoconfigure.wechat.entity.WeChatStatic;
-import net.yunqihui.autoconfigure.wechat.errorhandler.WeChatErrorCodeEnum;
-import net.yunqihui.autoconfigure.wechat.service.IMiniprogramService;
-import net.yunqihui.autoconfigure.wechat.service.IPlatformsAuthInfoService;
-import net.yunqihui.autoconfigure.wechat.service.IWeChatAuthService;
-import net.yunqihui.autoconfigure.wechat.util.WXBizMsgCrypt;
+import com.springlego.autoconfigure.common.util.HttpClientUtils;
+import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
+import com.springlego.autoconfigure.WeChat.service.IPlatformsAuthInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.dom4j.Document;
@@ -227,7 +227,7 @@ public class WeChatAuthServiceImpl implements IWeChatAuthService {
     }
 
     @Override
-    public PlatformsAuthInfo getAuthInfoByAuthCode(String authCode,Integer fastRegisterId) throws Exception {
+    public PlatformsAuthInfo getAuthInfoByAuthCode(String authCode, Integer fastRegisterId) throws Exception {
 
 
         if (StringUtils.isBlank(authCode)) {

@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.sms.mapper;
+package com.springlego.autoconfigure.sms.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import net.yunqihui.autoconfigure.sms.entity.SmsContent;
+import com.springlego.autoconfigure.sms.entity.SmsContent;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

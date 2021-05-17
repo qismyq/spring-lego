@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.frame.entity;
+package com.springlego.autoconfigure.frame.entity;
 
 /**
  * @Description Entity基类,所有的entity必须继承此类

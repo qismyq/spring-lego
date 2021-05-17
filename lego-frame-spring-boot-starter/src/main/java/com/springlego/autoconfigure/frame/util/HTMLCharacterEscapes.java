@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.frame.util;
+package com.springlego.autoconfigure.frame.util;
 
 import com.fasterxml.jackson.core.SerializableString;
 import com.fasterxml.jackson.core.io.CharacterEscapes;

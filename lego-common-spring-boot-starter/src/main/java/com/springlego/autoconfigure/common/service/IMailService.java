@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.common.service;
+package com.springlego.autoconfigure.common.service;
 
 /**
  * @Description 发送邮件服务

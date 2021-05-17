@@ -1,6 +1,6 @@
-package net.yunqihui.autoconfigure.sms;
+package com.springlego.autoconfigure.sms;
 
-import net.yunqihui.autoconfigure.sms.service.ISmsContentService;
+import com.springlego.autoconfigure.sms.service.ISmsContentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,8 +1,8 @@
-package net.yunqihui.autoconfigure.user.service;
+package com.springlego.autoconfigure.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import net.yunqihui.autoconfigure.user.entity.Menu;
-import net.yunqihui.autoconfigure.user.entity.MenuBar;
+import com.springlego.autoconfigure.user.entity.Menu;
+import com.springlego.autoconfigure.user.entity.MenuBar;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public interface IMenuService extends IService<Menu> {
     /**
      * @desc: 获取用户sideBar菜单
      * @param userId 用户id
-     * @return: java.util.List<net.yunqihui.autoconfigure.user.entity.MenuBar>
+     * @return: java.util.List<MenuBar>
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
      * @date:   2019/12/16 15:22

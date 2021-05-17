@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.shiro.util;
+package com.springlego.autoconfigure.shiro.util;
 
 import java.util.regex.Pattern;
 

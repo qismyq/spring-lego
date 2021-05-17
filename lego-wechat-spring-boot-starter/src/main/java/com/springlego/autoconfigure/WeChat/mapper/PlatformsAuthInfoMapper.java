@@ -1,7 +1,7 @@
-package net.yunqihui.autoconfigure.wechat.mapper;
+package com.springlego.autoconfigure.WeChat.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import net.yunqihui.autoconfigure.wechat.entity.PlatformsAuthInfo;
+import com.springlego.autoconfigure.WeChat.entity.PlatformsAuthInfo;
 
 /**
  * <p>
