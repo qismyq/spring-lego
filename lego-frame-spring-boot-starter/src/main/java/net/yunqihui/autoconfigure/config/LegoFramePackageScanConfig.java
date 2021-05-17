@@ -58,6 +58,9 @@ public class LegoFramePackageScanConfig implements ImportBeanDefinitionRegistrar
 
     }
 
+    /**
+     * Mapper组件自动扫描
+     */
     class LegoMapperScanner extends ClassPathMapperScanner {
 
         public LegoMapperScanner(BeanDefinitionRegistry registry) {
