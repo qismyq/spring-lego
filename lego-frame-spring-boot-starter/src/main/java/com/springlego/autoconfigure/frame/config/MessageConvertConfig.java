@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.config;
+package com.springlego.autoconfigure.config;
 
 import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;

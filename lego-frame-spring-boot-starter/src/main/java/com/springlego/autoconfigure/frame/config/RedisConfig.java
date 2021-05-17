@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.config;
+package com.springlego.autoconfigure.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.config;
+package com.springlego.autoconfigure.config;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.mapper.ClassPathMapperScanner;

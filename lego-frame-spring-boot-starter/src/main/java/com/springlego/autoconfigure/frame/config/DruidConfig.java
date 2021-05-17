@@ -1,4 +1,4 @@
-package net.yunqihui.autoconfigure.config;
+package com.springlego.autoconfigure.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
