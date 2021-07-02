@@ -13,10 +13,11 @@
 starter名称 | 业务范围
 ---|---
 lego-frame-spring-boot-starter | 基础starter,其它所有starter包括主项目直接依赖此starter即可，主工程无需在引入springboot-starter依赖 
-lego-frame-spring-boot-starter | 用户业务starter
 lego-common-spring-boot-starter| 公共工具类starter
-lego-shiro-spring-boot-starter | 权限控制starter
-lego-wechat-spring-boot-starter| 微信相关业务starter
+lego-user-spring-boot-starter | 用户业务starter（業務需改造）
+lego-sms-spring-boot-starter   | 短信業務starter（暫時只實現阿里雲短信，其他通道集成中）
+lego-shiro-spring-boot-starter | 权限控制starter（業務需改造）
+lego-wechat-spring-boot-starter| 微信相关业务starter（業務需改造）
 
 
 ---------------------------------------------
