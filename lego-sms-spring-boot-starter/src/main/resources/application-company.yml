@@ -107,6 +107,6 @@ swagger:
 lego:
   sms:
     channel: sms-aliyun
-    aliAccessKeyId: LTAI5tCvToWiUr4NKijt496L
-    aliAccessKeySecret: 8n9GRQuDqMLOpqtudgGoq4xNiMnPJz
-    aliSignName: 纵规信息
+    aliAccessKeyId: xxxxxxx
+    aliAccessKeySecret: xxxxxx
+    aliSignName: xxxxxxx
