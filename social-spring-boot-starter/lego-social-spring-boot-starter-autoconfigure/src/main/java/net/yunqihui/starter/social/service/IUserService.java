@@ -1,7 +1,7 @@
-package net.yunqihui.starter.social.service;
+package com.springlego.starter.social.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import net.yunqihui.starter.social.entity.User;
+import com.springlego.starter.social.entity.User;
 
 /**
  * @Description 用户业务层

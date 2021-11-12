@@ -1,9 +1,9 @@
-package net.yunqihui.starter.social.service.impl;
+package com.springlego.starter.social.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import net.yunqihui.starter.social.entity.User;
-import net.yunqihui.starter.social.mapper.UserMapper;
-import net.yunqihui.starter.social.service.IUserService;
+import com.springlego.starter.social.entity.User;
+import com.springlego.starter.social.mapper.UserMapper;
+import com.springlego.starter.social.service.IUserService;
 import org.springframework.stereotype.Service;
 
 /**

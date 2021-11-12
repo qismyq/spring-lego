@@ -1,7 +1,7 @@
-package net.yunqihui.starter.social.controller;
+package com.springlego.starter.social.controller;
 
-import net.yunqihui.starter.social.entity.User;
-import net.yunqihui.starter.social.service.IUserService;
+import com.springlego.starter.social.entity.User;
+import com.springlego.starter.social.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -19,7 +19,7 @@
         </rollingPolicy>
     </appender>
     <!-- 设置包打印日志级别 -->
-    <logger name= "net.yunqihui.**.mapper" level="debug" />
+    <logger name= "com.springlego.**.mapper" level="debug" />
 
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>

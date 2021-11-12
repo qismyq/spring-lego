@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.yunqihui.autoconfigure.wechat.mapper.PlatformsFastRegisterFailedHisMapper">
+<mapper namespace="com.springlego.autoconfigure.wechat.mybatis.mapper.PlatformsFastRegisterFailedHisMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="net.yunqihui.autoconfigure.wechat.entity.PlatformsFastRegisterFailedHis">
+    <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.WeChat.entity.PlatformsFastRegisterFailedHis">
         <id column="id" property="id" />
         <result column="fast_register_id" property="fastRegisterId" />
         <result column="error_code" property="errorCode" />

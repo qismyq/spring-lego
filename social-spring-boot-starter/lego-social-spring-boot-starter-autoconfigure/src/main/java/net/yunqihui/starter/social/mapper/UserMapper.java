@@ -1,7 +1,7 @@
-package net.yunqihui.starter.social.mapper;
+package com.springlego.starter.social.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import net.yunqihui.starter.social.entity.User;
+import com.springlego.starter.social.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 

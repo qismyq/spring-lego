@@ -1,4 +1,4 @@
-package net.yunqihui.starter.social.entity;
+package com.springlego.starter.social.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;

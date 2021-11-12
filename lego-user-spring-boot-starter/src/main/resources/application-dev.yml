@@ -92,7 +92,7 @@ mybatis-plus:
 #mybatis执行sql打印
 logging:
   level:
-    net.yunqihui.autoconfigure.user.mapper: debug
+    com.springlego.autoconfigure.user.mapper: debug
 
 ############################mybatis相关配置-end###################################
 
@@ -120,7 +120,7 @@ logging:
 swagger:
   enable: false
   base:
-    package: net.yunqihui
+    package: com.springlego
   path:
     selector:
       regex: /system/user/.*/json|/system/dicdata/.*/json
