@@ -23,6 +23,6 @@ public interface IUserService extends IService<User> {
      * @date:   2019/6/19 20:28
      * @update:
      */
-    User getLoginUser(String account, String state) throws Exception;
+    User getLoginUser(String account, Integer state) throws Exception;
 
 }

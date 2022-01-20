@@ -5,6 +5,7 @@ import com.springlego.autoconfigure.user.entity.User;
 import com.springlego.autoconfigure.user.mapper.UserMapper;
 import com.springlego.autoconfigure.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,9 +22,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Autowired
     UserMapper userMapper;
 
-//    @Cacheable(cacheNames = {"loginUser"},key = "'account'")
+    @Cacheable(cacheNames = {"loginUser"},key = "'account'")
     @Override
-    public User getLoginUser(String account, String state) throws Exception {
+    public User getLoginUser(String account, Integer state) throws Exception {
         return userMapper.getLoginUser(account,state);
     }
 

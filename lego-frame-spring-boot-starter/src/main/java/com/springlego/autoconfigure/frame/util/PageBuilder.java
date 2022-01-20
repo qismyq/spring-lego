@@ -17,7 +17,7 @@ public class PageBuilder {
 
     /**
      * @desc: 根据request快速初始化page对象，默认根据id倒序查询
-     * @param request -- >pageIndex 页码 pageSize每页数据量
+     * @param request -- >pageNum 页码 pageSize每页数据量
      * @return: com.baomidou.mybatisplus.extension.plugins.pagination.Page
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
@@ -30,7 +30,7 @@ public class PageBuilder {
 
     /**
      * @desc: 根据request快速初始化page对象，查询排序为倒序
-     * @param request request -- >pageIndex 页码 pageSize每页数据量
+     * @param request request -- >pageNum 页码 pageSize每页数据量
      * @param columns 排序字段
      * @return: com.baomidou.mybatisplus.extension.plugins.pagination.Page
      * @auther: Michael Wong
@@ -44,7 +44,7 @@ public class PageBuilder {
 
     /**
      * @desc: 根据request快速初始化page对象，查询排序为正序
-     * @param request request -- >pageIndex 页码 pageSize每页数据量
+     * @param request request -- >pageNum 页码 pageSize每页数据量
      * @param columns 排序字段，注意：Bean内字段
      * @return: com.baomidou.mybatisplus.extension.plugins.pagination.Page
      * @auther: Michael Wong
@@ -59,7 +59,7 @@ public class PageBuilder {
 
     /**
      * @desc: 根据request快速初始化page对象
-     * @param request request -- >pageIndex 页码 pageSize每页数据量
+     * @param request request -- >pageNum 页码 pageSize每页数据量
      * @param sort 排序规则  DESC | ASC
      * @param columns 参与排序的字段，注意：Bean内字段
      * @return: com.baomidou.mybatisplus.extension.plugins.pagination.Page
@@ -69,20 +69,20 @@ public class PageBuilder {
      * @update:
      */
     public static Page instancePageOrderBy(HttpServletRequest request,String sort,String... columns) {
-        String pageIndexStr = request.getParameter("pageIndex");
+        String pageNumStr = request.getParameter("pageNum");
         String pageSizeStr = request.getParameter("pageSize");
-        int pageIndex = 1 ;
+        int pageNum = 1 ;
         int pageSize = 10 ;
 
-        if (StringUtils.isNotBlank(pageIndexStr)) {
-            pageIndex = Integer.valueOf(pageIndexStr);
+        if (StringUtils.isNotBlank(pageNumStr)) {
+            pageNum = Integer.valueOf(pageNumStr);
         }
 
         if (StringUtils.isNotBlank(pageSizeStr)) {
             pageSize = Integer.valueOf(pageSizeStr);
         }
 
-        Page page = new Page(pageIndex, pageSize);
+        Page page = new Page(pageNum, pageSize);
         // 构建排序规则
         if (ArrayUtils.isNotEmpty(columns)) {
 

@@ -17,7 +17,7 @@ import java.util.Map;
 @Data
 @Accessors(chain = true)
 @SuppressWarnings("serial")
-public class ReturnDatas implements Serializable{
+public class ReturnDatas<T> implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	public static final String SUCCESS = "success";
@@ -49,17 +49,17 @@ public class ReturnDatas implements Serializable{
 	/**
 	 * 处理返回结果
 	 */
-	private Object data;
+	private T data;
 	private Integer palceCount;
     @SuppressWarnings("rawtypes")
 	private Map map;
 	private Page page;
 	private String sum;
-	private Object queryBean;
+	private Object queryParam;
 
-	public ReturnDatas setData(Object data){
+	public ReturnDatas setData(T data){
 		if (data instanceof Page) {
-			this.data = ((Page) data).getRecords() ;
+			this.data = (T) ((Page) data).getRecords();
 		}else {
 			this.data = data ;
 		}
@@ -78,7 +78,7 @@ public class ReturnDatas implements Serializable{
 		this.errorMessage = errorMessage;
 	}
 	@Deprecated
-	public ReturnDatas(Integer errorCode, String errorMessage, Object data) {
+	public ReturnDatas(Integer errorCode, String errorMessage, T data) {
 		this.errorCode = errorCode;
 		this.message = errorMessage;
 		this.data = data;
