@@ -1,21 +1,11 @@
 package com.springlego.autoconfigure.user.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.springlego.autoconfigure.user.service.ILoginService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
-import com.springlego.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
-import com.springlego.autoconfigure.shiro.errorhandler.ShiroErrorCodeEnum;
-import com.springlego.autoconfigure.shiro.token.PasswordToken;
-import com.springlego.autoconfigure.shiro.util.IpUtil;
-import com.springlego.autoconfigure.shiro.util.RequestResponseUtil;
 import com.springlego.autoconfigure.user.entity.User;
 import com.springlego.autoconfigure.user.service.IUserService;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Email michael_wong@yunqihui.net
  * @Date 2019/11/25 15:24
  **/
-@Api(description = "登录")
+@Api("登录")
 @Slf4j
 @RestController
 public class LoginController {
@@ -57,24 +47,25 @@ public class LoginController {
     @RequestMapping(value = "/system/login",method = RequestMethod.POST)
     public ReturnDatas accountLogin(@RequestBody User user, HttpServletRequest request, HttpServletResponse response)throws Exception{
         String account = user.getAccount();
-        User authUser = userService.getLoginUser(account,"是");
-        Subject subject = SecurityUtils.getSubject();
-        String source = RequestResponseUtil.getRequestHeaders(request).get("source");
-        String host = IpUtil.getIpFromRequest(WebUtils.toHttp(request));
-        PasswordToken passwordToken = new PasswordToken(account, user.getPassword(), "123644", host, source);
-        try {
-            subject.login(passwordToken);
-        }catch (AuthenticationException e) {
-            log.warn(passwordToken.getPrincipal()+"::"+e.getMessage());
-            // 返回response告诉客户端认证失败
-            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_40201);
-            RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),response);
-        }catch (Exception e) {
-            log.error(passwordToken.getPrincipal()+"::认证异常::"+e.getMessage(),e);
-            // 返回response告诉客户端认证失败
-            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(FrameErrorCodeEnum.E_50000);
-            RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),response);
-        }
+        User authUser = userService.getLoginUser(account,1);
+        // todo 先只判断登录问题，鉴权等需要改造到lego-jwt模块中
+//        Subject subject = SecurityUtils.getSubject();
+//        String source = RequestResponseUtil.getRequestHeaders(request).get("source");
+//        String host = IpUtil.getIpFromRequest(WebUtils.toHttp(request));
+//        PasswordToken passwordToken = new PasswordToken(account, user.getPassword(), "123644", host, source);
+//        try {
+//            subject.login(passwordToken);
+//        }catch (AuthenticationException e) {
+//            log.warn(passwordToken.getPrincipal()+"::"+e.getMessage());
+//            // 返回response告诉客户端认证失败
+//            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(ShiroErrorCodeEnum.E_40201);
+//            RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),response);
+//        }catch (Exception e) {
+//            log.error(passwordToken.getPrincipal()+"::认证异常::"+e.getMessage(),e);
+//            // 返回response告诉客户端认证失败
+//            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(FrameErrorCodeEnum.E_50000);
+//            RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),response);
+//        }
         if (authUser != null) {
             String jwt = loginService.issueSystemJWT(account);
             authUser.setPassword(null);
@@ -93,8 +84,8 @@ public class LoginController {
      *          只返回token以及账户信息，不再返回账户详情，详情信息获取由个人信息接口维护
      * @auther: Michael Wong
      * @email:  michael_wong@yunqihui.net
-     * @date:   2019/12/4 0004 16:53       
-     * @update:        
+     * @date:   2019/12/4 0004 16:53
+     * @update:
      */
     @ApiOperation(value = "前端用户登录", notes = "POST用户登录签发JWT")
     @ApiImplicitParams({
@@ -114,6 +105,7 @@ public class LoginController {
 
         ReturnDatas successReturnDatas = ReturnDatas.getSuccessReturnDatas();
 
+        // todo 前端用户登录
 //        String jwt = loginService.issueFrontJWT(account);
 //
 //        FrontUser frontUser = new FrontUser();

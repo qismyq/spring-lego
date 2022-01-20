@@ -44,7 +44,7 @@ public class UserController {
     @RequestMapping(value = "/getUser/json" , method = RequestMethod.GET)
     public ReturnDatas getUser(Long id)throws Exception {
         ReturnDatas returnDatas = ReturnDatas.getSuccessReturnDatas();
-        User user = userService.getLoginUser("siyuan", "是");
+        User user = userService.getLoginUser("siyuan", 1);
         returnDatas.setData(user).setMessage("成功");
         return returnDatas;
     }

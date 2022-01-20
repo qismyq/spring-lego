@@ -1,6 +1,7 @@
 package com.springlego.autoconfigure.frame.errorhandler;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
@@ -10,6 +11,7 @@ import lombok.experimental.Accessors;
  * @Date 2019/10/29 17:04
  **/
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 public class ErrorMessageException extends RuntimeException {
 

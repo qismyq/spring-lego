@@ -17,6 +17,6 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper extends BaseMapper<User> {
 
 
-    public User getLoginUser(@Param("account") String account, @Param("state") String state);
+    public User getLoginUser(@Param("account") String account, @Param("state") Integer state);
 
 }

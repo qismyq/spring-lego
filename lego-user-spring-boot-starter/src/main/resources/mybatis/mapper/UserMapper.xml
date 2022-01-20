@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.springlego.autoconfigure.user.mybatis.mapper.UserMapper">
+<mapper namespace="com.springlego.autoconfigure.user.mapper.UserMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.user.entity.User">
@@ -8,25 +8,29 @@
         <result column="name" property="name" />
         <result column="account" property="account" />
         <result column="password" property="password" />
+        <result column="salt" property="salt" />
         <result column="sex" property="sex" />
         <result column="mobile" property="mobile" />
         <result column="email" property="email" />
-        <result column="user_type" property="userType" />
         <result column="state" property="state" />
         <result column="front_user_id" property="frontUserId" />
         <result column="create_time" property="createTime" />
+        <result column="create_by" property="createBy" />
+        <result column="update_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="del" property="del" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, account, password, sex, mobile, email, user_type, state, front_user_id,create_time
+        id, name, account, password, salt,avatar,sex, mobile, email, state, front_user_id,create_time,create_by,update_by,update_time,del
     </sql>
 
 
     <select id="getLoginUser" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM t_user
-        WHERE account = #{account} AND state = #{state}
+        FROM u_user
+        WHERE account = #{account} AND state = #{state} AND del = 0
     </select>
 </mapper>

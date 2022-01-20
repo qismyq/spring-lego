@@ -75,17 +75,18 @@
             <artifactId>lego-common-spring-boot-starter</artifactId>
             <version>${common-starter.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.springlego</groupId>
-            <artifactId>lego-shiro-spring-boot-starter</artifactId>
-            <version>${shiro-starter.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.springlego</groupId>
-                    <artifactId>lego-user-spring-boot-starter</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--        2022-01-20-->
+<!--        <dependency>-->
+<!--            <groupId>com.springlego</groupId>-->
+<!--            <artifactId>lego-shiro-spring-boot-starter</artifactId>-->
+<!--            <version>${shiro-starter.version}</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>com.springlego</groupId>-->
+<!--                    <artifactId>lego-user-spring-boot-starter</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
 
 
         <dependency>
@@ -212,7 +213,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>2.1.2</version>
+                        <version>3.0.1</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -228,13 +229,14 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
+                        <version>3.0.1</version>
                         <configuration>
-                            <aggregate>true</aggregate>
+                            <!-- 2022-1-20 -->
+<!--                            <aggregate>true</aggregate>-->
                             <charset>UTF-8</charset>
                             <encoding>UTF-8</encoding>
                             <docencoding>UTF-8</docencoding>
-                            <additionalparam>-Xdoclint:none</additionalparam>
+<!--                            <additionalparam>-Xdoclint:none</additionalparam>-->
                         </configuration>
                         <executions>
                             <execution>
