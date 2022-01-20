@@ -131,78 +131,78 @@
         </plugins>
 
 
-        <!--<pluginManagement>-->
-            <!--<plugins>-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                    <!--<configuration>-->
-                        <!--<source>1.8</source>-->
-                        <!--<target>1.8</target>-->
-                    <!--</configuration>-->
-                <!--</plugin>-->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
 
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <mainClass>LegoUserSpringBootAutoconfigureApplication</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <!--deploy插件-->
                 <!--<plugin>-->
-                    <!--<groupId>org.springframework.boot</groupId>-->
-                    <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                    <!--<artifactId>maven-deploy-plugin</artifactId>-->
+                    <!--<version>2.8.2</version>-->
                     <!--<executions>-->
                         <!--<execution>-->
+                            <!--<id>default-deploy</id>-->
+                            <!--<phase>deploy</phase>-->
                             <!--<goals>-->
-                                <!--<goal>repackage</goal>-->
+                                <!--<goal>deploy</goal>-->
                             <!--</goals>-->
                         <!--</execution>-->
                     <!--</executions>-->
                 <!--</plugin>-->
 
+                <!--sonatype的staging插件-->
+                <!--<plugin>-->
+                <!--<groupId>org.sonatype.plugins</groupId>-->
+                <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
+                <!--<version>1.6.7</version>-->
+                <!--<extensions>true</extensions>-->
+                <!--<configuration>-->
+                <!--&lt;!&ndash;<serverId>sonatype-nexus-snapshots</serverId>&ndash;&gt;-->
+                <!--<serverId>sonatype-nexus-staging</serverId>-->
+                <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+                <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+                <!--</configuration>-->
+                <!--</plugin>-->
+
+                <!--SCM插件-->
                 <!--<plugin>-->
                     <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-jar-plugin</artifactId>-->
-                    <!--<configuration>-->
-                        <!--<archive>-->
-                            <!--<manifest>-->
-                                <!--<mainClass>LegoUserSpringBootAutoconfigureApplication</mainClass>-->
-                            <!--</manifest>-->
-                        <!--</archive>-->
-                    <!--</configuration>-->
+                    <!--<artifactId>maven-scm-plugin</artifactId>-->
+                    <!--<version>1.8.1</version>-->
                 <!--</plugin>-->
-                <!--&lt;!&ndash;deploy插件&ndash;&gt;-->
-                <!--&lt;!&ndash;<plugin>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<artifactId>maven-deploy-plugin</artifactId>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<version>2.8.2</version>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<executions>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<execution>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<id>default-deploy</id>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<phase>deploy</phase>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<goals>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<goal>deploy</goal>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</goals>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</execution>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</executions>&ndash;&gt;-->
-                <!--&lt;!&ndash;</plugin>&ndash;&gt;-->
 
-                <!--&lt;!&ndash;sonatype的staging插件&ndash;&gt;-->
-                <!--&lt;!&ndash;<plugin>&ndash;&gt;-->
-                <!--&lt;!&ndash;<groupId>org.sonatype.plugins</groupId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<artifactId>nexus-staging-maven-plugin</artifactId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<version>1.6.7</version>&ndash;&gt;-->
-                <!--&lt;!&ndash;<extensions>true</extensions>&ndash;&gt;-->
-                <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;<serverId>sonatype-nexus-snapshots</serverId>&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;<serverId>sonatype-nexus-staging</serverId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<nexusUrl>https://oss.sonatype.org/</nexusUrl>&ndash;&gt;-->
-                <!--&lt;!&ndash;<autoReleaseAfterClose>true</autoReleaseAfterClose>&ndash;&gt;-->
-                <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
-                <!--&lt;!&ndash;</plugin>&ndash;&gt;-->
-
-                <!--&lt;!&ndash;SCM插件&ndash;&gt;-->
-                <!--&lt;!&ndash;<plugin>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<groupId>org.apache.maven.plugins</groupId>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<artifactId>maven-scm-plugin</artifactId>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<version>1.8.1</version>&ndash;&gt;-->
-                <!--&lt;!&ndash;</plugin>&ndash;&gt;-->
-
-            <!--</plugins>-->
-        <!--</pluginManagement>-->
+            </plugins>
+        </pluginManagement>
     </build>
 
     <profiles>
