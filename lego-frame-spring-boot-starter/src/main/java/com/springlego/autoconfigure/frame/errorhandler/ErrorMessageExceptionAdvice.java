@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @Description 全局异常捕获类
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/10/29 17:07
  **/
 @RestControllerAdvice
@@ -26,7 +26,7 @@ public class ErrorMessageExceptionAdvice {
      * @param e
      * @return: com.springlego.starter.frame.entity.ReturnDatas
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/10/29 17:15
      * @update:
      */
@@ -45,7 +45,7 @@ public class ErrorMessageExceptionAdvice {
      * @param e
      * @return: com.springlego.starter.frame.entity.ReturnDatas
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/10/29 17:15
      * @update:
      */

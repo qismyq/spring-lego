@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 /**
  * @Description 小程序 服务类
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/12/13 16:05
  **/
 public interface IMiniprogramService {
@@ -22,7 +22,7 @@ public interface IMiniprogramService {
      * @param legalPersonaName  法人姓名（绑定银行卡）
      * @return: boolean 是否创建成功
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/13 16:09
      * @update:
      */
@@ -34,7 +34,7 @@ public interface IMiniprogramService {
      * @param element 原始信息消息体
      * @return: java.lang.Boolean
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/25 15:08
      * @update:
      */

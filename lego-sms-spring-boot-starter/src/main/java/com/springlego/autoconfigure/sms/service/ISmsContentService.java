@@ -16,11 +16,11 @@ public interface ISmsContentService extends IService<SmsContent> {
     /**
      * @desc: 发送短信
      * @param phone
-     * @return: void 
+     * @return: void
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
-     * @date:   2020/8/5 9:48       
-     * @update:        
+     * @email:  michael_wang90@163.com
+     * @date:   2020/8/5 9:48
+     * @update:
      */
     void send(String phone, Integer type)throws Exception;
 
@@ -31,7 +31,7 @@ public interface ISmsContentService extends IService<SmsContent> {
      * @param code 验证码
      * @return: boolean
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2020/8/5 11:08
      * @update:
      */

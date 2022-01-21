@@ -12,7 +12,7 @@ import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
  * </p>
  * 此模块BC为02
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/11/4 17:50
  **/
 public enum ShiroErrorCodeEnum implements IErrorCode {

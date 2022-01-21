@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * @Description 定制4xx,5xx等错误返回信息
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/11/4 15:22
  **/
 @Component

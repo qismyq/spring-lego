@@ -19,7 +19,7 @@ public interface IUserService extends IService<User> {
      * @param state 账号状态
      * @return: com.example.demo.model.User
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/6/19 20:28
      * @update:
      */

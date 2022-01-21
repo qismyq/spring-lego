@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @Description 菜单栏VO
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/12/9 17:23
  **/
 @Data

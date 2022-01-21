@@ -3,7 +3,7 @@ package com.springlego.autoconfigure.common.service;
 /**
  * @Description 发送邮件服务
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/11/22 19:36
  **/
 public interface IMailService {
@@ -16,7 +16,7 @@ public interface IMailService {
      * @desc: 发送简易邮件并cc
      * @return: void
      * @auther: Michael Wong
-     * @email: michael_wong@yunqihui.net
+     * @email: michael_wang90@163.com
      * @date: 2019/11/22 19:31
      * @update:
      */
@@ -29,7 +29,7 @@ public interface IMailService {
      * @desc: 发送简易邮件
      * @return: void
      * @auther: Michael Wong
-     * @email: michael_wong@yunqihui.net
+     * @email: michael_wang90@163.com
      * @date: 2019/11/22 19:32
      * @update:
      */
@@ -44,7 +44,7 @@ public interface IMailService {
      * @throws Exception
      * @return: void
      * @auther: Michael Wong
-     * @email: michael_wong@yunqihui.net
+     * @email: michael_wang90@163.com
      * @date: 2019/11/22 19:32
      * @update:
      */
@@ -58,7 +58,7 @@ public interface IMailService {
      * @throws Exception
      * @return: void
      * @auther: Michael Wong
-     * @email: michael_wong@yunqihui.net
+     * @email: michael_wang90@163.com
      * @date: 2019/11/22 19:32
      * @update:
      */

@@ -21,7 +21,7 @@ import java.io.BufferedReader;
 /**
  * @Description 微信相关授权信息
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/12/6 15:06
  **/
 @Api("微信开放平台授权相关信息")
@@ -41,7 +41,7 @@ public class WeChatAuthController {
      * @param response
      * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/10 18:44
      * @update:
      */
@@ -77,7 +77,7 @@ public class WeChatAuthController {
      * @desc: 获取component_access_token
      * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/11 11:35
      * @update:
      */
@@ -94,7 +94,7 @@ public class WeChatAuthController {
      * @desc: 获取预授权码
      * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/11 15:18
      * @update:
      */
@@ -117,7 +117,7 @@ public class WeChatAuthController {
      * @param
      * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/12 14:43
      * @update:
      */

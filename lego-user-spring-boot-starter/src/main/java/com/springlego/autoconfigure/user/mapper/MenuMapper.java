@@ -26,7 +26,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @param pid 上级菜单id
      * @return: java.util.List<Menu>
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/9 15:00
      * @update:
      */

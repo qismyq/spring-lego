@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @Description 登录
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/11/25 15:24
  **/
 @Api("登录")
@@ -83,7 +83,7 @@ public class LoginController {
      * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
      *          只返回token以及账户信息，不再返回账户详情，详情信息获取由个人信息接口维护
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/4 0004 16:53
      * @update:
      */
