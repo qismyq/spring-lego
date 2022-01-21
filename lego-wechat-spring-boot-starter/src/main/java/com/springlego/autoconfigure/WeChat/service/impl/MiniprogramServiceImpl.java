@@ -27,7 +27,7 @@ import java.util.Date;
 /**
  * @Description 小程序业务 服务实现类
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/12/13 16:05
  **/
 @Slf4j

@@ -3,7 +3,7 @@ package com.springlego.autoconfigure.common.entity;
 /**
  * @Description common starter 范围静态变量
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/11/23 11:40
  **/
 public class CommonStatic {

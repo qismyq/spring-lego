@@ -7,7 +7,7 @@ import org.dom4j.Element;
 /**
  * @Description 微信相关授权信息
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/12/6 16:28
  **/
 public interface IWeChatAuthService {
@@ -23,7 +23,7 @@ public interface IWeChatAuthService {
      * @param msgXml 原始消息
      * @return: java.lang.Boolean
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/25 15:02
      * @update:
      */
@@ -34,7 +34,7 @@ public interface IWeChatAuthService {
      * @param element 原始消息体元素
      * @return: java.lang.String
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/6 16:31
      * @update:
      */
@@ -45,7 +45,7 @@ public interface IWeChatAuthService {
      * @desc: 获取第三方平台的access token，并存入redis中
      * @return: java.lang.String
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/11 15:08
      * @update:
      */
@@ -55,9 +55,9 @@ public interface IWeChatAuthService {
      * @desc: 获取预授权码，并存入redis中
      * @return: java.lang.String
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
-     * @date:   2019/12/11 15:09       
-     * @update:        
+     * @email:  michael_wang90@163.com
+     * @date:   2019/12/11 15:09
+     * @update:
      */
     String getPreAuthCode() throws Exception;
 
@@ -66,7 +66,7 @@ public interface IWeChatAuthService {
      * @param
      * @return: com.alibaba.fastjson.JSONObject component_appid和pre_auth_code
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/12 14:46
      * @update:
      */
@@ -78,7 +78,7 @@ public interface IWeChatAuthService {
      * @param authCode 快速注册记录id
      * @return: PlatformsAuthInfo 授权信息
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/13 15:24
      * @update:
      */
@@ -89,9 +89,9 @@ public interface IWeChatAuthService {
      * @param id 授权信息记录id
      * @return: PlatformsAuthInfo
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2020/1/2 10:44
-     * @update:        
+     * @update:
      */
     PlatformsAuthInfo getAuthInfoById(Integer id) throws Exception;
 }

@@ -3,7 +3,7 @@ package com.springlego.autoconfigure.user.service;
 /**
  * @Description login 业务
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/12/2 16:11
  **/
 public interface ILoginService {
@@ -13,7 +13,7 @@ public interface ILoginService {
      * @param account 用户账户，可以为手机号，也可为第三方账号的开放id
      * @return: String jwtoken
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/2 16:21
      * @update:
      */
@@ -24,7 +24,7 @@ public interface ILoginService {
      * @param account 后端用户账户
      * @return: String jwtoken
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/2 16:28
      * @update:
      */

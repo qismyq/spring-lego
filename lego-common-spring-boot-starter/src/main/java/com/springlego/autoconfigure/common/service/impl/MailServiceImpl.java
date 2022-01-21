@@ -17,7 +17,7 @@ import javax.mail.internet.MimeMessage;
 /**
  * @Description 邮件服务
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/11/20 14:51
  **/
 @Slf4j

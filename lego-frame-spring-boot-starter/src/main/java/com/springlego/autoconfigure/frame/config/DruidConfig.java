@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * @Description druid配置项注入
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/5/22 19:06
  **/
 @Configuration

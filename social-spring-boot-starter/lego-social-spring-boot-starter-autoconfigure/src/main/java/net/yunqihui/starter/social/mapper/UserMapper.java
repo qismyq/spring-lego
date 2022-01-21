@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @Description 用户mapper
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/5/21 18:47
  **/
 @Component

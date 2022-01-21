@@ -16,7 +16,7 @@ public interface SMSChanel {
      * @param templateCode 模板ID 
     * @return: void  
     * @auther: Michael Wong 
-    * @email:  michael_wong@yunqihui.net 
+    * @email:  michael_wang90@163.com 
     * @date:   2021/3/27 22:10        
     * @update:         
     */

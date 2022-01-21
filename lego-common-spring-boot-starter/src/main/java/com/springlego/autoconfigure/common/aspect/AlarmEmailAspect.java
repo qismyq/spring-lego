@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * @Description 异常捕获增强，邮件发送
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/11/23 10:07
  **/
 @Slf4j

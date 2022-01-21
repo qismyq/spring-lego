@@ -62,7 +62,7 @@ public class ShiroConfiguration {
      * @desc: xsssql过滤器配置，不使用@webfilter配置，防止封装为starter后引用者没有在主启动类上声明@ServletComponentScan
      * @return: org.springframework.boot.web.servlet.FilterRegistrationBean
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/11/29 11:06
      */
     @Bean

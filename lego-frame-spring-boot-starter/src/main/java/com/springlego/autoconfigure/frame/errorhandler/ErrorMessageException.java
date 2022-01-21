@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 /**
  * @Description 自定义误信息异常
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/10/29 17:04
  **/
 @Data

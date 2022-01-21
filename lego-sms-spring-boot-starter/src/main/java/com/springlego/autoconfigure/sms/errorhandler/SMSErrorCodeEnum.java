@@ -11,7 +11,7 @@ import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
  * DE:模块下具体错误码，例如参数缺失为00，参数无效为01，依次叠加<br/>
  * </p>
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/11/4 17:50
  **/
 public enum SMSErrorCodeEnum implements IErrorCode {

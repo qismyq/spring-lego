@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * @Description 全局的静态变量,用于全局变量的存放
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/5/24 10:40
  **/
 public class GlobalStatic {

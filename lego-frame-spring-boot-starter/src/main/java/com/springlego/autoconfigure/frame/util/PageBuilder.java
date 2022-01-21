@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @Description page快速构建
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/11/5 14:50
  **/
 public class PageBuilder {
@@ -20,7 +20,7 @@ public class PageBuilder {
      * @param request -- >pageNum 页码 pageSize每页数据量
      * @return: com.baomidou.mybatisplus.extension.plugins.pagination.Page
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/11/5 14:59
      * @update:
      */
@@ -34,7 +34,7 @@ public class PageBuilder {
      * @param columns 排序字段
      * @return: com.baomidou.mybatisplus.extension.plugins.pagination.Page
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/11/5 18:41
      * @update:
      */
@@ -48,7 +48,7 @@ public class PageBuilder {
      * @param columns 排序字段，注意：Bean内字段
      * @return: com.baomidou.mybatisplus.extension.plugins.pagination.Page
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/11/5 18:41
      * @update:
      */
@@ -64,7 +64,7 @@ public class PageBuilder {
      * @param columns 参与排序的字段，注意：Bean内字段
      * @return: com.baomidou.mybatisplus.extension.plugins.pagination.Page
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/11/5 18:43
      * @update:
      */

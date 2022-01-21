@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Description 微信相关授权信息 实现类
  * @Author Michael Wong
- * @Email michael_wong@yunqihui.net
+ * @Email michael_wang90@163.com
  * @Date 2019/12/6 16:29
  **/
 @Slf4j

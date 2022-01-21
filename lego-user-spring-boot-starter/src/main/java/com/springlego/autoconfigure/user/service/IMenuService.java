@@ -23,7 +23,7 @@ public interface IMenuService extends IService<Menu> {
      * @param userId 用户id
      * @return: java.util.List<MenuBar>
      * @auther: Michael Wong
-     * @email:  michael_wong@yunqihui.net
+     * @email:  michael_wang90@163.com
      * @date:   2019/12/16 15:22
      * @update:
      */
