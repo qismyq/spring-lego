@@ -4,6 +4,8 @@ package com.springlego.autoconfigure.user.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.springlego.autoconfigure.frame.entity.ReturnDatas;
+import com.springlego.autoconfigure.frame.util.PageBuilder;
 import com.springlego.autoconfigure.user.entity.User;
 import com.springlego.autoconfigure.user.service.IUserService;
 import com.springlego.autoconfigure.user.util.PasswordUtil;
@@ -12,8 +14,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
-import com.springlego.autoconfigure.frame.entity.ReturnDatas;
-import com.springlego.autoconfigure.frame.util.PageBuilder;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -61,5 +61,24 @@ public class UserController {
         return returnDatas;
     }
 
+    /**
+     * @param user
+     * @desc: 保存/编辑用户
+     * @return: com.springlego.autoconfigure.frame.entity.ReturnDatas
+     * @auther: Michael Wong
+     * @email: michael_wang90@163.com
+     * @date: 2020/8/18 17:57
+     * @update:
+     */
+    @PostMapping
+    public ReturnDatas save(@RequestBody User user) throws Exception {
+        if (StringUtils.isNotBlank(user.getPassword())) {
+            String salt = RandomStringUtils.random(8);
+            user.setPassword(PasswordUtil.encrypt(user.getAccount(),user.getPassword(),salt));
+            user.setSalt(salt);
+        }
+        user.insertOrUpdate();
+        return ReturnDatas.getSuccessReturnDatas();
+    }
 }
 
