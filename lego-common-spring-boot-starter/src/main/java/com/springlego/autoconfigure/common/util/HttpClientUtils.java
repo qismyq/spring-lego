@@ -34,16 +34,16 @@ import java.util.List;
 import java.util.Map;
 
 public class HttpClientUtils {
-	
+
 	private static PoolingHttpClientConnectionManager connectionManager = null;
 	//private static  HttpClientBuilder httpClientBuilder=null;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HttpClientUtils.class);
 	private static RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000)
 			.setConnectionRequestTimeout(3000).build();
-	
+
 	static{
-		
+
 		SSLContext sslcontext = SSLContexts.createSystemDefault();
 
         // Create a registry of custom connection socket factories for supported
@@ -59,39 +59,39 @@ public class HttpClientUtils {
 	    	    //httpClientBuilder = HttpClients.custom().setConnectionManager(connectionManager).setDefaultRequestConfig(requestConfig);
 		       // HttpHost localhost = new HttpHost("http://www.baidu.com",80);
 		       //connectionManager.setMaxPerRoute(new HttpRoute(localhost), 200);
-		
+
 	}
 
 	public static CloseableHttpClient getHttpClient() {
-        return getHttpClientBuilder().build();  
+        return getHttpClientBuilder().build();
     }
-	
-	public static CloseableHttpClient getHttpClient(SSLContext sslContext) {   
-        return getHttpClientBuilder(sslContext).build();  
+
+	public static CloseableHttpClient getHttpClient(SSLContext sslContext) {
+        return getHttpClientBuilder(sslContext).build();
     }
-	
-	
+
+
 	public static HttpClientBuilder getHttpClientBuilder(){
 		return HttpClients.custom().setConnectionManager(connectionManager).setDefaultRequestConfig(requestConfig);
 	}
-	
+
     public static HttpClientBuilder getHttpClientBuilder(SSLContext sslContext){
     	if(sslContext!=null){
     		return getHttpClientBuilder().setSSLContext(sslContext);
     	}else{
     		return getHttpClientBuilder();
     	}
-    	
+
 	}
-	
-	
-	
-	
+
+
+
+
    /**
     * post 请求
-    * @param httpUrl 
+    * @param httpUrl
     *              请求地址
-    * @param sslContext 
+    * @param sslContext
     *              ssl证书信息
     * @return
     */
@@ -99,11 +99,11 @@ public class HttpClientUtils {
 		HttpPost httpPost = new HttpPost(httpUrl);// 创建httpPost
 		return sendHttpPost(httpPost,sslContext);
 	}
-    
-    
+
+
 	/**
 	 * 发送 post请求
-	 * 
+	 *
 	 * @param httpUrl
 	 *            地址
 	 */
@@ -111,12 +111,12 @@ public class HttpClientUtils {
 		HttpPost httpPost = new HttpPost(httpUrl);// 创建httpPost
 		return sendHttpPost(httpPost,null);
 	}
-	
-	
+
+
 
 	/**
 	 * 发送 post请求
-	 * 
+	 *
 	 * @param httpUrl
 	 *            地址
 	 * @param params
@@ -128,12 +128,12 @@ public class HttpClientUtils {
 
 	/**
 	 * 发送 post请求
-	 * 
+	 *
 	 * @param httpUrl
 	 *            地址
 	 * @param params
 	 *            参数(格式:key1=value1&key2=value2)
-     * @param sslContext 
+     * @param sslContext
      *              ssl证书信息
 	 */
 	public static String sendHttpPost(String httpUrl, String params,SSLContext sslContext) {
@@ -148,11 +148,11 @@ public class HttpClientUtils {
 		}
 		return sendHttpPost(httpPost,sslContext);
 	}
-	
+
 
 	/**
 	 * 发送 post请求
-	 * 
+	 *
 	 * @param httpUrl
 	 *            地址
 	 * @param maps
@@ -164,12 +164,12 @@ public class HttpClientUtils {
 
 	/**
 	 * 发送 post请求
-	 * 
+	 *
 	 * @param httpUrl
 	 *            地址
 	 * @param maps
 	 *            参数
-     * @param sslContext 
+     * @param sslContext
      *              ssl证书信息
 	 */
 	public static String sendHttpPost(String httpUrl, Map<String, String> maps,SSLContext sslContext) {
@@ -186,10 +186,10 @@ public class HttpClientUtils {
 		}
 		return sendHttpPost(httpPost,null);
 	}
-	
+
 	/**
 	 * 发送 post请求（带文件）
-	 * 
+	 *
 	 * @param httpUrl
 	 *            地址
 	 * @param fileLists
@@ -203,14 +203,14 @@ public class HttpClientUtils {
 
 	/**
 	 * 发送 post请求（带文件）
-	 * 
+	 *
 	 * @param httpUrl
 	 *            地址
 	 * @param fileLists
 	 *            附件
 	 * @param maps
 	 *            参数
-     * @param sslContext 
+     * @param sslContext
      *              ssl证书信息
 	 */
 	public static String sendHttpPost(String httpUrl, List<File> fileLists,Map<String, String> maps,SSLContext sslContext) {
@@ -227,10 +227,10 @@ public class HttpClientUtils {
 		httpPost.setEntity(reqEntity);
 		return sendHttpPost(httpPost,sslContext);
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * 发送Post请求
 	 * @param httpPost
@@ -242,7 +242,7 @@ public class HttpClientUtils {
 
 	/**
 	 * 发送Post请求
-	 * 
+	 *
 	 * @param httpPost
      * @param sslContext
      *              ssl证书信息
@@ -261,7 +261,7 @@ public class HttpClientUtils {
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 		} finally {
-			
+
 			try{
 				// 关闭连接,释放资源
 				if (entity != null) {
@@ -270,30 +270,30 @@ public class HttpClientUtils {
 				if(response!=null){
 					response.close();
 				}
-				
+
 			}catch (Exception e) {
 				logger.error(e.getMessage(),e);
-			} 
-			
+			}
+
 	}
 		return responseContent;
 	}
 
-	
-	
+
+
 	/**
 	 * 发送 get请求
-	 * 
+	 *
 	 * @param httpUrl
 	 */
 	public static String sendHttpGet(String httpUrl) {
 		return sendHttpGet(httpUrl,null);
 	}
-	
-	
+
+
 	/**
 	 * 发送 get请求
-	 * 
+	 *
 	 * @param httpUrl
      * @param sslContext
      *              ssl证书信息
@@ -305,7 +305,7 @@ public class HttpClientUtils {
 
 	/**
 	 * 发送Get请求
-	 * 
+	 *
 	 * @param httpGet
 	 * @return
 	 */
@@ -314,7 +314,7 @@ public class HttpClientUtils {
 	}
 	/**
 	 * 发送Get请求
-	 * 
+	 *
 	 * @param httpGet
      * @param sslContext
      *              ssl证书信息
@@ -334,7 +334,7 @@ public class HttpClientUtils {
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 		} finally {
-				
+
 			try{
 				// 关闭连接,释放资源
 				if (entity != null) {
@@ -343,17 +343,15 @@ public class HttpClientUtils {
 				if(response!=null){
 					response.close();
 				}
-				
+
 			}catch (Exception e) {
 				logger.error(e.getMessage(),e);
-			} 
-				
-				
+			}
+
+
 		}
 		return responseContent;
 	}
 
-	
-	
-	
+
 }
