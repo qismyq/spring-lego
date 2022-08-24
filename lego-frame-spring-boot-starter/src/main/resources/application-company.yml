@@ -59,7 +59,7 @@ spring:
 #  mail:
 #      host: smtp.163.com
 #      username: chuizikejirizhi@163.com
-#      password: chuizikeji888
+#      password: chuizikeji999
 #      default-encoding: utf-8
 #      port: 465
 #      properties:

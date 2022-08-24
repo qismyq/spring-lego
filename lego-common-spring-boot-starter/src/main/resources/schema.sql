@@ -31,6 +31,6 @@ CREATE TABLE IF NOT EXISTS `dic_configuration` (
 -- ----------------------------
 INSERT IGNORE INTO `dic_configuration` VALUES ('alarmEmailAccout', 'chuizikejirizhi@163.com', '警报邮件发件箱账号', 'Y', '1', '0');
 INSERT IGNORE INTO `dic_configuration` VALUES ('alarmEmailAddress', 'chuizikejirizhi@163.com', '警报邮件发件箱地址', 'Y', '2', '0');
-INSERT IGNORE INTO `dic_configuration` VALUES ('alarmEmailPwd', 'chuizikeji888', '警报邮箱密码', 'Y', '3', '0');
+INSERT IGNORE INTO `dic_configuration` VALUES ('alarmEmailPwd', 'chuizikeji999', '警报邮箱密码', 'Y', '3', '0');
 INSERT IGNORE INTO `dic_configuration` VALUES ('alarmEmailSubject', '项目警告！！！', '警报邮箱主题名称', 'Y', '4', '0');
 
