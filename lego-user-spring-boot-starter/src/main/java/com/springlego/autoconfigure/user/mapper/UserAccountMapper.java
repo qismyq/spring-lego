@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.springlego.autoconfigure.user.entity.User;
+import com.springlego.autoconfigure.user.entity.UserAccount;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,9 +14,9 @@ import org.apache.ibatis.annotations.Param;
  * @since 2019-10-29
  */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface UserAccountMapper extends BaseMapper<UserAccount> {
 
 
-    public User getLoginUser(@Param("account") String account, @Param("state") Integer state);
+    public UserAccount getLoginUser(@Param("account") String account, @Param("state") Integer state);
 
 }

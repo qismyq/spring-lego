@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
 import com.springlego.autoconfigure.frame.util.PageBuilder;
-import com.springlego.autoconfigure.user.entity.User;
-import com.springlego.autoconfigure.user.service.IUserService;
+import com.springlego.autoconfigure.user.entity.UserAccount;
+import com.springlego.autoconfigure.user.service.IUserAccountService;
 import com.springlego.autoconfigure.user.util.PasswordUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,28 +33,28 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserAccountController {
 
-    @Resource(name = "userServiceImpl")
-    private IUserService userService ;
+    @Resource(name = "userAccountServiceImpl")
+    private IUserAccountService userService ;
 
     @ApiOperation(value = "获取登录用户")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "成功"),
             @ApiResponse(code = 1001, message = "失败"),
-            @ApiResponse(code = 1002, response = User.class,message = "缺少参数") })
+            @ApiResponse(code = 1002, response = UserAccount.class,message = "缺少参数") })
     @RequestMapping(value = "/getUser/json" , method = RequestMethod.GET)
     public ReturnDatas getUser(Long id)throws Exception {
         ReturnDatas returnDatas = ReturnDatas.getSuccessReturnDatas();
-        User user = userService.getLoginUser("siyuan", 1);
+        UserAccount user = userService.getLoginUser("siyuan", 1);
         returnDatas.setData(user).setMessage("成功");
         return returnDatas;
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public ReturnDatas list(HttpServletRequest request,User user)throws Exception {
+    public ReturnDatas list(HttpServletRequest request, UserAccount user)throws Exception {
         Page page = PageBuilder.instancePage(request);
 
-        IPage<User> userIPage = user.selectPage(page, new QueryWrapper<User>(user));
+        IPage<UserAccount> userIPage = user.selectPage(page, new QueryWrapper<UserAccount>(user));
         ReturnDatas returnDatas = ReturnDatas.getSuccessReturnDatas().setMessage("成功");
         returnDatas.setPage(page);
         returnDatas.setData(userIPage);
@@ -71,7 +71,7 @@ public class UserController {
      * @update:
      */
     @PostMapping
-    public ReturnDatas save(@RequestBody User user) throws Exception {
+    public ReturnDatas save(@RequestBody UserAccount user) throws Exception {
         if (StringUtils.isNotBlank(user.getPassword())) {
             String salt = RandomStringUtils.random(8);
             user.setPassword(PasswordUtil.encrypt(user.getAccount(),user.getPassword(),salt));
