@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.springlego.autoconfigure.user.mapper.UserMapper">
+<mapper namespace="com.springlego.autoconfigure.user.mapper.UserAccountMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.user.entity.User">
+    <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.user.entity.UserAccount">
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="account" property="account" />

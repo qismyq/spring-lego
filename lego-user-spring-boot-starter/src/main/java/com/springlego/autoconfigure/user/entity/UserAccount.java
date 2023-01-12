@@ -22,9 +22,9 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ToString
-@TableName("u_user")
+@TableName("u_user_account")
 @ApiModel(value="User对象", description="后台用户")
-public class User extends Model<User> {
+public class UserAccount extends Model<UserAccount> {
 
     private static final long serialVersionUID=1L;
 
