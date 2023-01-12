@@ -12,7 +12,7 @@
 	<artifactId>lego-sms-spring-boot-starter</artifactId>
 	<version>1.1-SNAPSHOT</version>
 	<name>lego-sms-spring-boot-starter</name>
-	<description>sms starter for yunqihui project</description>
+	<description>sms starter for spring-lego project</description>
 
 
 	<!-- 版权许可 -->

@@ -15,7 +15,13 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class ErrorMessageException extends RuntimeException {
 
+
     private Integer errorCode = 1 ;
+
+
+    public Integer getErrorCode() {
+        return errorCode;
+    }
 
     /**
      * Constructs a new runtime exception with {@code null} as its
@@ -99,4 +105,6 @@ public class ErrorMessageException extends RuntimeException {
     public ErrorMessageException(IErrorCode errorCode) {
         this(errorCode.getErrorCode(),errorCode.getErrorMessage());
     }
+
+
 }
