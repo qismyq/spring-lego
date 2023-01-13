@@ -15,9 +15,8 @@ import java.util.Map;
  * @author  by michael wong
  */
 @Service
-//@ConditionalOnMissingBean(LegoUserDetailsService.class)
 public class LegoUserDetailsServiceImpl implements LegoUserDetailsService {
-    private static final String FRONT_ROLE = "ROLE_FRONT";
+    private static final String RANGE = "default";
 
 
     @Override
@@ -56,5 +55,10 @@ public class LegoUserDetailsServiceImpl implements LegoUserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 //        return loadUserByUsername(s);
         return null;
+    }
+
+    @Override
+    public Boolean supports(String range) {
+        return RANGE.equals(range);
     }
 }

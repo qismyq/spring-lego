@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2018 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
-
 package com.springlego.autoconfigure.security.config;
 
 import com.springlego.autoconfigure.security.constant.SecurityConstant;
@@ -44,13 +36,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private final DataSource dataSource;
     private final LegoUserDetailsService userDetailsService;
     private final TokenStore tokenStore;
-    private final WebResponseExceptionTranslator<OAuth2Exception> renWebResponseExceptionTranslator;
+    private final WebResponseExceptionTranslator<OAuth2Exception> legoWebResponseExceptionTranslator;
 
     /**
      * 配置客户端信息
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        // 用于获取动态客户端配置，动态拉取client
         JdbcClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
         clientDetailsService.setSelectClientDetailsSql(SecurityConstant.DEFAULT_SELECT_STATEMENT);
         clientDetailsService.setFindClientDetailsSql(SecurityConstant.DEFAULT_FIND_STATEMENT);
@@ -77,7 +70,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         //令牌增强
         endpoints.tokenEnhancer(tokenEnhancer());
         //登录或者鉴权失败时的返回信息
-        endpoints.exceptionTranslator(renWebResponseExceptionTranslator);
+        endpoints.exceptionTranslator(legoWebResponseExceptionTranslator);
         //授权码管理，授权码存放在oauth_code表中
         endpoints.authorizationCodeServices(jdbcAuthorizationCodeServices());
     }

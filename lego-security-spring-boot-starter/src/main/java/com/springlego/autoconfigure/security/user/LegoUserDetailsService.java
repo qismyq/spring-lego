@@ -29,4 +29,10 @@ public interface LegoUserDetailsService extends UserDetailsService {
      */
     UserDetail loadUserByOpenId(Map<String, String> params) throws UsernameNotFoundException;
 
+    /**
+     * 支持范围
+     * @param range
+     * @return
+     */
+    Boolean supports(String range);
 }

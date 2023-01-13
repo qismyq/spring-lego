@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2020 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
-
 package com.springlego.autoconfigure.security.config;
 
 import com.springlego.autoconfigure.security.filter.SmsCodeAuthenticationFilter;
@@ -19,6 +11,9 @@ import com.springlego.autoconfigure.security.provider.LegoSmsAuthenticationProvi
 import com.springlego.autoconfigure.security.provider.LegoWeChatAuthenticationProvider;
 import com.springlego.autoconfigure.security.user.LegoUserDetailsService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
@@ -32,6 +27,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @Classname WebSecurityConfig
  * @Description Spring Security配置
@@ -40,9 +39,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @AllArgsConstructor
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements ApplicationContextAware */{
     private final LegoUserDetailsService userDetailsService;
-//    private final UserDetailsService userDetailsService;
     private final ValidateCodeFilter validateCodeFilter;
     private final SmsAuthenticationSuccessHandler smsAuthenticationSuccessHandler;
     private final WeChatAuthenticationSuccessHandler weChatAuthenticationSuccessHandler;
@@ -50,11 +48,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final RedisTemplate redisTemplate;
     private final UserAuthenticationFailureHandler userAuthenticationFailureHandler;
 
+    @Autowired
+    private  ApplicationContext applicationContext;
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(legoAuthenticationProvider());
-        auth.authenticationProvider(legoSmsAuthenticationProvider());
-        auth.authenticationProvider(legoWechatAuthenticationProvider());
+//        auth.authenticationProvider(legoSmsAuthenticationProvider());
+//        auth.authenticationProvider(legoWechatAuthenticationProvider());
     }
 
     /**
@@ -88,9 +90,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean(name="legoAuthenticationProvider")
+    @ConditionalOnBean(LegoUserDetailsService.class)
     public AuthenticationProvider legoAuthenticationProvider() {
         LegoAuthenticationProvider legoAuthenticationProvider= new LegoAuthenticationProvider();
-        legoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        // 获取多个userDetailsService
+        Map<String, LegoUserDetailsService> ludsBeans = applicationContext.getBeansOfType(LegoUserDetailsService.class);
+        List<LegoUserDetailsService> userDetailsServices = new ArrayList<>();
+        // todo 去掉默认提供的uds
+        ludsBeans.forEach((beanName,bean)->{
+            userDetailsServices.add(bean);
+        });
+        legoAuthenticationProvider.setUserDetailsServices(userDetailsServices);
         legoAuthenticationProvider.setHideUserNotFoundExceptions(false);
         legoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
         return legoAuthenticationProvider;
