@@ -1,12 +1,13 @@
 package com.springlego.autoconfigure.security.user.impl;
 
 import com.springlego.autoconfigure.security.user.LegoUserDetailsService;
+import com.springlego.autoconfigure.security.user.UserAccountService;
 import com.springlego.autoconfigure.security.user.UserDetail;
+import com.springlego.autoconfigure.security.user.entity.vo.UserAccountVO;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import javax.annotation.Resource;
 
 /**
  * @Classname LegoUserDetailsServiceImpl
@@ -18,9 +19,12 @@ import java.util.Map;
 public class LegoUserDetailsServiceImpl implements LegoUserDetailsService {
     private static final String RANGE = "default";
 
+    @Resource(name = "userAccountService_security")
+    private UserAccountService userAccountService;
+
 
     @Override
-    public UserDetails loadUserByUsername(String username, String userType) {
+    public UserDetails loadUserByUsername(String username) {
 //        // 前台用户
 //        if (StringUtils.equals(StringUtils.trim(userType).toUpperCase(), UserTypeConstant.FRONT)) {
 //            Result<UserDetail> result = apiAccountFeignClient.getByUsername(username);
@@ -35,27 +39,17 @@ public class LegoUserDetailsServiceImpl implements LegoUserDetailsService {
 //        else{
 //            return loadUserByUsername(username);
 //        }
+        UserAccountVO userAccount = userAccountService.getByUsername(username);
+        UserDetail userDetail = new UserDetail();
+        if (userAccount != null) {
+            userDetail.setUsername(userAccount.getAccount());
+            userDetail.setPassword(userAccount.getPassword());
 
-        return null;
-    }
-
-    @Override
-    public UserDetail loadUserByOpenId(Map<String,String> params) {
-//        Result<UserDetail> result = apiAccountFeignClient.getByOpenId(params);
-//        UserDetail userDetail = result.getData();
-        UserDetail userDetail = null;
-//        if(userDetail == null){
-//            throw new Exception(ErrorCode.ACCOUNT_NOT_EXIST);
-//        }
-//        userDetail.setAuthorities(AuthorityUtils.createAuthorityList(FRONT_ROLE).stream().collect(Collectors.toSet()));
+        }
         return userDetail;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-//        return loadUserByUsername(s);
-        return null;
-    }
+
 
     @Override
     public Boolean supports(String range) {
