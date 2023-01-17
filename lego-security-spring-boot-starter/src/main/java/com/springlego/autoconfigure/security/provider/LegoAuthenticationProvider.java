@@ -1,6 +1,6 @@
 package com.springlego.autoconfigure.security.provider;
 
-import com.springlego.autoconfigure.security.user.LegoUserDetailsService;
+import com.springlego.autoconfigure.security.user.service.LegoUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -22,11 +22,10 @@ import java.util.Map;
  * @Classname LegoAuthenticationProvider
  * @Description 多用户类型
  * @Date 2022/4/11 下午 02:40
- * @Created by michael wong
+ * @author by michael wong
  */
 @Slf4j
 public class LegoAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
-    private static final String USER_NOT_FOUND_PASSWORD = "userNotFoundPassword";
     private PasswordEncoder passwordEncoder;
     private volatile String userNotFoundEncodedPassword;
     private List<LegoUserDetailsService> userDetailsServices;

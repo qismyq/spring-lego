@@ -1,7 +1,7 @@
-package com.springlego.autoconfigure.security.user.impl;
+package com.springlego.autoconfigure.security.user.service.impl;
 
-import com.springlego.autoconfigure.security.user.LegoUserDetailsService;
-import com.springlego.autoconfigure.security.user.UserAccountService;
+import com.springlego.autoconfigure.security.user.service.LegoUserDetailsService;
+import com.springlego.autoconfigure.security.user.service.UserAccountService;
 import com.springlego.autoconfigure.security.user.UserDetail;
 import com.springlego.autoconfigure.security.user.entity.vo.UserAccountVO;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -3,7 +3,7 @@ package com.springlego.autoconfigure.security.config;
 import com.springlego.autoconfigure.security.filter.ValidateCodeFilter;
 import com.springlego.autoconfigure.security.handler.UserAuthenticationFailureHandler;
 import com.springlego.autoconfigure.security.provider.LegoAuthenticationProvider;
-import com.springlego.autoconfigure.security.user.LegoUserDetailsService;
+import com.springlego.autoconfigure.security.user.service.LegoUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;

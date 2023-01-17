@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.security.user;
+package com.springlego.autoconfigure.security.user.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;

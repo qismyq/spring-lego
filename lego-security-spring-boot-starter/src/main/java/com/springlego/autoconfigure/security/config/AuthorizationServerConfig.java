@@ -3,7 +3,7 @@ package com.springlego.autoconfigure.security.config;
 import com.springlego.autoconfigure.security.constant.SecurityConstant;
 import com.springlego.autoconfigure.security.token.OAuthTokenEnhancer;
 import com.springlego.autoconfigure.security.token.VerifyCodeTokenGranter;
-import com.springlego.autoconfigure.security.user.LegoUserDetailsService;
+import com.springlego.autoconfigure.security.user.service.LegoUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;

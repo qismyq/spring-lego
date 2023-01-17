@@ -1,6 +1,6 @@
 package com.springlego.autoconfigure.security.token;
 
-import com.springlego.autoconfigure.security.user.LegoUserDetailsService;
+import com.springlego.autoconfigure.security.user.service.LegoUserDetailsService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
