@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @Description 令牌添加额外信息，做信息增强
  * @date 2022/10/6 下午 05:36
- * @auther michael_wang
+ * @author michael_wang
  */
 public class OAuthTokenEnhancer implements TokenEnhancer {
 

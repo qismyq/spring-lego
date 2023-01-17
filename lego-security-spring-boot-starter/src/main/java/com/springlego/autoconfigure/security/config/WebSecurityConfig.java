@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -34,10 +33,8 @@ import java.util.Map;
 @AllArgsConstructor
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements ApplicationContextAware */{
-    private final LegoUserDetailsService userDetailsService;
     private final ValidateCodeFilter validateCodeFilter;
     private final PasswordEncoder passwordEncoder;
-    private final RedisTemplate redisTemplate;
     private final UserAuthenticationFailureHandler userAuthenticationFailureHandler;
 
     @Autowired
@@ -47,8 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(legoAuthenticationProvider());
-//        auth.authenticationProvider(legoSmsAuthenticationProvider());
-//        auth.authenticationProvider(legoWechatAuthenticationProvider());
     }
 
     /**
@@ -64,7 +59,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements
     public void configure(HttpSecurity http) throws Exception {
         http
             .addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
-//            .addFilterBefore(smsCodeAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
             .formLogin()
             .loginPage("/login")
             .loginProcessingUrl("/login")
@@ -98,44 +92,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements
         return legoAuthenticationProvider;
     }
 
-//    @Bean(name="legoSmsAuthenticationProvider")
-//    public AuthenticationProvider legoSmsAuthenticationProvider() {
-//        LegoSmsAuthenticationProvider legoSmsAuthenticationProvider= new LegoSmsAuthenticationProvider();
-//        legoSmsAuthenticationProvider.setUserDetailsService(userDetailsService);
-//        return legoSmsAuthenticationProvider;
-//    }
-//
-//    @Bean(name="legoWechatAuthenticationProvider")
-//    public AuthenticationProvider legoWechatAuthenticationProvider() {
-//        LegoWeChatAuthenticationProvider legoWeChatAuthenticationProvider= new LegoWeChatAuthenticationProvider();
-//        legoWeChatAuthenticationProvider.setUserDetailsService(userDetailsService);
-//        return legoWeChatAuthenticationProvider;
-//    }
-
-//    @Bean
-//    public SmsCodeAuthenticationFilter smsCodeAuthenticationFilter() throws Exception {
-//        SmsCodeAuthenticationFilter smsCodeAuthenticationFilter = new SmsCodeAuthenticationFilter();
-//        try {
-//            smsCodeAuthenticationFilter.setAuthenticationManager(this.authenticationManagerBean());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        smsCodeAuthenticationFilter.setAuthenticationSuccessHandler(smsAuthenticationSuccessHandler);
-//        smsCodeAuthenticationFilter.setAuthenticationFailureHandler(userAuthenticationFailureHandler);
-//        smsCodeAuthenticationFilter.setRedisTemplate(redisTemplate);
-//        return smsCodeAuthenticationFilter;
-//    }
-//
-//    @Bean
-//    public WeChatAuthenticationFilter WeChatAuthenticationFilter() throws Exception {
-//        WeChatAuthenticationFilter weChatAuthenticationFilter = new WeChatAuthenticationFilter();
-//        try {
-//            weChatAuthenticationFilter.setAuthenticationManager(this.authenticationManagerBean());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        weChatAuthenticationFilter.setAuthenticationSuccessHandler(weChatAuthenticationSuccessHandler);
-//        weChatAuthenticationFilter.setAuthenticationFailureHandler(userAuthenticationFailureHandler);
-//        return weChatAuthenticationFilter;
-//    }
 }

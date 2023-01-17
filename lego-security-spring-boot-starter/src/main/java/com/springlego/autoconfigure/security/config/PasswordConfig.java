@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @AllArgsConstructor
 public class PasswordConfig {
 
-    // todo 是否需要注册此bean
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

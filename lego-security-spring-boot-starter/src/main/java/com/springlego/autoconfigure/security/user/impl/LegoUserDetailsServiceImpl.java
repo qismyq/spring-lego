@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @Date 2022/4/11 下午 02:15
  * @author  by michael wong
  */
-@Service
+@Service("defaultLegoUserDetailsService")
 public class LegoUserDetailsServiceImpl implements LegoUserDetailsService {
     private static final String RANGE = "default";
 
@@ -40,13 +40,13 @@ public class LegoUserDetailsServiceImpl implements LegoUserDetailsService {
 //            return loadUserByUsername(username);
 //        }
         UserAccountVO userAccount = userAccountService.getByUsername(username);
-        UserDetail userDetail = new UserDetail();
         if (userAccount != null) {
+            UserDetail userDetail = new UserDetail();
             userDetail.setUsername(userAccount.getAccount());
             userDetail.setPassword(userAccount.getPassword());
-
+            return userDetail;
         }
-        return userDetail;
+        return null;
     }
 
 

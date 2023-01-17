@@ -21,3 +21,12 @@ CREATE TABLE IF NOT EXISTS
     PRIMARY KEY (client_id)
   )
   ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci COMMENT='OAuth客户端令牌';
+
+-- ----------------------------
+-- Records of dic_configuration
+-- ----------------------------
+
+INSERT IGNORE INTO `sys_oauth_client_details`
+(client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove) VALUES
+('springlego', '', '$2a$10$0GLOEiQUu/kuMMQjMKW2t.zfl4sWJgtM4YDCTYdgPlvKSLNDfd2yG', 'all', 'authorization_code,password,implicit,client_credentials,refresh_token,verify_code', null, null, 50000, null, null, 'true');
+
