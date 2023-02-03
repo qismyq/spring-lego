@@ -29,11 +29,11 @@ public enum SecurityErrorCodeEnum implements IErrorCode {
      */
     ,ACCOUNT_PASSWORD_ERROR(40101,"用户密码错误")
 
-    /**
-     * <br> token错误
-     */
-    // todo 替换
-    ,E_50100(50100,"token错误")
+//    /**
+//     * <br> token错误
+//     */
+//    // todo 替换
+//    ,E_50100(50100,"token错误")
 
     ;
 
@@ -66,7 +66,7 @@ public enum SecurityErrorCodeEnum implements IErrorCode {
 
     @Override
     public String toString() {
-        return "userErrorCode-errorCode:"+getErrorCode()+";errorMessage:"+getErrorMessage();
+        return "SECURITY_ERROR:errorCode:"+getErrorCode()+";errorMessage:"+getErrorMessage();
     }
 
 }

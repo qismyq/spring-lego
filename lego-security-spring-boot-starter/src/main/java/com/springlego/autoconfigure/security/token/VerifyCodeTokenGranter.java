@@ -46,7 +46,7 @@ public class VerifyCodeTokenGranter extends AbstractTokenGranter {
         }
         String code = requestParameters.get("code");
         if (StringUtils.isBlank(code)) {
-            throw new AccessDeniedException("get code is null ！");
+            throw new AccessDeniedException("get verify code is null ！");
         }
 
         // todo 缺少验证码验证功能
