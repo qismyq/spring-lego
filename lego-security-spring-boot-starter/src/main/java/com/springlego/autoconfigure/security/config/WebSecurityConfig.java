@@ -79,10 +79,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements
     @ConditionalOnBean(LegoUserDetailsService.class)
     public AuthenticationProvider legoAuthenticationProvider() {
         LegoAuthenticationProvider legoAuthenticationProvider= new LegoAuthenticationProvider();
-        // 获取多个userDetailsService
+        // 获取多个userDetailsService，包含用户自己拓展的
         Map<String, LegoUserDetailsService> ludsBeans = applicationContext.getBeansOfType(LegoUserDetailsService.class);
         List<LegoUserDetailsService> userDetailsServices = new ArrayList<>();
-        // todo 去掉默认提供的uds
         ludsBeans.forEach((beanName,bean)->{
             userDetailsServices.add(bean);
         });
