@@ -1,5 +1,6 @@
 package com.springlego.autoconfigure.security.config;
 
+import com.springlego.autoconfigure.security.filter.ValidateCodeDefaultFilter;
 import com.springlego.autoconfigure.security.filter.ValidateCodeFilter;
 import com.springlego.autoconfigure.security.handler.UserAuthenticationFailureHandler;
 import com.springlego.autoconfigure.security.provider.LegoAuthenticationProvider;
@@ -33,7 +34,7 @@ import java.util.Map;
 @AllArgsConstructor
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements ApplicationContextAware */{
-    private final ValidateCodeFilter validateCodeFilter;
+    private final ValidateCodeDefaultFilter validateCodeFilter;
     private final PasswordEncoder passwordEncoder;
     private final UserAuthenticationFailureHandler userAuthenticationFailureHandler;
 
@@ -57,8 +58,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        // 增加验证码验证filter
+        Map<String, ValidateCodeFilter> ValidateCodeFilterType = applicationContext.getBeansOfType(ValidateCodeFilter.class);
+        if (ValidateCodeFilterType.size() != 0) {
+            ValidateCodeFilterType.forEach((key, value) -> http.addFilterBefore(value,UsernamePasswordAuthenticationFilter.class));
+        }
+
         http
-            .addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
             .formLogin()
             .loginPage("/login")
             .loginProcessingUrl("/login")
@@ -74,6 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers(HttpMethod.OPTIONS);
     }
+
 
     @Bean(name="legoAuthenticationProvider")
     @ConditionalOnBean(LegoUserDetailsService.class)

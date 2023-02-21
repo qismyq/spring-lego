@@ -1,9 +1,6 @@
 package com.springlego.autoconfigure.security.filter;
 
 import com.springlego.autoconfigure.security.handler.UserAuthenticationFailureHandler;
-import lombok.AllArgsConstructor;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -13,53 +10,57 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 验证码过滤器
- *
- * @author michael wong
+ * @author by H2018452
+ * @Classname ValidateCodeFilter1
+ * @Description 验证码filter 抽象类
+ * @Date 2023/2/17 下午 05:08
  */
-@AllArgsConstructor
-@Component
-public class ValidateCodeFilter extends OncePerRequestFilter {
-    private final static String OAUTH_TOKEN_URL = "/oauth/token";
-    private final static String FRONT = "front";
-    private final static String FRONT_HEADER = "client";
-//    private CaptchaService captchaService;
+public abstract class ValidateCodeFilter extends OncePerRequestFilter {
+    private String range ;
+    private String grantType;
     private UserAuthenticationFailureHandler authenticationFailureHandler;
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
-        if (FRONT.equals(request.getHeader(FRONT_HEADER))) {
-            filterChain.doFilter(request, response);
-        }else {
-            if(request.getServletPath().equals(OAUTH_TOKEN_URL)
-                    && request.getMethod().equalsIgnoreCase("POST")
-                    && "password".equalsIgnoreCase(request.getParameter("grant_type"))) {
-                try {
-                    //校验验证码
-                    validate(request);
-                }catch (AuthenticationException e) {
-                    //失败处理器
-                    authenticationFailureHandler.onAuthenticationFailure(request, response, e);
-                    return;
-                }
-            }
+    public String getGrantType() {
+        return grantType;
+    }
 
+    public void setGrantType(String grantType) {
+        this.grantType = grantType;
+    }
+
+    public String getRange() {
+        return range;
+    }
+
+    public void setRange(String range){
+        this.range = range;
+    };
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        if (support(request)) {
+            doFilterByRange(request,response,filterChain);
+        }else {
             filterChain.doFilter(request, response);
         }
-
+//        //失败处理器
+//        LegoAuthenticationException e = new LegoAuthenticationException("this code range type can not support this ValidateCodeFilter");
+//        authenticationFailureHandler.onAuthenticationFailure(request, response, e);
+//        return;
     }
 
-    private void validate(HttpServletRequest request) {
-        String uuid = request.getParameter("uuid");
-        String captcha = request.getParameter("captcha");
+    /**
+     * 根据支持的range范围进行验证
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected abstract void doFilterByRange(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)throws ServletException, IOException;
 
-        // todo 验证码验证实现
-
-//        boolean flag = captchaService.validate(uuid, captcha);
-//
-//        if(!flag) {
-//            throw new RenAuthenticationException(MessageUtils.getMessage(ErrorCode.CAPTCHA_ERROR));
-//        }
-    }
+    /**
+     * 是否支持相关的range
+     */
+    public abstract boolean support(HttpServletRequest request);
 }
