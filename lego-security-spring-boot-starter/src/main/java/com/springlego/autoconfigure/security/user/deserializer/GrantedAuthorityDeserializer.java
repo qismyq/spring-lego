@@ -18,7 +18,6 @@ import java.util.Set;
  *
  * @author michael wong
  */
-// todo 反序列化必要性
 public class GrantedAuthorityDeserializer extends JsonDeserializer<Collection<? extends GrantedAuthority>> {
 
     @Override

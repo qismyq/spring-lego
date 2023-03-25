@@ -13,5 +13,9 @@ import com.springlego.autoconfigure.security.user.entity.vo.UserAccountVO;
  */
 public interface UserAccountService extends IService<UserAccount> {
 
+    /**
+     * @param username 账户
+     * @return
+     */
     UserAccountVO getByUsername(String username);
 }
