@@ -62,3 +62,58 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 INSERT IGNORE INTO u_user_account (id, account, name, password, salt, avatar, sex, email, state, mobile, front_user_id, create_by, create_time, update_by, update_time, del) VALUES ('1', 'admin', 'wxy', '$2a$10$012Kx2ba5jzqr9gLlG4MX.bnQJTD9UWqF57XDo2N3.fPtLne02u/m', '1', null, false, null, true, null, null, null, null, null, null, false);
 
+
+
+-- ----------------------------
+-- Table structure for sys_role_user
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role_user`;
+CREATE TABLE `sys_role_user`  (
+                                  `id` bigint(20) NOT NULL COMMENT 'id',
+                                  `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
+                                  `user_id` bigint(20) DEFAULT NULL COMMENT '用户ID',
+                                  `creator` bigint(20) DEFAULT NULL COMMENT '创建者',
+                                  `create_date` datetime(0) DEFAULT NULL COMMENT '创建时间',
+                                  PRIMARY KEY (`id`) USING BTREE,
+                                  INDEX `idx_role_id`(`role_id`) USING BTREE,
+                                  INDEX `idx_user_id`(`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色用户关系' ROW_FORMAT = Dynamic;
+
+
+-- ----------------------------
+-- Table structure for sys_role_menu
+-- ----------------------------
+CREATE TABLE `sys_role_menu`  (
+                                  `id` bigint(20) NOT NULL COMMENT 'id',
+                                  `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
+                                  `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单ID',
+                                  `creator` bigint(20) DEFAULT NULL COMMENT '创建者',
+                                  `create_date` datetime(0) DEFAULT NULL COMMENT '创建时间',
+                                  PRIMARY KEY (`id`) USING BTREE,
+                                  INDEX `idx_role_id`(`role_id`) USING BTREE,
+                                  INDEX `idx_menu_id`(`menu_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色菜单关系' ROW_FORMAT = Dynamic;
+
+
+-- ----------------------------
+-- Table structure for sys_menu
+-- ----------------------------
+CREATE TABLE `sys_menu`  (
+                             `id` bigint(20) NOT NULL COMMENT 'id',
+                             `pid` bigint(20) DEFAULT NULL COMMENT '上级ID，一级菜单为0',
+                             `url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '菜单URL',
+                             `type` tinyint(3) UNSIGNED DEFAULT NULL COMMENT '类型   0：菜单   1：按钮',
+                             `open_style` tinyint(3) UNSIGNED DEFAULT NULL COMMENT '打开方式   0：内部   1：外部',
+                             `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '菜单图标',
+                             `permissions` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '权限标识，如：sys:menu:save',
+                             `sort` int(11) DEFAULT NULL COMMENT '排序',
+                             `del_flag` tinyint(4) UNSIGNED DEFAULT NULL COMMENT '删除标识  0：未删除    1：删除',
+                             `creator` bigint(20) DEFAULT NULL COMMENT '创建者',
+                             `create_date` datetime(0) DEFAULT NULL COMMENT '创建时间',
+                             `updater` bigint(20) DEFAULT NULL COMMENT '更新者',
+                             `update_date` datetime(0) DEFAULT NULL COMMENT '更新时间',
+                             PRIMARY KEY (`id`) USING BTREE,
+                             INDEX `idx_pid`(`pid`) USING BTREE,
+                             INDEX `idx_del_flag`(`del_flag`) USING BTREE,
+                             INDEX `idx_create_date`(`create_date`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单管理' ROW_FORMAT = Dynamic;

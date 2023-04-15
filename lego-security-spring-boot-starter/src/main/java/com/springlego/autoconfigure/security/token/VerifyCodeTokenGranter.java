@@ -49,9 +49,6 @@ public class VerifyCodeTokenGranter extends AbstractTokenGranter {
             throw new AccessDeniedException("get verify code is null ！");
         }
 
-        // todo 缺少验证码验证功能
-
-
         UserDetails userDetails = null;
         LegoUserDetailsService userDetailsServiceSupport = null;
 

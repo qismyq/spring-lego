@@ -1,6 +1,5 @@
 package com.springlego.autoconfigure.security.config;
 
-import com.springlego.autoconfigure.security.filter.ValidateCodeDefaultFilter;
 import com.springlego.autoconfigure.security.filter.ValidateCodeFilter;
 import com.springlego.autoconfigure.security.handler.UserAuthenticationFailureHandler;
 import com.springlego.autoconfigure.security.provider.LegoAuthenticationProvider;
@@ -34,7 +33,6 @@ import java.util.Map;
 @AllArgsConstructor
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements ApplicationContextAware */{
-    private final ValidateCodeDefaultFilter validateCodeFilter;
     private final PasswordEncoder passwordEncoder;
     private final UserAuthenticationFailureHandler userAuthenticationFailureHandler;
 

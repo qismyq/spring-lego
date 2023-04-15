@@ -46,5 +46,6 @@ public class UserAccount extends Model<UserAccount> {
     private Integer state;
 
 
+    @TableLogic
     private int del;
 }
