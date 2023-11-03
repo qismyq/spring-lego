@@ -63,7 +63,7 @@ public class LoginController {
 //        }catch (Exception e) {
 //            log.error(passwordToken.getPrincipal()+"::认证异常::"+e.getMessage(),e);
 //            // 返回response告诉客户端认证失败
-//            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(FrameErrorCodeEnum.E_50000);
+//            ReturnDatas errorReturnDatas = ReturnDatas.getErrorReturnDatas(FrameErrorCodeEnum.E_UNKNOWN_ERROR);
 //            RequestResponseUtil.responseWrite(JSON.toJSONString(errorReturnDatas),response);
 //        }
         if (authUser != null) {

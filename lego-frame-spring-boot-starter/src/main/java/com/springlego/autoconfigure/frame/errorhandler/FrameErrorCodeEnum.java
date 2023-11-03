@@ -42,7 +42,12 @@ public enum FrameErrorCodeEnum implements IErrorCode{
     /**
      * @Description 系统繁忙，请稍后再试
      */
-    ,E_50000(50000,"系统繁忙，请稍后再试")
+    ,E_UNKNOWN_ERROR(50000,"系统繁忙，请稍后再试")
+
+    /**
+     * @Description 配置文件配置项缺失
+     */
+    ,E_CONFIG_ERROR(50001,"配置文件配置项缺失")
 
     ;
 
