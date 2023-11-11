@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.0.RELEASE</version>
+        <groupId>org.springlego</groupId>
+        <artifactId>spring-lego-starter-parent</artifactId>
+        <version>1.1-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -20,43 +20,43 @@
     <description>Base frame for company`s service</description>
 
 
-    <!-- 版权许可 -->
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <!-- 代码库 -->
-    <scm>
-        <tag>master</tag>
-        <url>https://github.com/qismyq/spring-lego.git</url>
-        <connection>scm:git:git@github.com:qismyq/spring-lego.git</connection>
-        <developerConnection>scm:git:git@github.com:qismyq/spring-lego.git</developerConnection>
-    </scm>
-    <!-- 开发者信息 -->
-    <developers>
-        <developer>
-            <name>coder_michael</name>
-            <email>michael_wang90@163.com</email>
-            <roles>
-                <role>owner</role>
-            </roles>
-            <timezone>+8</timezone>
-        </developer>
-    </developers>
-    <!-- 定义snapshots库和releases库的nexus地址 -->
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
+<!--    &lt;!&ndash; 版权许可 &ndash;&gt;-->
+<!--    <licenses>-->
+<!--        <license>-->
+<!--            <name>The Apache Software License, Version 2.0</name>-->
+<!--            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>-->
+<!--            <distribution>repo</distribution>-->
+<!--        </license>-->
+<!--    </licenses>-->
+<!--    &lt;!&ndash; 代码库 &ndash;&gt;-->
+<!--    <scm>-->
+<!--        <tag>master</tag>-->
+<!--        <url>https://github.com/qismyq/spring-lego.git</url>-->
+<!--        <connection>scm:git:git@github.com:qismyq/spring-lego.git</connection>-->
+<!--        <developerConnection>scm:git:git@github.com:qismyq/spring-lego.git</developerConnection>-->
+<!--    </scm>-->
+<!--    &lt;!&ndash; 开发者信息 &ndash;&gt;-->
+<!--    <developers>-->
+<!--        <developer>-->
+<!--            <name>coder_michael</name>-->
+<!--            <email>michael_wang90@163.com</email>-->
+<!--            <roles>-->
+<!--                <role>owner</role>-->
+<!--            </roles>-->
+<!--            <timezone>+8</timezone>-->
+<!--        </developer>-->
+<!--    </developers>-->
+<!--    &lt;!&ndash; 定义snapshots库和releases库的nexus地址 &ndash;&gt;-->
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>sonatype-nexus</id>-->
+<!--            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
+<!--        </snapshotRepository>-->
+<!--        <repository>-->
+<!--            <id>sonatype-nexus</id>-->
+<!--            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
 
 
     <properties>
@@ -127,11 +127,6 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.velocity</groupId>
@@ -263,136 +258,136 @@
         <!--</dependency>-->
     </dependencies>
 
-    <build>
-        <!-- 添加资源 -->
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <!-- src/main/resources下的指定资源放行 -->
-                <includes>
-                    <!--<include>**/*.properties</include>-->
-                    <include>**/*.yml</include>
-                    <include>**/*.xml</include>
-                    <include>**/*.sql</include>
-                    <include>**/spring.factories</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
+<!--    <build>-->
+<!--        &lt;!&ndash; 添加资源 &ndash;&gt;-->
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                &lt;!&ndash; src/main/resources下的指定资源放行 &ndash;&gt;-->
+<!--                <includes>-->
+<!--                    &lt;!&ndash;<include>**/*.properties</include>&ndash;&gt;-->
+<!--                    <include>**/*.yml</include>-->
+<!--                    <include>**/*.xml</include>-->
+<!--                    <include>**/*.sql</include>-->
+<!--                    <include>**/spring.factories</include>-->
+<!--                </includes>-->
+<!--                <filtering>false</filtering>-->
+<!--            </resource>-->
+<!--        </resources>-->
 
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                </plugin>
-
-                <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                <fork>true</fork>
-                </configuration>
-                </plugin>
-
-                <!--deploy插件-->
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                    <executions>
-                        <execution>
-                            <id>default-deploy</id>
-                            <phase>deploy</phase>
-                            <goals>
-                                <goal>deploy</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <!--sonatype的staging插件-->
-                <!--<plugin>-->
-                    <!--<groupId>org.sonatype.plugins</groupId>-->
-                    <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
-                    <!--<version>1.6.7</version>-->
-                    <!--<extensions>true</extensions>-->
-                    <!--<configuration>-->
-                        <!--&lt;!&ndash;<serverId>sonatype-nexus-snapshots</serverId>&ndash;&gt;-->
-                        <!--<serverId>sonatype-nexus-staging</serverId>-->
-                        <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
-                        <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-                    <!--</configuration>-->
-                <!--</plugin>-->
-
-                <!--SCM插件-->
+<!--        <pluginManagement>-->
+<!--            <plugins>-->
 <!--                <plugin>-->
 <!--                    <groupId>org.apache.maven.plugins</groupId>-->
-<!--                    <artifactId>maven-scm-plugin</artifactId>-->
-<!--                    <version>1.8.1</version>-->
+<!--                    <artifactId>maven-compiler-plugin</artifactId>-->
 <!--                </plugin>-->
 
-            </plugins>
-        </pluginManagement>
+<!--                <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                <fork>true</fork>-->
+<!--                </configuration>-->
+<!--                </plugin>-->
 
-    </build>
+<!--                &lt;!&ndash;deploy插件&ndash;&gt;-->
+<!--                <plugin>-->
+<!--                    <artifactId>maven-deploy-plugin</artifactId>-->
+<!--                    <version>2.8.2</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <id>default-deploy</id>-->
+<!--                            <phase>deploy</phase>-->
+<!--                            <goals>-->
+<!--                                <goal>deploy</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
 
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.1</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
+<!--                &lt;!&ndash;sonatype的staging插件&ndash;&gt;-->
+<!--                &lt;!&ndash;<plugin>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<groupId>org.sonatype.plugins</groupId>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<artifactId>nexus-staging-maven-plugin</artifactId>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<version>1.6.7</version>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<extensions>true</extensions>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<configuration>&ndash;&gt;-->
+<!--                        &lt;!&ndash;&lt;!&ndash;<serverId>sonatype-nexus-snapshots</serverId>&ndash;&gt;&ndash;&gt;-->
+<!--                        &lt;!&ndash;<serverId>sonatype-nexus-staging</serverId>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<nexusUrl>https://oss.sonatype.org/</nexusUrl>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<autoReleaseAfterClose>true</autoReleaseAfterClose>&ndash;&gt;-->
+<!--                    &lt;!&ndash;</configuration>&ndash;&gt;-->
+<!--                &lt;!&ndash;</plugin>&ndash;&gt;-->
 
-                    <!-- Javadoc -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.0.1</version>
-                        <configuration>
-<!--                            <aggregate>true</aggregate>-->
-                            <charset>UTF-8</charset>
-                            <encoding>UTF-8</encoding>
-                            <docencoding>UTF-8</docencoding>
-<!--                            <additionalparam>-Xdoclint:none</additionalparam>-->
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- GPG -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+<!--                &lt;!&ndash;SCM插件&ndash;&gt;-->
+<!--&lt;!&ndash;                <plugin>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <groupId>org.apache.maven.plugins</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <artifactId>maven-scm-plugin</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <version>1.8.1</version>&ndash;&gt;-->
+<!--&lt;!&ndash;                </plugin>&ndash;&gt;-->
+
+<!--            </plugins>-->
+<!--        </pluginManagement>-->
+
+<!--    </build>-->
+
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>release</id>-->
+<!--            <build>-->
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-source-plugin</artifactId>-->
+<!--                        <version>3.0.1</version>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>attach-sources</id>-->
+<!--                                <phase>package</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>jar-no-fork</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+
+<!--                    &lt;!&ndash; Javadoc &ndash;&gt;-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-javadoc-plugin</artifactId>-->
+<!--                        <version>3.0.1</version>-->
+<!--                        <configuration>-->
+<!--&lt;!&ndash;                            <aggregate>true</aggregate>&ndash;&gt;-->
+<!--                            <charset>UTF-8</charset>-->
+<!--                            <encoding>UTF-8</encoding>-->
+<!--                            <docencoding>UTF-8</docencoding>-->
+<!--&lt;!&ndash;                            <additionalparam>-Xdoclint:none</additionalparam>&ndash;&gt;-->
+<!--                        </configuration>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <phase>package</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>jar</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                    &lt;!&ndash; GPG &ndash;&gt;-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-gpg-plugin</artifactId>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <phase>verify</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>sign</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
+<!--    </profiles>-->
 
 </project>
