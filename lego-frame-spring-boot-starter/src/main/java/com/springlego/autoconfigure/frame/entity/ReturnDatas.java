@@ -1,8 +1,8 @@
 package com.springlego.autoconfigure.frame.entity;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.springlego.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
-import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
+import com.springlego.autoconfigure.frame.errorhandler.FrameCodeEnum;
+import com.springlego.autoconfigure.frame.errorhandler.ICode;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -87,9 +87,9 @@ public class ReturnDatas<T> implements Serializable{
 	//  constructor -- end
 
 	public static ReturnDatas getSuccessReturnDatas() {
-		return new ReturnDatas(FrameErrorCodeEnum.E_0.getErrorCode(),FrameErrorCodeEnum.E_0.getErrorMessage());
+		return new ReturnDatas(FrameCodeEnum.ERROR.getCode(), FrameCodeEnum.ERROR.getMessage());
 	}
-	public static ReturnDatas getErrorReturnDatas(IErrorCode errorCode) {
-		return  new ReturnDatas(errorCode.getErrorCode(), errorCode.getErrorMessage());
+	public static ReturnDatas getErrorReturnDatas(ICode errorCode) {
+		return  new ReturnDatas(errorCode.getCode(), errorCode.getMessage());
 	}
 }

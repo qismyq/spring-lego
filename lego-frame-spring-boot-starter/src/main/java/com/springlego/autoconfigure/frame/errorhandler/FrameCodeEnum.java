@@ -12,27 +12,27 @@ package com.springlego.autoconfigure.frame.errorhandler;
  * @Email michael_wang90@163.com
  * @Date 2019/11/4 17:50
  **/
-public enum FrameErrorCodeEnum implements IErrorCode{
+public enum FrameCodeEnum implements ICode {
     /**
      * @Description 成功
      */
-    E_0(0,"成功")
+    SUCCESS(200,"成功")
 
     /**
      * @Description 失败
      */
-    ,E_1(1,"失败")
+    ,ERROR(500,"失败")
 
 
     /**
     * @Description 参数缺失
     */
-    ,E_40000(40000,"参数缺失")
+    ,E_PARAMETER_MISS(40000,"参数缺失")
 
     /**
      * @Description 操作频繁，请稍后再试
      */
-    ,E_40001(40001,"操作频繁，请稍后再试")
+    ,E_OPERATE_FREQUENT(40001,"操作频繁，请稍后再试")
 
     /**
      * @Description 操作类型不存在
@@ -51,36 +51,36 @@ public enum FrameErrorCodeEnum implements IErrorCode{
 
     ;
 
-    private Integer errorCode ;
-    private String errorMessage ;
+    private Integer code ;
+    private String message ;
 
 
     @Override
-    public Integer getErrorCode() {
-        return errorCode;
+    public Integer getCode() {
+        return code;
     }
 
-    public void setErrorCode(Integer errorCode) {
-        this.errorCode = errorCode;
+    public void setCode(Integer errorCode) {
+        this.code = errorCode;
     }
 
     @Override
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setMessage(String errorMessage) {
+        this.message = errorMessage;
     }
 
-    FrameErrorCodeEnum(Integer errorCode, String errorMessage) {
-        this.errorCode = errorCode;
-        this.errorMessage = errorMessage;
+    FrameCodeEnum(Integer errorCode, String errorMessage) {
+        this.code = errorCode;
+        this.message = errorMessage;
     }
 
     @Override
     public String toString() {
-        return "frameErrorCode-errorCode:"+getErrorCode()+";errorMessage:"+getErrorMessage();
+        return "frameErrorCode-errorCode:"+getCode()+";errorMessage:"+getMessage();
     }
 
 }

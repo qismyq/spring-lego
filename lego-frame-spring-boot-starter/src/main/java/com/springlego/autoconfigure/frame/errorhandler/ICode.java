@@ -6,9 +6,9 @@ package com.springlego.autoconfigure.frame.errorhandler;
  * @Email michael_wang90@163.com
  * @Date 2019/11/5 10:52
  **/
-public interface IErrorCode {
+public interface ICode {
 
-    public Integer getErrorCode();
+    public Integer getCode();
 
-    public String getErrorMessage();
+    public String getMessage();
 }
