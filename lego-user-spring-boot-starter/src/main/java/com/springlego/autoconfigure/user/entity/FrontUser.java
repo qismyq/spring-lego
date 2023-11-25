@@ -2,8 +2,8 @@ package com.springlego.autoconfigure.user.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -22,7 +22,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_front_user")
-@ApiModel(value="FrontUser对象", description="前端用户表")
+//@ApiModel(value="FrontUser对象", description="前端用户表")
 public class FrontUser extends Model<FrontUser> {
 
     private static final long serialVersionUID=1L;
@@ -30,37 +30,37 @@ public class FrontUser extends Model<FrontUser> {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "账号")
+//    @ApiModelProperty(value = "账号")
     private String account;
 
-    @ApiModelProperty(value = "微信登录的openid")
+//    @ApiModelProperty(value = "微信登录的openid")
     @TableField("wechatId")
     private String wechatId;
 
-    @ApiModelProperty(value = "微信登录的unionid")
+//    @ApiModelProperty(value = "微信登录的unionid")
     @TableField("unionId")
     private String unionId;
 
-    @ApiModelProperty(value = "支付宝id")
+//    @ApiModelProperty(value = "支付宝id")
     @TableField("alipayId")
     private String alipayId;
 
-    @ApiModelProperty(value = "登录密码")
+//    @ApiModelProperty(value = "登录密码")
     private String password;
 
-    @ApiModelProperty(value = "是否弃用 0否1是")
+//    @ApiModelProperty(value = "是否弃用 0否1是")
     @TableLogic
     private Integer del;
 
-    @ApiModelProperty(value = "前端角色")
+//    @ApiModelProperty(value = "前端角色")
     private Integer role;
 
-    @ApiModelProperty(value = "jwttoken")
+//    @ApiModelProperty(value = "jwttoken")
     @TableField(exist = false)
     private String token;
 
     @Override
-    protected Serializable pkVal() {
+    public Serializable pkVal() {
         return this.id;
     }
 

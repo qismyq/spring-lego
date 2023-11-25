@@ -60,8 +60,8 @@ public enum FrameCodeEnum implements ICode {
         return code;
     }
 
-    public void setCode(Integer errorCode) {
-        this.code = errorCode;
+    public void setCode(Integer code) {
+        this.code = code;
     }
 
     @Override
@@ -69,13 +69,13 @@ public enum FrameCodeEnum implements ICode {
         return message;
     }
 
-    public void setMessage(String errorMessage) {
-        this.message = errorMessage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    FrameCodeEnum(Integer errorCode, String errorMessage) {
-        this.code = errorCode;
-        this.message = errorMessage;
+    FrameCodeEnum(Integer code, String message) {
+        this.code = code;
+        this.message = message;
     }
 
     @Override

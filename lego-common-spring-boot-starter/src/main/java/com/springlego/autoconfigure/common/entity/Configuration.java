@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,32 +24,32 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("dic_configuration")
-@ApiModel(value="Configuration对象", description="配置表")
+//@ApiModel(value="Configuration对象", description="配置表")
 public class Configuration extends Model<Configuration> {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "系统表的KEY")
+//    @ApiModelProperty(value = "系统表的KEY")
     @TableId(value = "code", type = IdType.AUTO)
     private String code;
 
-    @ApiModelProperty(value = "系统表的值")
+//    @ApiModelProperty(value = "系统表的值")
     private String value;
 
-    @ApiModelProperty(value = "描述")
+//    @ApiModelProperty(value = "描述")
     private String descr;
 
-    @ApiModelProperty(value = "是否使用(Y是N否)")
+//    @ApiModelProperty(value = "是否使用(Y是N否)")
     private String chooseFlag;
 
     private Integer id;
 
-    @ApiModelProperty(value = "类型：1图片2文本3富文本编辑框4多图")
+//    @ApiModelProperty(value = "类型：1图片2文本3富文本编辑框4多图")
     private Integer type;
 
 
     @Override
-    protected Serializable pkVal() {
+    public Serializable pkVal() {
         return this.code;
     }
 

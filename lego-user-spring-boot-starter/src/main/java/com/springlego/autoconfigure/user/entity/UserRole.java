@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,24 +25,24 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_user_role")
-@ApiModel(value="UserRole对象", description="用户角色中间表")
+//@ApiModel(value="UserRole对象", description="用户角色中间表")
 public class UserRole extends Model<UserRole> {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "编号")
+//    @ApiModelProperty(value = "编号")
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "用户编号")
+//    @ApiModelProperty(value = "用户编号")
     private Long userId;
 
-    @ApiModelProperty(value = "角色编号")
+//    @ApiModelProperty(value = "角色编号")
     private Integer roleId;
 
 
     @Override
-    protected Serializable pkVal() {
+    public Serializable pkVal() {
         return this.id;
     }
 

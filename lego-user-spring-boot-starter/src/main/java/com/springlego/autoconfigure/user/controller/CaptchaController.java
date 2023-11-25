@@ -5,7 +5,7 @@ import cn.hutool.captcha.generator.CodeGenerator;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ReflectUtil;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
-import com.springlego.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
+import com.springlego.autoconfigure.frame.errorhandler.FrameCodeEnum;
 import com.springlego.autoconfigure.frame.util.SpringContextHolder;
 import com.springlego.autoconfigure.user.config.properties.CaptchaProperties;
 import com.springlego.autoconfigure.user.enums.CaptchaType;
@@ -46,7 +46,7 @@ public class CaptchaController {
         // 生成验证码
         CaptchaType captchaType = captchaProperties.getType();
         if (captchaType == null) {
-            return ReturnDatas.getErrorReturnDatas(FrameErrorCodeEnum.E_CONFIG_ERROR);
+            return ReturnDatas.getErrorReturnDatas(FrameCodeEnum.E_CONFIG_ERROR);
         }
         boolean isMath = CaptchaType.MATH == captchaType;
         Integer length = isMath ? captchaProperties.getNumberLength() : captchaProperties.getCharLength();

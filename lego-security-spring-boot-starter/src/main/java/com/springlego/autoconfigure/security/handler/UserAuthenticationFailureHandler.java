@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.security.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
-import com.springlego.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
+import com.springlego.autoconfigure.frame.errorhandler.FrameCodeEnum;
 import lombok.SneakyThrows;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
@@ -23,6 +23,6 @@ public class UserAuthenticationFailureHandler extends SimpleUrlAuthenticationFai
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e)  {
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(JSON.toJSONString(new ReturnDatas(FrameErrorCodeEnum.E_1.getErrorCode(),e.getMessage())));
+        response.getWriter().write(JSON.toJSONString(new ReturnDatas(FrameCodeEnum.SUCCESS.getErrorCode(),e.getMessage())));
     }
 }

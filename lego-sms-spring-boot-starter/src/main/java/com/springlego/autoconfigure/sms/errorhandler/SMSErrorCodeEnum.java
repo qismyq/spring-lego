@@ -1,6 +1,6 @@
 package com.springlego.autoconfigure.sms.errorhandler;
 
-import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
+import com.springlego.autoconfigure.frame.errorhandler.ICode;
 
 /**
  * @Description 短信模块错误码
@@ -14,7 +14,7 @@ import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
  * @Email michael_wang90@163.com
  * @Date 2019/11/4 17:50
  **/
-public enum SMSErrorCodeEnum implements IErrorCode {
+public enum SMSErrorCodeEnum implements ICode {
 
     /**
      * <br> 用户不存在

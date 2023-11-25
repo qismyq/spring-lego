@@ -1,6 +1,6 @@
 package com.springlego.autoconfigure.security.errorhandler;
 
-import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
+import com.springlego.autoconfigure.frame.errorhandler.ICode;
 
 /**
  * @Description 用户模块错误码
@@ -14,7 +14,7 @@ import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
  * @Email michael_wang90@163.com
  * @Date 2019/11/4 17:50
  **/
-public enum SecurityErrorCodeEnum implements IErrorCode {
+public enum SecurityErrorCodeEnum implements ICode {
 
     /**
      * <br> token错误

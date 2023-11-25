@@ -2,8 +2,8 @@ package com.springlego.autoconfigure.user.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -23,55 +23,55 @@ import java.util.Date;
 @Accessors(chain = true)
 @ToString
 @TableName("u_user_account")
-@ApiModel(value="User对象", description="后台用户")
+//@ApiModel(value="User对象", description="后台用户")
 public class UserAccount extends Model<UserAccount> {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "编号")
+//    @ApiModelProperty(value = "编号")
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "账号")
+//    @ApiModelProperty(value = "账号")
     private String account;
 
-    @ApiModelProperty(value = "姓名")
+//    @ApiModelProperty(value = "姓名")
     @TableField(condition = SqlCondition.LIKE_RIGHT)
     private String name;
 
-    @ApiModelProperty(value = "密码")
+//    @ApiModelProperty(value = "密码")
     private String password;
 
-    @ApiModelProperty(value = "密码盐")
+//    @ApiModelProperty(value = "密码盐")
     private String salt;
 
-    @ApiModelProperty(value = "头像")
+//    @ApiModelProperty(value = "头像")
     private String avatar;
 
-    @ApiModelProperty(value = "性别")
+//    @ApiModelProperty(value = "性别")
     private Integer sex;
 
-    @ApiModelProperty(value = "手机号码")
+//    @ApiModelProperty(value = "手机号码")
     private String mobile;
 
-    @ApiModelProperty(value = "邮箱")
+//    @ApiModelProperty(value = "邮箱")
     private String email;
 
-    @ApiModelProperty(value = "是否有效,是/否")
+//    @ApiModelProperty(value = "是否有效,是/否")
     private String state;
 
-    @ApiModelProperty(value = "前端用户表id")
+//    @ApiModelProperty(value = "前端用户表id")
     private Integer frontUserId;
 
-    @ApiModelProperty(value = "创建时间")
+//    @ApiModelProperty(value = "创建时间")
     private Date createTime;
-    @ApiModelProperty(value = "创建人")
+//    @ApiModelProperty(value = "创建人")
     private Date createBy;
-    @ApiModelProperty(value = "更新时间")
+//    @ApiModelProperty(value = "更新时间")
     private Date updateTime;
-    @ApiModelProperty(value = "更新人")
+//    @ApiModelProperty(value = "更新人")
     private Date updateBy;
-    @ApiModelProperty(value = "删除状态（0否1是）")
+//    @ApiModelProperty(value = "删除状态（0否1是）")
     private Integer del;
 
     @TableField(exist=false)
@@ -79,7 +79,7 @@ public class UserAccount extends Model<UserAccount> {
 
 
     @Override
-    protected Serializable pkVal() {
+    public Serializable pkVal() {
         return this.id;
     }
 

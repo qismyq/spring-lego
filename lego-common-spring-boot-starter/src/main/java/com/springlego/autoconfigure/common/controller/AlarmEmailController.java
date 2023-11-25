@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.common.controller;
 
 
 import com.springlego.autoconfigure.common.service.IAlarmEmailService;
-import io.swagger.annotations.Api;
+//import io.swagger.annotations.Api;
 import com.springlego.autoconfigure.common.entity.AlarmEmail;
 import com.springlego.autoconfigure.common.service.IMailService;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
@@ -21,7 +21,7 @@ import java.util.List;
  * @author michael wong
  * @since 2019-10-30
  */
-@Api(description = "警告邮箱")
+//@Api(description = "警告邮箱")
 @RestController
 @RequestMapping("/alarmEmail")
 public class AlarmEmailController {

@@ -9,10 +9,10 @@ import com.springlego.autoconfigure.frame.util.PageBuilder;
 import com.springlego.autoconfigure.user.entity.UserAccount;
 import com.springlego.autoconfigure.user.service.IUserAccountService;
 import com.springlego.autoconfigure.user.util.PasswordUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiResponse;
+//import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author michael wong
  * @since 2019-10-29
  */
-@Api(description = "用户模块")
+//@Api(description = "用户模块")
 @Slf4j
 @RestController
 @RequestMapping("/user")
@@ -38,10 +38,10 @@ public class UserAccountController {
     @Resource(name = "userAccountServiceImpl")
     private IUserAccountService userService ;
 
-    @ApiOperation(value = "获取登录用户")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "成功"),
-            @ApiResponse(code = 1001, message = "失败"),
-            @ApiResponse(code = 1002, response = UserAccount.class,message = "缺少参数") })
+//    @ApiOperation(value = "获取登录用户")
+//    @ApiResponses(value = { @ApiResponse(code = 200, message = "成功"),
+//            @ApiResponse(code = 1001, message = "失败"),
+//            @ApiResponse(code = 1002, response = UserAccount.class,message = "缺少参数") })
     @RequestMapping(value = "/getUser/json" , method = RequestMethod.GET)
     public ReturnDatas getUser(Long id)throws Exception {
         ReturnDatas returnDatas = ReturnDatas.getSuccessReturnDatas();
