@@ -1,8 +1,8 @@
 package com.springlego.autoconfigure.frame.config.web;
 
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 //import springfox.documentation.builders.ApiInfoBuilder;
 //import springfox.documentation.builders.PathSelectors;
 //import springfox.documentation.builders.RequestHandlerSelectors;
@@ -10,26 +10,26 @@ package com.springlego.autoconfigure.frame.config.web;
 //import springfox.documentation.spi.DocumentationType;
 //import springfox.documentation.spring.web.plugins.Docket;
 //import springfox.documentation.swagger2.annotations.EnableSwagger2;
-//
-//@Configuration
+
+@Configuration
 //@EnableSwagger2
-//public class SwaggerConfig {
-//	@Value("${swagger.enable}")
-//	private Boolean enable;
-//	@Value("${swagger.base.package}")
-//	private String basePackage;
-//	@Value("${swagger.path.selector.regex}")
-//	private String regexs;
-//
-//	@Value("${swagger.api.info.title}")
-//	private String title;
-//	@Value("${swagger.api.info.description}")
-//	private String description;
-//	@Value("${swagger.api.info.version}")
-//	private String version;
-//	@Value("${swagger.api.info.url}")
-//	private String url;
-//
+public class SwaggerConfig {
+	@Value("${swagger.enable}")
+	private Boolean enable;
+	@Value("${swagger.base.package}")
+	private String basePackage;
+	@Value("${swagger.path.selector.regex}")
+	private String regexs;
+
+	@Value("${swagger.api.info.title}")
+	private String title;
+	@Value("${swagger.api.info.description}")
+	private String description;
+	@Value("${swagger.api.info.version}")
+	private String version;
+	@Value("${swagger.api.info.url}")
+	private String url;
+
 //	@Bean
 //	public Docket createRestApi() {
 ////		ApiSelectorBuilder selectorBuilder = new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select().apis(RequestHandlerSelectors.basePackage(basePackage));
@@ -50,7 +50,7 @@ package com.springlego.autoconfigure.frame.config.web;
 //				.paths(PathSelectors.any())
 //				.build();
 //	}
-//
+
 //	private ApiInfo apiInfo() {
 //		return new ApiInfoBuilder()
 //				.title(title)
@@ -59,4 +59,4 @@ package com.springlego.autoconfigure.frame.config.web;
 //				.version(version)
 //				.build();
 //	}
-//}
+}

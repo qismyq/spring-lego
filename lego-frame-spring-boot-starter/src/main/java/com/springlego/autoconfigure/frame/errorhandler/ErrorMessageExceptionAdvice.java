@@ -33,7 +33,7 @@ public class ErrorMessageExceptionAdvice {
     @ExceptionHandler(value = Exception.class)
     public ReturnDatas defaultException(HttpServletRequest request, Exception e) {
         logger.error(e.getMessage(), e);
-        ReturnDatas returnDatas = ReturnDatas.getErrorReturnDatas(FrameCodeEnum.E_UNKNOWN_ERROR);
+        ReturnDatas returnDatas = ReturnDatas.getErrorReturnDatas(FrameCodeEnum.UNKNOWN_ERROR);
         return returnDatas;
     }
 

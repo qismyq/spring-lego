@@ -27,12 +27,12 @@ public enum FrameCodeEnum implements ICode {
     /**
     * @Description 参数缺失
     */
-    ,E_PARAMETER_MISS(40000,"参数缺失")
+    ,PARAMETER_MISS(40000,"参数缺失")
 
     /**
      * @Description 操作频繁，请稍后再试
      */
-    ,E_OPERATE_FREQUENT(40001,"操作频繁，请稍后再试")
+    ,OPERATE_FREQUENT(40001,"操作频繁，请稍后再试")
 
     /**
      * @Description 操作类型不存在
@@ -42,12 +42,12 @@ public enum FrameCodeEnum implements ICode {
     /**
      * @Description 系统繁忙，请稍后再试
      */
-    ,E_UNKNOWN_ERROR(50000,"系统繁忙，请稍后再试")
+    ,UNKNOWN_ERROR(50000,"系统繁忙，请稍后再试")
 
     /**
      * @Description 配置文件配置项缺失
      */
-    ,E_CONFIG_ERROR(50001,"配置文件配置项缺失")
+    ,CONFIG_ERROR(50001,"配置文件配置项缺失")
 
     ;
 

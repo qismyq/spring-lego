@@ -2,7 +2,7 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.springlego.autoconfigure.frame.config.CrosConfig,\
 com.springlego.autoconfigure.frame.config.DruidConfig,\
-#com.springlego.autoconfigure.frame.config.web.SwaggerConfig,\
+com.springlego.autoconfigure.frame.config.web.SwaggerConfig,\
 com.springlego.autoconfigure.frame.config.MessageConvertConfig,\
 com.springlego.autoconfigure.frame.config.MybatisPlusConfig,\
 com.springlego.autoconfigure.frame.config.RedisConfig,\

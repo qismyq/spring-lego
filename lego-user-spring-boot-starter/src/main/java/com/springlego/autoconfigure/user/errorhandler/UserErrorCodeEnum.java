@@ -19,12 +19,12 @@ public enum UserErrorCodeEnum implements ICode {
     /**
      * <br> 用户不存在
      */
-    E_USER_NOT_EXIST(40100,"用户不存在")
+    USER_NOT_EXIST(40100,"用户不存在")
 
     /**
      * <br> 密码错误
      */
-    ,E_PASSWORD_ERROR(40101,"密码错误")
+    ,PASSWORD_ERROR(40101,"密码错误")
 
     /**
      * <br> 多个用户账户

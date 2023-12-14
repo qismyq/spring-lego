@@ -42,7 +42,7 @@ public enum SecurityErrorCodeEnum implements ICode {
 
 
     @Override
-    public Integer getErrorCode() {
+    public Integer getCode() {
         return errorCode;
     }
 
@@ -51,7 +51,7 @@ public enum SecurityErrorCodeEnum implements ICode {
     }
 
     @Override
-    public String getErrorMessage() {
+    public String getMessage() {
         return errorMessage;
     }
 
@@ -66,7 +66,7 @@ public enum SecurityErrorCodeEnum implements ICode {
 
     @Override
     public String toString() {
-        return "SECURITY_ERROR:errorCode:"+getErrorCode()+";errorMessage:"+getErrorMessage();
+        return "SECURITY_ERROR:errorCode:"+getCode()+";errorMessage:"+getMessage();
     }
 
 }

@@ -23,6 +23,6 @@ public class UserAuthenticationFailureHandler extends SimpleUrlAuthenticationFai
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e)  {
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(JSON.toJSONString(new ReturnDatas(FrameCodeEnum.SUCCESS.getErrorCode(),e.getMessage())));
+        response.getWriter().write(JSON.toJSONString(new ReturnDatas(FrameCodeEnum.SUCCESS.getCode(),e.getMessage())));
     }
 }

@@ -20,8 +20,8 @@ public class CaptchaConfig {
 
     private static final int WIDTH = 150;
     private static final int HEIGHT = 40;
-    private static final Color BACKGROUND = new Color(44,49,46);
-    private static final Font FONT = new Font("Arial", Font.BOLD, 48);
+    private static final Color BACKGROUND = new Color(248,248,248);
+    private static final Font FONT = new Font("Arial", Font.BOLD, 40);
 
     /**
      * 圆圈干扰验证码

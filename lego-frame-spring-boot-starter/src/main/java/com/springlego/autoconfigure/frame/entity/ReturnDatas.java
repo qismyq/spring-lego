@@ -29,23 +29,15 @@ public class ReturnDatas<T> implements Serializable{
 	/**
 	 * http请求状态码
 	 */
-	private Integer statusCode=200;
+	private Integer code=200;
 	/**
 	 * http请求状态
 	 */
 	private String status = ReturnDatas.SUCCESS;
 	/**
-	 * http请求结果信息
+	 * 处理结果提示信息
 	 */
-	private String message = "成功";
-	/**
-	 * 处理结果code
-	 */
-	private Integer errorCode ;
-	/**
-	 * 处理结果错误提示信息
-	 */
-	private String errorMessage ;
+	private String message ;
 	/**
 	 * 处理返回结果
 	 */
@@ -69,27 +61,27 @@ public class ReturnDatas<T> implements Serializable{
 	public ReturnDatas() {
 	}
 	@Deprecated
-	public ReturnDatas(Integer errorCode) {
-		this.errorCode = errorCode;
+	public ReturnDatas(Integer code) {
+		this.code = code;
 	}
 	@Deprecated
-	public ReturnDatas(Integer errorCode, String errorMessage) {
-		this.errorCode = errorCode;
-		this.errorMessage = errorMessage;
+	public ReturnDatas(Integer code, String message) {
+		this.code = code;
+		this.message = message;
 	}
 	@Deprecated
-	public ReturnDatas(Integer errorCode, String errorMessage, T data) {
-		this.errorCode = errorCode;
-		this.message = errorMessage;
+	public ReturnDatas(Integer code, String message, T data) {
+		this.code = code;
+		this.message = message;
 		this.data = data;
 	}
 
 	//  constructor -- end
 
 	public static ReturnDatas getSuccessReturnDatas() {
-		return new ReturnDatas(FrameCodeEnum.ERROR.getCode(), FrameCodeEnum.ERROR.getMessage());
+		return new ReturnDatas(FrameCodeEnum.SUCCESS.getCode(), FrameCodeEnum.SUCCESS.getMessage());
 	}
-	public static ReturnDatas getErrorReturnDatas(ICode errorCode) {
-		return  new ReturnDatas(errorCode.getCode(), errorCode.getMessage());
+	public static ReturnDatas getErrorReturnDatas(ICode code) {
+		return  new ReturnDatas(code.getCode(), code.getMessage());
 	}
 }
