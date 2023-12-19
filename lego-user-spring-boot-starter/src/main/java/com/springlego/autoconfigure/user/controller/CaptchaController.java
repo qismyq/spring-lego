@@ -46,7 +46,7 @@ public class CaptchaController {
         // 生成验证码
         CaptchaType captchaType = captchaProperties.getType();
         if (captchaType == null) {
-            return ReturnDatas.getErrorReturnDatas(FrameCodeEnum.E_CONFIG_ERROR);
+            return ReturnDatas.getErrorReturnDatas(FrameCodeEnum.CONFIG_ERROR);
         }
         boolean isMath = CaptchaType.MATH == captchaType;
         Integer length = isMath ? captchaProperties.getNumberLength() : captchaProperties.getCharLength();

@@ -32,18 +32,12 @@
             <artifactId>lego-common-spring-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
-<!--        2022-01-20-->
-<!--        <dependency>-->
-<!--            <groupId>com.springlego</groupId>-->
-<!--            <artifactId>lego-shiro-spring-boot-starter</artifactId>-->
-<!--            <version>${shiro-starter.version}</version>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>com.springlego</groupId>-->
-<!--                    <artifactId>lego-user-spring-boot-starter</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
+        <!-- 2022-01-20-->
+        <dependency>
+            <groupId>com.springlego</groupId>
+            <artifactId>lego-security-spring-boot-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
 
         <dependency>

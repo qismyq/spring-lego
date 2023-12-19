@@ -21,6 +21,7 @@ public class UserAccountServiceImpl extends ServiceImpl<UserAccountMapper, UserA
 
     @Override
     public UserAccountVO getByUsername(String username) {
-        return userAccountMapper.getByAccount(username, 1,0);
+        String account = username;
+        return userAccountMapper.getByAccount(account, 1,0);
     }
 }

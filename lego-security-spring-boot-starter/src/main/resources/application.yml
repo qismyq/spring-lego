@@ -1,8 +1,10 @@
 server:
   port: 8081
 spring:
+  profiles:
+    active: company
   datasource:
-      url: jdbc:mysql://localhost:3306/spring_lego?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+      url: jdbc:mysql://127.0.0.1:3306/bootTest?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -41,12 +43,12 @@ spring:
         ## 通过connectProperties属性来打开mergeSql功能；慢SQL记录
         connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
       #执行sql文件  spring某个版本之后需要加上这句，否则不会自动执行sql文件
-      # initialization-mode: always
+      initialization-mode: always
       # schema.sql中一般存放的是建表语句
       # schema: classpath:schema.sql
 
   redis:
-      host: 127.0.0.1
+      host: 127.0.0.0
       port: 6379
   #    password:
       database: 15
@@ -75,9 +77,21 @@ spring:
 
   ############################mybatis相关配置-start###################################
 mybatis-plus:
-    config-location: classpath:mybatis/mybatis-config.xml   # 指定全局配置文件的路径
     mapper-locations: classpath*:mybatis/mapper/*.xml   # 指定mapper的扫描路径
-#    type-aliases-package: com.example.demo.entity
+    type-aliases-package: com.springlego.**.domain
+    configuration:
+      # 自动驼峰命名规则（camel case）映射
+      mapUnderscoreToCamelCase: true
+      # MyBatis 自动映射策略
+      # NONE：不启用 PARTIAL：只对非嵌套 resultMap 自动映射 FULL：对所有 resultMap 自动映射
+      autoMappingBehavior: PARTIAL
+      # MyBatis 自动映射时未知列或未知属性处理策
+      # NONE：不做处理 WARNING：打印相关警告 FAILING：抛出异常和详细信息
+      autoMappingUnknownColumnBehavior: NONE
+      # 更详细的日志输出 会有性能损耗 org.apache.ibatis.logging.stdout.StdOutImpl
+      # 关闭日志记录 (可单纯使用 p6spy 分析) org.apache.ibatis.logging.nologging.NoLoggingImpl
+      # 默认日志输出 org.apache.ibatis.logging.slf4j.Slf4jImpl
+      logImpl: org.apache.ibatis.logging.nologging.NoLoggingImpl
     global-config:
       db-config:
         logic-delete-value: 1 # 逻辑已删除值(默认为 1)
@@ -104,10 +118,3 @@ swagger:
         description: 这是一个利用swagger构建的api文档
         url:
         version: 1.0
-lego:
-  sms:
-    channel: sms-aliyun
-    accessKeyId: xx
-    accessKeySecret: xx
-    signName: xx
-

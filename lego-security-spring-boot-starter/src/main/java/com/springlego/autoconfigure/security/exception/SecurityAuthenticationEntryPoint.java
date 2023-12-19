@@ -22,6 +22,6 @@ public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoin
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().print(JSON.toJSONString(ReturnDatas.getErrorReturnDatas(SecurityErrorCodeEnum.E_TOKEN_ERROR)));
+        response.getWriter().print(JSON.toJSONString(ReturnDatas.getErrorReturnDatas(SecurityErrorCodeEnum.TOKEN_ERROR)));
     }
 }

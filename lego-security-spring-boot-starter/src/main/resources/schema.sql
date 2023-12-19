@@ -83,7 +83,7 @@ CREATE TABLE `sys_role_user`  (
 -- ----------------------------
 -- Table structure for sys_role_menu
 -- ----------------------------
-CREATE TABLE `sys_role_menu`  (
+CREATE TABLE IF NOT EXISTS `sys_role_menu`  (
                                   `id` bigint(20) NOT NULL COMMENT 'id',
                                   `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
                                   `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单ID',
@@ -98,7 +98,7 @@ CREATE TABLE `sys_role_menu`  (
 -- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
-CREATE TABLE `sys_menu`  (
+CREATE TABLE IF NOT EXISTS `sys_menu`  (
                              `id` bigint(20) NOT NULL COMMENT 'id',
                              `pid` bigint(20) DEFAULT NULL COMMENT '上级ID，一级菜单为0',
                              `url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '菜单URL',

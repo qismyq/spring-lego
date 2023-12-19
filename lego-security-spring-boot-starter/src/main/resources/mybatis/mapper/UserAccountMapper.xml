@@ -22,6 +22,6 @@
         SELECT
         <include refid="Base_Column_List"/>
         FROM u_user_account
-        WHERE account = #{account} AND state = #{state} AND del=#{del}
+        WHERE account = #{account} AND state = #{state} AND del = #{del}
     </select>
 </mapper>

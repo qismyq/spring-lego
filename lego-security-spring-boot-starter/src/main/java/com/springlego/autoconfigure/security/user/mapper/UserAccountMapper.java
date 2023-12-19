@@ -5,6 +5,7 @@ import com.springlego.autoconfigure.security.user.entity.model.UserAccount;
 import com.springlego.autoconfigure.security.user.entity.vo.UserAccountVO;
 import io.lettuce.core.dynamic.annotation.Param;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
 /**
  * @Classname UserAccountMapper
@@ -13,6 +14,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @author by H2018452
  */
 @Mapper
+//@Component("securityUserAccountMapper")
 public interface UserAccountMapper extends BaseMapper<UserAccount> {
 
     /**
@@ -22,5 +24,6 @@ public interface UserAccountMapper extends BaseMapper<UserAccount> {
      * @param del 隐式删除
      * @return
      */
-    UserAccountVO getByAccount(@Param("account") String account, @Param("state") Integer state,@Param("del") Integer del);
+    UserAccountVO getByAccount(@Param("account") String account, @Param("state") Integer state, @Param("del") Integer del);
+
 }

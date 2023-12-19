@@ -2,6 +2,7 @@ package com.springlego.autoconfigure.security.config;
 
 import com.springlego.autoconfigure.security.filter.ValidateCodeFilter;
 import com.springlego.autoconfigure.security.handler.UserAuthenticationFailureHandler;
+import com.springlego.autoconfigure.security.handler.UserAuthenticationSuccessHandler;
 import com.springlego.autoconfigure.security.provider.LegoAuthenticationProvider;
 import com.springlego.autoconfigure.security.user.service.LegoUserDetailsService;
 import lombok.AllArgsConstructor;
@@ -18,11 +19,16 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 /**
  * @Classname WebSecurityConfig
@@ -35,6 +41,8 @@ import java.util.Map;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements ApplicationContextAware */{
     private final PasswordEncoder passwordEncoder;
     private final UserAuthenticationFailureHandler userAuthenticationFailureHandler;
+    @Autowired
+    private UserAuthenticationSuccessHandler userAuthenticationSuccessHandler;
 
     @Autowired
     private  ApplicationContext applicationContext;
@@ -70,6 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements
             .authorizeRequests()
             .antMatchers("/oauth/authorize").authenticated()
             .anyRequest().permitAll()
+            .and().oauth2Login().loginPage("/oauth/token").successHandler(userAuthenticationSuccessHandler)
             .and().csrf().disable()
         ;
     }
@@ -96,4 +105,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements
         return legoAuthenticationProvider;
     }
 
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+
+        return httpSecurity.formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .and()
+                .authorizeRequests()
+                .antMatchers("/oauth/authorize").authenticated()
+                .anyRequest().permitAll()
+//                .and().oauth2Login().successHandler(userAuthenticationSuccessHandler)
+                .and().csrf().disable().build()
+        ;
+    }
 }

@@ -62,15 +62,24 @@ public class ReturnDatas<T> implements Serializable{
 	}
 	@Deprecated
 	public ReturnDatas(Integer code) {
+        if (!this.code.equals(code)){
+            this.status = ERROR;
+        }
 		this.code = code;
 	}
 	@Deprecated
 	public ReturnDatas(Integer code, String message) {
-		this.code = code;
+		if (!this.code.equals(code)){
+            this.status = ERROR;
+        }
+        this.code = code;
 		this.message = message;
 	}
 	@Deprecated
 	public ReturnDatas(Integer code, String message, T data) {
+        if (!this.code.equals(code)){
+            this.status = ERROR;
+        }
 		this.code = code;
 		this.message = message;
 		this.data = data;

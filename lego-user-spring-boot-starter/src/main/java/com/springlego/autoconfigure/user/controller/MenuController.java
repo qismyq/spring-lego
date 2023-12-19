@@ -61,7 +61,7 @@ public class MenuController {
     public ReturnDatas getMenuByUserId(@PathVariable("userId") Integer userId)throws Exception {
 
         if (userId == null) {
-            return ReturnDatas.getErrorReturnDatas(FrameCodeEnum.E_PARAMETER_MISS);
+            return ReturnDatas.getErrorReturnDatas(FrameCodeEnum.PARAMETER_MISS);
         }
 
         List<MenuBar> menuBars = menuService.getMenuBarsByUserId(userId);

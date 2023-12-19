@@ -99,7 +99,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerSecurityConfigurer security) {
         security
             .allowFormAuthenticationForClients()
-            .tokenKeyAccess("permitAll()")   //匿名可访问/oauth/token_key
+            //匿名可访问/oauth/token_key
+            .tokenKeyAccess("permitAll()")
             .checkTokenAccess("isAuthenticated()") //认证后可访问/oauth/check_token
         ;
     }
