@@ -38,19 +38,18 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -257,6 +256,21 @@
 
 <!--    </repositories>-->
     <build>
+        <!-- 添加资源 -->
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                &lt;!&ndash; src/main/resources下的指定资源放行 &ndash;&gt;-->
+<!--                <includes>-->
+<!--                    &lt;!&ndash;<include>**/*.properties</include>&ndash;&gt;-->
+<!--                    <include>**/*.yml</include>-->
+<!--                    <include>**/*.xml</include>-->
+<!--                    <include>**/*.sql</include>-->
+<!--                    <include>**/spring.factories</include>-->
+<!--                </includes>-->
+<!--                <filtering>false</filtering>-->
+<!--            </resource>-->
+<!--        </resources>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

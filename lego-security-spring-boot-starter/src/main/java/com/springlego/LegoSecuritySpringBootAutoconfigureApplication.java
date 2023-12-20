@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 
-@MapperScan("com.springlego.**.mapper")
 @EnableCaching
 @SpringBootApplication
 public class LegoSecuritySpringBootAutoconfigureApplication {

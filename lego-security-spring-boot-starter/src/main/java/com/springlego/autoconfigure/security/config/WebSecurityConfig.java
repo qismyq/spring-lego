@@ -78,7 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements
             .authorizeRequests()
             .antMatchers("/oauth/authorize").authenticated()
             .anyRequest().permitAll()
-            .and().oauth2Login().loginPage("/oauth/token").successHandler(userAuthenticationSuccessHandler)
+//            .and().oauth2Login().loginPage("/oauth/token").successHandler(userAuthenticationSuccessHandler)
             .and().csrf().disable()
         ;
     }
@@ -105,18 +105,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter /*implements
         return legoAuthenticationProvider;
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-
-        return httpSecurity.formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
-                .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/authorize").authenticated()
-                .anyRequest().permitAll()
-//                .and().oauth2Login().successHandler(userAuthenticationSuccessHandler)
-                .and().csrf().disable().build()
-        ;
-    }
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+//
+//        return httpSecurity.formLogin()
+//                .loginPage("/login")
+//                .loginProcessingUrl("/login")
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/oauth/authorize").authenticated()
+//                .anyRequest().permitAll()
+////                .and().oauth2Login().successHandler(userAuthenticationSuccessHandler)
+//                .and().csrf().disable().build()
+//        ;
+//    }
 }

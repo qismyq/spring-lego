@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
  * @Date 2023/1/16 上午 10:55
  * @author by H2018452
  */
-@Mapper
-//@Component("securityUserAccountMapper")
 public interface UserAccountMapper extends BaseMapper<UserAccount> {
 
     /**
