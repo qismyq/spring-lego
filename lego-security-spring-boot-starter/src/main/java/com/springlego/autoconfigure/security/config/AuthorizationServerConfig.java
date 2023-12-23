@@ -1,6 +1,8 @@
 package com.springlego.autoconfigure.security.config;
 
 import com.springlego.autoconfigure.security.constant.SecurityConstant;
+import com.springlego.autoconfigure.security.filter.ValidateCodeDefaultFilter;
+import com.springlego.autoconfigure.security.filter.ValidateCodeFilter;
 import com.springlego.autoconfigure.security.token.OAuthTokenEnhancer;
 import com.springlego.autoconfigure.security.token.VerifyCodeTokenGranter;
 import com.springlego.autoconfigure.security.user.service.LegoUserDetailsService;
@@ -26,6 +28,8 @@ import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeSe
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -98,10 +102,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) {
         security
-            .allowFormAuthenticationForClients()
+//            .allowFormAuthenticationForClients()
             //匿名可访问/oauth/token_key
             .tokenKeyAccess("permitAll()")
-            .checkTokenAccess("isAuthenticated()") //认证后可访问/oauth/check_token
+            //认证后可访问/oauth/check_token
+            .checkTokenAccess("isAuthenticated()")
         ;
     }
 
@@ -129,5 +134,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return new CompositeTokenGranter(granters);
 
     }
+
 
 }
