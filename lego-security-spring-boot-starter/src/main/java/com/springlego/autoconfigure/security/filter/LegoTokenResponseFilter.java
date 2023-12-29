@@ -29,6 +29,7 @@ import java.util.Map;
 public class LegoTokenResponseFilter extends OncePerRequestFilter {
 
     private TokenStore tokenStore;
+    private static String SUFFIX = "/oauth/token";
 
     public LegoTokenResponseFilter(TokenStore tokenStore) {
         this.tokenStore = tokenStore;
@@ -36,7 +37,7 @@ public class LegoTokenResponseFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if (request.getRequestURI().endsWith("/oauth/token")) {
+        if (request.getRequestURI().endsWith(SUFFIX)) {
             // 使用一个包装响应来捕获原始的响应内容
             CapturingHttpServletResponse capturingResponse = new CapturingHttpServletResponse(response);
 
@@ -70,13 +71,10 @@ public class LegoTokenResponseFilter extends OncePerRequestFilter {
 
     private OAuth2AccessToken parseAccessToken(byte[] originalContent) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-//        Map<String, Object> map = objectMapper.readValue(new String(originalContent, StandardCharsets.UTF_8), Map.class);
-//
-//        String accessTokenValue = (String) map.get("value");
-//        OAuth2AccessToken accessToken = tokenStore.readAccessToken(accessTokenValue);
+        Map<String, Object> map = objectMapper.readValue(new String(originalContent, StandardCharsets.UTF_8), Map.class);
 
-        DefaultOAuth2AccessToken accessToken = objectMapper.readValue(new String(originalContent, StandardCharsets.UTF_8), DefaultOAuth2AccessToken.class);
-
+        String accessTokenValue = (String) map.get("value");
+        OAuth2AccessToken accessToken = tokenStore.readAccessToken(accessTokenValue);
         return accessToken;
     }
 
