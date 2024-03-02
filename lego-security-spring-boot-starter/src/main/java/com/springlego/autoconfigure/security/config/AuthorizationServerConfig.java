@@ -86,6 +86,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints.userDetailsService(userDetailsService);
         //令牌管理
         endpoints.tokenStore(tokenStore);
+        // 将获取token的端点替换为/login
+        endpoints.pathMapping("/oauth/token","/login");
         //令牌增强
         endpoints.tokenEnhancer(tokenEnhancer());
         endpoints.tokenGranter(tokenGranter(endpoints));

@@ -29,7 +29,7 @@ import java.util.Map;
 public class LegoTokenResponseFilter extends OncePerRequestFilter {
 
     private TokenStore tokenStore;
-    private static String SUFFIX = "/oauth/token";
+    private static String SUFFIX = "/login";
 
     public LegoTokenResponseFilter(TokenStore tokenStore) {
         this.tokenStore = tokenStore;
