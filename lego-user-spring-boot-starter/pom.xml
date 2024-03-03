@@ -13,6 +13,7 @@
 
     <groupId>com.springlego</groupId>
     <artifactId>lego-user-spring-boot-starter</artifactId>
+    <version>1.1-SNAPSHOT</version>
     <name>lego-user-spring-boot-starter</name>
     <description>user and permission module</description>
 
