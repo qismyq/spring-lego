@@ -79,6 +79,10 @@ spring:
 #      # - com.alibaba.nacos.client.naming: error
 
   ############################mybatis相关配置-end###################################
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath*:schema.sql
 
 swagger:
     enable: false
