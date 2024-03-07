@@ -2,9 +2,9 @@ server:
   port: 8081
 spring:
   profiles:
-    active: company
+    active: dev
   datasource:
-      url: jdbc:mysql://127.0.0.1:3306/bootTest?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+      url: jdbc:mysql://127.0.0.1:3306/spring_lego?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -43,7 +43,7 @@ spring:
         ## 通过connectProperties属性来打开mergeSql功能；慢SQL记录
         connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
       #执行sql文件  spring某个版本之后需要加上这句，否则不会自动执行sql文件
-      initialization-mode: always
+      #initialization-mode: always
       # schema.sql中一般存放的是建表语句
       # schema: classpath:schema.sql
 
