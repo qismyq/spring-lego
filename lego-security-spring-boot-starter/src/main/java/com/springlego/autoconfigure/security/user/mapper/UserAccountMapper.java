@@ -3,9 +3,7 @@ package com.springlego.autoconfigure.security.user.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.springlego.autoconfigure.security.user.entity.model.UserAccount;
 import com.springlego.autoconfigure.security.user.entity.vo.UserAccountVO;
-import io.lettuce.core.dynamic.annotation.Param;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @Classname UserAccountMapper
