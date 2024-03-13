@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springlego.autoconfigure.frame.errorhandler.FrameCodeEnum;
 import com.springlego.autoconfigure.frame.errorhandler.ICode;
 import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ import java.util.Map;
 @Data
 @Accessors(chain = true)
 @SuppressWarnings("serial")
+@ToString
 public class ReturnDatas<T> implements Serializable{
 	private static final long serialVersionUID = 1L;
 
