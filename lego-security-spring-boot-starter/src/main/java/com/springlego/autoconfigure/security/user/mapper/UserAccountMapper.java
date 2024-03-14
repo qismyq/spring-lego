@@ -20,6 +20,6 @@ public interface UserAccountMapper extends BaseMapper<UserAccount> {
      * @param del 隐式删除
      * @return
      */
-    UserAccountVO getByAccount(@Param("account") String account, @Param("state") Integer state, @Param("deleted") Integer deleted);
+    UserAccountVO getByAccount(@Param("account") String account, @Param("state") Integer state, @Param("deleted") Boolean deleted);
 
 }

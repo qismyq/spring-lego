@@ -31,6 +31,6 @@
         SELECT
         <include refid="Base_Column_List"/>
         FROM u_user
-        WHERE account = #{account} AND state = #{state} AND deleted = 0
+        WHERE account = #{account} AND state = #{state} AND deleted = FALSE
     </select>
 </mapper>
