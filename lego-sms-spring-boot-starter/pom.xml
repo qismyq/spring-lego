@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.springlego</groupId>
 	<artifactId>lego-sms-spring-boot-starter</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>${revision}</version>
 	<name>lego-sms-spring-boot-starter</name>
 	<description>sms starter for spring-lego project</description>
 
@@ -56,8 +56,8 @@
 
 
 	<properties>
-		<frame-starter.version>1.1-SNAPSHOT</frame-starter.version>
-		<common-starter.version>1.1-SNAPSHOT</common-starter.version>
+		<frame-starter.version>${revision}</frame-starter.version>
+		<common-starter.version>${revision}</common-starter.version>
 		<user-starter.version>1.0-SNAPSHOT</user-starter.version>
 		<aliyun-java-sdk-core.version>3.7.1</aliyun-java-sdk-core.version>
 		<aliyun-java-sdk-dysmsapi.version>1.1.0</aliyun-java-sdk-dysmsapi.version>

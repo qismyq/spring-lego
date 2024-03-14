@@ -5,22 +5,20 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.springlego</groupId>
-        <artifactId>lego-dependences</artifactId>
-        <version>1.1-SNAPSHOT</version>
-        <!--        <relativePath>../lego-dependnces</relativePath>-->
+        <artifactId>lego-dependencies</artifactId>
+        <version>${revision}</version>
+        <relativePath>../lego-dependencies</relativePath>
     </parent>
 
     <groupId>com.springlego</groupId>
     <artifactId>lego-security-spring-boot-starter</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <name>lego-security-spring-boot-starter</name>
     <description>security starter for spring-lego project,use spring security</description>
 
 
 
     <properties>
-        <frame-starter.version>1.1-SNAPSHOT</frame-starter.version>
-        <common-starter.version>1.1-SNAPSHOT</common-starter.version>
     </properties>
 
 
