@@ -1,9 +1,10 @@
 package com.springlego.autoconfigure.frame.entity;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.springlego.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
-import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
+import com.springlego.autoconfigure.frame.errorhandler.FrameCodeEnum;
+import com.springlego.autoconfigure.frame.errorhandler.ICode;
 import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ import java.util.Map;
 @Data
 @Accessors(chain = true)
 @SuppressWarnings("serial")
+@ToString
 public class ReturnDatas<T> implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -29,23 +31,15 @@ public class ReturnDatas<T> implements Serializable{
 	/**
 	 * http请求状态码
 	 */
-	private Integer statusCode=200;
+	private Integer code=200;
 	/**
 	 * http请求状态
 	 */
 	private String status = ReturnDatas.SUCCESS;
 	/**
-	 * http请求结果信息
+	 * 处理结果提示信息
 	 */
-	private String message = "成功";
-	/**
-	 * 处理结果code
-	 */
-	private Integer errorCode ;
-	/**
-	 * 处理结果错误提示信息
-	 */
-	private String errorMessage ;
+	private String message ;
 	/**
 	 * 处理返回结果
 	 */
@@ -69,27 +63,36 @@ public class ReturnDatas<T> implements Serializable{
 	public ReturnDatas() {
 	}
 	@Deprecated
-	public ReturnDatas(Integer errorCode) {
-		this.errorCode = errorCode;
+	public ReturnDatas(Integer code) {
+        if (!this.code.equals(code)){
+            this.status = ERROR;
+        }
+		this.code = code;
 	}
 	@Deprecated
-	public ReturnDatas(Integer errorCode, String errorMessage) {
-		this.errorCode = errorCode;
-		this.errorMessage = errorMessage;
+	public ReturnDatas(Integer code, String message) {
+		if (!this.code.equals(code)){
+            this.status = ERROR;
+        }
+        this.code = code;
+		this.message = message;
 	}
 	@Deprecated
-	public ReturnDatas(Integer errorCode, String errorMessage, T data) {
-		this.errorCode = errorCode;
-		this.message = errorMessage;
+	public ReturnDatas(Integer code, String message, T data) {
+        if (!this.code.equals(code)){
+            this.status = ERROR;
+        }
+		this.code = code;
+		this.message = message;
 		this.data = data;
 	}
 
 	//  constructor -- end
 
 	public static ReturnDatas getSuccessReturnDatas() {
-		return new ReturnDatas(FrameErrorCodeEnum.E_0.getErrorCode(),FrameErrorCodeEnum.E_0.getErrorMessage());
+		return new ReturnDatas(FrameCodeEnum.SUCCESS.getCode(), FrameCodeEnum.SUCCESS.getMessage());
 	}
-	public static ReturnDatas getErrorReturnDatas(IErrorCode errorCode) {
-		return  new ReturnDatas(errorCode.getErrorCode(), errorCode.getErrorMessage());
+	public static ReturnDatas getErrorReturnDatas(ICode code) {
+		return  new ReturnDatas(code.getCode(), code.getMessage());
 	}
 }

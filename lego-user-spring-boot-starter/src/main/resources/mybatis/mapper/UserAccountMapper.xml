@@ -15,15 +15,15 @@
         <result column="state" property="state" />
         <result column="front_user_id" property="frontUserId" />
         <result column="create_time" property="createTime" />
-        <result column="create_by" property="createBy" />
+        <result column="creator" property="creator" />
         <result column="update_time" property="createTime" />
-        <result column="update_by" property="updateBy" />
-        <result column="del" property="del" />
+        <result column="updater" property="updater" />
+        <result column="deleted" property="deleted" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, account, password, salt,avatar,sex, mobile, email, state, front_user_id,create_time,create_by,update_by,update_time,del
+        id, name, account, password, salt,avatar,sex, mobile, email, state, front_user_id,create_time,creator,updater,update_time,deleted
     </sql>
 
 
@@ -31,6 +31,6 @@
         SELECT
         <include refid="Base_Column_List"/>
         FROM u_user
-        WHERE account = #{account} AND state = #{state} AND del = 0
+        WHERE account = #{account} AND state = #{state} AND deleted = FALSE
     </select>
 </mapper>

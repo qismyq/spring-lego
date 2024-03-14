@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2018 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
-
 package com.springlego.autoconfigure.security.user.deserializer;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -26,7 +18,6 @@ import java.util.Set;
  *
  * @author michael wong
  */
-// todo 反序列化必要性
 public class GrantedAuthorityDeserializer extends JsonDeserializer<Collection<? extends GrantedAuthority>> {
 
     @Override

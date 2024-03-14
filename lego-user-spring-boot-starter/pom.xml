@@ -4,301 +4,53 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.springlego</groupId>
+        <artifactId>lego-dependencies</artifactId>
+        <version>${revision}</version>
+        <relativePath>../lego-dependencies</relativePath>
     </parent>
 
 
     <groupId>com.springlego</groupId>
     <artifactId>lego-user-spring-boot-starter</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <name>lego-user-spring-boot-starter</name>
     <description>user and permission module</description>
 
-    <!-- 版权许可 -->
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <!-- 代码库 -->
-    <scm>
-        <tag>master</tag>
-        <url>https://github.com/qismyq/spring-lego.git</url>
-        <connection>scm:git:git@github.com:qismyq/spring-lego.git</connection>
-        <developerConnection>scm:git:git@github.com:qismyq/spring-lego.git</developerConnection>
-    </scm>
-    <!-- 开发者信息 -->
-    <developers>
-        <developer>
-            <name>coder_michael</name>
-            <email>michael_wang90@163.com</email>
-            <roles>
-                <role>owner</role>
-            </roles>
-            <timezone>+8</timezone>
-        </developer>
-    </developers>
-    <!-- 定义snapshots库和releases库的nexus地址 -->
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
     <properties>
         <java.version>1.8</java.version>
-
-        <frame-starter.version>1.1-SNAPSHOT</frame-starter.version>
-        <common-starter.version>1.1-SNAPSHOT</common-starter.version>
-        <shiro-starter.version>1.1-SNAPSHOT</shiro-starter.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.springlego</groupId>
             <artifactId>lego-frame-spring-boot-starter</artifactId>
-            <version>${frame-starter.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.springlego</groupId>
             <artifactId>lego-common-spring-boot-starter</artifactId>
-            <version>${common-starter.version}</version>
+            <version>${project.version}</version>
         </dependency>
-<!--        2022-01-20-->
-<!--        <dependency>-->
-<!--            <groupId>com.springlego</groupId>-->
-<!--            <artifactId>lego-shiro-spring-boot-starter</artifactId>-->
-<!--            <version>${shiro-starter.version}</version>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>com.springlego</groupId>-->
-<!--                    <artifactId>lego-user-spring-boot-starter</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
+        <!-- 2022-01-20-->
+        <dependency>
+            <groupId>com.springlego</groupId>
+            <artifactId>lego-security-spring-boot-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
 
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-captcha</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-            <version>1.16.20</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
-
-    <build>
-        <!-- 添加资源 -->
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <!-- src/main/resources下的指定资源放行 -->
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.yml</include>
-                    <include>**/*.xml</include>
-                    <include>**/*.sql</include>
-                    <include>**/spring.factories</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
-
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <mainClass>LegoUserSpringBootAutoconfigureApplication</mainClass>
-                            </manifest>
-                        </archive>
-                    </configuration>
-                </plugin>
-                <!--deploy插件-->
-                <!--<plugin>-->
-                    <!--<artifactId>maven-deploy-plugin</artifactId>-->
-                    <!--<version>2.8.2</version>-->
-                    <!--<executions>-->
-                        <!--<execution>-->
-                            <!--<id>default-deploy</id>-->
-                            <!--<phase>deploy</phase>-->
-                            <!--<goals>-->
-                                <!--<goal>deploy</goal>-->
-                            <!--</goals>-->
-                        <!--</execution>-->
-                    <!--</executions>-->
-                <!--</plugin>-->
-
-                <!--sonatype的staging插件-->
-                <!--<plugin>-->
-                <!--<groupId>org.sonatype.plugins</groupId>-->
-                <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
-                <!--<version>1.6.7</version>-->
-                <!--<extensions>true</extensions>-->
-                <!--<configuration>-->
-                <!--&lt;!&ndash;<serverId>sonatype-nexus-snapshots</serverId>&ndash;&gt;-->
-                <!--<serverId>sonatype-nexus-staging</serverId>-->
-                <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
-                <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-                <!--</configuration>-->
-                <!--</plugin>-->
-
-                <!--SCM插件-->
-                <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-scm-plugin</artifactId>-->
-                    <!--<version>1.8.1</version>-->
-                <!--</plugin>-->
-
-            </plugins>
-        </pluginManagement>
-    </build>
-
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.1</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- Javadoc -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.0.1</version>
-                        <configuration>
-                            <!-- 2022-1-20 -->
-<!--                            <aggregate>true</aggregate>-->
-                            <charset>UTF-8</charset>
-                            <encoding>UTF-8</encoding>
-                            <docencoding>UTF-8</docencoding>
-<!--                            <additionalparam>-Xdoclint:none</additionalparam>-->
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- GPG -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!--<profile>-->
-            <!--<id>dev</id>-->
-            <!--<build>-->
-                <!--<plugins>-->
-
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
-    </profiles>
-
-
-    <repositories>
-
-        <repository>
-
-            <id>maven-central</id>
-
-            <name>maven-central</name>
-
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-
-            <snapshots>
-
-                <enabled>true</enabled>
-
-            </snapshots>
-
-            <releases>
-
-                <enabled>true</enabled>
-
-            </releases>
-
-        </repository>
-
-    </repositories>
 
 </project>

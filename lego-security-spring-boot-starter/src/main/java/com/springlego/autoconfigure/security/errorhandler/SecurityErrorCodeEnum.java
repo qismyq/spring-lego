@@ -1,6 +1,6 @@
 package com.springlego.autoconfigure.security.errorhandler;
 
-import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
+import com.springlego.autoconfigure.frame.errorhandler.ICode;
 
 /**
  * @Description 用户模块错误码
@@ -14,7 +14,7 @@ import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
  * @Email michael_wang90@163.com
  * @Date 2019/11/4 17:50
  **/
-public enum SecurityErrorCodeEnum implements IErrorCode {
+public enum SecurityErrorCodeEnum implements ICode {
 
     /**
      * <br> token错误
@@ -29,11 +29,11 @@ public enum SecurityErrorCodeEnum implements IErrorCode {
      */
     ,ACCOUNT_PASSWORD_ERROR(40101,"用户密码错误")
 
-    /**
-     * <br> token错误
-     */
-    // todo 替换
-    ,E_50100(50100,"token错误")
+//    /**
+//     * <br> token错误
+//     */
+//    // todo 替换
+//    ,E_50100(50100,"token错误")
 
     ;
 
@@ -42,7 +42,7 @@ public enum SecurityErrorCodeEnum implements IErrorCode {
 
 
     @Override
-    public Integer getErrorCode() {
+    public Integer getCode() {
         return errorCode;
     }
 
@@ -51,7 +51,7 @@ public enum SecurityErrorCodeEnum implements IErrorCode {
     }
 
     @Override
-    public String getErrorMessage() {
+    public String getMessage() {
         return errorMessage;
     }
 
@@ -66,7 +66,7 @@ public enum SecurityErrorCodeEnum implements IErrorCode {
 
     @Override
     public String toString() {
-        return "userErrorCode-errorCode:"+getErrorCode()+";errorMessage:"+getErrorMessage();
+        return "SECURITY_ERROR:errorCode:"+getCode()+";errorMessage:"+getMessage();
     }
 
 }

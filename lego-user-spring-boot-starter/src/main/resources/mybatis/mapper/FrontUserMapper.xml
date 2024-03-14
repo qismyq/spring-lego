@@ -10,13 +10,13 @@
         <result column="unionId" property="unionId" />
         <result column="alipayId" property="alipayId" />
         <result column="password" property="password" />
-        <result column="del" property="del" />
+        <result column="deleted" property="deleted" />
         <result column="role" property="role" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, account, wechatId, unionId, alipayId, password, del, role
+        id, account, wechatId, unionId, alipayId, password, deleted, role
     </sql>
 
 </mapper>

@@ -34,7 +34,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 
         List<MenuBar> menuList = new ArrayList<>();
 
-        List<Menu> topMenuBars = menuMapper.getMenusByUserId(userId, 0, 1,0L);
+        List<Menu> topMenuBars = menuMapper.getMenusByUserId(userId, false, 1,0L);
         if (CollectionUtils.isNotEmpty(topMenuBars)) {
 
             // 顶级菜单循环
@@ -43,7 +43,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
                 MenuBar topMenu = menuToMenuBar(menu,true);
 
                 // 子菜单获取
-                List<Menu> childrenMenus = menuMapper.getMenusByUserId(userId, 0, 1, menu.getId());
+                List<Menu> childrenMenus = menuMapper.getMenusByUserId(userId, false, 1, menu.getId());
                 List<MenuBar> childrenMenuBars = new ArrayList<>();
                 if (CollectionUtils.isNotEmpty(childrenMenus)) {
                     childrenMenus.stream().forEach(childMenu -> {

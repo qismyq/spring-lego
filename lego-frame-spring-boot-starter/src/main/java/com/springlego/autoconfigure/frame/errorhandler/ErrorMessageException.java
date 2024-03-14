@@ -102,8 +102,8 @@ public class ErrorMessageException extends RuntimeException {
         this.errorCode = errorCode;
     }
 
-    public ErrorMessageException(IErrorCode errorCode) {
-        this(errorCode.getErrorCode(),errorCode.getErrorMessage());
+    public ErrorMessageException(ICode errorCode) {
+        this(errorCode.getCode(),errorCode.getMessage());
     }
 
 

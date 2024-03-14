@@ -1,10 +1,3 @@
-/**
- * Copyright (c) 2020 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
 package com.springlego.autoconfigure.security.token;
 
 import cn.hutool.core.bean.BeanUtil;
@@ -20,7 +13,7 @@ import java.util.Map;
  *
  * @Description 令牌添加额外信息，做信息增强
  * @date 2022/10/6 下午 05:36
- * @auther michael_wang
+ * @author michael_wang
  */
 public class OAuthTokenEnhancer implements TokenEnhancer {
 
@@ -29,14 +22,16 @@ public class OAuthTokenEnhancer implements TokenEnhancer {
         if(accessToken instanceof DefaultOAuth2AccessToken){
             DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
 
-            //统一返回格式
-            ReturnDatas successReturnDatas = ReturnDatas.getSuccessReturnDatas();
-            Map<String, Object> info = BeanUtil.beanToMap(successReturnDatas);
-            token.setAdditionalInformation(info);
+            // 这里是做嵌入token内部的额外信息的，比如用户信息等等
+//            ReturnDatas successReturnDatas = ReturnDatas.getSuccessReturnDatas();
+//            Map<String, Object> info = BeanUtil.beanToMap(successReturnDatas);
+//            token.setAdditionalInformation(info);
 
             return token;
         }
 
         return accessToken;
     }
+
+
 }

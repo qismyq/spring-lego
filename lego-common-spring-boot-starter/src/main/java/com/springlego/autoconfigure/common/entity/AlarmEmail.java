@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,7 +25,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("dic_alarm_email")
-@ApiModel(value="AlarmEmail对象", description="警报邮箱")
+//@ApiModel(value="AlarmEmail对象", description="警报邮箱")
 public class AlarmEmail extends Model<AlarmEmail> {
 
     private static final long serialVersionUID=1L;
@@ -33,19 +33,19 @@ public class AlarmEmail extends Model<AlarmEmail> {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "邮箱地址")
+//    @ApiModelProperty(value = "邮箱地址")
     @TableField("email_address")
     private String emaiAddress;
 
-    @ApiModelProperty(value = "收件人名称")
+//    @ApiModelProperty(value = "收件人名称")
     private String receiver;
 
-    @ApiModelProperty(value = "1收件人 2抄送人")
+//    @ApiModelProperty(value = "1收件人 2抄送人")
     private Integer type;
 
 
     @Override
-    protected Serializable pkVal() {
+    public Serializable pkVal() {
         return this.id;
     }
 

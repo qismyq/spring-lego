@@ -6,7 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * Spring 工具类
@@ -15,15 +18,12 @@ import org.springframework.stereotype.Component;
  * @date 2011-10-13
  */
 
-@Component("springContextHolder")
+@Component
+@Lazy(false)
 public class SpringContextHolder implements ApplicationContextAware {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
     private static ApplicationContext applicationContext;
-
-    public SpringContextHolder() {
-
-    }
 
     @SuppressWarnings("static-access")
     @Override
@@ -55,6 +55,15 @@ public class SpringContextHolder implements ApplicationContextAware {
         return (T) applicationContext.getBean(clazz);
     }
 
+    /**
+     * 根据bean type 获取所有的springBean
+     *
+     * @param clazz
+     * @return
+     */
+    public static <T> Map<String, T> getBeansByType(Class<T> clazz)throws BeansException{
+       return applicationContext.getBeansOfType(clazz);
+    }
     /**
      * 获取 Spring applicationContext
      *

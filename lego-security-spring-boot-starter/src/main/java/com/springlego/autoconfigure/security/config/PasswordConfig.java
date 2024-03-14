@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2018 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
-
 package com.springlego.autoconfigure.security.config;
 
 import lombok.AllArgsConstructor;
@@ -24,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @AllArgsConstructor
 public class PasswordConfig {
 
-    // todo 是否需要注册此bean
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

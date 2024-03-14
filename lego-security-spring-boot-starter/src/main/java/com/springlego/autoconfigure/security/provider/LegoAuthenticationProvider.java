@@ -1,8 +1,7 @@
 package com.springlego.autoconfigure.security.provider;
 
-import com.springlego.autoconfigure.security.user.LegoUserDetailsService;
+import com.springlego.autoconfigure.security.user.service.LegoUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,20 +15,20 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.Assert;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * @Classname LegoAuthenticationProvider
  * @Description 多用户类型
  * @Date 2022/4/11 下午 02:40
- * @Created by michael wong
+ * @author by michael wong
  */
 @Slf4j
 public class LegoAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
-    private static final String USER_NOT_FOUND_PASSWORD = "userNotFoundPassword";
     private PasswordEncoder passwordEncoder;
     private volatile String userNotFoundEncodedPassword;
-    private LegoUserDetailsService userDetailsService;
+    private List<LegoUserDetailsService> userDetailsServices;
     private UserDetailsPasswordService userDetailsPasswordService;
 
     public LegoAuthenticationProvider() {
@@ -38,6 +37,7 @@ public class LegoAuthenticationProvider extends AbstractUserDetailsAuthenticatio
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+        // 验证密码或动态口令
         if (authentication.getCredentials() == null) {
             this.logger.debug("Failed to authenticate since no credentials provided");
             throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
@@ -52,23 +52,23 @@ public class LegoAuthenticationProvider extends AbstractUserDetailsAuthenticatio
 
     @Override
     protected void doAfterPropertiesSet() {
-        Assert.notNull(this.userDetailsService, "A UserDetailsService must be set");
+        Assert.notNull(this.userDetailsServices, "A UserDetailsService must be set");
     }
 
     @Override
     protected final UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
         this.prepareTimingAttackProtection();
-        Map<String, String> map = (Map<String, String>) authentication.getDetails();
-        String userType = map.get("userType");
+        Map<String, String> details = (Map<String, String>) authentication.getDetails();
+        String range = details.get("range");
 
         UserDetails loadedUser = null;
 
         try {
-            if (StringUtils.isNotBlank(userType)) {
-                log.info("************************进入多用户类型***************");
-                loadedUser = this.getUserDetailsService().loadUserByUsername(username,userType);
-            }else {
-                loadedUser = this.getUserDetailsService().loadUserByUsername(username);
+            for (LegoUserDetailsService userDetailsService : this.userDetailsServices) {
+                if (userDetailsService.supports(range)) {
+                    loadedUser = userDetailsService.loadUserByUsername(username);
+                    break;
+                }
             }
             if (loadedUser == null) {
                 throw new InternalAuthenticationServiceException("UserDetailsService returned null, which is an interface contract violation");
@@ -122,12 +122,12 @@ public class LegoAuthenticationProvider extends AbstractUserDetailsAuthenticatio
         return this.passwordEncoder;
     }
 
-    public void setUserDetailsService(LegoUserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    public void setUserDetailsServices(List<LegoUserDetailsService> userDetailsServices) {
+        this.userDetailsServices = userDetailsServices;
     }
 
-    protected LegoUserDetailsService getUserDetailsService() {
-        return this.userDetailsService;
+    protected List<LegoUserDetailsService> getUserDetailsServices() {
+        return this.userDetailsServices;
     }
 
     public void setUserDetailsPasswordService(UserDetailsPasswordService userDetailsPasswordService) {

@@ -3,7 +3,7 @@ package com.springlego.autoconfigure.sms.service.impl;
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
-import com.springlego.autoconfigure.frame.errorhandler.FrameErrorCodeEnum;
+import com.springlego.autoconfigure.frame.errorhandler.FrameCodeEnum;
 import com.springlego.autoconfigure.sms.entity.SMSChanel;
 import com.springlego.autoconfigure.sms.entity.SmsContent;
 import com.springlego.autoconfigure.sms.factory.SmsChannelFactory;
@@ -48,7 +48,7 @@ public class SmsContentServiceImpl extends ServiceImpl<SmsContentMapper, SmsCont
         String rediskey = SMS + phone;
 
         if (stringRedisTemplate.hasKey(rediskey)) {
-            throw new ErrorMessageException(FrameErrorCodeEnum.E_40001);
+            throw new ErrorMessageException(FrameCodeEnum.E_OPERATE_FREQUENT);
         }
 
         // todo 短信模版内容读取从redis中获取

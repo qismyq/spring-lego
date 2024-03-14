@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.security.constant;
 
 /**
  * @Classname SecurityConstant
- * @Description TODO
+ * @Description oauth_client sql 常量
  * @Date 2022/12/5 下午 05:34
  * @Created by H2018452
  */

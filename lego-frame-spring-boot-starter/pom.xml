@@ -5,104 +5,90 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.springlego</groupId>
+        <artifactId>lego-dependencies</artifactId>
+<!--        <version>${revision}</version>-->
+        <version>${revision}</version>
+        <relativePath>../lego-dependencies</relativePath>
     </parent>
 
 
     <groupId>com.springlego</groupId>
     <artifactId>lego-frame-spring-boot-starter</artifactId>
-    <version>1.1-SNAPSHOT</version>
-    <!--<version>1.1.RELEASE</version>-->
+    <version>${revision}</version>
     <name>lego-frame-spring-boot-starter</name>
     <description>Base frame for company`s service</description>
 
 
-    <!-- 版权许可 -->
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <!-- 代码库 -->
-    <scm>
-        <tag>master</tag>
-        <url>https://github.com/qismyq/spring-lego.git</url>
-        <connection>scm:git:git@github.com:qismyq/spring-lego.git</connection>
-        <developerConnection>scm:git:git@github.com:qismyq/spring-lego.git</developerConnection>
-    </scm>
-    <!-- 开发者信息 -->
-    <developers>
-        <developer>
-            <name>coder_michael</name>
-            <email>michael_wang90@163.com</email>
-            <roles>
-                <role>owner</role>
-            </roles>
-            <timezone>+8</timezone>
-        </developer>
-    </developers>
-    <!-- 定义snapshots库和releases库的nexus地址 -->
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
+<!--    &lt;!&ndash; 版权许可 &ndash;&gt;-->
+<!--    <licenses>-->
+<!--        <license>-->
+<!--            <name>The Apache Software License, Version 2.0</name>-->
+<!--            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>-->
+<!--            <distribution>repo</distribution>-->
+<!--        </license>-->
+<!--    </licenses>-->
+<!--    &lt;!&ndash; 代码库 &ndash;&gt;-->
+<!--    <scm>-->
+<!--        <tag>master</tag>-->
+<!--        <url>https://github.com/qismyq/spring-lego.git</url>-->
+<!--        <connection>scm:git:git@github.com:qismyq/spring-lego.git</connection>-->
+<!--        <developerConnection>scm:git:git@github.com:qismyq/spring-lego.git</developerConnection>-->
+<!--    </scm>-->
+<!--    &lt;!&ndash; 开发者信息 &ndash;&gt;-->
+<!--    <developers>-->
+<!--        <developer>-->
+<!--            <name>coder_michael</name>-->
+<!--            <email>michael_wang90@163.com</email>-->
+<!--            <roles>-->
+<!--                <role>owner</role>-->
+<!--            </roles>-->
+<!--            <timezone>+8</timezone>-->
+<!--        </developer>-->
+<!--    </developers>-->
+<!--    &lt;!&ndash; 定义snapshots库和releases库的nexus地址 &ndash;&gt;-->
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>sonatype-nexus</id>-->
+<!--            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
+<!--        </snapshotRepository>-->
+<!--        <repository>-->
+<!--            <id>sonatype-nexus</id>-->
+<!--            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
 
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+<!--    <properties>-->
+<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+<!--        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
+<!--        <java.version>1.8</java.version>-->
 
-        <druid.version>1.1.5</druid.version>
+<!--        <druid.version>1.1.5</druid.version>-->
 
-        <log4j-to-slf4j.version>2.9.1</log4j-to-slf4j.version>
-        <slf4j-api.version>1.7.25</slf4j-api.version>
-        <logback.version>1.2.11</logback.version>
+<!--        <log4j-to-slf4j.version>2.9.1</log4j-to-slf4j.version>-->
+<!--        <slf4j-api.version>1.7.25</slf4j-api.version>-->
+<!--        <logback.version>1.2.11</logback.version>-->
 
-        <fastjson.version>2.0.12</fastjson.version>
+<!--        <fastjson.version>2.0.12</fastjson.version>-->
 
-        <commons-lang3.version>3.7</commons-lang3.version>
-        <commons-pool.version>2.4.3</commons-pool.version>
-        <commons-collections.version>4.1</commons-collections.version>
-        <commons-io.version>2.11.0</commons-io.version>
-        <commons-codec.version>1.11</commons-codec.version>
-        <commons-beanutils.version>1.9.4</commons-beanutils.version>
-        <commons-fileupload.version>1.3.3</commons-fileupload.version>
-
-        <lombok.version>1.16.20</lombok.version>
-        <swagger.version>2.7.0</swagger.version>
-    </properties>
+<!--        <commons-lang3.version>3.7</commons-lang3.version>-->
+<!--        <commons-pool.version>2.4.3</commons-pool.version>-->
+<!--        <commons-collections.version>4.1</commons-collections.version>-->
+<!--        <commons-io.version>2.11.0</commons-io.version>-->
+<!--        <commons-codec.version>1.11</commons-codec.version>-->
+<!--        <commons-beanutils.version>1.9.4</commons-beanutils.version>-->
+<!--        <commons-fileupload.version>1.3.3</commons-fileupload.version>-->
+<!--        <lombok.version>1.16.20</lombok.version>-->
+<!--        <swagger.version>2.7.0</swagger.version>-->
+<!--    </properties>-->
 
     <dependencies>
         <!--封装Starter核心依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
+        <!-- SpringBoot Web容器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
         <!--导入配置文件处理器，配置文件进行绑定就会有提示-->
         <dependency>
@@ -110,11 +96,30 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>de.codecentric</groupId>-->
+<!--            <artifactId>spring-boot-admin-starter-server</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>de.codecentric</groupId>-->
+<!--            <artifactId>spring-boot-admin-starter-client</artifactId>-->
+<!--        </dependency>-->
 
         <!--********* db类-start ********-->
         <dependency>
@@ -124,24 +129,16 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
-            <version>2.1</version>
         </dependency>
 
         <!--数据库连接池-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.10</version>
         </dependency>
         <!--********* db类-end ********-->
 
@@ -149,7 +146,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-            <version>1.16.20</version>
             <scope>provided</scope>
         </dependency>
 
@@ -158,22 +154,18 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-to-slf4j</artifactId>
-            <version>${log4j-to-slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j-api.version}</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
         </dependency>
         <!--日志-end-->
 
@@ -181,39 +173,32 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
         </dependency>
 
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>${commons-fileupload.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
-            <version>${commons-collections.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>${commons-codec.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
-            <version>${commons-pool.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>${commons-beanutils.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>commons-collections</groupId>
@@ -224,7 +209,6 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>${commons-io.version}</version>
         </dependency>
 
         <!--缓存-start-->
@@ -237,20 +221,17 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.13.3</version>
         </dependency>
 
         <!--接口文档-start-->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.springfox</groupId>-->
+<!--            <artifactId>springfox-swagger2</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.springfox</groupId>-->
+<!--            <artifactId>springfox-swagger-ui</artifactId>-->
+<!--        </dependency>-->
 
 
         <!--&lt;!&ndash;热部署&ndash;&gt; 此处需要注释掉，不然会影响cachable等注解的使用，此问题待查-->

@@ -1,6 +1,6 @@
 package com.springlego.autoconfigure.user.errorhandler;
 
-import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
+import com.springlego.autoconfigure.frame.errorhandler.ICode;
 
 /**
  * @Description 用户模块错误码
@@ -14,55 +14,55 @@ import com.springlego.autoconfigure.frame.errorhandler.IErrorCode;
  * @Email michael_wang90@163.com
  * @Date 2019/11/4 17:50
  **/
-public enum UserErrorCodeEnum implements IErrorCode {
+public enum UserErrorCodeEnum implements ICode {
 
     /**
      * <br> 用户不存在
      */
-    E_40100(40100,"用户不存在")
+    USER_NOT_EXIST(40100,"用户不存在")
 
     /**
      * <br> 密码错误
      */
-    ,E_40101(40101,"密码错误")
+    ,PASSWORD_ERROR(40101,"密码错误")
 
     /**
      * <br> 多个用户账户
      */
-    ,E_50100(50100,"多个用户账户")
+    ,E_MULTIPLE_ACCOUNT(50100,"多个用户账户")
 
     ;
 
-    Integer errorCode ;
-    String errorMessage ;
+    Integer code ;
+    String message ;
 
 
     @Override
-    public Integer getErrorCode() {
-        return errorCode;
+    public Integer getCode() {
+        return code;
     }
 
-    public void setErrorCode(Integer errorCode) {
-        this.errorCode = errorCode;
+    public void setCode(Integer code) {
+        this.code = code;
     }
 
     @Override
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    UserErrorCodeEnum(Integer errorCode, String errorMessage) {
-        this.errorCode = errorCode;
-        this.errorMessage = errorMessage;
+    UserErrorCodeEnum(Integer code, String message) {
+        this.code = code;
+        this.message = message;
     }
 
     @Override
     public String toString() {
-        return "userErrorCode-errorCode:"+getErrorCode()+";errorMessage:"+getErrorMessage();
+        return "userErrorCode-errorCode:"+getCode()+";errorMessage:"+getMessage();
     }
 
 }

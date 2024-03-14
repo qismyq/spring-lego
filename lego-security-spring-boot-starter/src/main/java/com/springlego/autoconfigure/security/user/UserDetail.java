@@ -1,13 +1,6 @@
-/**
- * Copyright (c) 2018 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
-
 package com.springlego.autoconfigure.security.user;
 
+import cn.hutool.core.annotation.Alias;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.springlego.autoconfigure.security.user.deserializer.GrantedAuthorityDeserializer;
 import lombok.Data;
@@ -28,7 +21,9 @@ public class UserDetail implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @Alias("account")
     private String username;
+    private String name;
     private String realName;
     private String headUrl;
     private Integer gender;
