@@ -43,5 +43,5 @@ public class UserAccountVO {
     private Integer state;
 
 
-    private Integer del;
+    private Integer deleted;
 }

@@ -40,11 +40,6 @@ spring:
         filters: stat,wall
         ## 通过connectProperties属性来打开mergeSql功能；慢SQL记录
         connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
-      #执行sql文件  spring某个版本之后需要加上这句，否则不会自动执行sql文件
-      initialization-mode: always
-      # schema.sql中一般存放的是建表语句
-      # schema: classpath:schema.sql
-
   redis:
       host: 127.0.0.1
       port: 6379

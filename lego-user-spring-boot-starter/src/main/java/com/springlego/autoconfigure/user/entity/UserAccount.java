@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 //import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.apache.ibatis.annotations.Delete;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -66,13 +67,14 @@ public class UserAccount extends Model<UserAccount> {
 //    @ApiModelProperty(value = "创建时间")
     private Date createTime;
 //    @ApiModelProperty(value = "创建人")
-    private Date createBy;
+    private String creator;
 //    @ApiModelProperty(value = "更新时间")
     private Date updateTime;
 //    @ApiModelProperty(value = "更新人")
-    private Date updateBy;
+    private String updater;
 //    @ApiModelProperty(value = "删除状态（0否1是）")
-    private Integer del;
+    @TableLogic
+    private Integer deleted;
 
     @TableField(exist=false)
     private String token;

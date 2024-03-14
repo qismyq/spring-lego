@@ -42,7 +42,7 @@ public class SmsContent extends Model<SmsContent> {
 
     @ApiModelProperty(value = "是否弃用 0否1是")
     @TableLogic
-    private Integer del;
+    private Integer deleted;
 
 
     @Override

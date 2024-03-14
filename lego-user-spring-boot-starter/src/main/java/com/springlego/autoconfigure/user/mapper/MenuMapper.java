@@ -30,6 +30,6 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @date:   2019/12/9 15:00
      * @update:
      */
-    List<Menu> getMenusByUserId(@Param("userId") Integer userId, @Param("del") Integer del, @Param("menuType") Integer menuType,@Param("pid") Long pid);
+    List<Menu> getMenusByUserId(@Param("userId") Integer userId, @Param("deleted") Integer deleted, @Param("menuType") Integer menuType,@Param("pid") Long pid);
 
 }

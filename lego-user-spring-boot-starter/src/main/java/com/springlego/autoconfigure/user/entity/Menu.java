@@ -25,7 +25,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("t_menu")
+@TableName("system_menu")
 //@ApiModel(value="Menu对象", description="菜单")
 public class Menu extends Model<Menu> {
 
@@ -62,7 +62,7 @@ public class Menu extends Model<Menu> {
     private Integer type;
 
 //    @ApiModelProperty(value = "是否有效")
-    private String del;
+    private String deleted;
 
 //    @ApiModelProperty(value = "排序")
     private Integer sortno;

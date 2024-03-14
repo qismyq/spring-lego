@@ -50,7 +50,7 @@ public class FrontUser extends Model<FrontUser> {
 
 //    @ApiModelProperty(value = "是否弃用 0否1是")
     @TableLogic
-    private Integer del;
+    private Integer deleted;
 
 //    @ApiModelProperty(value = "前端角色")
     private Integer role;

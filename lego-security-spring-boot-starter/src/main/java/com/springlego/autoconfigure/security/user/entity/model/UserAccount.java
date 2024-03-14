@@ -47,5 +47,5 @@ public class UserAccount extends Model<UserAccount> {
 
 
     @TableLogic
-    private int del;
+    private int deleted;
 }
