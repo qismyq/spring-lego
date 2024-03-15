@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.springlego</groupId>
             <artifactId>lego-frame-spring-boot-starter</artifactId>
-            <version>${project.version}</version>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>

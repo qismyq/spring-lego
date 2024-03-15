@@ -22,7 +22,7 @@ public class OAuthTokenEnhancer implements TokenEnhancer {
         if(accessToken instanceof DefaultOAuth2AccessToken){
             DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
 
-            // 这里是做嵌入token内部的额外信息的，比如用户信息等等
+            // 示例：这里是做嵌入token内部的额外信息的，比如用户信息等等
 //            ReturnDatas successReturnDatas = ReturnDatas.getSuccessReturnDatas();
 //            Map<String, Object> info = BeanUtil.beanToMap(successReturnDatas);
 //            token.setAdditionalInformation(info);
