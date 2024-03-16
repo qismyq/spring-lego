@@ -44,6 +44,7 @@
         <httpclient.version>4.5.13</httpclient.version>
 
         <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
+        <mybatis-plus-join.version>1.4.7</mybatis-plus-join.version>
 
         <redisson.version>3.13.3</redisson.version>
         <lombok.version>1.16.20</lombok.version>
@@ -94,6 +95,11 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.yulichang</groupId>
+                <artifactId>mybatis-plus-join-boot-starter</artifactId> <!-- MyBatis 联表查询 -->
+                <version>${mybatis-plus-join.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.velocity</groupId>

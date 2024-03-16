@@ -25,20 +25,6 @@ public class LegoUserDetailsServiceImpl implements LegoUserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-//        // 前台用户
-//        if (StringUtils.equals(StringUtils.trim(userType).toUpperCase(), UserTypeConstant.FRONT)) {
-//            Result<UserDetail> result = apiAccountFeignClient.getByUsername(username);
-//            UserDetail userDetail = result.getData();
-//            if(userDetail == null){
-//                throw new Exception(ErrorCode.ACCOUNT_NOT_EXIST);
-//            }
-//            userDetail.setAuthorities(AuthorityUtils.createAuthorityList(FRONT_ROLE).stream().collect(Collectors.toSet()));
-//            return userDetail;
-//        }
-//        // 后台用户
-//        else{
-//            return loadUserByUsername(username);
-//        }
         UserAccountVO userAccount = userAccountService.getByUsername(username);
         if (userAccount != null) {
             UserDetail userDetail = new UserDetail();
