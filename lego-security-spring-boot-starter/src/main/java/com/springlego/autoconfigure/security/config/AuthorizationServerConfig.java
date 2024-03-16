@@ -49,7 +49,6 @@ import java.util.Map;
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     private final AuthenticationManager authenticationManager;
     private final DataSource dataSource;
-    private final LegoUserDetailsService userDetailsService;
     private final TokenStore tokenStore;
     private final WebResponseExceptionTranslator<OAuth2Exception> legoWebResponseExceptionTranslator;
 
@@ -82,8 +81,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST, HttpMethod.DELETE);
         //密码模式
         endpoints.authenticationManager(authenticationManager);
-        //支持刷新令牌
-        endpoints.userDetailsService(userDetailsService);
         //令牌管理
         endpoints.tokenStore(tokenStore);
         // 将获取token的端点替换为/login
