@@ -1,9 +1,19 @@
 package com.springlego.autoconfigure.common.service.dict.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
-import com.springlego.autoconfigure.common.entity.dict.DictDataDO;
-import com.springlego.autoconfigure.common.entity.dict.DictTypeDO;
+import com.springlego.autoconfigure.common.entity.dataobject.dict.DictDataDO;
+import com.springlego.autoconfigure.common.entity.dataobject.dict.DictTypeDO;
+import com.springlego.autoconfigure.common.entity.vo.dict.DictDataPageReqVO;
+import com.springlego.autoconfigure.common.entity.vo.dict.DictDataSaveReqVO;
+import com.springlego.autoconfigure.common.enums.CommonStatusEnum;
+import com.springlego.autoconfigure.common.enums.CommonErrorCodeEnum;
+import com.springlego.autoconfigure.common.mapper.dict.DictDataMapper;
 import com.springlego.autoconfigure.common.service.dict.DictDataService;
+import com.springlego.autoconfigure.common.service.dict.DictTypeService;
+import com.springlego.autoconfigure.common.util.CollectionUtils;
+import com.springlego.autoconfigure.frame.entity.PageResult;
+import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.VisibleForTesting;
 import org.springframework.stereotype.Service;
@@ -32,7 +42,7 @@ public class DictDataServiceImpl implements DictDataService {
             .thenComparingInt(DictDataDO::getSort);
 
     @Resource
-    private cn.iocoder.yudao.module.system.service.dict.DictTypeService dictTypeService;
+    private DictTypeService dictTypeService;
 
     @Resource
     private DictDataMapper dictDataMapper;
@@ -62,7 +72,7 @@ public class DictDataServiceImpl implements DictDataService {
         validateDictDataValueUnique(null, createReqVO.getDictType(), createReqVO.getValue());
 
         // 插入字典类型
-        DictDataDO dictData = BeanUtils.toBean(createReqVO, DictDataDO.class);
+        DictDataDO dictData = BeanUtil.toBean(createReqVO, DictDataDO.class);
         dictDataMapper.insert(dictData);
         return dictData.getId();
     }
@@ -77,7 +87,7 @@ public class DictDataServiceImpl implements DictDataService {
         validateDictDataValueUnique(updateReqVO.getId(), updateReqVO.getDictType(), updateReqVO.getValue());
 
         // 更新字典类型
-        DictDataDO updateObj = BeanUtils.toBean(updateReqVO, DictDataDO.class);
+        DictDataDO updateObj = BeanUtil.toBean(updateReqVO, DictDataDO.class);
         dictDataMapper.updateById(updateObj);
     }
 
@@ -103,10 +113,10 @@ public class DictDataServiceImpl implements DictDataService {
         }
         // 如果 id 为空，说明不用比较是否为相同 id 的字典数据
         if (id == null) {
-            throw exception(DICT_DATA_VALUE_DUPLICATE);
+            throw new ErrorMessageException(CommonErrorCodeEnum.VALUE_DUPLICATE_ERROR);
         }
         if (!dictData.getId().equals(id)) {
-            throw exception(DICT_DATA_VALUE_DUPLICATE);
+            throw new ErrorMessageException(CommonErrorCodeEnum.VALUE_DUPLICATE_ERROR);
         }
     }
 
@@ -117,7 +127,7 @@ public class DictDataServiceImpl implements DictDataService {
         }
         DictDataDO dictData = dictDataMapper.selectById(id);
         if (dictData == null) {
-            throw exception(DICT_DATA_NOT_EXISTS);
+            throw new ErrorMessageException(CommonErrorCodeEnum.DATA_NOT_EXISTS_ERROR);
         }
     }
 
@@ -125,10 +135,10 @@ public class DictDataServiceImpl implements DictDataService {
     public void validateDictTypeExists(String type) {
         DictTypeDO dictType = dictTypeService.getDictType(type);
         if (dictType == null) {
-            throw exception(DICT_TYPE_NOT_EXISTS);
+            throw new ErrorMessageException(CommonErrorCodeEnum.DATA_NOT_EXISTS_ERROR);
         }
         if (!CommonStatusEnum.ENABLE.getStatus().equals(dictType.getStatus())) {
-            throw exception(DICT_TYPE_NOT_ENABLE);
+            throw new ErrorMessageException(CommonErrorCodeEnum.STATUS_NOT_ENABLED_ERROR);
         }
     }
 
@@ -143,10 +153,10 @@ public class DictDataServiceImpl implements DictDataService {
         values.forEach(value -> {
             DictDataDO dictData = dictDataMap.get(value);
             if (dictData == null) {
-                throw exception(DICT_DATA_NOT_EXISTS);
+                throw new ErrorMessageException(CommonErrorCodeEnum.DATA_NOT_EXISTS_ERROR);
             }
             if (!CommonStatusEnum.ENABLE.getStatus().equals(dictData.getStatus())) {
-                throw exception(DICT_DATA_NOT_ENABLE, dictData.getLabel());
+                throw new ErrorMessageException(CommonErrorCodeEnum.STATUS_NOT_ENABLED_ERROR);
             }
         });
     }

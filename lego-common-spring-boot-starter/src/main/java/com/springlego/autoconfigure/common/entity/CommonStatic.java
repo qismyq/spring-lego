@@ -18,4 +18,11 @@ public class CommonStatic {
     public static final String ALARM_EMAIL = "alarmEmail" ;
     public static final String ALARM_EMAIL_TO = "alarmEmailTO" ;
     public static final String ALARM_EMAIL_CC = "alarmEmailCC" ;
+
+
+    public static final String FORMAT_YEAR_MONTH_DAY = "yyyy-MM-dd";
+
+    public static final String FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND = "yyyy-MM-dd HH:mm:ss";
+
+    public static final String FORMAT_HOUR_MINUTE_SECOND = "HH:mm:ss";
 }

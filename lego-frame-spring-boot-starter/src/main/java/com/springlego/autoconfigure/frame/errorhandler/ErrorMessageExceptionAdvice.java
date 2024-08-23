@@ -1,6 +1,7 @@
 package com.springlego.autoconfigure.frame.errorhandler;
 
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
+import com.springlego.autoconfigure.frame.enums.FrameCodeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;

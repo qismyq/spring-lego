@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.common.entity;
+package com.springlego.autoconfigure.frame.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;

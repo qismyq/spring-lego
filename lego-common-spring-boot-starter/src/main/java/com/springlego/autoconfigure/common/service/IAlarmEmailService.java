@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.common.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.springlego.autoconfigure.common.entity.AlarmEmail;
+import com.springlego.autoconfigure.common.entity.dataobject.alarm.AlarmEmail;
 
 /**
  * <p>

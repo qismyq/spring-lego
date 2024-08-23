@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.security.exception;
 
 import com.alibaba.fastjson.JSON;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
-import com.springlego.autoconfigure.security.errorhandler.SecurityErrorCodeEnum;
+import com.springlego.autoconfigure.security.enums.SecurityErrorCodeEnum;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 

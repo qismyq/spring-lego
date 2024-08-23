@@ -3,7 +3,7 @@ package com.springlego.autoconfigure.common.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springlego.autoconfigure.common.mapper.AlarmEmailMapper;
 import com.springlego.autoconfigure.common.service.IAlarmEmailService;
-import com.springlego.autoconfigure.common.entity.AlarmEmail;
+import com.springlego.autoconfigure.common.entity.dataobject.alarm.AlarmEmail;
 import org.springframework.stereotype.Service;
 
 /**

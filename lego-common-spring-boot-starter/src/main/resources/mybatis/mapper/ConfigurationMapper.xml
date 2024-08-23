@@ -3,7 +3,7 @@
 <mapper namespace="com.springlego.autoconfigure.common.mapper.ConfigurationMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.common.entity.Configuration">
+    <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.common.entity.dataobject.configuration.Configuration">
         <id column="code" property="code" />
         <result column="value" property="value" />
         <result column="descr" property="descr" />

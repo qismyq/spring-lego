@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.frame.entity;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.springlego.autoconfigure.frame.errorhandler.FrameCodeEnum;
+import com.springlego.autoconfigure.frame.enums.FrameCodeEnum;
 import com.springlego.autoconfigure.frame.errorhandler.ICode;
 import lombok.Data;
 import lombok.ToString;

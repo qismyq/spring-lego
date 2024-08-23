@@ -1,7 +1,10 @@
 package com.springlego.autoconfigure.common.service.dict;
 
 
-import com.springlego.autoconfigure.common.entity.dict.DictTypeDO;
+import com.springlego.autoconfigure.common.entity.dataobject.dict.DictTypeDO;
+import com.springlego.autoconfigure.common.entity.vo.dict.DictTypePageReqVO;
+import com.springlego.autoconfigure.common.entity.vo.dict.DictTypeSaveReqVO;
+import com.springlego.autoconfigure.frame.entity.PageResult;
 
 import java.util.List;
 

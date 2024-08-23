@@ -1,6 +1,9 @@
 package com.springlego.autoconfigure.common.service.dict;
 
-import com.springlego.autoconfigure.common.entity.dict.DictDataDO;
+import com.springlego.autoconfigure.common.entity.dataobject.dict.DictDataDO;
+import com.springlego.autoconfigure.common.entity.vo.dict.DictDataPageReqVO;
+import com.springlego.autoconfigure.common.entity.vo.dict.DictDataSaveReqVO;
+import com.springlego.autoconfigure.frame.entity.PageResult;
 import org.springframework.lang.Nullable;
 
 import java.util.Collection;
@@ -8,6 +11,7 @@ import java.util.List;
 
 /**
  * 字典数据 Service 接口
+ *
  *
  * @author ruoyi
  */

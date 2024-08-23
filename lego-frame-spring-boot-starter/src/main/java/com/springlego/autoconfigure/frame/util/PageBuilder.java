@@ -69,20 +69,20 @@ public class PageBuilder {
      * @update:
      */
     public static Page instancePageOrderBy(HttpServletRequest request,String sort,String... columns) {
-        String pageNumStr = request.getParameter("pageNum");
+        String pageNumStr = request.getParameter("pageNo");
         String pageSizeStr = request.getParameter("pageSize");
-        int pageNum = 1 ;
+        int pageNo = 1 ;
         int pageSize = 10 ;
 
         if (StringUtils.isNotBlank(pageNumStr)) {
-            pageNum = Integer.valueOf(pageNumStr);
+            pageNo = Integer.valueOf(pageNumStr);
         }
 
         if (StringUtils.isNotBlank(pageSizeStr)) {
             pageSize = Integer.valueOf(pageSizeStr);
         }
 
-        Page page = new Page(pageNum, pageSize);
+        Page page = new Page(pageNo, pageSize);
         // 构建排序规则
         if (ArrayUtils.isNotEmpty(columns)) {
 

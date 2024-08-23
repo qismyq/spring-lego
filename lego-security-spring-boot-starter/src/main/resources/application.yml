@@ -3,6 +3,8 @@ server:
 spring:
   profiles:
     active: company
+  main:
+    allow-circular-references: true # 允许循环依赖，因为项目是三层架构，无法避免这个情况。
   datasource:
       url: jdbc:mysql://127.0.0.1:3306/spring_lego?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
       username: root

@@ -1,9 +1,16 @@
 package com.springlego.autoconfigure.common.service.dict.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
-import com.springlego.autoconfigure.common.entity.dict.DictTypeDO;
+import com.springlego.autoconfigure.common.entity.dataobject.dict.DictTypeDO;
+import com.springlego.autoconfigure.common.entity.vo.dict.DictTypePageReqVO;
+import com.springlego.autoconfigure.common.entity.vo.dict.DictTypeSaveReqVO;
+import com.springlego.autoconfigure.common.enums.CommonErrorCodeEnum;
+import com.springlego.autoconfigure.common.mapper.dict.DictTypeMapper;
 import com.springlego.autoconfigure.common.service.dict.DictDataService;
 import com.springlego.autoconfigure.common.service.dict.DictTypeService;
+import com.springlego.autoconfigure.frame.entity.PageResult;
+import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
 import org.assertj.core.util.VisibleForTesting;
 import org.springframework.stereotype.Service;
 
@@ -49,8 +56,7 @@ public class DictTypeServiceImpl implements DictTypeService {
         validateDictTypeUnique(null, createReqVO.getType());
 
         // 插入字典类型
-        DictTypeDO dictType = BeanUtils.toBean(createReqVO, DictTypeDO.class);
-        dictType.setDeletedTime(LocalDateTimeUtils.EMPTY); // 唯一索引，避免 null 值
+        DictTypeDO dictType = BeanUtil.toBean(createReqVO, DictTypeDO.class);
         dictTypeMapper.insert(dictType);
         return dictType.getId();
     }
@@ -65,7 +71,7 @@ public class DictTypeServiceImpl implements DictTypeService {
         validateDictTypeUnique(updateReqVO.getId(), updateReqVO.getType());
 
         // 更新字典类型
-        DictTypeDO updateObj = BeanUtils.toBean(updateReqVO, DictTypeDO.class);
+        DictTypeDO updateObj = BeanUtil.toBean(updateReqVO, DictTypeDO.class);
         dictTypeMapper.updateById(updateObj);
     }
 
@@ -75,7 +81,7 @@ public class DictTypeServiceImpl implements DictTypeService {
         DictTypeDO dictType = validateDictTypeExists(id);
         // 校验是否有字典数据
         if (dictDataService.getDictDataCountByDictType(dictType.getType()) > 0) {
-            throw exception(DICT_TYPE_HAS_CHILDREN);
+            throw new ErrorMessageException(CommonErrorCodeEnum.DICT_TYPE_HAS_CHILDREN);
         }
         // 删除字典类型
         dictTypeMapper.updateToDelete(id, LocalDateTime.now());
@@ -94,10 +100,10 @@ public class DictTypeServiceImpl implements DictTypeService {
         }
         // 如果 id 为空，说明不用比较是否为相同 id 的字典类型
         if (id == null) {
-            throw exception(DICT_TYPE_NAME_DUPLICATE);
+            throw new ErrorMessageException(CommonErrorCodeEnum.DICT_TYPE_NAME_DUPLICATE);
         }
         if (!dictType.getId().equals(id)) {
-            throw exception(DICT_TYPE_NAME_DUPLICATE);
+            throw new ErrorMessageException(CommonErrorCodeEnum.DICT_TYPE_NAME_DUPLICATE);
         }
     }
 
@@ -112,10 +118,10 @@ public class DictTypeServiceImpl implements DictTypeService {
         }
         // 如果 id 为空，说明不用比较是否为相同 id 的字典类型
         if (id == null) {
-            throw exception(DICT_TYPE_TYPE_DUPLICATE);
+            throw new ErrorMessageException(CommonErrorCodeEnum.DICT_TYPE_TYPE_DUPLICATE);
         }
         if (!dictType.getId().equals(id)) {
-            throw exception(DICT_TYPE_TYPE_DUPLICATE);
+            throw new ErrorMessageException(CommonErrorCodeEnum.DICT_TYPE_TYPE_DUPLICATE);
         }
     }
 
@@ -126,7 +132,7 @@ public class DictTypeServiceImpl implements DictTypeService {
         }
         DictTypeDO dictType = dictTypeMapper.selectById(id);
         if (dictType == null) {
-            throw exception(DICT_TYPE_NOT_EXISTS);
+            throw new ErrorMessageException(CommonErrorCodeEnum.DICT_TYPE_NOT_EXISTS);
         }
         return dictType;
     }

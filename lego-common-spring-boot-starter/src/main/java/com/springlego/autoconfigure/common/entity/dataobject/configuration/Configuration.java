@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.common.entity;
+package com.springlego.autoconfigure.common.entity.dataobject.configuration;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

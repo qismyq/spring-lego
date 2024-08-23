@@ -48,6 +48,10 @@
 
         <redisson.version>3.13.3</redisson.version>
         <lombok.version>1.16.20</lombok.version>
+
+        <springdoc.version>1.6.15</springdoc.version>
+
+        <guava.version>33.0.0-jre</guava.version>
     </properties>
 
     <dependencyManagement>
@@ -202,18 +206,19 @@
                 <version>${redisson.version}</version>
             </dependency>
 
+            <!--文档-start-->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
 
-            <!--接口文档-start-->
-<!--            <dependency>-->
-<!--                <groupId>io.springfox</groupId>-->
-<!--                <artifactId>springfox-swagger2</artifactId>-->
-<!--                <version>${swagger.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>io.springfox</groupId>-->
-<!--                <artifactId>springfox-swagger-ui</artifactId>-->
-<!--                <version>${swagger.version}</version>-->
-<!--            </dependency>-->
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
 
 
             <!--&lt;!&ndash;热部署&ndash;&gt; 此处需要注释掉，不然会影响cachable等注解的使用，此问题待查-->
@@ -420,6 +425,8 @@
                                 <encoding>UTF-8</encoding>
                                 <docencoding>UTF-8</docencoding>
     <!--                            <additionalparam>-Xdoclint:none</additionalparam>-->
+                                <source>8</source> <!-- 指定源代码兼容性版本 -->
+                                <doclint>none</doclint> <!-- 解决Java 8及更高版本中的doclint问题 -->
                             </configuration>
                             <executions>
                                 <execution>
@@ -428,21 +435,28 @@
                                         <goal>jar</goal>
                                     </goals>
                                 </execution>
-                            </executions>
-                        </plugin>
-                        <!-- GPG -->
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-gpg-plugin</artifactId>
-                            <executions>
                                 <execution>
-                                    <phase>verify</phase>
+                                    <id>attach-javadocs</id>
                                     <goals>
-                                        <goal>sign</goal>
+                                        <goal>jar</goal>
                                     </goals>
                                 </execution>
                             </executions>
                         </plugin>
+                        <!-- GPG -->
+<!--                        <plugin>-->
+<!--                            <groupId>org.apache.maven.plugins</groupId>-->
+<!--                            <artifactId>maven-gpg-plugin</artifactId>-->
+<!--                            <version>3.2.4</version>-->
+<!--                            <executions>-->
+<!--                                <execution>-->
+<!--                                    <phase>verify</phase>-->
+<!--                                    <goals>-->
+<!--                                        <goal>sign</goal>-->
+<!--                                    </goals>-->
+<!--                                </execution>-->
+<!--                            </executions>-->
+<!--                        </plugin>-->
                     </plugins>
                 </build>
             </profile>

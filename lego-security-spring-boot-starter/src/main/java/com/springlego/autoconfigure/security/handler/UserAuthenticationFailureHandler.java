@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.security.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
-import com.springlego.autoconfigure.frame.errorhandler.FrameCodeEnum;
+import com.springlego.autoconfigure.frame.enums.FrameCodeEnum;
 import lombok.SneakyThrows;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
