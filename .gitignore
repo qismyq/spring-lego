@@ -25,3 +25,5 @@ hs_err_pid*
 target
 *.iml
 log
+
+pom-xml-flattened

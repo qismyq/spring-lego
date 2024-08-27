@@ -92,6 +92,9 @@ public class ReturnDatas<T> implements Serializable{
 	public static ReturnDatas getSuccessReturnDatas() {
 		return new ReturnDatas(FrameCodeEnum.SUCCESS.getCode(), FrameCodeEnum.SUCCESS.getMessage());
 	}
+    public static <T> ReturnDatas getSuccessReturnDatas(T data) {
+        return new ReturnDatas(FrameCodeEnum.SUCCESS.getCode(), FrameCodeEnum.SUCCESS.getMessage()).setData(data);
+    }
 	public static ReturnDatas getErrorReturnDatas(ICode code) {
 		return  new ReturnDatas(code.getCode(), code.getMessage());
 	}

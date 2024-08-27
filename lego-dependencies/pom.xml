@@ -23,7 +23,7 @@
 <!--        <spring-security-oauth2.version>2.2.11.RELEASE</spring-security-oauth2.version>-->
         <hutool.version>5.8.26</hutool.version>
         <mysql-connector-java.version>8.0.30</mysql-connector-java.version>
-        <druid.version>1.1.10</druid.version>
+        <druid.version>1.2.8</druid.version>
         <velocity-engine.version>2.1</velocity-engine.version>
 
         <log4j-to-slf4j.version>2.9.1</log4j-to-slf4j.version>
@@ -279,21 +279,22 @@
                     </plugin>
 
                     <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>repackage</id>
-                            <configuration>
-                                <excludeDevtools>true</excludeDevtools>
-                                <compilerArgument>-parameters</compilerArgument>
-                                <encoding>UTF-8</encoding>
-                            </configuration>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <fork>true</fork>
-                    </configuration>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <version>${spring-boot.version}</version>
+                        <executions>
+                            <execution>
+                                <id>repackage</id>
+                                <configuration>
+                                    <excludeDevtools>true</excludeDevtools>
+                                    <compilerArgument>-parameters</compilerArgument>
+                                    <encoding>UTF-8</encoding>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <fork>true</fork>
+                        </configuration>
                     </plugin>
 
                     <!--deploy插件-->

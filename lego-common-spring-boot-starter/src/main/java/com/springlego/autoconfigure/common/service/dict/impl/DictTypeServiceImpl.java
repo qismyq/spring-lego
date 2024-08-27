@@ -7,8 +7,8 @@ import com.springlego.autoconfigure.common.entity.vo.dict.DictTypePageReqVO;
 import com.springlego.autoconfigure.common.entity.vo.dict.DictTypeSaveReqVO;
 import com.springlego.autoconfigure.common.enums.CommonErrorCodeEnum;
 import com.springlego.autoconfigure.common.mapper.dict.DictTypeMapper;
-import com.springlego.autoconfigure.common.service.dict.DictDataService;
-import com.springlego.autoconfigure.common.service.dict.DictTypeService;
+import com.springlego.autoconfigure.common.service.dict.IDictDataService;
+import com.springlego.autoconfigure.common.service.dict.IDictTypeService;
 import com.springlego.autoconfigure.frame.entity.PageResult;
 import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
 import org.assertj.core.util.VisibleForTesting;
@@ -25,10 +25,10 @@ import java.util.List;
  * @author 芋道源码
  */
 @Service
-public class DictTypeServiceImpl implements DictTypeService {
+public class DictTypeServiceImpl implements IDictTypeService {
 
     @Resource
-    private DictDataService dictDataService;
+    private IDictDataService dictDataService;
 
     @Resource
     private DictTypeMapper dictTypeMapper;

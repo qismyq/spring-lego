@@ -9,8 +9,8 @@ import com.springlego.autoconfigure.common.entity.vo.dict.DictDataSaveReqVO;
 import com.springlego.autoconfigure.common.enums.CommonStatusEnum;
 import com.springlego.autoconfigure.common.enums.CommonErrorCodeEnum;
 import com.springlego.autoconfigure.common.mapper.dict.DictDataMapper;
-import com.springlego.autoconfigure.common.service.dict.DictDataService;
-import com.springlego.autoconfigure.common.service.dict.DictTypeService;
+import com.springlego.autoconfigure.common.service.dict.IDictDataService;
+import com.springlego.autoconfigure.common.service.dict.IDictTypeService;
 import com.springlego.autoconfigure.common.util.CollectionUtils;
 import com.springlego.autoconfigure.frame.entity.PageResult;
 import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
@@ -32,7 +32,7 @@ import java.util.Map;
  */
 @Service
 @Slf4j
-public class DictDataServiceImpl implements DictDataService {
+public class DictDataServiceImpl implements IDictDataService {
 
     /**
      * 排序 dictType > sort
@@ -42,7 +42,7 @@ public class DictDataServiceImpl implements DictDataService {
             .thenComparingInt(DictDataDO::getSort);
 
     @Resource
-    private DictTypeService dictTypeService;
+    private IDictTypeService dictTypeService;
 
     @Resource
     private DictDataMapper dictDataMapper;

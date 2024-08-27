@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author ruoyi
  */
-public interface DictDataService {
+public interface IDictDataService {
 
     /**
      * 创建字典数据
