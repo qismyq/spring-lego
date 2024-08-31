@@ -3,7 +3,7 @@ package com.springlego.autoconfigure.common.controller;
 
 import com.springlego.autoconfigure.common.service.IAlarmEmailService;
 //import io.swagger.annotations.Api;
-import com.springlego.autoconfigure.common.entity.dataobject.alarm.AlarmEmail;
+import com.springlego.autoconfigure.common.dto.dataobject.alarm.AlarmEmail;
 import com.springlego.autoconfigure.common.service.IMailService;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
 import org.springframework.beans.factory.annotation.Autowired;

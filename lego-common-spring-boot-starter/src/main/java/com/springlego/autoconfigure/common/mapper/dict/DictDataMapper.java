@@ -1,8 +1,8 @@
 package com.springlego.autoconfigure.common.mapper.dict;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.springlego.autoconfigure.common.entity.dataobject.dict.DictDataDO;
-import com.springlego.autoconfigure.common.entity.vo.dict.DictDataPageReqVO;
+import com.springlego.autoconfigure.common.dto.dataobject.dict.DictDataDO;
+import com.springlego.autoconfigure.common.dto.vo.dict.DictDataPageReqVO;
 import com.springlego.autoconfigure.frame.entity.PageResult;
 import com.springlego.autoconfigure.frame.mybatis.mapper.BaseMapperX;
 import com.springlego.autoconfigure.frame.mybatis.query.LambdaQueryWrapperX;

@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.common.entity.dataobject.alarm;
+package com.springlego.autoconfigure.common.dto.dataobject.alarm;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

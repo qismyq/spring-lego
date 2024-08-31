@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.common.entity.dataobject.dict;
+package com.springlego.autoconfigure.common.dto.dataobject.dict;
 
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;

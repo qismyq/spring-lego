@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.common.entity.vo.dict;
+package com.springlego.autoconfigure.common.dto.vo.dict;
 
 import com.springlego.autoconfigure.common.enums.CommonStatusEnum;
 import com.springlego.autoconfigure.common.validation.InEnum;

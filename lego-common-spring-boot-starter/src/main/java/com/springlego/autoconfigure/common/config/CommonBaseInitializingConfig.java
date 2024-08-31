@@ -1,8 +1,8 @@
 package com.springlego.autoconfigure.common.config;
 
 import com.alibaba.fastjson.JSONObject;
-import com.springlego.autoconfigure.common.entity.dataobject.alarm.AlarmEmail;
-import com.springlego.autoconfigure.common.entity.CommonStatic;
+import com.springlego.autoconfigure.common.dto.dataobject.alarm.AlarmEmail;
+import com.springlego.autoconfigure.common.dto.CommonStatic;
 import com.springlego.autoconfigure.common.service.IAlarmEmailService;
 import com.springlego.autoconfigure.common.service.IConfigurationService;
 import lombok.extern.slf4j.Slf4j;

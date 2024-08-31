@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.common.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.springlego.autoconfigure.common.entity.dataobject.configuration.Configuration;
+import com.springlego.autoconfigure.common.dto.dataobject.configuration.Configuration;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

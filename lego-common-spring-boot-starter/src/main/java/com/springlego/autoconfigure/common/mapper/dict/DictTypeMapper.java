@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.common.mapper.dict;
 
-import com.springlego.autoconfigure.common.entity.dataobject.dict.DictTypeDO;
-import com.springlego.autoconfigure.common.entity.vo.dict.DictTypePageReqVO;
+import com.springlego.autoconfigure.common.dto.dataobject.dict.DictTypeDO;
+import com.springlego.autoconfigure.common.dto.vo.dict.DictTypePageReqVO;
 import com.springlego.autoconfigure.frame.entity.PageResult;
 import com.springlego.autoconfigure.frame.mybatis.mapper.BaseMapperX;
 import com.springlego.autoconfigure.frame.mybatis.query.LambdaQueryWrapperX;

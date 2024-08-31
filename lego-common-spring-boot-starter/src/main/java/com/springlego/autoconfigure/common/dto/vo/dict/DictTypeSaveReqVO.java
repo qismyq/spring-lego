@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.common.entity.vo.dict;
+package com.springlego.autoconfigure.common.dto.vo.dict;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

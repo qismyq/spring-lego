@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.common.aspect;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import com.springlego.autoconfigure.common.entity.CommonStatic;
+import com.springlego.autoconfigure.common.dto.CommonStatic;
 import com.springlego.autoconfigure.common.service.IMailService;
 import com.springlego.autoconfigure.frame.util.SpringContextHolder;
 import org.apache.commons.lang3.StringUtils;

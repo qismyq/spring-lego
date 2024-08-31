@@ -2,10 +2,10 @@ package com.springlego.autoconfigure.common.service.dict.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
-import com.springlego.autoconfigure.common.entity.dataobject.dict.DictDataDO;
-import com.springlego.autoconfigure.common.entity.dataobject.dict.DictTypeDO;
-import com.springlego.autoconfigure.common.entity.vo.dict.DictDataPageReqVO;
-import com.springlego.autoconfigure.common.entity.vo.dict.DictDataSaveReqVO;
+import com.springlego.autoconfigure.common.dto.dataobject.dict.DictDataDO;
+import com.springlego.autoconfigure.common.dto.dataobject.dict.DictTypeDO;
+import com.springlego.autoconfigure.common.dto.vo.dict.DictDataPageReqVO;
+import com.springlego.autoconfigure.common.dto.vo.dict.DictDataSaveReqVO;
 import com.springlego.autoconfigure.common.enums.CommonStatusEnum;
 import com.springlego.autoconfigure.common.enums.CommonErrorCodeEnum;
 import com.springlego.autoconfigure.common.mapper.dict.DictDataMapper;

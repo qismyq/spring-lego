@@ -2,8 +2,8 @@ package com.springlego.autoconfigure.security.user.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springlego.autoconfigure.security.user.service.UserAccountService;
-import com.springlego.autoconfigure.security.user.entity.model.UserAccount;
-import com.springlego.autoconfigure.security.user.entity.vo.UserAccountVO;
+import com.springlego.autoconfigure.security.user.dto.dataobject.UserAccount;
+import com.springlego.autoconfigure.security.user.dto.vo.UserAccountVO;
 import com.springlego.autoconfigure.security.user.mapper.UserAccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

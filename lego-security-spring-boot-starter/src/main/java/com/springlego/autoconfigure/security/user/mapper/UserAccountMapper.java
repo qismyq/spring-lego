@@ -1,8 +1,8 @@
 package com.springlego.autoconfigure.security.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.springlego.autoconfigure.security.user.entity.model.UserAccount;
-import com.springlego.autoconfigure.security.user.entity.vo.UserAccountVO;
+import com.springlego.autoconfigure.security.user.dto.dataobject.UserAccount;
+import com.springlego.autoconfigure.security.user.dto.vo.UserAccountVO;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -17,7 +17,7 @@ public interface UserAccountMapper extends BaseMapper<UserAccount> {
      * 根据账户查找UserAccount
      * @param account 账户
      * @param state 状态 0-禁用，1-启用
-     * @param del 隐式删除
+     * @param deleted 隐式删除
      * @return
      */
     UserAccountVO getByAccount(@Param("account") String account, @Param("state") Integer state, @Param("deleted") Boolean deleted);

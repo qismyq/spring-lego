@@ -2,8 +2,8 @@ package com.springlego.autoconfigure.security.user.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.springlego.autoconfigure.security.user.entity.model.UserAccount;
-import com.springlego.autoconfigure.security.user.entity.vo.UserAccountVO;
+import com.springlego.autoconfigure.security.user.dto.dataobject.UserAccount;
+import com.springlego.autoconfigure.security.user.dto.vo.UserAccountVO;
 
 /**
  * @Classname UserAccountService

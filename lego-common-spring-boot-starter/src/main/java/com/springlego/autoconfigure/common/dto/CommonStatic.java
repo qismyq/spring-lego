@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.common.entity;
+package com.springlego.autoconfigure.common.dto;
 
 /**
  * @Description common starter 范围静态变量

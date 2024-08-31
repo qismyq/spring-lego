@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.common.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.springlego.autoconfigure.common.entity.dataobject.configuration.Configuration;
+import com.springlego.autoconfigure.common.dto.dataobject.configuration.Configuration;
 import com.springlego.autoconfigure.common.service.IConfigurationService;
 //import io.swagger.annotations.Api;
 //import io.swagger.annotations.ApiOperation;

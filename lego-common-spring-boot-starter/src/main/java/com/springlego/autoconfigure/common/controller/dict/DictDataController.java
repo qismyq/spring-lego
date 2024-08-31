@@ -1,14 +1,13 @@
 package com.springlego.autoconfigure.common.controller.dict;
 
-import com.springlego.autoconfigure.common.entity.dataobject.dict.DictDataDO;
-import com.springlego.autoconfigure.common.entity.vo.dict.DictDataPageReqVO;
-import com.springlego.autoconfigure.common.entity.vo.dict.DictDataRespVO;
-import com.springlego.autoconfigure.common.entity.vo.dict.DictDataSaveReqVO;
-import com.springlego.autoconfigure.common.entity.vo.dict.DictDataSimpleRespVO;
+import com.springlego.autoconfigure.common.dto.dataobject.dict.DictDataDO;
+import com.springlego.autoconfigure.common.dto.vo.dict.DictDataPageReqVO;
+import com.springlego.autoconfigure.common.dto.vo.dict.DictDataRespVO;
+import com.springlego.autoconfigure.common.dto.vo.dict.DictDataSaveReqVO;
+import com.springlego.autoconfigure.common.dto.vo.dict.DictDataSimpleRespVO;
 import com.springlego.autoconfigure.common.enums.CommonStatusEnum;
 import com.springlego.autoconfigure.common.service.dict.IDictDataService;
 import com.springlego.autoconfigure.common.util.BeanUtils;
-import com.springlego.autoconfigure.frame.entity.PageParam;
 import com.springlego.autoconfigure.frame.entity.PageResult;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,9 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 

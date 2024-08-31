@@ -1,8 +1,8 @@
 package com.springlego.autoconfigure.common.service.dict;
 
-import com.springlego.autoconfigure.common.entity.dataobject.dict.DictDataDO;
-import com.springlego.autoconfigure.common.entity.vo.dict.DictDataPageReqVO;
-import com.springlego.autoconfigure.common.entity.vo.dict.DictDataSaveReqVO;
+import com.springlego.autoconfigure.common.dto.dataobject.dict.DictDataDO;
+import com.springlego.autoconfigure.common.dto.vo.dict.DictDataPageReqVO;
+import com.springlego.autoconfigure.common.dto.vo.dict.DictDataSaveReqVO;
 import com.springlego.autoconfigure.frame.entity.PageResult;
 import org.springframework.lang.Nullable;
 

@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.security.user.entity.vo;
+package com.springlego.autoconfigure.security.user.dto.vo;
 
 import cn.hutool.core.annotation.Alias;
 import lombok.Data;

@@ -3,7 +3,7 @@
 <mapper namespace="com.springlego.autoconfigure.security.user.mapper.UserAccountMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.security.user.entity.vo.UserAccountVO">
+    <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.security.user.dto.vo.UserAccountVO">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="account" property="account"/>

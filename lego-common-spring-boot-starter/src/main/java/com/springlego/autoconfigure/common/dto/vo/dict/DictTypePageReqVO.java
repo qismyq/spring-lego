@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.common.entity.vo.dict;
+package com.springlego.autoconfigure.common.dto.vo.dict;
 
 import com.springlego.autoconfigure.frame.entity.PageParam;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -9,7 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-import static com.springlego.autoconfigure.common.entity.CommonStatic.FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND;
+import static com.springlego.autoconfigure.common.dto.CommonStatic.FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND;
 
 
 @Schema(description = "管理后台 - 字典类型分页列表 Request VO")

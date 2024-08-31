@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.common.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.springlego.autoconfigure.common.entity.dataobject.alarm.AlarmEmail;
+import com.springlego.autoconfigure.common.dto.dataobject.alarm.AlarmEmail;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

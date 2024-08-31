@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.common.entity.dataobject.dict;
+package com.springlego.autoconfigure.common.dto.dataobject.dict;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.springlego.autoconfigure.common.enums.CommonStatusEnum;

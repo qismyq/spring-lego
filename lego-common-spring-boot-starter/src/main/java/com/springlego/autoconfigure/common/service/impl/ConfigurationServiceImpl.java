@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.common.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.springlego.autoconfigure.common.entity.dataobject.configuration.Configuration;
+import com.springlego.autoconfigure.common.dto.dataobject.configuration.Configuration;
 import com.springlego.autoconfigure.common.service.IConfigurationService;
 import com.springlego.autoconfigure.frame.util.GlobalStatic;
 import com.springlego.autoconfigure.common.mapper.ConfigurationMapper;
