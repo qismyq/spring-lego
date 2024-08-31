@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.user.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.springlego.autoconfigure.user.entity.RoleMenu;
+import com.springlego.autoconfigure.user.dto.RoleMenu;
 import com.springlego.autoconfigure.user.mapper.RoleMenuMapper;
 import com.springlego.autoconfigure.user.service.IRoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;

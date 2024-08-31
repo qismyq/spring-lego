@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.springlego.autoconfigure.user.entity.FrontUser;
+import com.springlego.autoconfigure.user.dto.dataobject.FrontUser;
 
 /**
  * <p>

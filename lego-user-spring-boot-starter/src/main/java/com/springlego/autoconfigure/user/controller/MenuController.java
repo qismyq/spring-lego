@@ -5,8 +5,8 @@ import com.springlego.autoconfigure.user.service.IMenuService;
 import lombok.extern.slf4j.Slf4j;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
 import com.springlego.autoconfigure.frame.errorhandler.FrameCodeEnum;
-import com.springlego.autoconfigure.user.entity.Menu;
-import com.springlego.autoconfigure.user.entity.MenuBar;
+import com.springlego.autoconfigure.user.dto.Menu;
+import com.springlego.autoconfigure.user.dto.MenuBar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

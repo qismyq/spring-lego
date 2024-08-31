@@ -2,7 +2,7 @@ package com.springlego.autoconfigure.user.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springlego.autoconfigure.user.service.IFrontUserService;
-import com.springlego.autoconfigure.user.entity.FrontUser;
+import com.springlego.autoconfigure.user.dto.dataobject.FrontUser;
 import com.springlego.autoconfigure.user.mapper.FrontUserMapper;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.user.entity;
+package com.springlego.autoconfigure.user.dto.dataobject;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;

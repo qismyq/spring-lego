@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
 import com.springlego.autoconfigure.frame.util.PageBuilder;
-import com.springlego.autoconfigure.user.entity.UserAccount;
+import com.springlego.autoconfigure.user.dto.dataobject.UserAccountDO;
 import com.springlego.autoconfigure.user.service.IUserAccountService;
 import com.springlego.autoconfigure.user.util.PasswordUtil;
 //import io.swagger.annotations.Api;
@@ -45,16 +45,16 @@ public class UserAccountController {
     @RequestMapping(value = "/getUser/json" , method = RequestMethod.GET)
     public ReturnDatas getUser(Long id)throws Exception {
         ReturnDatas returnDatas = ReturnDatas.getSuccessReturnDatas();
-        UserAccount user = userService.getLoginUser("siyuan", 1);
+        UserAccountDO user = userService.getLoginUser("siyuan", 1);
         returnDatas.setData(user).setMessage("成功");
         return returnDatas;
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public ReturnDatas list(HttpServletRequest request, UserAccount user)throws Exception {
+    public ReturnDatas list(HttpServletRequest request, UserAccountDO user)throws Exception {
         Page page = PageBuilder.instancePage(request);
 
-        IPage<UserAccount> userIPage = user.selectPage(page, new QueryWrapper<UserAccount>(user));
+        IPage<UserAccountDO> userIPage = user.selectPage(page, new QueryWrapper<UserAccountDO>(user));
         ReturnDatas returnDatas = ReturnDatas.getSuccessReturnDatas().setMessage("成功");
         returnDatas.setPage(page);
         returnDatas.setData(userIPage);
@@ -71,7 +71,7 @@ public class UserAccountController {
      * @update:
      */
     @PostMapping
-    public ReturnDatas save(@RequestBody UserAccount user) throws Exception {
+    public ReturnDatas save(@RequestBody UserAccountDO user) throws Exception {
         if (StringUtils.isNotBlank(user.getPassword())) {
             String salt = RandomStringUtils.random(8);
             user.setPassword(PasswordUtil.encrypt(user.getAccount(),user.getPassword(),salt));

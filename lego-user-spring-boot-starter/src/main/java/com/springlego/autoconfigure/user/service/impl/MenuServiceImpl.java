@@ -1,138 +1,206 @@
 package com.springlego.autoconfigure.user.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.springlego.autoconfigure.user.entity.Menu;
-import com.springlego.autoconfigure.user.entity.MenuBar;
+import cn.hutool.core.collection.CollUtil;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Lists;
+import com.springlego.autoconfigure.common.util.BeanUtils;
+import com.springlego.autoconfigure.user.dto.dataobject.MenuDO;
+import com.springlego.autoconfigure.user.enums.RedisKeyConstants;
 import com.springlego.autoconfigure.user.mapper.MenuMapper;
 import com.springlego.autoconfigure.user.service.IMenuService;
-import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.List;
 
+
 /**
- * <p>
- * 菜单 服务实现类
- * </p>
+ * 菜单 Service 实现
  *
- * @author michael wong
- * @since 2019-10-29
+ * @author 芋道源码
  */
 @Service
-public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
+@Slf4j
+public class MenuServiceImpl implements IMenuService {
 
-    @Autowired
-    MenuMapper menuMapper;
-
+    @Resource
+    private MenuMapper menuMapper;
+    @Resource
+    private PermissionService permissionService;
+    @Resource
+    @Lazy // 延迟，避免循环依赖报错
+    private TenantService tenantService;
 
     @Override
-    public List<MenuBar> getMenuBarsByUserId(Integer userId) throws Exception {
+    @CacheEvict(value = RedisKeyConstants.PERMISSION_MENU_ID_LIST, key = "#createReqVO.permission",
+            condition = "#createReqVO.permission != null")
+    public Long createMenu(MenuSaveVO createReqVO) {
+        // 校验父菜单存在
+        validateParentMenu(createReqVO.getParentId(), null);
+        // 校验菜单（自己）
+        validateMenu(createReqVO.getParentId(), createReqVO.getName(), null);
 
-        List<MenuBar> menuList = new ArrayList<>();
-
-        List<Menu> topMenuBars = menuMapper.getMenusByUserId(userId, false, 1,0L);
-        if (CollectionUtils.isNotEmpty(topMenuBars)) {
-
-            // 顶级菜单循环
-            topMenuBars.stream().forEach(menu -> {
-
-                MenuBar topMenu = menuToMenuBar(menu,true);
-
-                // 子菜单获取
-                List<Menu> childrenMenus = menuMapper.getMenusByUserId(userId, false, 1, menu.getId());
-                List<MenuBar> childrenMenuBars = new ArrayList<>();
-                if (CollectionUtils.isNotEmpty(childrenMenus)) {
-                    childrenMenus.stream().forEach(childMenu -> {
-                        childrenMenuBars.add(menuToMenuBar(childMenu, false));
-                    });
-                }else {
-                    childrenMenuBars.add(menuToMenuBar(menu, false));
-                    // 如果无下级，则置空meta，可以进行点击展示右侧的操作
-                    topMenu.setMeta(null);
-                }
-
-                topMenu.setChildren(childrenMenuBars);
-
-                menuList.add(topMenu);
-            });
-        }
-
-        return menuList;
+        // 插入数据库
+        MenuDO menu = BeanUtils.toBean(createReqVO, MenuDO.class);
+        initMenuProperty(menu);
+        menuMapper.insert(menu);
+        // 返回
+        return menu.getId();
     }
 
+    @Override
+    @CacheEvict(value = RedisKeyConstants.PERMISSION_MENU_ID_LIST,
+            allEntries = true) // allEntries 清空所有缓存，因为 permission 如果变更，涉及到新老两个 permission。直接清理，简单有效
+    public void updateMenu(MenuSaveVO updateReqVO) {
+        // 校验更新的菜单是否存在
+        if (menuMapper.selectById(updateReqVO.getId()) == null) {
+            throw exception(MENU_NOT_EXISTS);
+        }
+        // 校验父菜单存在
+        validateParentMenu(updateReqVO.getParentId(), updateReqVO.getId());
+        // 校验菜单（自己）
+        validateMenu(updateReqVO.getParentId(), updateReqVO.getName(), updateReqVO.getId());
 
-    private MenuBar menuToMenuBar(Menu menu,boolean top) {
+        // 更新到数据库
+        MenuDO updateObj = BeanUtils.toBean(updateReqVO, MenuDO.class);
+        initMenuProperty(updateObj);
+        menuMapper.updateById(updateObj);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    @CacheEvict(value = RedisKeyConstants.PERMISSION_MENU_ID_LIST,
+            allEntries = true) // allEntries 清空所有缓存，因为此时不知道 id 对应的 permission 是多少。直接清理，简单有效
+    public void deleteMenu(Long id) {
+        // 校验是否还有子菜单
+        if (menuMapper.selectCountByParentId(id) > 0) {
+            throw exception(MENU_EXISTS_CHILDREN);
+        }
+        // 校验删除的菜单是否存在
+        if (menuMapper.selectById(id) == null) {
+            throw exception(MENU_NOT_EXISTS);
+        }
+        // 标记删除
+        menuMapper.deleteById(id);
+        // 删除授予给角色的权限
+        permissionService.processMenuDeleted(id);
+    }
+
+    @Override
+    public List<MenuDO> getMenuList() {
+        return menuMapper.selectList();
+    }
+
+    @Override
+    public List<MenuDO> getMenuListByTenant(MenuListReqVO reqVO) {
+        List<MenuDO> menus = getMenuList(reqVO);
+        // 开启多租户的情况下，需要过滤掉未开通的菜单
+        tenantService.handleTenantMenu(menuIds -> menus.removeIf(menu -> !CollUtil.contains(menuIds, menu.getId())));
+        return menus;
+    }
+
+    @Override
+    public List<MenuDO> getMenuList(MenuListReqVO reqVO) {
+        return menuMapper.selectList(reqVO);
+    }
+
+    @Override
+    @Cacheable(value = RedisKeyConstants.PERMISSION_MENU_ID_LIST, key = "#permission")
+    public List<Long> getMenuIdListByPermissionFromCache(String permission) {
+        List<MenuDO> menus = menuMapper.selectListByPermission(permission);
+        return convertList(menus, MenuDO::getId);
+    }
+
+    @Override
+    public MenuDO getMenu(Long id) {
+        return menuMapper.selectById(id);
+    }
+
+    @Override
+    public List<MenuDO> getMenuList(Collection<Long> ids) {
+        // 当 ids 为空时，返回一个空的实例对象
+        if (CollUtil.isEmpty(ids)) {
+            return Lists.newArrayList();
+        }
+        return menuMapper.selectBatchIds(ids);
+    }
+
+    /**
+     * 校验父菜单是否合法
+     * <p>
+     * 1. 不能设置自己为父菜单
+     * 2. 父菜单不存在
+     * 3. 父菜单必须是 {@link MenuTypeEnum#MENU} 菜单类型
+     *
+     * @param parentId 父菜单编号
+     * @param childId  当前菜单编号
+     */
+    @VisibleForTesting
+    void validateParentMenu(Long parentId, Long childId) {
+        if (parentId == null || ID_ROOT.equals(parentId)) {
+            return;
+        }
+        // 不能设置自己为父菜单
+        if (parentId.equals(childId)) {
+            throw exception(MENU_PARENT_ERROR);
+        }
+        MenuDO menu = menuMapper.selectById(parentId);
+        // 父菜单不存在
         if (menu == null) {
-            return null;
+            throw exception(MENU_PARENT_NOT_EXISTS);
         }
-        MenuBar menuBar = new MenuBar();
-        if (top) {
-            menuBar.setComponent("Layout")
-                    .setPath(menu.getTopRouter());
-        }else {
-            menuBar.setComponent(menu.getComponent())
-                    .setPath(menu.getRouter());
+        // 父菜单必须是目录或者菜单类型
+        if (!MenuTypeEnum.DIR.getType().equals(menu.getType())
+                && !MenuTypeEnum.MENU.getType().equals(menu.getType())) {
+            throw exception(MENU_PARENT_NOT_DIR_OR_MENU);
         }
-        JSONObject metaJson = new JSONObject();
-        metaJson.put("icon", menu.getIcon());
-        metaJson.put("title", menu.getTitle());
-        menuBar.setMeta(metaJson)
-                .setName(menu.getName());
-
-        return menuBar;
     }
 
-
-    @Override
-    public List<Long> deleteMenuAndChildrenById(Long id) throws Exception {
+    /**
+     * 校验菜单是否合法
+     * <p>
+     * 1. 校验相同父菜单编号下，是否存在相同的菜单名
+     *
+     * @param name     菜单名字
+     * @param parentId 父菜单编号
+     * @param id       菜单编号
+     */
+    @VisibleForTesting
+    void validateMenu(Long parentId, String name, Long id) {
+        MenuDO menu = menuMapper.selectByParentIdAndName(parentId, name);
+        if (menu == null) {
+            return;
+        }
+        // 如果 id 为空，说明不用比较是否为相同 id 的菜单
         if (id == null) {
-            return null;
+            throw exception(MENU_NAME_DUPLICATE);
         }
-
-        // 所有待删除的菜单id集合
-        List<Long> deleteIds = new ArrayList<>();
-        deleteIds.add(id);
-        //
-        List<Long> childrenIds = getMenusIdByParentId(id);
-        List<Long> loops = null;
-        if (CollectionUtils.isNotEmpty(childrenIds)) {
-
-            boolean flag = true;
-            while (flag) {
-                deleteIds.addAll(childrenIds);
-                loops = new ArrayList<>();
-                for (Long pid : childrenIds) {
-                    loops.addAll(getMenusIdByParentId(pid));
-                }
-                if (CollectionUtils.isNotEmpty(loops)) {
-                    childrenIds = loops;
-                }else {
-                    flag = false;
-                }
-            }
+        if (!menu.getId().equals(id)) {
+            throw exception(MENU_NAME_DUPLICATE);
         }
-        this.removeByIds(deleteIds);
-
-        return deleteIds;
     }
 
-    @Override
-    public List<Long> getMenusIdByParentId(Long id) throws Exception {
-
-        if (id == null) {
-            return null;
+    /**
+     * 初始化菜单的通用属性。
+     * <p>
+     * 例如说，只有目录或者菜单类型的菜单，才设置 icon
+     *
+     * @param menu 菜单
+     */
+    private void initMenuProperty(MenuDO menu) {
+        // 菜单为按钮类型时，无需 component、icon、path 属性，进行置空
+        if (MenuTypeEnum.BUTTON.getType().equals(menu.getType())) {
+            menu.setComponent("");
+            menu.setComponentName("");
+            menu.setIcon("");
+            menu.setPath("");
         }
-
-        QueryWrapper<Menu> menuQueryWrapper = new QueryWrapper<>();
-        menuQueryWrapper.eq("pid", id)
-                .select("id");
-
-        List<Long> ids = this.listObjs(menuQueryWrapper,menuId -> (Long) menuId);
-
-        return ids;
     }
+
 }

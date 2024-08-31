@@ -1,9 +1,9 @@
-package com.springlego.autoconfigure.user.entity;
+package com.springlego.autoconfigure.user.dto.dataobject;
 
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.springlego.autoconfigure.common.entity.BaseDO;
+import com.springlego.autoconfigure.frame.entity.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.springlego.autoconfigure.user.entity.UserAccount;
+import com.springlego.autoconfigure.user.dto.dataobject.UserAccountDO;
 
 /**
  * <p>
@@ -11,7 +11,7 @@ import com.springlego.autoconfigure.user.entity.UserAccount;
  * @author michael wong
  * @since 2019-10-29
  */
-public interface IUserAccountService extends IService<UserAccount> {
+public interface IUserAccountService extends IService<UserAccountDO> {
 
     /**
      * @desc: 根据登录账号获取账号信息
@@ -23,6 +23,14 @@ public interface IUserAccountService extends IService<UserAccount> {
      * @date:   2019/6/19 20:28
      * @update:
      */
-    UserAccount getLoginUser(String account, Integer state) throws Exception;
+    UserAccountDO getLoginUser(String account, Integer state) throws Exception;
+
+    /**
+     * 通过用户 ID 查询用户
+     *
+     * @param id 用户ID
+     * @return 用户对象信息
+     */
+    UserAccountDO getUserById(String id)throws Exception;
 
 }

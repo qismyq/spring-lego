@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.springlego.autoconfigure.user.entity.RoleMenu;
+import com.springlego.autoconfigure.user.dto.RoleMenu;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.springlego.autoconfigure.user.entity.Menu;
+import com.springlego.autoconfigure.user.dto.dataobject.MenuDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * @since 2019-10-29
  */
 @Mapper
-public interface MenuMapper extends BaseMapper<Menu> {
+public interface MenuMapper extends BaseMapper<MenuDO> {
 
     /**
      * @desc: 查找用户拥有菜单
@@ -30,6 +30,6 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @date:   2019/12/9 15:00
      * @update:
      */
-    List<Menu> getMenusByUserId(@Param("userId") Integer userId, @Param("deleted") Boolean deleted, @Param("menuType") Integer menuType,@Param("pid") Long pid);
+    List<MenuDO> getMenusByUserId(@Param("userId") Integer userId, @Param("deleted") Boolean deleted, @Param("menuType") Integer menuType,@Param("pid") Long pid);
 
 }

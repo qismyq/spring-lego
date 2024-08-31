@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.user.entity;
+package com.springlego.autoconfigure.user.dto.dataobject;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 //import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
-import org.apache.ibatis.annotations.Delete;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -23,9 +22,11 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ToString
-@TableName("u_user_account")
-//@ApiModel(value="User对象", description="后台用户")
-public class UserAccount extends Model<UserAccount> {
+@TableName(value = "u_user_account", autoResultMap = true) // 由于 SQL Server 的 system_user 是关键字，所以使用 system_users
+@KeySequence("u_user_account_seq")
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserAccountDO extends Model<UserAccountDO> {
 
     private static final long serialVersionUID=1L;
 

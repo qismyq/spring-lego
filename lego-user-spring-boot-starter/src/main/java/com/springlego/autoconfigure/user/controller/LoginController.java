@@ -4,7 +4,7 @@ import com.springlego.autoconfigure.user.service.ILoginService;
 //import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
-import com.springlego.autoconfigure.user.entity.UserAccount;
+import com.springlego.autoconfigure.user.dto.dataobject.UserAccountDO;
 import com.springlego.autoconfigure.user.service.IUserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,9 +45,9 @@ public class LoginController {
 //            @ApiResponse(code = 40205,message="认证错误")
 //    })
     @RequestMapping(value = "/system/login",method = RequestMethod.POST)
-    public ReturnDatas accountLogin(@RequestBody UserAccount user, HttpServletRequest request, HttpServletResponse response)throws Exception{
+    public ReturnDatas accountLogin(@RequestBody UserAccountDO user, HttpServletRequest request, HttpServletResponse response)throws Exception{
         String account = user.getAccount();
-        UserAccount authUser = userService.getLoginUser(account,1);
+        UserAccountDO authUser = userService.getLoginUser(account,1);
         // todo 先只判断登录问题，鉴权等需要改造到lego-jwt模块中
 //        Subject subject = SecurityUtils.getSubject();
 //        String source = RequestResponseUtil.getRequestHeaders(request).get("source");
