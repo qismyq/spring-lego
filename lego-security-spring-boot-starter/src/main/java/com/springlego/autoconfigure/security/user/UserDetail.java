@@ -20,7 +20,7 @@ import java.util.Set;
 public class UserDetail implements UserDetails {
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     @Alias("account")
     private String username;
     private String name;
@@ -29,14 +29,14 @@ public class UserDetail implements UserDetails {
     private Integer gender;
     private String email;
     private String mobile;
-    private Long deptId;
+    private String deptId;
     private String password;
     private Integer status;
     private Integer superAdmin;
     /**
      * 部门数据权限
      */
-    private List<Long> deptIdList;
+    private List<String> deptIdList;
     /**
      * 帐户是否过期
      */

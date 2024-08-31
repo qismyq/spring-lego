@@ -1,5 +1,6 @@
-package com.springlego.autoconfigure.security.user;
+package com.springlego.autoconfigure.security.util;
 
+import com.springlego.autoconfigure.security.user.UserDetail;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
@@ -7,7 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
  *
  * @author michael wong
  */
-public class SecurityUserUtil {
+public class SecurityUtils {
     /**
      * 获取用户信息
      */
@@ -25,14 +26,14 @@ public class SecurityUserUtil {
     /**
      * 获取用户ID
      */
-    public static Long getUserId() {
+    public static String getUserId() {
         return getUser().getId();
     }
 
     /**
      * 获取部门ID
      */
-    public static Long getDeptId() {
+    public static String getDeptId() {
         return getUser().getDeptId();
     }
 }
