@@ -7,7 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
  *
  * @author michael wong
  */
-public class SecurityUser {
+public class SecurityUserUtil {
     /**
      * 获取用户信息
      */
