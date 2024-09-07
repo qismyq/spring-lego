@@ -1,9 +1,10 @@
 package com.springlego.autoconfigure.user.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.springlego.autoconfigure.user.dto.dataobject.UserRoleDO;
 import com.springlego.autoconfigure.user.mapper.UserRoleMapper;
 import com.springlego.autoconfigure.user.service.IUserRoleService;
-import com.springlego.autoconfigure.user.dto.UserRole;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -24,10 +25,8 @@ import java.util.Set;
  * @since 2019-10-29
  */
 @Service
-public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> implements IUserRoleService {
-
-
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+@Slf4j
+public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRoleDO> implements IUserRoleService {
 
     @Autowired
     private UserRoleMapper userRoleMapper;
@@ -38,10 +37,10 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
         if (StringUtils.isBlank(account)) {
             return null;
         }
-        List<UserRole> userRoles = userRoleMapper.getRoleCodeAsStringByAccount(account);
+        List<UserRoleDO> userRoles = userRoleMapper.getRoleCodeAsStringByAccount(account);
         if (CollectionUtils.isNotEmpty(userRoles)) {
             Set<String> rolesCode = new HashSet<>(userRoles.size());
-            for (UserRole userRole : userRoles) {
+            for (UserRoleDO userRole : userRoles) {
                 rolesCode.add(userRole.getRoleCode());
             }
             return rolesCode;

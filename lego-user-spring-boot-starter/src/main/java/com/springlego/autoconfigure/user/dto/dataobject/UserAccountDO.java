@@ -65,6 +65,11 @@ public class UserAccountDO extends Model<UserAccountDO> {
 //    @ApiModelProperty(value = "前端用户表id")
     private Integer frontUserId;
 
+    /**
+     * 部门 ID
+     */
+    private Long deptId;
+
 //    @ApiModelProperty(value = "创建时间")
     private Date createTime;
 //    @ApiModelProperty(value = "创建人")

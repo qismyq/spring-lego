@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.user.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.springlego.autoconfigure.user.dto.RoleMenu;
+import com.springlego.autoconfigure.user.dto.dataobject.RoleMenuDO;
 import com.springlego.autoconfigure.user.mapper.RoleMenuMapper;
 import com.springlego.autoconfigure.user.service.IRoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
  * @since 2019-10-29
  */
 @Service
-public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu> implements IRoleMenuService {
+public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenuDO> implements IRoleMenuService {
 
     @Autowired
     RoleMenuMapper roleMenuMapper;

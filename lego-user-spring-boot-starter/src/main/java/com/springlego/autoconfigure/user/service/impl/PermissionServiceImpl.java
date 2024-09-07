@@ -8,6 +8,7 @@ import com.google.common.base.Suppliers;
 import com.google.common.collect.Sets;
 import com.springlego.autoconfigure.common.enums.CommonStatusEnum;
 import com.springlego.autoconfigure.common.util.CollectionUtils;
+import com.springlego.autoconfigure.frame.util.SpringContextHolder;
 import com.springlego.autoconfigure.user.dto.dataobject.MenuDO;
 import com.springlego.autoconfigure.user.dto.dataobject.RoleDO;
 import com.springlego.autoconfigure.user.dto.dataobject.RoleMenuDO;
@@ -27,6 +28,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.function.Supplier;
+
+import static com.springlego.autoconfigure.common.util.CollectionUtils.convertSet;
+import static com.springlego.autoconfigure.frame.util.JsonUtils.toJsonString;
 
 
 /**
@@ -53,7 +57,7 @@ public class PermissionServiceImpl implements IPermissionService {
     private IUserAccountService userService;
 
     @Override
-    public boolean hasAnyPermissions(Long userId, String... permissions) {
+    public boolean hasAnyPermissions(String userId, String... permissions) {
         // 如果为空，说明已经有权限
         if (ArrayUtil.isEmpty(permissions)) {
             return true;
@@ -104,7 +108,7 @@ public class PermissionServiceImpl implements IPermissionService {
     }
 
     @Override
-    public boolean hasAnyRoles(Long userId, String... roles) {
+    public boolean hasAnyRoles(String userId, String... roles) {
         // 如果为空，说明已经有权限
         if (ArrayUtil.isEmpty(roles)) {
             return true;
@@ -124,7 +128,6 @@ public class PermissionServiceImpl implements IPermissionService {
     // ========== 角色-菜单的相关方法  ==========
 
     @Override
-    @DSTransactional // 多数据源，使用 @DSTransactional 保证本地事务，以及数据源的切换
     @CacheEvict(value = RedisKeyConstants.MENU_ROLE_ID_LIST,
             allEntries = true) // allEntries 清空所有缓存，主要一次更新涉及到的 menuIds 较多，反倒批量会更快
     public void assignRoleMenu(Long roleId, Set<Long> menuIds) {
@@ -192,9 +195,8 @@ public class PermissionServiceImpl implements IPermissionService {
     // ========== 用户-角色的相关方法  ==========
 
     @Override
-    @DSTransactional // 多数据源，使用 @DSTransactional 保证本地事务，以及数据源的切换
     @CacheEvict(value = RedisKeyConstants.USER_ROLE_ID_LIST, key = "#userId")
-    public void assignUserRole(Long userId, Set<Long> roleIds) {
+    public void assignUserRole(String userId, Set<Long> roleIds) {
         // 获得角色拥有角色编号
         Set<Long> dbRoleIds = convertSet(userRoleMapper.selectListByUserId(userId),
                 UserRoleDO::getRoleId);
@@ -218,23 +220,23 @@ public class PermissionServiceImpl implements IPermissionService {
 
     @Override
     @CacheEvict(value = RedisKeyConstants.USER_ROLE_ID_LIST, key = "#userId")
-    public void processUserDeleted(Long userId) {
+    public void processUserDeleted(String userId) {
         userRoleMapper.deleteListByUserId(userId);
     }
 
     @Override
-    public Set<Long> getUserRoleIdListByUserId(Long userId) {
+    public Set<Long> getUserRoleIdListByUserId(String userId) {
         return convertSet(userRoleMapper.selectListByUserId(userId), UserRoleDO::getRoleId);
     }
 
     @Override
     @Cacheable(value = RedisKeyConstants.USER_ROLE_ID_LIST, key = "#userId")
-    public Set<Long> getUserRoleIdListByUserIdFromCache(Long userId) {
+    public Set<Long> getUserRoleIdListByUserIdFromCache(String userId) {
         return getUserRoleIdListByUserId(userId);
     }
 
     @Override
-    public Set<Long> getUserRoleIdListByRoleId(Collection<Long> roleIds) {
+    public Set<String> getUserRoleIdListByRoleId(Collection<Long> roleIds) {
         return convertSet(userRoleMapper.selectListByRoleIds(roleIds), UserRoleDO::getUserId);
     }
 
@@ -245,7 +247,7 @@ public class PermissionServiceImpl implements IPermissionService {
      * @return 用户拥有的角色
      */
     @VisibleForTesting
-    List<RoleDO> getEnableUserRoleListByUserIdFromCache(Long userId) {
+    List<RoleDO> getEnableUserRoleListByUserIdFromCache(String userId) {
         // 获得用户拥有的角色编号
         Set<Long> roleIds = getSelf().getUserRoleIdListByUserIdFromCache(userId);
         // 获得角色数组，并移除被禁用的
@@ -261,70 +263,70 @@ public class PermissionServiceImpl implements IPermissionService {
         roleService.updateRoleDataScope(roleId, dataScope, dataScopeDeptIds);
     }
 
-    @Override
-    @DataPermission(enable = false) // 关闭数据权限，不然就会出现递归获取数据权限的问题
-    public DeptDataPermissionRespDTO getDeptDataPermission(Long userId) {
-        // 获得用户的角色
-        List<RoleDO> roles = getEnableUserRoleListByUserIdFromCache(userId);
-
-        // 如果角色为空，则只能查看自己
-        DeptDataPermissionRespDTO result = new DeptDataPermissionRespDTO();
-        if (CollUtil.isEmpty(roles)) {
-            result.setSelf(true);
-            return result;
-        }
-
-        // 获得用户的部门编号的缓存，通过 Guava 的 Suppliers 惰性求值，即有且仅有第一次发起 DB 的查询
-        Supplier<Long> userDeptId = Suppliers.memoize(() -> userService.getUser(userId).getDeptId());
-        // 遍历每个角色，计算
-        for (RoleDO role : roles) {
-            // 为空时，跳过
-            if (role.getDataScope() == null) {
-                continue;
-            }
-            // 情况一，ALL
-            if (Objects.equals(role.getDataScope(), DataScopeEnum.ALL.getScope())) {
-                result.setAll(true);
-                continue;
-            }
-            // 情况二，DEPT_CUSTOM
-            if (Objects.equals(role.getDataScope(), DataScopeEnum.DEPT_CUSTOM.getScope())) {
-                CollUtil.addAll(result.getDeptIds(), role.getDataScopeDeptIds());
-                // 自定义可见部门时，保证可以看到自己所在的部门。否则，一些场景下可能会有问题。
-                // 例如说，登录时，基于 t_user 的 username 查询会可能被 dept_id 过滤掉
-                CollUtil.addAll(result.getDeptIds(), userDeptId.get());
-                continue;
-            }
-            // 情况三，DEPT_ONLY
-            if (Objects.equals(role.getDataScope(), DataScopeEnum.DEPT_ONLY.getScope())) {
-                CollectionUtils.addIfNotNull(result.getDeptIds(), userDeptId.get());
-                continue;
-            }
-            // 情况四，DEPT_DEPT_AND_CHILD
-            if (Objects.equals(role.getDataScope(), DataScopeEnum.DEPT_AND_CHILD.getScope())) {
-                CollUtil.addAll(result.getDeptIds(), deptService.getChildDeptIdListFromCache(userDeptId.get()));
-                // 添加本身部门编号
-                CollUtil.addAll(result.getDeptIds(), userDeptId.get());
-                continue;
-            }
-            // 情况五，SELF
-            if (Objects.equals(role.getDataScope(), DataScopeEnum.SELF.getScope())) {
-                result.setSelf(true);
-                continue;
-            }
-            // 未知情况，error log 即可
-            log.error("[getDeptDataPermission][LoginUser({}) role({}) 无法处理]", userId, toJsonString(result));
-        }
-        return result;
-    }
+//    @Override
+////    @DataPermission(enable = false) // 关闭数据权限，不然就会出现递归获取数据权限的问题
+//    public DeptDataPermissionRespDTO getDeptDataPermission(String userId){
+//        // 获得用户的角色
+//        List<RoleDO> roles = getEnableUserRoleListByUserIdFromCache(userId);
+//
+//        // 如果角色为空，则只能查看自己
+//        DeptDataPermissionRespDTO result = new DeptDataPermissionRespDTO();
+//        if (CollUtil.isEmpty(roles)) {
+//            result.setSelf(true);
+//            return result;
+//        }
+//
+//        // 获得用户的部门编号的缓存，通过 Guava 的 Suppliers 惰性求值，即有且仅有第一次发起 DB 的查询
+//        Supplier<Long> userDeptId = Suppliers.memoize(() -> userService.getUserById(userId).getDeptId());
+//        // 遍历每个角色，计算
+//        for (RoleDO role : roles) {
+//            // 为空时，跳过
+//            if (role.getDataScope() == null) {
+//                continue;
+//            }
+//            // 情况一，ALL
+//            if (Objects.equals(role.getDataScope(), DataScopeEnum.ALL.getScope())) {
+//                result.setAll(true);
+//                continue;
+//            }
+//            // 情况二，DEPT_CUSTOM
+//            if (Objects.equals(role.getDataScope(), DataScopeEnum.DEPT_CUSTOM.getScope())) {
+//                CollUtil.addAll(result.getDeptIds(), role.getDataScopeDeptIds());
+//                // 自定义可见部门时，保证可以看到自己所在的部门。否则，一些场景下可能会有问题。
+//                // 例如说，登录时，基于 t_user 的 username 查询会可能被 dept_id 过滤掉
+//                CollUtil.addAll(result.getDeptIds(), userDeptId.get());
+//                continue;
+//            }
+//            // 情况三，DEPT_ONLY
+//            if (Objects.equals(role.getDataScope(), DataScopeEnum.DEPT_ONLY.getScope())) {
+//                CollectionUtils.addIfNotNull(result.getDeptIds(), userDeptId.get());
+//                continue;
+//            }
+//            // 情况四，DEPT_DEPT_AND_CHILD
+//            if (Objects.equals(role.getDataScope(), DataScopeEnum.DEPT_AND_CHILD.getScope())) {
+//                CollUtil.addAll(result.getDeptIds(), deptService.getChildDeptIdListFromCache(userDeptId.get()));
+//                // 添加本身部门编号
+//                CollUtil.addAll(result.getDeptIds(), userDeptId.get());
+//                continue;
+//            }
+//            // 情况五，SELF
+//            if (Objects.equals(role.getDataScope(), DataScopeEnum.SELF.getScope())) {
+//                result.setSelf(true);
+//                continue;
+//            }
+//            // 未知情况，error log 即可
+//            log.error("[getDeptDataPermission][LoginUser({}) role({}) 无法处理]", userId, toJsonString(result));
+//        }
+//        return result;
+//    }
 
     /**
      * 获得自身的代理对象，解决 AOP 生效问题
      *
      * @return 自己
      */
-    private cn.iocoder.yudao.module.system.service.permission.PermissionServiceImpl getSelf() {
-        return SpringUtil.getBean(getClass());
+    private PermissionServiceImpl getSelf() {
+        return SpringContextHolder.getBeanByType(getClass());
     }
 
 }

@@ -1,6 +1,7 @@
 package com.springlego.autoconfigure.user.dto.dataobject;
 
 import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.springlego.autoconfigure.frame.entity.BaseDO;
@@ -26,10 +27,13 @@ public class UserRoleDO extends BaseDO {
     /**
      * 用户 ID
      */
-    private Long userId;
+    private String userId;
     /**
      * 角色 ID
      */
     private Long roleId;
+
+    @TableField(exist = false)
+    private String roleCode;
 
 }

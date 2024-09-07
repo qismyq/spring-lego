@@ -62,6 +62,47 @@ public enum UserErrorCodeEnum implements ICode {
      * <br> 不能设置自己为父部门
      */
     ,DEPT_PARENT_ERROR(40110,"不能设置自己为父部门")
+    /**
+     * <br> 编码【{}】不能使用
+     */
+    ,ROLE_ADMIN_CODE_ERROR(40111,"编码【{}】不能使用")
+    /**
+     * <br> 已经存在名为【{}】的角色
+     */
+    ,ROLE_NAME_DUPLICATE(40112,"已经存在名为【{}】的角色")
+    /**
+     * <br> 已经存在编码为【{}】的角色
+     */
+    ,ROLE_CODE_DUPLICATE(40113,"已经存在编码为【{}】的角色")
+    /**
+     * <br> 不能操作类型为系统内置的角色
+     */
+    ,ROLE_CAN_NOT_UPDATE_SYSTEM_TYPE_ROLE(40114,"不能操作类型为系统内置的角色")
+    /**
+     * <br> 角色不存在
+     */
+    ,ROLE_NOT_EXISTS(40115,"角色不存在")
+    /**
+     * <br> 菜单不存在
+     */
+    ,MENU_NOT_EXISTS(40116,"菜单不存在")
+    /**
+     * <br> 不能设置自己为父菜单
+     */
+    ,MENU_PARENT_ERROR(40117,"不能设置自己为父菜单")
+    /**
+     * <br> 不能设置自己为父菜单
+     */
+    ,MENU_PARENT_NOT_EXISTS(40118,"父菜单不存在")
+    /**
+     * <br> 已经存在该名字的菜单
+     */
+    ,MENU_NAME_DUPLICATE(40119,"已经存在该名字的菜单")
+
+
+
+
+
 
     /**
      * <br> 多个用户账户
@@ -76,9 +117,22 @@ public enum UserErrorCodeEnum implements ICode {
      */
     ,DEPT_NOT_ENABLE(50102,"部门不处于开启状态，不允许选择")
     /**
-     * <br> 部门禁用
+     * <br> 存在子部门，无法删除
      */
     ,DEPT_EXITS_CHILDREN(50103,"存在子部门，无法删除")
+    /**
+     * <br> 名字为【{}】的角色已被禁用
+     */
+    ,ROLE_IS_DISABLE(50105,"名字为【{}】的角色已被禁用")
+    /**
+     * <br> 存在子菜单，无法删除
+     */
+    ,MENU_EXISTS_CHILDREN(50106,"存在子菜单，无法删除")
+    /**
+     * <br> 父菜单的类型必须是目录或者菜单
+     */
+    ,MENU_PARENT_NOT_DIR_OR_MENU(50107,"父菜单的类型必须是目录或者菜单")
+
 
 
     ;

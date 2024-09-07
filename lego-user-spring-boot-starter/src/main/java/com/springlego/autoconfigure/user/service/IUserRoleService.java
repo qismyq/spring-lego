@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.springlego.autoconfigure.user.dto.UserRole;
+import com.springlego.autoconfigure.user.dto.dataobject.UserRoleDO;
 
 import java.util.Set;
 
@@ -13,7 +13,7 @@ import java.util.Set;
  * @author michael wong
  * @since 2019-10-29
  */
-public interface IUserRoleService extends IService<UserRole> {
+public interface IUserRoleService extends IService<UserRoleDO> {
 
 
 

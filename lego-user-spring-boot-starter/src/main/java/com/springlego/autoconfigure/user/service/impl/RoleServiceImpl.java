@@ -8,9 +8,17 @@ import com.springlego.autoconfigure.common.enums.CommonStatusEnum;
 import com.springlego.autoconfigure.common.util.BeanUtils;
 import com.springlego.autoconfigure.common.util.CollectionUtils;
 import com.springlego.autoconfigure.frame.entity.PageResult;
+import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
+import com.springlego.autoconfigure.frame.util.SpringContextHolder;
 import com.springlego.autoconfigure.user.dto.dataobject.RoleDO;
+import com.springlego.autoconfigure.user.dto.vo.role.RolePageReqVO;
+import com.springlego.autoconfigure.user.dto.vo.role.RoleSaveReqVO;
 import com.springlego.autoconfigure.user.enums.RedisKeyConstants;
+import com.springlego.autoconfigure.user.enums.permission.RoleCodeEnum;
+import com.springlego.autoconfigure.user.enums.permission.RoleTypeEnum;
+import com.springlego.autoconfigure.user.errorhandler.UserErrorCodeEnum;
 import com.springlego.autoconfigure.user.mapper.RoleMapper;
+import com.springlego.autoconfigure.user.service.IPermissionService;
 import com.springlego.autoconfigure.user.service.IRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
@@ -21,6 +29,8 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.*;
+
+import static com.springlego.autoconfigure.common.util.CollectionUtils.convertMap;
 
 
 /**
@@ -33,35 +43,36 @@ import java.util.*;
 public class RoleServiceImpl implements IRoleService {
 
     @Resource
-    private PermissionService permissionService;
+    private IPermissionService permissionService;
 
     @Resource
     private RoleMapper roleMapper;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @LogRecord(type = SYSTEM_ROLE_TYPE, subType = SYSTEM_ROLE_CREATE_SUB_TYPE, bizNo = "{{#role.id}}",
-            success = SYSTEM_ROLE_CREATE_SUCCESS)
+//    @LogRecord(type = SYSTEM_ROLE_TYPE, subType = SYSTEM_ROLE_CREATE_SUB_TYPE, bizNo = "{{#role.id}}",
+//            success = SYSTEM_ROLE_CREATE_SUCCESS)
     public Long createRole(RoleSaveReqVO createReqVO, Integer type) {
         // 1. 校验角色
         validateRoleDuplicate(createReqVO.getName(), createReqVO.getCode(), null);
 
         // 2. 插入到数据库
-        RoleDO role = BeanUtils.toBean(createReqVO, RoleDO.class)
-                .setType(ObjectUtil.defaultIfNull(type, RoleTypeEnum.CUSTOM.getType()))
-                .setStatus(CommonStatusEnum.ENABLE.getStatus())
-                .setDataScope(DataScopeEnum.ALL.getScope()); // 默认可查看所有数据。原因是，可能一些项目不需要项目权限
+        RoleDO role = BeanUtils.toBean(createReqVO, RoleDO.class);
+        role.setType(ObjectUtil.defaultIfNull(type, RoleTypeEnum.CUSTOM.getType()));
+        role.setStatus(CommonStatusEnum.ENABLE.getStatus());
+        // todo
+//        role.setDataScope(DataScopeEnum.ALL.getScope()); // 默认可查看所有数据。原因是，可能一些项目不需要项目权限
         roleMapper.insert(role);
 
         // 3. 记录操作日志上下文
-        LogRecordContext.putVariable("role", role);
+//        LogRecordContext.putVariable("role", role);
         return role.getId();
     }
 
     @Override
     @CacheEvict(value = RedisKeyConstants.ROLE, key = "#updateReqVO.id")
-    @LogRecord(type = SYSTEM_ROLE_TYPE, subType = SYSTEM_ROLE_UPDATE_SUB_TYPE, bizNo = "{{#updateReqVO.id}}",
-            success = SYSTEM_ROLE_UPDATE_SUCCESS)
+//    @LogRecord(type = SYSTEM_ROLE_TYPE, subType = SYSTEM_ROLE_UPDATE_SUB_TYPE, bizNo = "{{#updateReqVO.id}}",
+//            success = SYSTEM_ROLE_UPDATE_SUCCESS)
     public void updateRole(RoleSaveReqVO updateReqVO) {
         // 1.1 校验是否可以更新
         RoleDO role = validateRoleForUpdate(updateReqVO.getId());
@@ -73,7 +84,7 @@ public class RoleServiceImpl implements IRoleService {
         roleMapper.updateById(updateObj);
 
         // 3. 记录操作日志上下文
-        LogRecordContext.putVariable("role", role);
+//        LogRecordContext.putVariable("role", role);
     }
 
     @Override
@@ -93,8 +104,8 @@ public class RoleServiceImpl implements IRoleService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     @CacheEvict(value = RedisKeyConstants.ROLE, key = "#id")
-    @LogRecord(type = SYSTEM_ROLE_TYPE, subType = SYSTEM_ROLE_DELETE_SUB_TYPE, bizNo = "{{#id}}",
-            success = SYSTEM_ROLE_DELETE_SUCCESS)
+//    @LogRecord(type = SYSTEM_ROLE_TYPE, subType = SYSTEM_ROLE_DELETE_SUB_TYPE, bizNo = "{{#id}}",
+//            success = SYSTEM_ROLE_DELETE_SUCCESS)
     public void deleteRole(Long id) {
         // 1. 校验是否可以更新
         RoleDO role = validateRoleForUpdate(id);
@@ -105,7 +116,7 @@ public class RoleServiceImpl implements IRoleService {
         permissionService.processRoleDeleted(id);
 
         // 3. 记录操作日志上下文
-        LogRecordContext.putVariable("role", role);
+//        LogRecordContext.putVariable("role", role);
     }
 
     /**
@@ -122,12 +133,12 @@ public class RoleServiceImpl implements IRoleService {
     void validateRoleDuplicate(String name, String code, Long id) {
         // 0. 超级管理员，不允许创建
         if (RoleCodeEnum.isSuperAdmin(code)) {
-            throw exception(ROLE_ADMIN_CODE_ERROR, code);
+            throw new ErrorMessageException(UserErrorCodeEnum.ROLE_ADMIN_CODE_ERROR,code);
         }
         // 1. 该 name 名字被其它角色所使用
         RoleDO role = roleMapper.selectByName(name);
         if (role != null && !role.getId().equals(id)) {
-            throw exception(ROLE_NAME_DUPLICATE, name);
+            throw new ErrorMessageException(UserErrorCodeEnum.ROLE_NAME_DUPLICATE, name);
         }
         // 2. 是否存在相同编码的角色
         if (!StringUtils.hasText(code)) {
@@ -136,7 +147,7 @@ public class RoleServiceImpl implements IRoleService {
         // 该 code 编码被其它角色所使用
         role = roleMapper.selectByCode(code);
         if (role != null && !role.getId().equals(id)) {
-            throw exception(ROLE_CODE_DUPLICATE, code);
+            throw new ErrorMessageException(UserErrorCodeEnum.ROLE_CODE_DUPLICATE, code);
         }
     }
 
@@ -149,11 +160,11 @@ public class RoleServiceImpl implements IRoleService {
     RoleDO validateRoleForUpdate(Long id) {
         RoleDO role = roleMapper.selectById(id);
         if (role == null) {
-            throw exception(ROLE_NOT_EXISTS);
+            throw new ErrorMessageException(UserErrorCodeEnum.ROLE_NOT_EXISTS);
         }
         // 内置角色，不允许删除
         if (RoleTypeEnum.SYSTEM.getType().equals(role.getType())) {
-            throw exception(ROLE_CAN_NOT_UPDATE_SYSTEM_TYPE_ROLE);
+            throw new ErrorMessageException(UserErrorCodeEnum.ROLE_CAN_NOT_UPDATE_SYSTEM_TYPE_ROLE);
         }
         return role;
     }
@@ -228,10 +239,10 @@ public class RoleServiceImpl implements IRoleService {
         ids.forEach(id -> {
             RoleDO role = roleMap.get(id);
             if (role == null) {
-                throw exception(ROLE_NOT_EXISTS);
+                throw new ErrorMessageException(UserErrorCodeEnum.ROLE_NOT_EXISTS);
             }
             if (!CommonStatusEnum.ENABLE.getStatus().equals(role.getStatus())) {
-                throw exception(ROLE_IS_DISABLE, role.getName());
+                throw new ErrorMessageException(UserErrorCodeEnum.ROLE_IS_DISABLE, role.getName());
             }
         });
     }
@@ -242,7 +253,7 @@ public class RoleServiceImpl implements IRoleService {
      * @return 自己
      */
     private RoleServiceImpl getSelf() {
-        return SpringUtil.getBean(getClass());
+        return SpringContextHolder.getBeanByType(getClass());
     }
 
 }

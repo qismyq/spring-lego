@@ -24,7 +24,7 @@ public interface IPermissionService {
      * @param permissions 权限
      * @return 是否
      */
-    boolean hasAnyPermissions(Long userId, String... permissions);
+    boolean hasAnyPermissions(String userId, String... permissions);
 
     /**
      * 判断是否有角色，任一一个即可
@@ -32,7 +32,7 @@ public interface IPermissionService {
      * @param roles 角色数组
      * @return 是否
      */
-    boolean hasAnyRoles(Long userId, String... roles);
+    boolean hasAnyRoles(String userId, String... roles);
 
     // ========== 角色-菜单的相关方法  ==========
 
@@ -92,14 +92,14 @@ public interface IPermissionService {
      * @param userId  角色编号
      * @param roleIds 角色编号集合
      */
-    void assignUserRole(Long userId, Set<Long> roleIds);
+    void assignUserRole(String userId, Set<Long> roleIds);
 
     /**
      * 处理用户删除时，删除关联授权数据
      *
      * @param userId 用户编号
      */
-    void processUserDeleted(Long userId);
+    void processUserDeleted(String userId);
 
     /**
      * 获得拥有多个角色的用户编号集合
@@ -107,7 +107,7 @@ public interface IPermissionService {
      * @param roleIds 角色编号集合
      * @return 用户编号集合
      */
-    Set<Long> getUserRoleIdListByRoleId(Collection<Long> roleIds);
+    Set<String> getUserRoleIdListByRoleId(Collection<Long> roleIds);
 
     /**
      * 获得用户拥有的角色编号集合
@@ -115,7 +115,7 @@ public interface IPermissionService {
      * @param userId 用户编号
      * @return 角色编号集合
      */
-    Set<Long> getUserRoleIdListByUserId(Long userId);
+    Set<Long> getUserRoleIdListByUserId(String userId);
 
     /**
      * 获得用户拥有的角色编号集合，从缓存中获取
@@ -123,7 +123,7 @@ public interface IPermissionService {
      * @param userId 用户编号
      * @return 角色编号集合
      */
-    Set<Long> getUserRoleIdListByUserIdFromCache(Long userId);
+    Set<Long> getUserRoleIdListByUserIdFromCache(String userId);
 
     // ========== 用户-部门的相关方法  ==========
 
@@ -142,6 +142,7 @@ public interface IPermissionService {
      * @param userId 用户编号
      * @return 部门数据权限
      */
-    DeptDataPermissionRespDTO getDeptDataPermission(Long userId);
+    // todo  数据权限待完善
+//    DeptDataPermissionRespDTO getDeptDataPermission(String userId);
 
 }

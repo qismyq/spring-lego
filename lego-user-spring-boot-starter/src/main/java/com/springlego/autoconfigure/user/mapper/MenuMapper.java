@@ -1,7 +1,9 @@
 package com.springlego.autoconfigure.user.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.springlego.autoconfigure.frame.mybatis.mapper.BaseMapperX;
+import com.springlego.autoconfigure.frame.mybatis.query.LambdaQueryWrapperX;
 import com.springlego.autoconfigure.user.dto.dataobject.MenuDO;
+import com.springlego.autoconfigure.user.dto.vo.menu.MenuListReqVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,7 +18,7 @@ import java.util.List;
  * @since 2019-10-29
  */
 @Mapper
-public interface MenuMapper extends BaseMapper<MenuDO> {
+public interface MenuMapper extends BaseMapperX<MenuDO> {
 
     /**
      * @desc: 查找用户拥有菜单
@@ -32,4 +34,21 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
      */
     List<MenuDO> getMenusByUserId(@Param("userId") Integer userId, @Param("deleted") Boolean deleted, @Param("menuType") Integer menuType,@Param("pid") Long pid);
 
+    default MenuDO selectByParentIdAndName(Long parentId, String name) {
+        return selectOne(MenuDO::getParentId, parentId, MenuDO::getName, name);
+    }
+
+    default Long selectCountByParentId(Long parentId) {
+        return selectCount(MenuDO::getParentId, parentId);
+    }
+
+    default List<MenuDO> selectList(MenuListReqVO reqVO) {
+        return selectList(new LambdaQueryWrapperX<MenuDO>()
+                .likeIfPresent(MenuDO::getName, reqVO.getName())
+                .eqIfPresent(MenuDO::getStatus, reqVO.getStatus()));
+    }
+
+    default List<MenuDO> selectListByPermission(String permission) {
+        return selectList(MenuDO::getPermission, permission);
+    }
 }

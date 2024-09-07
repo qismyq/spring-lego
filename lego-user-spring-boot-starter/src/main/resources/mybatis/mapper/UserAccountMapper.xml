@@ -19,11 +19,12 @@
         <result column="update_time" property="createTime" />
         <result column="updater" property="updater" />
         <result column="deleted" property="deleted" />
+        <result column="deptId" property="dept_id" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, account, password, salt,avatar,sex, mobile, email, state, front_user_id,create_time,creator,updater,update_time,deleted
+        id, name, account, password, salt,avatar,sex, mobile, email, state, front_user_id,create_time,creator,updater,update_time,deleted,dept_id
     </sql>
 
 

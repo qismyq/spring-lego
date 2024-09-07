@@ -1,7 +1,7 @@
 package com.springlego.autoconfigure.user.dto.vo.dept;
 
-import cn.iocoder.yudao.framework.common.enums.CommonStatusEnum;
-import cn.iocoder.yudao.framework.common.validation.InEnum;
+import com.springlego.autoconfigure.common.enums.CommonStatusEnum;
+import com.springlego.autoconfigure.common.validation.InEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

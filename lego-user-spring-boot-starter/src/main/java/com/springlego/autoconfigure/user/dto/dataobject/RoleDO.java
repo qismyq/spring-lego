@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.springlego.autoconfigure.common.dto.BaseDO;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.springlego.autoconfigure.common.enums.CommonStatusEnum;
+import com.springlego.autoconfigure.frame.entity.BaseDO;
+import com.springlego.autoconfigure.frame.mybatis.handler.JsonLongSetTypeHandler;
+import com.springlego.autoconfigure.user.enums.permission.RoleTypeEnum;
+import lombok.*;
 
 import java.util.Set;
 
@@ -15,10 +17,13 @@ import java.util.Set;
  *
  * @author ruoyi
  */
-@TableName(value = "system_role", autoResultMap = true)
-@KeySequence("system_role_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
+@TableName(value = "u_role", autoResultMap = true)
+@KeySequence("u_role_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class RoleDO extends BaseDO {
 
     /**
@@ -72,3 +77,7 @@ public class RoleDO extends BaseDO {
     private Set<Long> dataScopeDeptIds;
 
 }
+
+
+
+

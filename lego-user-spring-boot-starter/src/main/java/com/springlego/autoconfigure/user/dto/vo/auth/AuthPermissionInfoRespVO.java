@@ -1,4 +1,4 @@
-package com.springlego.autoconfigure.user.dto.vo;
+package com.springlego.autoconfigure.user.dto.vo.auth;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

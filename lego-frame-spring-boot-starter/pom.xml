@@ -167,6 +167,11 @@
             <artifactId>hutool-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-json</artifactId>
+        </dependency>
+
         <!--文档-start-->
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -179,6 +184,15 @@
             <artifactId>jakarta.validation-api</artifactId>
         </dependency>
 
+        <!-- VO 数据翻译 -->
+        <dependency>
+            <groupId>com.fhs-opensource</groupId> <!-- VO 数据翻译 -->
+            <artifactId>easy-trans-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fhs-opensource</groupId>
+            <artifactId>easy-trans-mybatis-plus-extend</artifactId>
+        </dependency>
 
         <!--&lt;!&ndash;热部署&ndash;&gt; 此处需要注释掉，不然会影响cachable等注解的使用，此问题待查-->
         <!--<dependency>-->

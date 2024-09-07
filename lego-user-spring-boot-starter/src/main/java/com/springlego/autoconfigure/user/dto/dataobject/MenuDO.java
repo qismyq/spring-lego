@@ -3,7 +3,7 @@ package com.springlego.autoconfigure.user.dto.dataobject;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.springlego.autoconfigure.common.dto.BaseDO;
+import com.springlego.autoconfigure.frame.entity.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,8 +12,8 @@ import lombok.EqualsAndHashCode;
  *
  * @author ruoyi
  */
-@TableName("system_menu")
-@KeySequence("system_menu_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
+@TableName("u_menu")
+@KeySequence("u_menu_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class MenuDO extends BaseDO {

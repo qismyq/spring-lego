@@ -28,7 +28,7 @@ public class UserPostDO extends BaseDO {
      *
      * 关联 {@link UserAccountDO#getId()}
      */
-    private Long userId;
+    private String userId;
     /**
      * 角色 ID
      *

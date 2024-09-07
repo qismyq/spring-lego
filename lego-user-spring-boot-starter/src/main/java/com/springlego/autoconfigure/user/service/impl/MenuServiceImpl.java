@@ -4,10 +4,16 @@ import cn.hutool.core.collection.CollUtil;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import com.springlego.autoconfigure.common.util.BeanUtils;
+import com.springlego.autoconfigure.frame.errorhandler.ErrorMessageException;
 import com.springlego.autoconfigure.user.dto.dataobject.MenuDO;
+import com.springlego.autoconfigure.user.dto.vo.menu.MenuListReqVO;
+import com.springlego.autoconfigure.user.dto.vo.menu.MenuSaveVO;
 import com.springlego.autoconfigure.user.enums.RedisKeyConstants;
+import com.springlego.autoconfigure.user.enums.permission.MenuTypeEnum;
+import com.springlego.autoconfigure.user.errorhandler.UserErrorCodeEnum;
 import com.springlego.autoconfigure.user.mapper.MenuMapper;
 import com.springlego.autoconfigure.user.service.IMenuService;
+import com.springlego.autoconfigure.user.service.IPermissionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -18,6 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
+
+import static com.springlego.autoconfigure.common.util.CollectionUtils.convertList;
+import static com.springlego.autoconfigure.user.dto.dataobject.MenuDO.ID_ROOT;
 
 
 /**
@@ -32,10 +41,7 @@ public class MenuServiceImpl implements IMenuService {
     @Resource
     private MenuMapper menuMapper;
     @Resource
-    private PermissionService permissionService;
-    @Resource
-    @Lazy // 延迟，避免循环依赖报错
-    private TenantService tenantService;
+    private IPermissionService permissionService;
 
     @Override
     @CacheEvict(value = RedisKeyConstants.PERMISSION_MENU_ID_LIST, key = "#createReqVO.permission",
@@ -60,7 +66,7 @@ public class MenuServiceImpl implements IMenuService {
     public void updateMenu(MenuSaveVO updateReqVO) {
         // 校验更新的菜单是否存在
         if (menuMapper.selectById(updateReqVO.getId()) == null) {
-            throw exception(MENU_NOT_EXISTS);
+            throw new ErrorMessageException(UserErrorCodeEnum.MENU_NOT_EXISTS);
         }
         // 校验父菜单存在
         validateParentMenu(updateReqVO.getParentId(), updateReqVO.getId());
@@ -80,11 +86,11 @@ public class MenuServiceImpl implements IMenuService {
     public void deleteMenu(Long id) {
         // 校验是否还有子菜单
         if (menuMapper.selectCountByParentId(id) > 0) {
-            throw exception(MENU_EXISTS_CHILDREN);
+            throw new ErrorMessageException(UserErrorCodeEnum.MENU_EXISTS_CHILDREN);
         }
         // 校验删除的菜单是否存在
         if (menuMapper.selectById(id) == null) {
-            throw exception(MENU_NOT_EXISTS);
+            throw new ErrorMessageException(UserErrorCodeEnum.MENU_NOT_EXISTS);
         }
         // 标记删除
         menuMapper.deleteById(id);
@@ -97,13 +103,6 @@ public class MenuServiceImpl implements IMenuService {
         return menuMapper.selectList();
     }
 
-    @Override
-    public List<MenuDO> getMenuListByTenant(MenuListReqVO reqVO) {
-        List<MenuDO> menus = getMenuList(reqVO);
-        // 开启多租户的情况下，需要过滤掉未开通的菜单
-        tenantService.handleTenantMenu(menuIds -> menus.removeIf(menu -> !CollUtil.contains(menuIds, menu.getId())));
-        return menus;
-    }
 
     @Override
     public List<MenuDO> getMenuList(MenuListReqVO reqVO) {
@@ -148,17 +147,17 @@ public class MenuServiceImpl implements IMenuService {
         }
         // 不能设置自己为父菜单
         if (parentId.equals(childId)) {
-            throw exception(MENU_PARENT_ERROR);
+            throw new ErrorMessageException(UserErrorCodeEnum.MENU_PARENT_ERROR);
         }
         MenuDO menu = menuMapper.selectById(parentId);
         // 父菜单不存在
         if (menu == null) {
-            throw exception(MENU_PARENT_NOT_EXISTS);
+            throw new ErrorMessageException(UserErrorCodeEnum.MENU_PARENT_NOT_EXISTS);
         }
         // 父菜单必须是目录或者菜单类型
         if (!MenuTypeEnum.DIR.getType().equals(menu.getType())
                 && !MenuTypeEnum.MENU.getType().equals(menu.getType())) {
-            throw exception(MENU_PARENT_NOT_DIR_OR_MENU);
+            throw new ErrorMessageException(UserErrorCodeEnum.MENU_PARENT_NOT_DIR_OR_MENU);
         }
     }
 
@@ -179,10 +178,10 @@ public class MenuServiceImpl implements IMenuService {
         }
         // 如果 id 为空，说明不用比较是否为相同 id 的菜单
         if (id == null) {
-            throw exception(MENU_NAME_DUPLICATE);
+            throw new ErrorMessageException(UserErrorCodeEnum.MENU_NAME_DUPLICATE);
         }
         if (!menu.getId().equals(id)) {
-            throw exception(MENU_NAME_DUPLICATE);
+            throw new ErrorMessageException(UserErrorCodeEnum.MENU_NAME_DUPLICATE);
         }
     }
 

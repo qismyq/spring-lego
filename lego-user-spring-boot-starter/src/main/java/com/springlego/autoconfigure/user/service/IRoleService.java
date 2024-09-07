@@ -3,6 +3,8 @@ package com.springlego.autoconfigure.user.service;
 
 import com.springlego.autoconfigure.frame.entity.PageResult;
 import com.springlego.autoconfigure.user.dto.dataobject.RoleDO;
+import com.springlego.autoconfigure.user.dto.vo.role.RolePageReqVO;
+import com.springlego.autoconfigure.user.dto.vo.role.RoleSaveReqVO;
 
 import javax.validation.Valid;
 import java.util.Collection;

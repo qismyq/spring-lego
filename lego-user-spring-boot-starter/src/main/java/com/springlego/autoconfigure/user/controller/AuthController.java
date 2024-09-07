@@ -4,10 +4,13 @@ import cn.hutool.core.collection.CollUtil;
 import com.springlego.autoconfigure.common.enums.CommonStatusEnum;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
 import com.springlego.autoconfigure.security.util.SecurityUtils;
+import com.springlego.autoconfigure.user.convert.auth.AuthConvert;
 import com.springlego.autoconfigure.user.dto.dataobject.MenuDO;
 import com.springlego.autoconfigure.user.dto.dataobject.RoleDO;
 import com.springlego.autoconfigure.user.dto.dataobject.UserAccountDO;
-import com.springlego.autoconfigure.user.dto.vo.AuthPermissionInfoRespVO;
+import com.springlego.autoconfigure.user.dto.vo.auth.AuthPermissionInfoRespVO;
+import com.springlego.autoconfigure.user.service.IMenuService;
+import com.springlego.autoconfigure.user.service.IPermissionService;
 import com.springlego.autoconfigure.user.service.IRoleService;
 import com.springlego.autoconfigure.user.service.IUserAccountService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,6 +26,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import static com.springlego.autoconfigure.common.util.CollectionUtils.convertSet;
+
 /**
  * @author by michael_wang
  * @Classname AuthController
@@ -31,7 +36,7 @@ import java.util.Set;
  */
 @Tag(name = "管理后台 - 认证")
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/system/auth")
 @Validated
 @Slf4j
 public class AuthController {
@@ -40,6 +45,10 @@ public class AuthController {
     private IUserAccountService userAccountService;
     @Resource
     private IRoleService roleService;
+    @Resource
+    private IPermissionService permissionService;
+    @Resource
+    private IMenuService menuService;
 
 
     @GetMapping("/get-permission-info")

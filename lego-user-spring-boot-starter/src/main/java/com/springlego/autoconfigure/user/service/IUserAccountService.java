@@ -31,6 +31,6 @@ public interface IUserAccountService extends IService<UserAccountDO> {
      * @param id 用户ID
      * @return 用户对象信息
      */
-    UserAccountDO getUserById(String id)throws Exception;
+    UserAccountDO getUserById(String id);
 
 }

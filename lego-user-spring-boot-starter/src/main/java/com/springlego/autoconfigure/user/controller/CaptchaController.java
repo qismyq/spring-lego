@@ -5,7 +5,7 @@ import cn.hutool.captcha.generator.CodeGenerator;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ReflectUtil;
 import com.springlego.autoconfigure.frame.entity.ReturnDatas;
-import com.springlego.autoconfigure.frame.errorhandler.FrameCodeEnum;
+import com.springlego.autoconfigure.frame.enums.FrameCodeEnum;
 import com.springlego.autoconfigure.frame.util.SpringContextHolder;
 import com.springlego.autoconfigure.user.config.properties.CaptchaProperties;
 import com.springlego.autoconfigure.user.enums.CaptchaType;

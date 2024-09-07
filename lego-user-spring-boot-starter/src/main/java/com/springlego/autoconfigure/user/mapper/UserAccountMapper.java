@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.springlego.autoconfigure.user.dto.dataobject.UserAccountDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -14,6 +15,7 @@ import org.apache.ibatis.annotations.Param;
  * @since 2019-10-29
  */
 @Mapper
+@Repository("u_userAccountMapper")
 public interface UserAccountMapper extends BaseMapper<UserAccountDO> {
 
 

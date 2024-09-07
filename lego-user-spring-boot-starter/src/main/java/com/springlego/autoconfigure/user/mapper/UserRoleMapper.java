@@ -1,10 +1,12 @@
 package com.springlego.autoconfigure.user.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.springlego.autoconfigure.user.dto.UserRole;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.springlego.autoconfigure.frame.mybatis.mapper.BaseMapperX;
+import com.springlego.autoconfigure.user.dto.dataobject.UserRoleDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -17,9 +19,31 @@ import java.util.List;
  */
 @Component
 @Mapper
-public interface UserRoleMapper extends BaseMapper<UserRole> {
+public interface UserRoleMapper extends BaseMapperX<UserRoleDO> {
 
 
-    List<UserRole> getRoleCodeAsStringByAccount(String account);
+    List<UserRoleDO> getRoleCodeAsStringByAccount(String account);
 
+
+    default List<UserRoleDO> selectListByUserId(String userId) {
+        return selectList(UserRoleDO::getUserId, userId);
+    }
+
+    default void deleteListByUserIdAndRoleIdIds(String userId, Collection<Long> roleIds) {
+        delete(new LambdaQueryWrapper<UserRoleDO>()
+                .eq(UserRoleDO::getUserId, userId)
+                .in(UserRoleDO::getRoleId, roleIds));
+    }
+
+    default void deleteListByUserId(String userId) {
+        delete(new LambdaQueryWrapper<UserRoleDO>().eq(UserRoleDO::getUserId, userId));
+    }
+
+    default void deleteListByRoleId(Long roleId) {
+        delete(new LambdaQueryWrapper<UserRoleDO>().eq(UserRoleDO::getRoleId, roleId));
+    }
+
+    default List<UserRoleDO> selectListByRoleIds(Collection<Long> roleIds) {
+        return selectList(UserRoleDO::getRoleId, roleIds);
+    }
 }

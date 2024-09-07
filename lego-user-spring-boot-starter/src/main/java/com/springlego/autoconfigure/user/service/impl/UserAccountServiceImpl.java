@@ -29,7 +29,7 @@ public class UserAccountServiceImpl extends ServiceImpl<UserAccountMapper, UserA
     }
 
     @Override
-    public UserAccountDO getUserById(String id) throws Exception {
+    public UserAccountDO getUserById(String id) {
         return userAccountMapper.selectById(id);
     }
 
