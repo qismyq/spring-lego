@@ -3,7 +3,7 @@
 <mapper namespace="com.springlego.autoconfigure.user.mapper.RoleMenuMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.user.dto.RoleMenu">
+    <resultMap id="BaseResultMap" type="com.springlego.autoconfigure.user.dto.dataobject.RoleMenuDO">
         <id column="id" property="id" />
         <result column="role_id" property="roleId" />
         <result column="menu_id" property="menuId" />

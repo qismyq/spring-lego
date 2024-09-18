@@ -1,7 +1,9 @@
 package com.springlego.autoconfigure.security.provider;
 
 import com.springlego.autoconfigure.security.user.service.LegoUserDetailsService;
+import com.springlego.autoconfigure.security.util.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.security.SecurityUtil;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -73,6 +75,7 @@ public class LegoAuthenticationProvider extends AbstractUserDetailsAuthenticatio
             if (loadedUser == null) {
                 throw new InternalAuthenticationServiceException("UserDetailsService returned null, which is an interface contract violation");
             } else {
+                SecurityUtils.setLoginUser(loadedUser,authentication);
                 return loadedUser;
             }
         } catch (UsernameNotFoundException var4) {

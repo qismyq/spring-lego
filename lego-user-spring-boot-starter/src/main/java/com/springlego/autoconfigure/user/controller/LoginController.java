@@ -100,22 +100,22 @@ public class LoginController {
 //            @ApiResponse(code = 40204,message="认证失效，请重新登录"),
 //            @ApiResponse(code = 40205,message="认证错误")
 //    })
-    @PostMapping("/login")
-    public ReturnDatas frontAccountLogin(String account) throws Exception {
-
-        ReturnDatas successReturnDatas = ReturnDatas.getSuccessReturnDatas();
-
-        // todo 前端用户登录
-//        String jwt = loginService.issueFrontJWT(account);
+//    @PostMapping("/login")
+//    public ReturnDatas frontAccountLogin(String account) throws Exception {
 //
-//        FrontUser frontUser = new FrontUser();
-//        frontUser = frontUser.selectOne(new QueryWrapper<FrontUser>().eq("account", account));
-//        if (frontUser == null) {
-//            return ReturnDatas.getErrorReturnDatas(UserErrorCodeEnum.E_40100);
-//        }
-//        frontUser.setToken(jwt);
-//        successReturnDatas.setData(frontUser);
-
-        return successReturnDatas;
-    }
+//        ReturnDatas successReturnDatas = ReturnDatas.getSuccessReturnDatas();
+//
+//        // todo 前端用户登录
+////        String jwt = loginService.issueFrontJWT(account);
+////
+////        FrontUser frontUser = new FrontUser();
+////        frontUser = frontUser.selectOne(new QueryWrapper<FrontUser>().eq("account", account));
+////        if (frontUser == null) {
+////            return ReturnDatas.getErrorReturnDatas(UserErrorCodeEnum.E_40100);
+////        }
+////        frontUser.setToken(jwt);
+////        successReturnDatas.setData(frontUser);
+//
+//        return successReturnDatas;
+//    }
 }
