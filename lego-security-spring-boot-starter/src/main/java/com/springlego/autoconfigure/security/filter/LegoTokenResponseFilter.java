@@ -10,6 +10,7 @@ import org.apache.commons.collections4.MapUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -20,13 +21,14 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
+@Component
 public class LegoTokenResponseFilter extends OncePerRequestFilter {
 
-    private TokenStore tokenStore;
+//    private TokenStore tokenStore;
     private static String SUFFIX = "/login";
 
-    public LegoTokenResponseFilter(TokenStore tokenStore) {
-        this.tokenStore = tokenStore;
+    public LegoTokenResponseFilter() {
+//        this.tokenStore = tokenStore;
     }
 
     @Override

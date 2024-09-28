@@ -49,6 +49,7 @@ public class LegoAuthenticationProvider extends AbstractUserDetailsAuthenticatio
                 this.logger.debug("Failed to authenticate since password does not match stored value");
                 throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
             }
+            SecurityUtils.setLoginUser(userDetails,authentication);
         }
     }
 
@@ -96,6 +97,7 @@ public class LegoAuthenticationProvider extends AbstractUserDetailsAuthenticatio
             String newPassword = this.passwordEncoder.encode(presentedPassword);
             user = this.userDetailsPasswordService.updatePassword(user, newPassword);
         }
+        SecurityUtils.setLoginUser(user,authentication);
 
         return super.createSuccessAuthentication(principal, authentication, user);
     }
